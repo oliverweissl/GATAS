@@ -120,3 +120,28 @@ def success_at_budget(record: dict, queries: int, thresholds: dict = None) -> bo
         archive = history["archive_per_generation"][generation - 1]
         return any(all(dict(zip(names, member)).get(k, float("inf")) <= v for k, v in thresholds.items()) for member in archive)
     return record["success"] and record["queries"] <= queries
+
+
+def summary_table(records: dict):
+    """Per-method means of the evaluation metrics as a pandas DataFrame."""
+    import numpy as np
+    import pandas as pd
+
+    rows = {}
+    for method, recs in records.items():
+        if not recs:
+            continue
+        rows[method] = {
+            "n": len(recs),
+            "success %": 100 * np.mean([r["success"] for r in recs]),
+            "valid success %": 100 * np.mean([r["valid_success"] for r in recs]),
+            "SET_OVERLAP": np.mean([r["set_overlap"] for r in recs]),
+            "WER": np.mean([r["wer"] for r in recs]),
+            "SBERT sim.": np.mean([r["sbert"] for r in recs]),
+            "PESQ fitness": np.mean([r["pesq"] for r in recs]),
+            "UTMOS": np.mean([r["utmos"] for r in recs]),
+            "ref. ASR WER": np.mean([r["reference_wer"] for r in recs]),
+            "runtime [s]": np.mean([r["elapsed_seconds"] for r in recs]),
+            "queries": np.mean([r["queries"] for r in recs]),
+        }
+    return pd.DataFrame(rows).T

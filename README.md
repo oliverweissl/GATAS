@@ -177,9 +177,12 @@ Whisper model. Query budgets count attacked-ASR queries (PGD: gradient iteration
 The notebooks load results through `analysis/results_loader.py` (`load_results(dataset=..., asr_model=...)`): the
 latest experiment per method, only sentences present for every method, sorted by sentence ID (for paired tests).
 
-- `RQ1_Effectiveness`, `RQ2_Validity`, `RQ3_Efficiency`, `QualAnalysis`: paper analyses.
-- `Revision`: main comparison per dataset, threshold sensitivity (from the stored Pareto fronts), success vs.
-  query budget (from `archive_history.json`), native vs. adapted SMACK, the generalization matrix, and the budget ablation.
+- `RQ1_Effectiveness`: success, semantic divergence (SET_OVERLAP, WER, SBERT), naturalness (UTMOS), main comparison per
+  dataset, threshold sensitivity (from the stored Pareto fronts), native vs. adapted SMACK, generalization matrix.
+- `RQ2_Validity`: human study (survey) and the automatic validity check (reference ASR).
+- `RQ3_Efficiency`: runtime, query budget, convergence, success vs. query budget (from `archive_history.json`),
+  budget ablation.
+- `QualAnalysis`: qualitative examples.
 
 ## Reproducibility
 

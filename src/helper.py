@@ -20,30 +20,49 @@ def run_seed(seed: int, sentence_id: int, run_id: int = 0) -> int:
 
 
 # Method names, used for result folders and the 'attack_method' field of every summary JSON
-METHODS = ("GATAS", "Waveform", "SMACK", "SMACK_targeted", "PGD")
+METHODS = ("GATAS", "GATAS_targeted", "Waveform", "SMACK", "SMACK_targeted", "ALIF", "PGD")
+
+REFERENCE_DIR = os.path.join("outputs", "references")
+RESULTS_DIR = os.path.join("outputs", "results")
 
 
-def results_dir(method: str, run_timestamp: str) -> str:
-    """outputs/results/<method>/<run_timestamp>; method is one of METHODS."""
+def experiment_name(asr_model: str) -> str:
+    """Name of one experiment folder: <asr_model>_<timestamp>."""
+    import datetime
+    return f"{asr_model}_" + datetime.datetime.now().strftime("%Y%m%d_%H%M")
+
+
+def results_dir(method: str, dataset: str, experiment: str) -> str:
+    """outputs/results/<method>/<dataset>/<experiment>; method is one of METHODS."""
     assert method in METHODS, f"Unknown method {method!r}, expected one of {METHODS}"
-    return os.path.join("outputs", "results", method, run_timestamp)
+    return os.path.join(RESULTS_DIR, method, dataset, experiment)
 
 
-def reference_paths(sentence_id: int, audio_dir: str = "outputs") -> tuple[str, str]:
-    """(wav path, embedding path) of the shared reference audio written by generate_harvard_audios.py."""
-    sentence_dir = os.path.join(audio_dir, f"harvard_sentence_{sentence_id:03d}")
-    return os.path.join(sentence_dir, "harvard_audio.wav"), os.path.join(sentence_dir, "harvard_audio.pt")
+def sentence_dir(results_path: str, sentence_id: int) -> str:
+    return os.path.join(results_path, f"sentence_{sentence_id:03d}")
 
 
-def load_reference_embedding(sentence_id: int, device: str, audio_dir: str = "outputs"):
-    """Load the GT AudioEmbeddingData saved by generate_harvard_audios.py, or None if missing."""
-    _, embeddings_path = reference_paths(sentence_id, audio_dir)
+def reference_paths(dataset: str, sentence_id: int, reference_dir: str = REFERENCE_DIR) -> tuple[str, str]:
+    """(wav path, embedding path) of the shared reference audio written by generate_reference_audios.py."""
+    folder = os.path.join(reference_dir, dataset, f"sentence_{sentence_id:03d}")
+    return os.path.join(folder, "reference.wav"), os.path.join(folder, "reference.pt")
+
+
+def load_reference_embedding(dataset: str, sentence_id: int, device: str, reference_dir: str = REFERENCE_DIR):
+    """Load the GT AudioEmbeddingData saved by generate_reference_audios.py, or None if missing."""
+    _, embeddings_path = reference_paths(dataset, sentence_id, reference_dir)
     if not os.path.exists(embeddings_path):
         return None
     embedding = torch.load(embeddings_path, map_location=device, weights_only=False)
     for field in ("input_length", "text_mask", "h_bert", "h_text", "style_vector_acoustic", "style_vector_prosodic"):
         setattr(embedding, field, getattr(embedding, field).to(device))
     return embedding
+
+
+def target_sentence(sentences, sentence_id: int, seed: int) -> str:
+    """Target text for targeted attacks: another sentence of the same dataset, identical for all methods."""
+    candidates = [s for i, s in enumerate(sentences) if i != sentence_id - 1]
+    return random.Random(run_seed(seed, sentence_id)).choice(candidates)
 
 
 def calculate_2d_hypervolume(pareto_front, ref_point):

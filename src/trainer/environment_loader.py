@@ -153,7 +153,7 @@ class EnvironmentLoader:
         """
         Generate audio data for ground-truth and target texts.
 
-        audio_embedding_gt: pre-computed GT embeddings (e.g. from generate_harvard_audios.py) so every
+        audio_embedding_gt: pre-computed GT embeddings (from generate_reference_audios.py) so every
         attack method starts from the same reference audio. Ignored for TARGETED mode, which re-extracts
         padded GT tokens.
         """

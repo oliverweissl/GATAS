@@ -163,6 +163,16 @@ class RunLogger:
 
         print("[Log] Spectrograms saved successfully (using Whisper's configuration)")
 
+    def save_archive_history(self, archive_history: list):
+        """Archive fitness after every generation (archive_history.json), for success-vs-query-budget analysis."""
+        obj_names = [obj.name for obj in self.active_objectives]
+        history = {
+            "objectives": obj_names,
+            "archive_per_generation": [np.round(np.asarray(a, dtype=np.float64), 6).tolist() for a in archive_history],
+        }
+        with open(os.path.join(self.folder_path, "archive_history.json"), "w") as f:
+            json.dump(history, f)
+
     def save_fitness_history_per_generation(self, fitness_history: list, archive_history: list):
         """
         Saves a compact per-generation summary to 'fitness_history.csv'.
@@ -291,6 +301,7 @@ class RunLogger:
         optimization_time_seconds: float = None,
         seed: int = None,
         method: str = None,
+        dataset: str = None,
     ) -> dict:
         gpu_info = "CPU Only"
         if torch.cuda.is_available():
@@ -306,6 +317,7 @@ class RunLogger:
         summary = {
             "metadata": {
                 "attack_method": method,
+                "dataset": dataset,
                 "run_timestamp": run_timestamp,
                 "sentence_id": sentence_id,
                 "run_id": run_id,
@@ -332,6 +344,8 @@ class RunLogger:
             },
             "efficiency_metrics": {
                 "generation_count": generation_count,
+                # Attacked-ASR queries (one per evaluated individual)
+                "queries": generation_count * config_data.pop_size,
                 # End-to-end wall clock from attack start to selected result
                 "elapsed_time_seconds": round(elapsed_time_total, 2),
                 "avg_time_per_generation": round(avg_per_gen, 2),
@@ -358,7 +372,14 @@ class RunLogger:
                 "generation_found": generation_found,
                 "fitness_scores": fitness_dict,
             },
-            "pareto_front": [c.fitness.tolist() for c in optimizer.best_candidates],
+            # Final archive (non-dominated candidates) with transcriptions, for post-hoc threshold/metric analysis
+            "pareto_front": [
+                {
+                    "fitness": dict(zip(fitness_names, [float(v) for v in c.fitness])),
+                    "transcription": c.data[1] if c.data is not None and len(c.data) > 1 else None,
+                }
+                for c in optimizer.best_candidates
+            ],
             "file_paths": {
                 "best_mixed_audio": "best_mixed.wav",
                 "ground_truth_audio": "ground_truth.wav",
@@ -402,6 +423,7 @@ class RunLogger:
         optimization_time_seconds: float = None,
         seed: int = None,
         method: str = None,
+        dataset: str = None,
     ) -> dict:
         """elapsed_time_total: end-to-end wall clock of the attack (start until the optimizer returned)."""
         os.makedirs(folder_path, exist_ok=True)
@@ -436,7 +458,8 @@ class RunLogger:
 
         self.save_audios(audio_gt, audio_target, audio_best)
         self.save_fitness_history_per_generation(fitness_data, archive_data)
-        summary = self.save_json_summary(text_best, best_candidate, optimizer, config_data, generation_count, elapsed_time_total, num_generations, sentence_id, run_id, run_timestamp, generation_found=generation_found, seed_target=seed_target, seed_gt=seed_gt, target_asr_text=target_asr_text, min_generations=min_generations, gt_rms=gt_rms, target_rms=target_rms, gt_asr_text=gt_asr_text, utmos_best=utmos_best, utmos_gt=utmos_gt, evaluation=evaluation, optimization_time_seconds=optimization_time_seconds, seed=seed, method=method)
+        self.save_archive_history(archive_data)
+        summary = self.save_json_summary(text_best, best_candidate, optimizer, config_data, generation_count, elapsed_time_total, num_generations, sentence_id, run_id, run_timestamp, generation_found=generation_found, seed_target=seed_target, seed_gt=seed_gt, target_asr_text=target_asr_text, min_generations=min_generations, gt_rms=gt_rms, target_rms=target_rms, gt_asr_text=gt_asr_text, utmos_best=utmos_best, utmos_gt=utmos_gt, evaluation=evaluation, optimization_time_seconds=optimization_time_seconds, seed=seed, method=method, dataset=dataset)
 
         if save_spectrograms:
             self.save_spectrograms(audio_gt, audio_target, audio_best)
@@ -510,6 +533,8 @@ class RunLogger:
         sol = summary.get("final_solution", {})
         row["generation_found"] = sol.get("generation_found")
         row["pareto_front_size"] = len(summary.get("pareto_front", []))
+        row["dataset"] = meta.get("dataset")
+        row["queries"] = eff.get("queries")
 
         nat = summary.get("naturalness_scores", {})
         row["utmos_best"] = nat.get("utmos_best")

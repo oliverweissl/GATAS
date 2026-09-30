@@ -3,8 +3,6 @@ set -e
 
 conda env create -f pgd.yml -n pgd
 conda run -n pgd pip install setuptools==65.5.0
-# Shared evaluation metrics (src/metrics.py)
-conda run -n pgd pip install pesq
 conda run -n pgd pip install --no-deps --no-build-isolation \
     git+https://github.com/RaphaelOlivier/pyaudlib.git \
     git+https://github.com/RaphaelOlivier/robust_speech.git \

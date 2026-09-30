@@ -1,8 +1,12 @@
 """
-Shared evaluation metrics and success criterion for all attack methods (GATAS, Waveform, SMACK, PGD).
+Shared evaluation metrics and success criteria for all attack methods (GATAS, Waveform, SMACK, ALIF, PGD).
+scripts/evaluate_results.py applies them to every saved result.
 
-Change SUCCESS_THRESHOLDS to change what counts as a successful attack everywhere.
-Both metrics are fitness values where lower is better for the attacker.
+Success (untargeted): every metric in SUCCESS_THRESHOLDS at or below its threshold (fitness, lower = better).
+Success (targeted):   every metric in TARGETED_SUCCESS_THRESHOLDS at or below its threshold.
+Validity:             a strong reference ASR (VALIDITY_REFERENCE_ASR, not attacked) still recognizes the
+                      ground truth in the adversarial audio: WER <= VALIDITY_MAX_WER.
+Semantic divergence is additionally reported with order-sensitive WER and SBERT similarity; naturalness with UTMOS.
 """
 import re
 
@@ -21,6 +25,16 @@ SUCCESS_THRESHOLDS = {
     "PESQ": 0.2,         # PESQ fitness: 0.0 = perfect quality, 1.0 = worst
     "SET_OVERLAP": 0.5,  # fraction of GT content words surviving in the transcription
 }
+
+TARGETED_SUCCESS_THRESHOLDS = {
+    "PESQ": 0.2,
+    "TARGET_WER": 0.0,   # word error rate of the transcription w.r.t. the target text (exact match)
+}
+
+VALIDITY_REFERENCE_ASR = "whisper-large-v3"
+VALIDITY_MAX_WER = 0.3
+
+SBERT_MODEL = "all-MiniLM-L6-v2"
 
 _STOPWORDS = set(stopwords.words('english'))
 _LEMMATIZER = WordNetLemmatizer()
@@ -70,9 +84,45 @@ def pesq_fitness(reference_audio: np.ndarray, degraded_audio: np.ndarray, sample
     return float(max(0.0, min(1.0, 1.0 - (score + 0.5) / 5.0)))
 
 
-def is_success(scores: dict) -> bool:
-    """scores: {metric name: fitness value} containing every key in SUCCESS_THRESHOLDS."""
-    return all(scores[name] <= threshold for name, threshold in SUCCESS_THRESHOLDS.items())
+def is_success(scores: dict, thresholds: dict = None) -> bool:
+    """scores: {metric name: value} containing every key of thresholds (default SUCCESS_THRESHOLDS)."""
+    thresholds = SUCCESS_THRESHOLDS if thresholds is None else thresholds
+    return all(scores[name] <= threshold for name, threshold in thresholds.items())
+
+
+_WER_TRANSFORM = None
+
+
+def wer(reference: str, hypothesis: str) -> float:
+    """Word error rate after lowercasing, contraction expansion and punctuation removal (can exceed 1)."""
+    import jiwer
+
+    global _WER_TRANSFORM
+    if _WER_TRANSFORM is None:
+        _WER_TRANSFORM = jiwer.Compose([
+            jiwer.ToLowerCase(),
+            jiwer.ExpandCommonEnglishContractions(),
+            jiwer.RemovePunctuation(),
+            jiwer.RemoveMultipleSpaces(),
+            jiwer.Strip(),
+            jiwer.ReduceToListOfListOfWords(),
+        ])
+    if not (hypothesis or "").strip():
+        return 1.0
+    return float(jiwer.wer(reference, hypothesis, reference_transform=_WER_TRANSFORM, hypothesis_transform=_WER_TRANSFORM))
+
+
+_sbert_models = {}
+
+
+def sbert_similarity(text_a: str, text_b: str, device: str = "cpu") -> float:
+    """Cosine similarity of sentence embeddings (1 = same meaning, ~0 = unrelated)."""
+    from sentence_transformers import SentenceTransformer, util
+
+    if device not in _sbert_models:
+        _sbert_models[device] = SentenceTransformer(SBERT_MODEL, device=device)
+    embeddings = _sbert_models[device].encode([text_a or "", text_b or ""], convert_to_tensor=True)
+    return float(util.cos_sim(embeddings[0], embeddings[1]).item())
 
 
 def evaluate_attack(reference_audio: np.ndarray, adversarial_audio: np.ndarray, gt_text: str, asr_text: str) -> dict:

@@ -4,3 +4,6 @@
 [submodule "third_party/whisper_attack"]
 	path = third_party/whisper_attack
 	url = https://github.com/RaphaelOlivier/whisper_attack.git
+[submodule "third_party/TASER"]
+	path = third_party/TASER
+	url = https://github.com/TASER2023/TASER.git

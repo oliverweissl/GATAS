@@ -1,91 +1,70 @@
 """
-Load experiment results of all methods in one normalized format for the analysis notebooks.
+Load evaluated results (evaluation.json from scripts/evaluate_results.py) for the analysis notebooks.
 
-Layout written by the experiment scripts: <results_root>/<Method>/<asr>_<timestamp>/sentence_XXX/[run_Y/]
-with one summary JSON (run_summary.json, smack_summary.json or pgd_summary.json), ground_truth.wav and best_*.wav.
+Layout: <results_root>/<Method>/<dataset>/<asr>_<timestamp>/sentence_XXX/[run_Y/]evaluation.json
 """
 import os
 import json
 import warnings
 from glob import glob
 
-METHODS = ("GATAS", "Waveform", "SMACK", "SMACK_targeted", "PGD")
+METHODS = ("GATAS", "Waveform", "SMACK", "ALIF", "PGD")          # main comparison (untargeted)
+ALL_METHODS = ("GATAS", "GATAS_targeted", "Waveform", "SMACK", "SMACK_targeted", "ALIF", "PGD")
+DATASETS = ("harvard", "librispeech", "commands")
+ASR_MODELS = ("whisper-tiny", "whisper-large-v3-turbo", "wav2vec2-large")
+
+# Objective names in archives / Pareto fronts -> metric names of evaluation.json
+_METRIC_ALIASES = {"WER_TARGET": "TARGET_WER"}
 
 
-def _record(method: str, path: str) -> dict:
+def _record(path: str) -> dict:
     with open(path) as f:
-        d = json.load(f)
-    folder = os.path.dirname(path)
-    adv = sorted(glob(os.path.join(folder, "best_*.wav")))
-    text = d.get("text_data", {})
-    nat = d.get("naturalness_scores") or {}
-
-    if "efficiency_metrics" in d:    # GATAS / Waveform (RunLogger)
-        sentence_id, run_id = d["metadata"]["sentence_id"], d["metadata"].get("run_id") or 0
-        elapsed = d["efficiency_metrics"]["elapsed_time_seconds"]
-        generations = d["efficiency_metrics"]["generation_count"]
-        pop_size = d["algorithm_parameters"]["pop_size"]
-        gt_text, transcription = text["ground_truth_text"], text["asr_transcription"]
-    elif "efficiency" in d:          # SMACK (attack_summary)
-        sentence_id, run_id = d["metadata"]["sentence_id"], d["metadata"].get("run_id") or 0
-        elapsed = d["efficiency"]["elapsed_time_seconds"]
-        generations = d["efficiency"]["num_generations"]
-        pop_size = d["efficiency"]["pop_size"]
-        gt_text, transcription = text["ground_truth_text"], text["asr_transcription"]
-    else:                            # PGD (result_writer)
-        sentence_id, run_id = d["sentence_id"], 0
-        elapsed = d["elapsed_seconds"]
-        generations = d["params"]["num_generations"]
-        pop_size = d["params"]["pop_size"]
-        gt_text, transcription = d["gt_text"], d["transcription"]
-        text = {"gt_transcription": d.get("gt_transcription"), "target_text": None}
-
+        e = json.load(f)
+    scores = e["scores"]
     return {
-        "method": method,
-        "sentence_id": sentence_id,
-        "run_id": run_id,
-        "summary": d,
-        "summary_path": path,
-        "gt_wav": os.path.join(folder, "ground_truth.wav"),
-        "adv_wav": adv[0] if adv else None,
-        "success": bool(d["success_metrics"]["success"]),
-        "metric_scores": d["success_metrics"].get("metric_scores"),
-        "gt_text": gt_text,
-        "gt_transcription": text.get("gt_transcription"),
-        "transcription": transcription,
-        "target_text": text.get("target_text"),
-        "elapsed_seconds": elapsed,
-        "generations": generations,
-        "budget": generations * pop_size,
-        "utmos": nat.get("utmos_best"),
-        "utmos_gt": nat.get("utmos_gt"),
+        **e,
+        # flat aliases used by the notebooks
+        "gt_wav": e["audio"]["ground_truth"],
+        "adv_wav": e["audio"]["adversarial"],
+        "pesq": scores["PESQ"],
+        "set_overlap": scores["SET_OVERLAP"],
+        "wer": scores["WER"],
+        "sbert": scores["SBERT_SIMILARITY"],
+        "utmos": scores["UTMOS"],
+        "utmos_gt": scores["UTMOS_GT"],
+        "valid": e["validity"]["valid"],
+        "reference_wer": e["validity"]["reference_wer"],
+        "budget": e["queries"],
     }
 
 
-def _experiment_dir(results_root: str, method: str, asr_model: str):
-    experiments = sorted(glob(os.path.join(results_root, method, f"{asr_model}_*")))
+def _experiment_dir(results_root: str, method: str, dataset: str, asr_model: str):
+    experiments = sorted(glob(os.path.join(results_root, method, dataset, f"{asr_model}_*")))
     if not experiments:
-        warnings.warn(f"No {method} results for ASR model '{asr_model}' in {results_root}")
+        warnings.warn(f"No {method} results for {dataset} / {asr_model} in {results_root}")
         return None
     if len(experiments) > 1:
-        warnings.warn(f"{len(experiments)} {method} experiments for '{asr_model}', using the latest: {experiments[-1]}")
+        warnings.warn(f"{len(experiments)} {method} experiments for {dataset} / {asr_model}, using the latest: {experiments[-1]}")
     return experiments[-1]
 
 
-def load_results(results_root: str = "../outputs/results", asr_model: str = "whisper",
+def load_results(results_root: str = "../outputs/results", dataset: str = "harvard", asr_model: str = "whisper-tiny",
                  methods=METHODS, common_sentences: bool = True) -> dict:
     """
-    Returns {method: [record, ...]} sorted by sentence_id, one record per sentence (run 0 if repeated).
-    Uses the latest experiment per method for asr_model. With common_sentences, only sentences present
-    for every method are kept, so lists are aligned by sentence for paired statistics.
+    Returns {method: [record, ...]} sorted by sentence_id, one record per sentence (run 0 if repeated), from the
+    latest experiment per method for (dataset, asr_model). With common_sentences, only sentences present for every
+    method are kept, so the lists are aligned by sentence for paired statistics.
     """
     records = {}
     for method in methods:
-        experiment = _experiment_dir(results_root, method, asr_model)
+        experiment = _experiment_dir(results_root, method, dataset, asr_model)
         by_sentence = {}
         if experiment is not None:
-            for path in glob(os.path.join(experiment, "**", "*summary.json"), recursive=True):
-                record = _record(method, path)
+            paths = glob(os.path.join(experiment, "**", "evaluation.json"), recursive=True)
+            if not paths:
+                warnings.warn(f"{experiment} has no evaluation.json; run scripts/evaluate_results.py")
+            for path in paths:
+                record = _record(path)
                 current = by_sentence.get(record["sentence_id"])
                 if current is None or record["run_id"] < current["run_id"]:
                     by_sentence[record["sentence_id"]] = record
@@ -100,3 +79,43 @@ def load_results(results_root: str = "../outputs/results", asr_model: str = "whi
         records = {m: {s: r for s, r in by_sentence.items() if s in common} for m, by_sentence in records.items()}
 
     return {m: [by_sentence[s] for s in sorted(by_sentence)] for m, by_sentence in records.items()}
+
+
+def success_at_thresholds(record: dict, thresholds: dict) -> bool:
+    """
+    Success of one result under other thresholds ({metric: max value}, metrics: PESQ, SET_OVERLAP, WER, ...).
+    GATAS/Waveform succeed if any member of their final Pareto front meets all thresholds (the front is what the
+    search returns); single-output baselines are judged on their one adversarial example. WER thresholds are
+    lower bounds on divergence and given as {"WER": ("min", value)}.
+    """
+    def meets(scores):
+        for name, threshold in thresholds.items():
+            if isinstance(threshold, tuple):
+                kind, value = threshold
+                if scores.get(name) is None or (kind == "min" and scores[name] < value):
+                    return False
+            elif scores.get(name) is None or scores[name] > threshold:
+                return False
+        return True
+
+    front = [{_METRIC_ALIASES.get(k, k): v for k, v in member.items()} for member in record.get("pareto_front") or []]
+    candidates = front if front else [record["scores"]]
+    return any(meets(c) for c in candidates)
+
+
+def success_at_budget(record: dict, queries: int, thresholds: dict = None) -> bool:
+    """
+    Success within a query budget. GATAS/Waveform: some archive member meets the thresholds by generation
+    queries // pop_size (archive_history.json). Baselines: success if they used at most `queries`.
+    """
+    thresholds = thresholds or record["success_thresholds"]
+    if record.get("archive_history"):
+        with open(record["archive_history"]) as f:
+            history = json.load(f)
+        generation = min(queries // record["pop_size"], len(history["archive_per_generation"]))
+        if generation < 1:
+            return False
+        names = [_METRIC_ALIASES.get(n, n) for n in history["objectives"]]
+        archive = history["archive_per_generation"][generation - 1]
+        return any(all(dict(zip(names, member)).get(k, float("inf")) <= v for k, v in thresholds.items()) for member in archive)
+    return record["success"] and record["queries"] <= queries

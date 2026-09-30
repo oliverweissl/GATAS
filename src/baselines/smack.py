@@ -48,6 +48,7 @@ _genetic = None
 _gradient = None
 _synthesis = None
 _asr_model = None
+query_count = 0  # attacked-ASR queries made by SMACK (reset per attack)
 
 
 def _link(target: str, link_name: str) -> None:
@@ -99,6 +100,8 @@ def transcribe(audio_16k: np.ndarray) -> str:
 
 def _smack_asr(audio_file: str) -> str:
     """Replacement for SMACK's google_ASR(path): transcribe with our ASR model ('NA' when empty, as SMACK expects)."""
+    global query_count
+    query_count += 1
     return transcribe(load_synthesis_audio(audio_file))
 
 
@@ -215,6 +218,8 @@ def attack(reference_audio: str, reference_text: str, target_text: str = None) -
     reference_audio: 16 kHz WAV of the ground truth. target_text: None for the untargeted variant.
     Returns the adversarial audio as float32 in [-1, 1] at 16 kHz.
     """
+    global query_count
+    query_count = 0
     reference_audio = os.path.abspath(reference_audio)
     if target_text is None:
         genetic_cls, gradient_cls = _untargeted_classes()

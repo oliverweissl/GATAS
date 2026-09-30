@@ -1,8 +1,11 @@
 """
-GATAS — Harvard Sentences Experiment
+GATAS: black-box ASR test generation by NSGA-II search over StyleTTS2 phoneme-level text embeddings.
 
-Usage:
-    python scripts/adversarial_gatas_harvard.py [args]
+Generate reference audios first:
+    python scripts/generate_reference_audios.py --dataset harvard --start 1 --end 100
+
+Usage (see scripts/run_gatas.sh for the paper settings):
+    python scripts/adversarial_gatas.py --dataset harvard --start 1 --end 100 [args]
 """
 
 import os
@@ -13,7 +16,6 @@ os.environ["CUBLAS_WORKSPACE_CONFIG"] = ":4096:8"
 import time
 import signal
 import argparse
-import datetime
 import torch
 import nltk
 
@@ -21,7 +23,8 @@ nltk.download('punkt_tab', quiet=True)
 nltk.download('stopwords', quiet=True)
 
 from src.data.dataclass import ModelData
-from src.helper import set_seed, run_seed, load_reference_embedding, results_dir
+from src.data.datasets import DATASETS, load_sentences
+from src.helper import set_seed, run_seed, load_reference_embedding, results_dir, experiment_name, target_sentence
 from src.trainer.environment_loader import EnvironmentLoader
 from src.trainer.adversarial_trainer import AdversarialTrainer
 from src.trainer.run_logger import RunLogger
@@ -30,16 +33,14 @@ from src.optimizer.pymoo_optimizer import PymooOptimizer
 from pymoo.algorithms.moo.nsga2 import NSGA2
 
 
-from src.data.harvard_sentences import HARVARD_SENTENCES
 
-METHOD = "GATAS"
-
-from src.models import ASR_MODEL_CHOICES
+from src.models import ASR_MODEL_CHOICES, canonical_asr_model_name
 
 def initialize_parser():
-    parser = argparse.ArgumentParser(description="GATAS — Harvard Sentences")
-    parser.add_argument("--harvard_sentences_start", type=int, default=1)
-    parser.add_argument("--harvard_sentences_end", type=int, default=10)
+    parser = argparse.ArgumentParser(description="GATAS")
+    parser.add_argument("--dataset", type=str, default="harvard", choices=DATASETS)
+    parser.add_argument("--start", type=int, default=1, help="First sentence ID (1-based)")
+    parser.add_argument("--end", type=int, default=100, help="Last sentence ID (1-based, inclusive)")
     parser.add_argument("--loop_count", type=int, default=2)
     parser.add_argument("--num_generations", type=int, default=100)
     parser.add_argument("--pop_size", type=int, default=200)
@@ -57,10 +58,9 @@ def initialize_parser():
     parser.add_argument("--save_spectrograms", action=argparse.BooleanOptionalAction, default=True)
     parser.add_argument("--save_graphs", action=argparse.BooleanOptionalAction, default=True)
     parser.add_argument("--seed", type=int, default=0, help="Base random seed (per run: seed + sentence_id + 1000 * run_id)")
-    parser.add_argument("--audio_dir", type=str, default="outputs", help="Reference audios from generate_harvard_audios.py")
     parser.add_argument('--gpu', type=int, default=0,
                         help='CUDA device index to use (default: 0)')
-    parser.add_argument('--asr_model', type=str, default='whisper', choices=ASR_MODEL_CHOICES,
+    parser.add_argument('--asr_model', type=str, default='whisper-tiny', choices=ASR_MODEL_CHOICES,
                         help='ASR backend to optimize/evaluate against')
     return parser
 
@@ -76,16 +76,20 @@ def main():
     device = f'cuda:{args.gpu}' if torch.cuda.is_available() else 'cpu'
     print(f"Device: {device} | GPUs: {torch.cuda.device_count()}")
 
+    method = "GATAS_targeted" if args.mode == "TARGETED" else "GATAS"
     loader = EnvironmentLoader(device)
     tts_model, asr_model = loader.load_required_models(args.asr_model)
     print("Models loaded.")
 
-    run_timestamp = f"{args.asr_model}_" + datetime.datetime.now().strftime("%Y%m%d_%H%M")
+    asr_model_name = canonical_asr_model_name(args.asr_model)
+    sentences = load_sentences(args.dataset)
+    run_timestamp = experiment_name(asr_model_name)
     print(f"Run timestamp: {run_timestamp}")
     print(f"ASR model: {args.asr_model}")
     print(f"{'='*60}")
     print(f"  mode:               {args.mode}")
-    print(f"  sentences:          {args.harvard_sentences_start} → {args.harvard_sentences_end}")
+    print(f"  dataset:            {args.dataset}")
+    print(f"  sentences:          {args.start} → {args.end}")
     print(f"  runs per sentence:  {args.loop_count}")
     print(f"  generations:        {args.num_generations}")
     print(f"  min_generations:    {args.min_generations}")
@@ -99,9 +103,9 @@ def main():
     all_summaries = []
 
     try:
-        for sentence_id in range(args.harvard_sentences_start, args.harvard_sentences_end + 1):
-            sentence_text = HARVARD_SENTENCES[sentence_id - 1]
-            target_text = args.target_text if args.target_text else HARVARD_SENTENCES[sentence_id % len(HARVARD_SENTENCES)]
+        for sentence_id in range(args.start, args.end + 1):
+            sentence_text = sentences[sentence_id - 1]
+            target_text = args.target_text if args.target_text else target_sentence(sentences, sentence_id, args.seed)
             print(f"\n{'='*60}")
             print(f"[Sentence {sentence_id}] {sentence_text}")
             if args.mode == "TARGETED":
@@ -122,7 +126,7 @@ def main():
                     iv_scalar=args.iv_scalar,
                     size_per_phoneme=args.size_per_phoneme,
                     batch_size=args.batch_size,
-                    asr_model=args.asr_model,
+                    asr_model=asr_model_name,
                     subspace_optimization=args.subspace_optimization,
                     mode=args.mode,
                     objectives=args.objectives,
@@ -133,7 +137,7 @@ def main():
                 audio_gt, audio_target, audio_embedding_gt, audio_embedding_target, gt_rms, target_rms = loader.generate_audio_data(
                     config_data.mode, config_data.text_gt, config_data.text_target, tts_model,
                     num_rms_candidates=config_data.num_rms_candidates,
-                    audio_embedding_gt=load_reference_embedding(sentence_id, device, args.audio_dir),
+                    audio_embedding_gt=load_reference_embedding(args.dataset, sentence_id, device),
                 )
 
                 objectives_dict = loader.initialize_objectives(
@@ -179,7 +183,7 @@ def main():
                 elapsed_time_total = time.time() - attack_start
 
                 if fitness_data:
-                    folder_path = logger.setup_multi_sentence_directory(sentence_id, run_id, run_timestamp, base_path=os.path.dirname(results_dir(METHOD, run_timestamp)))
+                    folder_path = logger.setup_multi_sentence_directory(sentence_id, run_id, run_timestamp, base_path=os.path.dirname(results_dir(method, args.dataset, run_timestamp)))
                     summary = logger.save_results_run(
                         optimizer=optimizer,
                         fitness_data=fitness_data,
@@ -204,7 +208,8 @@ def main():
                         target_rms=target_rms,
                         optimization_time_seconds=optimization_time,
                         seed=run_seed(args.seed, sentence_id, run_id),
-                        method=METHOD,
+                        method=method,
+                        dataset=args.dataset,
                     )
                     all_summaries.append(summary)
 
@@ -217,7 +222,7 @@ def main():
         print("\n[!] Experiment stopped early. All completed runs have been saved.")
 
     finally:
-        RunLogger.aggregate_results(all_summaries, output_dir=results_dir(METHOD, run_timestamp))
+        RunLogger.aggregate_results(all_summaries, output_dir=results_dir(method, args.dataset, run_timestamp))
         print("\n[Done]")
 
 

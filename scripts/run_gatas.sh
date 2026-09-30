@@ -7,6 +7,7 @@ python scripts/adversarial_gatas.py \
     --dataset $DATASET --start $START --end $END \
     --loop_count 1 \
     --num_generations 100 \
+    --min_generations 100 \
     --pop_size 100 \
     --batch_size 100 \
     --iv_scalar 0.5 \

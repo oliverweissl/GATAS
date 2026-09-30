@@ -125,8 +125,10 @@ DATASET=librispeech ASR_MODEL=whisper-large-v3-turbo bash scripts/run_gatas.sh
 | `ALIF` | `run_alif.sh` | alif |
 | `PGD` | `run_pgd.sh` (Whisper-tiny only) | pgd |
 
-GATAS settings: NSGA-II with population 100 for up to 100 generations, objectives `PESQ=0.2, SET_OVERLAP=0.5`
-(the values are early-stopping thresholds), mode `NOISE_UNTARGETED` (interpolation of the StyleTTS2 text embedding
+GATAS settings: NSGA-II with population 100 for 100 generations (10,000 ASR queries per sentence; early stopping is
+disabled with `--min_generations 100`, the first generation meeting the thresholds is still logged as
+`generation_found`), objectives `PESQ=0.2, SET_OVERLAP=0.5` (the values are the thresholds used to select the final
+candidate from the Pareto front), mode `NOISE_UNTARGETED` (interpolation of the StyleTTS2 text embedding
 between the GT and a noise embedding), and `--seed_target` (one initial individual is the pure noise target). The
 targeted variant uses `PESQ=0.2, WER_TARGET=0.0` in mode `TARGETED`; targets are drawn per sentence from the same
 dataset, identically for GATAS and SMACK (`src/helper.target_sentence`). See `python scripts/adversarial_gatas.py --help`.

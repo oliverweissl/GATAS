@@ -25,3 +25,6 @@ for asr in whisper-tiny whisper-large-v3-turbo wav2vec2-large; do
         done
     done
 done
+
+# 4. Budget ablation of GATAS (experimental): 20x15 and 100x100 next to the main 20x10
+DATASET=harvard ASR_MODEL=whisper-tiny bash scripts/run_gatas_budget_ablation.sh

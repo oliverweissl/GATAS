@@ -106,6 +106,7 @@ Run everything from the project root. `bash scripts/run_experiments.sh` runs the
 | Main comparison (RQ1–RQ3) | GATAS, Waveform, SMACK, ALIF, PGD | whisper-tiny | harvard, librispeech |
 | Objective formulation | SMACK (native targeted), GATAS (targeted) | whisper-tiny | harvard |
 | Generalization | GATAS, Waveform | whisper-tiny, whisper-large-v3-turbo, wav2vec2-large | harvard, librispeech, commands |
+| Budget ablation (experimental) | GATAS 20x10, 20x15 (`GATAS_budget300`), 100x100 (`GATAS_budget10000`) | whisper-tiny | harvard |
 
 Each method also has its own run script. Every run script generates the shared reference audios for its
 sentences, runs the attack in one sequential process, and evaluates the results. Settings come from
@@ -119,15 +120,17 @@ DATASET=librispeech ASR_MODEL=whisper-large-v3-turbo bash scripts/run_gatas.sh
 |---|---|---|
 | `GATAS` | `run_gatas.sh` | main |
 | `GATAS_targeted` | `run_gatas_targeted.sh` | main |
+| `GATAS_budget300`, `GATAS_budget10000` | `run_gatas_budget_ablation.sh` | main |
 | `Waveform` | `run_waveform.sh` | main |
 | `SMACK` (untargeted adaptation) | `run_smack.sh` | smack |
 | `SMACK_targeted` (native) | `run_smack_targeted.sh` | smack |
 | `ALIF` | `run_alif.sh` | alif |
 | `PGD` | `run_pgd.sh` (Whisper-tiny only) | pgd |
 
-GATAS settings: NSGA-II with population 100 for 100 generations (10,000 ASR queries per sentence; early stopping is
-disabled with `--min_generations 100`, the first generation meeting the thresholds is still logged as
-`generation_found`), objectives `PESQ=0.2, SET_OVERLAP=0.5` (the values are the thresholds used to select the final
+GATAS settings: NSGA-II with population 20 for 10 generations, i.e. 200 ASR queries per sentence (the budget of ALIF;
+SMACK uses 300). Early stopping is disabled (`--min_generations` = generations); the first generation meeting the
+thresholds is logged as `generation_found`. Budget and population are set with `POP_SIZE` / `NUM_GENERATIONS`
+(same for Waveform). Objectives `PESQ=0.2, SET_OVERLAP=0.5` (the values are the thresholds used to select the final
 candidate from the Pareto front), mode `NOISE_UNTARGETED` (interpolation of the StyleTTS2 text embedding
 between the GT and a noise embedding), and `--seed_target` (one initial individual is the pure noise target). The
 targeted variant uses `PESQ=0.2, WER_TARGET=0.0` in mode `TARGETED`; targets are drawn per sentence from the same
@@ -176,7 +179,7 @@ latest experiment per method, only sentences present for every method, sorted by
 
 - `RQ1_Effectiveness`, `RQ2_Validity`, `RQ3_Efficiency`, `QualAnalysis`: paper analyses.
 - `Revision`: main comparison per dataset, threshold sensitivity (from the stored Pareto fronts), success vs.
-  query budget (from `archive_history.json`), native vs. adapted SMACK, and the generalization matrix.
+  query budget (from `archive_history.json`), native vs. adapted SMACK, the generalization matrix, and the budget ablation.
 
 ## Reproducibility
 

@@ -20,7 +20,9 @@ def run_seed(seed: int, sentence_id: int, run_id: int = 0) -> int:
 
 
 # Method names, used for result folders and the 'attack_method' field of every summary JSON
-METHODS = ("GATAS", "GATAS_targeted", "Waveform", "SMACK", "SMACK_targeted", "ALIF", "PGD")
+METHODS = ("GATAS", "GATAS_targeted", "Waveform", "SMACK", "SMACK_targeted", "ALIF", "PGD",
+           # budget ablation of GATAS (main budget: population 20 x 10 generations = 200 queries)
+           "GATAS_budget300", "GATAS_budget10000")
 
 REFERENCE_DIR = os.path.join("outputs", "references")
 RESULTS_DIR = os.path.join("outputs", "results")

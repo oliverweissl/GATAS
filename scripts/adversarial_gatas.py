@@ -53,6 +53,8 @@ def initialize_parser():
     parser.add_argument("--seed_gt", action="store_true", default=False)
     parser.add_argument("--min_generations", type=int, default=0)
     parser.add_argument("--mode", type=str, default="TARGETED")
+    parser.add_argument("--method_name", type=str, default=None,
+                        help="Result folder / attack_method name (default: GATAS, or GATAS_targeted in TARGETED mode)")
     parser.add_argument("--target_text", type=str, default="")
     parser.add_argument("--objectives", type=str, default="PESQ=0.2, SET_OVERLAP=0.5")
     parser.add_argument("--save_spectrograms", action=argparse.BooleanOptionalAction, default=True)
@@ -76,7 +78,7 @@ def main():
     device = f'cuda:{args.gpu}' if torch.cuda.is_available() else 'cpu'
     print(f"Device: {device} | GPUs: {torch.cuda.device_count()}")
 
-    method = "GATAS_targeted" if args.mode == "TARGETED" else "GATAS"
+    method = args.method_name or ("GATAS_targeted" if args.mode == "TARGETED" else "GATAS")
     loader = EnvironmentLoader(device)
     tts_model, asr_model = loader.load_required_models(args.asr_model)
     print("Models loaded.")

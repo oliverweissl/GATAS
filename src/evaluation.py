@@ -47,6 +47,8 @@ def normalize_summary(path: str) -> dict:
             "generations": eff["generation_count"],
             "pop_size": algo["pop_size"],
             "seed": algo.get("seed"),
+            # First generation in which an individual met the objective thresholds (None: never)
+            "generation_found": d.get("final_solution", {}).get("generation_found"),
             "pareto_front": d.get("pareto_front", []),
         }
 
@@ -65,6 +67,7 @@ def normalize_summary(path: str) -> dict:
         "generations": d["generations"],
         "pop_size": d["pop_size"],
         "seed": d.get("seed"),
+        "generation_found": None,
         "pareto_front": [],
     }
 

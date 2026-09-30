@@ -10,6 +10,7 @@ from glob import glob
 
 METHODS = ("GATAS", "Waveform", "SMACK", "ALIF", "PGD")          # main comparison (untargeted)
 ALL_METHODS = ("GATAS", "GATAS_targeted", "Waveform", "SMACK", "SMACK_targeted", "ALIF", "PGD")
+BUDGET_ABLATION = ("GATAS", "GATAS_budget300", "GATAS_budget10000")  # 20x10, 20x15, 100x100
 DATASETS = ("harvard", "librispeech", "commands")
 ASR_MODELS = ("whisper-tiny", "whisper-large-v3-turbo", "wav2vec2-large")
 

@@ -1,0 +1,17 @@
+__pycache__/
+_*/
+.*/
+outputs/
+.DS_Store
+
+checkpoints/*
+
+**/google_token.json
+
+*.pth
+*.wav
+
+# self_evaluation: keep only the two audio files per run, exclude spectrograms/CSVs/etc.
+self_evaluation/sentence_*/run_*/*
+!self_evaluation/sentence_*/run_*/best_mixed.wav
+!self_evaluation/sentence_*/run_*/ground_truth.wav

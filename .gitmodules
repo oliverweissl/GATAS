@@ -1,0 +1,6 @@
+[submodule "third_party/SMACK"]
+	path = third_party/SMACK
+	url = https://github.com/WUSTL-CSPL/SMACK.git
+[submodule "third_party/whisper_attack"]
+	path = third_party/whisper_attack
+	url = https://github.com/RaphaelOlivier/whisper_attack.git

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Evaluation Survey</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #f7f3ef;
+            color: #4b3f35;
+        }
+        .card {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: none;
+            border: 1px solid #e8e2db;
+        }
+        .active { display: block; }
+        h2 { margin-top: 0; color: #4b3f35; font-weight: 700; }
+
+        audio, .mos-scale {
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar-wrap {
+            background: #f0edea;
+            border-radius: 4px;
+            height: 6px;
+            margin-bottom: 24px;
+        }
+        .progress-bar-fill {
+            background: #4b3f35;
+            height: 6px;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .mos-scale { display: flex; justify-content: space-between; margin: 10px 0 4px; }
+        .mos-option { text-align: center; flex: 1; }
+        .mos-option input { display: none; }
+        .mos-option label {
+            display: block;
+            padding: 12px 0;
+            margin: 0 3px;
+            background: #f0edea;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+        .mos-option input:checked + label { background: #4b3f35; color: #fff; border-color: #4b3f35; }
+        .mos-endpoints {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: #8c7e73;
+            margin-bottom: 20px;
+        }
+
+        .btn-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 8px;
+        }
+        button {
+            background: #4b3f35;
+            color: #ffffff;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: opacity 0.2s;
+        }
+        button:hover { opacity: 0.9; }
+        button:disabled { background: #b0a89f; cursor: not-allowed; opacity: 1; }
+        .btn-back {
+            background: transparent;
+            color: #4b3f35;
+            border: 1.5px solid #dcd3cb;
+        }
+        .btn-back:hover { background: #f0edea; opacity: 1; }
+        .btn-back:disabled { background: transparent; color: #c8bdb5; border-color: #e8e2db; }
+
+        .listen-hint { font-size: 13px; color: #8c7e73; margin-bottom: 16px; }
+    </style>
+</head>
+<body>
+
+<div id="already-done" class="card">
+    <h2>Already Submitted</h2>
+    <p>It looks like you have already completed this evaluation. Thank you!</p>
+</div>
+
+<div id="intro-card" class="card active">
+    <h2>Audio Quality Evaluation</h2>
+    <p>Welcome! You will listen to <strong>50 short audio clips</strong> and rate each one on two dimensions:</p>
+    <ul>
+        <li><strong>Technical quality</strong> — noise, distortion, clarity</li>
+        <li><strong>Semantic quality</strong> — how coherent and meaningful the spoken content is</li>
+    </ul>
+    <p>Both ratings use a scale from 1 to 5. The survey takes about 15 minutes.</p>
+    <div class="btn-row" style="justify-content:flex-end;">
+        <button onclick="startSurvey()">Start</button>
+    </div>
+</div>
+
+<div id="survey-container" style="display:none;">
+    <div class="card active" id="main-card">
+
+        <div class="progress-bar-wrap">
+            <div class="progress-bar-fill" id="progress-bar" style="width:0%"></div>
+        </div>
+
+        <h2 id="task-title"></h2>
+
+        <audio id="audio-player" controls controlsList="nodownload" style="width:100%;margin-bottom:8px;"></audio>
+        <p class="listen-hint" id="listen-hint">Listen to the clip before rating.</p>
+
+        <p><strong>Technical Audio Quality</strong><br>
+        <small>How would you rate the technical audio quality (e.g., noise, distortion, clarity)?</small></p>
+        <div class="mos-scale">
+            <div class="mos-option"><input type="radio" name="mos_tech" id="t1" value="1"><label for="t1">1</label></div>
+            <div class="mos-option"><input type="radio" name="mos_tech" id="t2" value="2"><label for="t2">2</label></div>
+            <div class="mos-option"><input type="radio" name="mos_tech" id="t3" value="3"><label for="t3">3</label></div>
+            <div class="mos-option"><input type="radio" name="mos_tech" id="t4" value="4"><label for="t4">4</label></div>
+            <div class="mos-option"><input type="radio" name="mos_tech" id="t5" value="5"><label for="t5">5</label></div>
+        </div>
+        <div class="mos-endpoints"><span>1 – Heavily corrupted</span><span>5 – Perfectly clear</span></div>
+
+        <p><strong>Semantic Quality</strong><br>
+        <small>How would you rate the semantic quality of the spoken content?</small></p>
+        <div class="mos-scale">
+            <div class="mos-option"><input type="radio" name="mos_sem" id="s1" value="1"><label for="s1">1</label></div>
+            <div class="mos-option"><input type="radio" name="mos_sem" id="s2" value="2"><label for="s2">2</label></div>
+            <div class="mos-option"><input type="radio" name="mos_sem" id="s3" value="3"><label for="s3">3</label></div>
+            <div class="mos-option"><input type="radio" name="mos_sem" id="s4" value="4"><label for="s4">4</label></div>
+            <div class="mos-option"><input type="radio" name="mos_sem" id="s5" value="5"><label for="s5">5</label></div>
+        </div>
+        <div class="mos-endpoints"><span>1 – Nonsensical or unintelligible</span><span>5 – Fully coherent and meaningful</span></div>
+
+        <div class="btn-row">
+            <button id="back-btn" class="btn-back" onclick="prevQuestion()">Back</button>
+            <button id="next-btn" onclick="nextQuestion()">Next</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const scriptURL = "https://script.google.com/macros/s/<anonymous>/exec"; // This has been anonymized
+
+    const FOLDERS    = ["5", "8", "28", "41", "45", "52", "57", "70", "72", "87"];
+    const AUDIO_FILES = ["harvard_audio.wav", "pgd.wav", "smack.wav", "tts.wav", "waveform.wav"];
+
+    const participantId = Math.random().toString(36).slice(2, 10).toUpperCase();
+
+    function shuffle(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+    }
+
+    const allClips = shuffle(
+        FOLDERS.flatMap(folder =>
+            AUDIO_FILES.map(file => ({ folder, file, path: `survey_audios/${folder}/${file}` }))
+        )
+    );
+
+    const savedAnswers  = allClips.map(() => ({ mos_tech: null, mos_sem: null }));
+    const audioUnlocked = new Array(allClips.length).fill(false);
+
+    let currentIndex = 0;
+    let audioReady   = false;
+
+    if (localStorage.getItem('mos_survey_v2_done')) {
+        document.getElementById('intro-card').classList.remove('active');
+        document.getElementById('already-done').classList.add('active');
+    }
+
+    function checkReady() {
+        const techEl = document.querySelector('input[name="mos_tech"]:checked');
+        const semEl  = document.querySelector('input[name="mos_sem"]:checked');
+        const btn    = document.getElementById('next-btn');
+        const hint   = document.getElementById('listen-hint');
+        if (btn)  btn.disabled = !(audioReady && techEl && semEl);
+        if (hint) hint.style.display = audioReady ? 'none' : 'block';
+    }
+
+    function attachAudioGate(player) {
+        player.addEventListener('timeupdate', function onProgress() {
+            if (player.duration && player.currentTime >= player.duration * 0.8) {
+                audioReady = true;
+                audioUnlocked[currentIndex] = true;
+                checkReady();
+                player.removeEventListener('timeupdate', onProgress);
+            }
+        });
+    }
+
+    function saveCurrentAnswer() {
+        const ans     = savedAnswers[currentIndex];
+        const techEl  = document.querySelector('input[name="mos_tech"]:checked');
+        const semEl   = document.querySelector('input[name="mos_sem"]:checked');
+        ans.mos_tech  = techEl ? techEl.value : null;
+        ans.mos_sem   = semEl  ? semEl.value  : null;
+    }
+
+    function loadQuestion() {
+        const clip  = allClips[currentIndex];
+        const total = allClips.length;
+
+        document.getElementById('progress-bar').style.width = (currentIndex / total * 100) + '%';
+        document.getElementById('task-title').innerText = `Clip ${currentIndex + 1} of ${total}`;
+
+        document.getElementById('back-btn').disabled = (currentIndex === 0);
+
+        const ans = savedAnswers[currentIndex];
+
+        // Restore MOS radios
+        document.querySelectorAll('input[name="mos_tech"]').forEach(rb => {
+            rb.checked = (rb.value === ans.mos_tech);
+            rb.addEventListener('change', checkReady);
+        });
+        document.querySelectorAll('input[name="mos_sem"]').forEach(rb => {
+            rb.checked = (rb.value === ans.mos_sem);
+            rb.addEventListener('change', checkReady);
+        });
+
+        audioReady = audioUnlocked[currentIndex];
+        const player = document.getElementById('audio-player');
+        player.src = clip.path;
+        if (!audioReady) attachAudioGate(player);
+
+        checkReady();
+        window.scrollTo(0, 0);
+    }
+
+    function prevQuestion() {
+        saveCurrentAnswer();
+        if (currentIndex === 0) return;
+        currentIndex--;
+        loadQuestion();
+    }
+
+    function nextQuestion() {
+        saveCurrentAnswer();
+        currentIndex++;
+        if (currentIndex < allClips.length) {
+            loadQuestion();
+        } else {
+            showFinalSlide();
+        }
+    }
+
+    function showFinalSlide() {
+        document.getElementById('main-card').innerHTML = `
+            <h2>Thank You!</h2>
+            <p>Your evaluation is complete! Click below to submit your responses.</p>
+            <div class="btn-row" style="justify-content:flex-end;">
+                <button onclick="finalSubmit()">Submit &amp; Finish</button>
+            </div>`;
+    }
+
+    function buildResults() {
+        const header = ["Participant_ID", "Folder", "File", "MOS_Technical", "MOS_Semantic"];
+        const rows = allClips.map((clip, i) => {
+            const ans = savedAnswers[i];
+            return [participantId, clip.folder, clip.file, ans.mos_tech || "", ans.mos_sem || ""];
+        });
+        return [header, ...rows];
+    }
+
+    function finalSubmit() {
+        const results = buildResults();
+        document.getElementById('main-card').innerHTML = `<h2>Submitting…</h2>`;
+
+        fetch(scriptURL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ results })
+        }).then(() => {
+            localStorage.setItem('mos_survey_v2_done', 'true');
+            document.getElementById('main-card').innerHTML =
+                `<h2>Success!</h2><p>Results saved. You can close this window now.</p>`;
+        }).catch(() => {
+            document.getElementById('main-card').innerHTML =
+                `<h2>Error</h2><p>Submission failed. Please try again or contact the researcher.</p>
+                 <div class="btn-row" style="justify-content:flex-end;">
+                     <button onclick="finalSubmit()">Retry</button>
+                 </div>`;
+        });
+    }
+
+    function startSurvey() {
+        document.getElementById('intro-card').style.display = 'none';
+        document.getElementById('survey-container').style.display = 'block';
+        loadQuestion();
+    }
+</script>
+</body>
+</html>

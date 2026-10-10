@@ -20,7 +20,7 @@ import argparse
 import soundfile as sf
 
 from src.baselines import smack
-from src.data.datasets import DATASETS, load_sentences
+from src.data.datasets import DATASETS, load_sentences, load_target_intents
 from src.helper import set_seed, run_seed, reference_paths, results_dir, experiment_name, target_sentence
 from src.models import ASR_MODEL_CHOICES, canonical_asr_model_name
 from src.trainer.result_writer import save_attack_result
@@ -33,6 +33,8 @@ def main():
     parser.add_argument('--end', type=int, default=100, help='Last sentence ID (1-based, inclusive)')
     parser.add_argument('--gpu', type=int, default=None, help='GPU id to use')
     parser.add_argument("--untargeted", action="store_true")
+    parser.add_argument("--intent_targeted", action="store_true",
+                        help="Intent matching: SMACK fitness uses the intent classifier output instead of a target text")
     parser.add_argument("--seed", type=int, default=0, help="Base random seed (per sentence: seed + sentence_id)")
     parser.add_argument("--asr_model", type=str, default="whisper-tiny", choices=ASR_MODEL_CHOICES,
                         help="ASR model attacked by SMACK")
@@ -43,7 +45,7 @@ def main():
         print(f"Using GPU: {args.gpu}")
 
     asr_model = canonical_asr_model_name(args.asr_model)
-    method = 'SMACK' if args.untargeted else 'SMACK_targeted'
+    method = 'SMACK_intent' if args.intent_targeted else 'SMACK' if args.untargeted else 'SMACK_targeted'
     sentences = load_sentences(args.dataset)
     output_base = results_dir(method, args.dataset, experiment_name(asr_model))
 
@@ -65,43 +67,52 @@ def main():
 
         seed = run_seed(args.seed, sentence_id)
         set_seed(seed)
-        target = None if args.untargeted else target_sentence(sentences, sentence_id, args.seed)
+        target = None if args.untargeted or args.intent_targeted else target_sentence(sentences, sentence_id, args.seed)
+        target_intent = load_target_intents(args.dataset)[sentence_id - 1] if args.intent_targeted else None
+        if target_intent:
+            print(f"[Target intent] {target_intent}")
 
-        # End-to-end: from attack start until the adversarial audio exists
-        attack_start = time.time()
-        audio_16k = smack.attack(reference_audio, sentence_text, target)
-        elapsed = time.time() - attack_start
-        queries = smack.query_count
-        print(f"Attack finished. Time: {elapsed:.2f}s | queries: {queries}\n")
+        try:
+            # End-to-end: from attack start until the adversarial audio exists
+            attack_start = time.time()
+            audio_16k = smack.attack(reference_audio, sentence_text, target, target_intent)
+            elapsed = time.time() - attack_start
+            queries = smack.query_count
+            print(f"Attack finished. Time: {elapsed:.2f}s | queries: {queries}\n")
 
-        gt_audio = sf.read(reference_audio, dtype='float32')[0]
-        save_attack_result(
-            output_dir=output_base,
-            method=method,
-            dataset=args.dataset,
-            sentence_id=sentence_id,
-            asr_model=asr_model,
-            audio=audio_16k,
-            gt_audio=gt_audio,
-            gt_text=sentence_text,
-            transcription=smack.transcribe(audio_16k),
-            gt_transcription=smack.transcribe(gt_audio),
-            elapsed_seconds=elapsed,
-            queries=queries,
-            generations=smack.GENETIC_ITERATIONS + smack.GRADIENT_ITERATIONS,
-            pop_size=smack.POPULATION_SIZE,
-            seed=seed,
-            target_text=target,
-            # Benign SMACK synthesis (no perturbation) as PESQ reference; not part of the attack runtime
-            clean_reference_audio=smack.clean_reference(reference_audio, sentence_text),
-            params={
-                'genetic_iterations': smack.GENETIC_ITERATIONS,
-                'gradient_iterations': smack.GRADIENT_ITERATIONS,
-                'gradient_K': smack.GRADIENT_K,
-                'gradient_sigma': smack.GRADIENT_SIGMA,
-                'gradient_learning_rate': smack.GRADIENT_LEARNING_RATE,
-            },
-        )
+            gt_audio = sf.read(reference_audio, dtype='float32')[0]
+            save_attack_result(
+                output_dir=output_base,
+                method=method,
+                dataset=args.dataset,
+                sentence_id=sentence_id,
+                asr_model=asr_model,
+                audio=audio_16k,
+                gt_audio=gt_audio,
+                gt_text=sentence_text,
+                transcription=smack.transcribe(audio_16k),
+                gt_transcription=smack.transcribe(gt_audio),
+                elapsed_seconds=elapsed,
+                queries=queries,
+                generations=smack.GENETIC_ITERATIONS + smack.GRADIENT_ITERATIONS,
+                pop_size=smack.POPULATION_SIZE,
+                seed=seed,
+                target_text=target,
+                target_intent=target_intent,
+                # Benign SMACK synthesis (no perturbation) as PESQ reference; not part of the attack runtime
+                clean_reference_audio=smack.clean_reference(reference_audio, sentence_text),
+                params={
+                    'genetic_iterations': smack.GENETIC_ITERATIONS,
+                    'gradient_iterations': smack.GRADIENT_ITERATIONS,
+                    'gradient_K': smack.GRADIENT_K,
+                    'gradient_sigma': smack.GRADIENT_SIGMA,
+                    'gradient_learning_rate': smack.GRADIENT_LEARNING_RATE,
+                    'crashed': repr(smack.attack_error) if smack.attack_error else None,
+                },
+            )
+        except Exception as e:
+            # Only when SMACK fails before synthesizing any candidate (crashes later are handled in smack.attack).
+            print(f"[{sentence_id:3d}] Attack failed, skipping: {e!r}")
 
     print("\n[Done]")
 

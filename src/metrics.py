@@ -1,12 +1,14 @@
 """
-Shared evaluation metrics and success criteria for all attack methods (GATAS, Waveform, SMACK, ALIF, PGD).
-scripts/evaluate_results.py applies them to every saved result.
+Shared metrics for all attack methods (GATAS, Waveform, SMACK, ALIF, PGD); scripts/evaluate_results.py applies the
+evaluation ones to every saved result.
 
-Success (untargeted): every metric in SUCCESS_THRESHOLDS at or below its threshold (fitness, lower = better).
-Success (targeted):   every metric in TARGETED_SUCCESS_THRESHOLDS at or below its threshold.
-Validity:             a strong reference ASR (VALIDITY_REFERENCE_ASR, not attacked) still recognizes the
-                      ground truth in the adversarial audio: WER <= VALIDITY_MAX_WER.
-Semantic divergence is additionally reported with order-sensitive WER and SBERT similarity; naturalness with UTMOS.
+Evaluation (ground truth text / audio vs. attacked transcription / audio):
+  success               transcription differs from the ground truth text: WER > 0
+  lexical distance      WER (word level edit distance)
+  semantic distance     1 - cosine similarity of SBERT embeddings
+  spectrogram distance  normalized Frobenius distance of the mel spectrograms (dB)
+  naturalness           UTMOS of the adversarial audio (and of the ground truth as reference)
+Metrics that are optimization objectives (PESQ, SET_OVERLAP) are deliberately not used for evaluation.
 """
 import re
 
@@ -19,20 +21,6 @@ nltk.download('stopwords', quiet=True)
 nltk.download('wordnet', quiet=True)
 
 SAMPLE_RATE = 16_000
-
-# An attack succeeds if every metric is <= its threshold.
-SUCCESS_THRESHOLDS = {
-    "PESQ": 0.2,         # PESQ fitness: 0.0 = perfect quality, 1.0 = worst
-    "SET_OVERLAP": 0.5,  # fraction of GT content words surviving in the transcription
-}
-
-TARGETED_SUCCESS_THRESHOLDS = {
-    "PESQ": 0.2,
-    "TARGET_WER": 0.0,   # word error rate of the transcription w.r.t. the target text (exact match)
-}
-
-VALIDITY_REFERENCE_ASR = "whisper-large-v3"
-VALIDITY_MAX_WER = 0.3
 
 SBERT_MODEL = "all-MiniLM-L6-v2"
 
@@ -84,10 +72,9 @@ def pesq_fitness(reference_audio: np.ndarray, degraded_audio: np.ndarray, sample
     return float(max(0.0, min(1.0, 1.0 - (score + 0.5) / 5.0)))
 
 
-def is_success(scores: dict, thresholds: dict = None) -> bool:
-    """scores: {metric name: value} containing every key of thresholds (default SUCCESS_THRESHOLDS)."""
-    thresholds = SUCCESS_THRESHOLDS if thresholds is None else thresholds
-    return all(scores[name] <= threshold for name, threshold in thresholds.items())
+def is_success(wer_score: float) -> bool:
+    """Test case found: the transcription differs from the ground truth text."""
+    return wer_score > 0
 
 
 _WER_TRANSFORM = None
@@ -115,27 +102,29 @@ def wer(reference: str, hypothesis: str) -> float:
 _sbert_models = {}
 
 
-def sbert_similarity(text_a: str, text_b: str, device: str = "cpu") -> float:
-    """Cosine similarity of sentence embeddings (1 = same meaning, ~0 = unrelated)."""
+def sbert_distance(text_a: str, text_b: str, device: str = "cpu") -> float:
+    """Semantic distance: 1 - cosine similarity of sentence embeddings (0 = same meaning)."""
     from sentence_transformers import SentenceTransformer, util
 
     if device not in _sbert_models:
         _sbert_models[device] = SentenceTransformer(SBERT_MODEL, device=device)
     embeddings = _sbert_models[device].encode([text_a or "", text_b or ""], convert_to_tensor=True)
-    return float(util.cos_sim(embeddings[0], embeddings[1]).item())
+    return 1.0 - float(util.cos_sim(embeddings[0], embeddings[1]).item())
 
 
-def evaluate_attack(reference_audio: np.ndarray, adversarial_audio: np.ndarray, gt_text: str, asr_text: str) -> dict:
-    """Compute the shared metrics and success flag for one adversarial example (16 kHz audio)."""
-    scores = {
-        "PESQ": round(pesq_fitness(reference_audio, adversarial_audio), 6),
-        "SET_OVERLAP": round(set_overlap(gt_text, asr_text), 6),
-    }
-    return {
-        "success": is_success(scores),
-        "scores": scores,
-        "thresholds": dict(SUCCESS_THRESHOLDS),
-    }
+def spectrogram_distance(reference_audio: np.ndarray, degraded_audio: np.ndarray, sample_rate: int = SAMPLE_RATE) -> float:
+    """Frobenius norm of the mel spectrogram (dB) difference, zero-padded to equal length, divided by the spectrogram size."""
+    import librosa
+
+    def mel_db(audio):
+        mel = librosa.feature.melspectrogram(y=np.asarray(audio).squeeze(), sr=sample_rate, n_fft=1024, hop_length=256, n_mels=128)
+        return librosa.power_to_db(np.abs(mel))
+
+    a, b = mel_db(reference_audio), mel_db(degraded_audio)
+    frames = max(a.shape[1], b.shape[1])
+    a = np.pad(a, ((0, 0), (0, frames - a.shape[1])))
+    b = np.pad(b, ((0, 0), (0, frames - b.shape[1])))
+    return float(np.linalg.norm(a - b, ord="fro") / a.size)
 
 
 # ---------------------------------------------------------------------------

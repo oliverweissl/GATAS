@@ -11,7 +11,7 @@ class Wav2Vec2ASR:
 
     def __init__(
         self,
-        model_id: str = "facebook/wav2vec2-base-960h",
+        model_id: str = "facebook/wav2vec2-large-960h-lv60-self",
         device: str | None = None,
     ):
         self.model_id = model_id

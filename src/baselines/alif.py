@@ -6,10 +6,15 @@ ALIF perturbs the Tacotron2 encoder outputs (one linguistic-feature vector per i
 particle swarm optimization (ALIF-OTA: POS2, perturbations bounded by |x| <= 0.4). Its native goal is the reverse
 of ours: keep the ASR transcription correct (constraint, loss = inf otherwise) while maximizing mel distortion.
 
-Untargeted adaptation used here (same structure, roles swapped to our goal):
-    loss = SET_OVERLAP(GT, transcription)   if PESQ fitness(clean synthesis, candidate) <= PESQ threshold
-           inf                              otherwise
-ALIF's search space, perturbation bound, PSO optimizer and hyperparameters (pN=20 particles, 10 epochs) are kept.
+Untargeted adaptation used here (same structure, goal swapped to ours):
+    loss = SET_OVERLAP(GT, transcription)
+ALIF's quality control is its perturbation bound (|x| <= 0.4), kept as is. No PESQ constraint is imposed in the search:
+ALIF's Tacotron2 (dropout stays active, train mode) and WaveGlow (sigma 0.666) synthesize stochastically, so even two
+syntheses of the same text have PESQ fitness ~0.69 (> 0.2); a PESQ bound against the clean synthesis is never met.
+PESQ and UTMOS are measured in the common evaluation.
+
+Intent matching variant (target_intent given): the loss is 1 - P(target intent | transcription), the output of the
+intent classifier on the ASR transcription (the system under test of that task), instead of SET_OVERLAP. ALIF's search space, perturbation bound, PSO optimizer and hyperparameters (pN=20 particles, 10 epochs) are kept.
 Its mel-distortion knobs (alpha, beta, gamma, eta) exist to degrade audio and are left neutral.
 
 The adapter also:
@@ -27,7 +32,8 @@ import librosa
 import numpy as np
 import torch
 
-from ..metrics import SUCCESS_THRESHOLDS, pesq_fitness, set_overlap
+from ..intent import target_probability
+from ..metrics import set_overlap
 from ..models import load_asr_model
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -43,6 +49,7 @@ WAVEGLOW_SIGMA = 0.666  # as in ALIF
 NUM_PARTICLES = 20
 EPOCHS = 10
 
+_DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 _alif = None
 _optimizer = None
 _tts = None
@@ -138,9 +145,9 @@ def transcribe(audio_16k: np.ndarray) -> str:
     return texts[0] if texts else ""
 
 
-def attack(text: str) -> tuple:
+def attack(text: str, target_intent: str = None) -> tuple:
     """
-    Run untargeted ALIF-OTA for one sentence.
+    Run ALIF-OTA for one sentence: untargeted (loss SET_OVERLAP) or, with target_intent, toward that intent.
     Returns (adversarial audio, clean Tacotron2 synthesis), both float32 in [-1, 1] at 16 kHz.
     """
     global query_count
@@ -150,7 +157,6 @@ def attack(text: str) -> tuple:
         feature = _tts.get_feature(text)
         _, ori_mel, _, _ = _tts.model.inference2(feature)
     clean_audio = _vocode(ori_mel)
-    pesq_threshold = SUCCESS_THRESHOLDS["PESQ"]
 
     num_symbols, feature_dim = feature.shape[1], feature.shape[2]
     noise = np.zeros((NUM_PARTICLES, num_symbols, feature_dim))
@@ -168,16 +174,16 @@ def attack(text: str) -> tuple:
             audio = _vocode(adv_mel)
             transcription = transcribe(audio)
             query_count += 1
-            if pesq_fitness(clean_audio, audio) <= pesq_threshold:
+            if target_intent is None:
                 loss = set_overlap(text, transcription)
             else:
-                loss = np.inf
+                loss = 1.0 - target_probability([transcription], target_intent, _DEVICE)[0]
             losses.append(loss)
             if loss < best_loss:
                 best_loss, best_audio = loss, audio
 
         noise, _, _, _ = pos.update(losses)
         noise[:, -1, :] = 0
-        print(f"[ALIF] epoch {epoch}: best SET_OVERLAP under PESQ constraint = {best_loss}")
+        print(f"[ALIF] epoch {epoch}: best SET_OVERLAP = {best_loss}")
 
     return best_audio, clean_audio

@@ -11,6 +11,7 @@ Run from project root (main env), after the attacks:
 import os
 import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+os.environ["CUBLAS_WORKSPACE_CONFIG"] = ":4096:8"
 
 import argparse
 from glob import glob
@@ -19,15 +20,13 @@ import torch
 from tqdm import tqdm
 
 from src.evaluation import evaluate, find_summaries
-from src.helper import METHODS, RESULTS_DIR
+from src.helper import METHODS, ABLATION_METHODS, SPACE_METHODS, RESULTS_DIR
 from src.data.datasets import DATASETS
-from src.metrics import VALIDITY_REFERENCE_ASR
-from src.models import load_asr_model
 
 
 def main():
     parser = argparse.ArgumentParser(description="Evaluate saved attack results")
-    parser.add_argument("--method", type=str, default=None, choices=METHODS, help="Only this method (default: all)")
+    parser.add_argument("--method", type=str, default=None, choices=METHODS + ABLATION_METHODS + SPACE_METHODS, help="Only this method (default: all)")
     parser.add_argument("--dataset", type=str, default=None, choices=DATASETS, help="Only this dataset (default: all)")
     parser.add_argument("--experiment", type=str, default=None, help="Only this experiment folder, e.g. whisper-tiny_20260101_1200")
     parser.add_argument("--overwrite", action="store_true", help="Recompute existing evaluation.json files")
@@ -43,11 +42,10 @@ def main():
     if not summaries:
         return
 
-    reference_asr = load_asr_model(VALIDITY_REFERENCE_ASR, device=device)
     failed = 0
     for summary in tqdm(summaries):
         try:
-            evaluate(summary, reference_asr, device)
+            evaluate(summary, device)
         except Exception as e:
             failed += 1
             print(f"[ERROR] {summary}: {e}")

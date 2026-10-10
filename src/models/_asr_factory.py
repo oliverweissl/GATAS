@@ -7,8 +7,6 @@ ASR_MODELS = {
     "whisper-large-v3-turbo": ("whisper", "large-v3-turbo"),
     "whisper-large-v3": ("whisper", "large-v3"),  # reference ASR for the validity check (src/metrics.py)
     "wav2vec2-large": ("wav2vec2", "facebook/wav2vec2-large-960h-lv60-self"),
-    "wav2vec2-base": ("wav2vec2", "facebook/wav2vec2-base-960h"),
-    "speechbrain": ("speechbrain", "speechbrain/asr-transformer-transformerlm-librispeech"),
 }
 
 ASR_MODEL_ALIASES = {
@@ -37,9 +35,5 @@ def load_asr_model(name: str | None = "whisper-tiny", device: str | None = None)
         from ._wav2vec2 import Wav2Vec2ASR
 
         return Wav2Vec2ASR(model_id=checkpoint, device=device)
-    if wrapper == "speechbrain":
-        from ._speechbrain_asr import SpeechBrainASR
-
-        return SpeechBrainASR(model_id=checkpoint, device=device)
 
     raise AssertionError(f"Unhandled ASR wrapper: {wrapper}")

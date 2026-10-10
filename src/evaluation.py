@@ -2,8 +2,9 @@
 Uniform evaluation of saved attack results (all methods), used by scripts/evaluate_results.py.
 
 Reads the two summary formats (RunLogger's run_summary.json for GATAS/Waveform, result_writer's
-<method>_summary.json for the baselines), recomputes every metric from the saved audio and the attack-time
-transcription with src/metrics.py, and writes evaluation.json next to the summary.
+<method>_summary.json for the baselines), recomputes the metrics from the saved audio and the attack-time
+transcription with src/metrics.py (success, lexical / semantic / spectrogram distance), and writes evaluation.json
+next to the summary.
 """
 import os
 import json
@@ -14,6 +15,9 @@ import soundfile as sf
 import torch
 
 from . import metrics
+from .data.datasets import load_intents, load_target_intents
+from .intent import classify_intents
+from .models import load_asr_model
 
 SAMPLE_RATE = 16_000
 
@@ -38,10 +42,9 @@ def normalize_summary(path: str) -> dict:
             "run_id": meta.get("run_id") or 0,
             "asr_model": algo.get("asr_model"),
             "gt_text": text["ground_truth_text"],
-            # For untargeted modes RunLogger stores the transcription of the noise target here, not a target text
-            "target_text": text.get("target_text") if (method or "").endswith("_targeted") else None,
+            "target_text": text.get("target_text") if algo.get("attack_mode") == "TARGETED" else None,
+            "target_intent": text.get("target_intent"),
             "transcription": text.get("asr_transcription"),
-            "gt_transcription": text.get("gt_transcription"),
             "elapsed_seconds": eff["elapsed_time_seconds"],
             "queries": eff.get("queries", eff["generation_count"] * algo["pop_size"]),
             "generations": eff["generation_count"],
@@ -49,7 +52,7 @@ def normalize_summary(path: str) -> dict:
             "seed": algo.get("seed"),
             # First generation in which an individual met the objective thresholds (None: never)
             "generation_found": d.get("final_solution", {}).get("generation_found"),
-            "pareto_front": d.get("pareto_front", []),
+            "scale": d.get("final_solution", {}).get("scale"),
         }
 
     return {  # result_writer (SMACK / ALIF / PGD)
@@ -60,15 +63,14 @@ def normalize_summary(path: str) -> dict:
         "asr_model": d.get("asr_model"),
         "gt_text": d["gt_text"],
         "target_text": d.get("target_text"),
+        "target_intent": d.get("target_intent"),
         "transcription": d.get("transcription"),
-        "gt_transcription": d.get("gt_transcription"),
         "elapsed_seconds": d["elapsed_seconds"],
         "queries": d["queries"],
         "generations": d["generations"],
         "pop_size": d["pop_size"],
         "seed": d.get("seed"),
         "generation_found": None,
-        "pareto_front": [],
     }
 
 
@@ -84,81 +86,82 @@ def _read(path: str) -> np.ndarray:
 
 def audio_paths(folder: str) -> dict:
     adversarial = sorted(glob(os.path.join(folder, "best_*.wav")))
-    clean_reference = os.path.join(folder, "clean_reference.wav")
-    ground_truth = os.path.join(folder, "ground_truth.wav")
     return {
         "adversarial": adversarial[0] if adversarial else None,
-        "ground_truth": ground_truth,
-        # PESQ needs a time-aligned reference of the same voice: methods with their own TTS save one
-        "pesq_reference": clean_reference if os.path.exists(clean_reference) else ground_truth,
+        "original": os.path.join(folder, "ground_truth.wav"),
     }
 
 
-def text_metrics(gt_text: str, transcription: str, target_text: str = None, device: str = "cpu") -> dict:
-    scores = {
-        "SET_OVERLAP": metrics.set_overlap(gt_text, transcription),
-        "WER": metrics.wer(gt_text, transcription),
-        "SBERT_SIMILARITY": metrics.sbert_similarity(gt_text, transcription, device),
+_asr_models = {}
+
+
+def _transcribe(asr_model_name: str, audio: np.ndarray, device: str) -> str:
+    """Transcription of an audio by the attacked ASR model (re-run on the saved audio, not the attack-time text)."""
+    if (asr_model_name, device) not in _asr_models:
+        _asr_models[(asr_model_name, device)] = load_asr_model(asr_model_name, device=device)
+    return _asr_models[(asr_model_name, device)].inference(torch.from_numpy(audio)[None, :])[0][0]
+
+
+def _intent_evaluation(record: dict, original_transcription: str, device: str):
+    """
+    Intent matching (datasets with reference intents, e.g. commands): the intent predicted from the transcription.
+    The reference intent of a sentence is the classifier's prediction on its clean text (commands.intents.txt), the
+    target intent its best other intent of a different scenario (commands.target_intents.txt).
+      changed:      the adversarial transcription is classified differently than the original audio's transcription
+      target_match: the predicted intent equals the target intent (for every method; `targeted` tells if the method
+                    optimized toward it, untargeted methods can hit it by chance)
+      original_correct: control, the ASR transcription of the clean audio still maps to the reference intent
+    """
+    intents = load_intents(record["dataset"]) if record.get("dataset") else None
+    if intents is None:
+        return None
+    reference = intents[record["sentence_id"] - 1]
+    target = load_target_intents(record["dataset"])[record["sentence_id"] - 1]
+    adversarial_intent, original_intent = classify_intents([record["transcription"], original_transcription], device)
+    return {
+        "reference": reference,
+        "target": target,
+        "targeted": record.get("target_intent") is not None,
+        "original": original_intent,
+        "adversarial": adversarial_intent,
+        "original_correct": original_intent == reference,
+        "changed": adversarial_intent != original_intent,
+        "target_match": adversarial_intent == target,
     }
-    if target_text:
-        scores["TARGET_WER"] = metrics.wer(target_text, transcription)
-    return scores
 
 
-def evaluate(summary_path: str, reference_asr, device: str = "cpu") -> dict:
+def evaluate(summary_path: str, device: str = "cpu") -> dict:
     record = normalize_summary(summary_path)
     folder = os.path.dirname(summary_path)
     paths = audio_paths(folder)
     adversarial = _read(paths["adversarial"])
-    ground_truth = _read(paths["ground_truth"])
-    pesq_reference = _read(paths["pesq_reference"])
+    original = _read(paths["original"])
 
-    scores = text_metrics(record["gt_text"], record["transcription"], record["target_text"], device)
-    scores["PESQ"] = metrics.pesq_fitness(pesq_reference, adversarial)
-    scores["UTMOS"] = metrics.utmos_score(adversarial, device)
-    scores["UTMOS_GT"] = metrics.utmos_score(ground_truth, device)
+    # Re-transcribe the saved audio with the attacked ASR model; the attack-time transcription is kept for reference
+    attack_transcription = record["transcription"]
+    record["transcription"] = _transcribe(record["asr_model"], adversarial, device)
+    original_transcription = _transcribe(record["asr_model"], original, device)
 
-    targeted = record["target_text"] is not None
-    thresholds = metrics.TARGETED_SUCCESS_THRESHOLDS if targeted else metrics.SUCCESS_THRESHOLDS
-    success = metrics.is_success(scores, thresholds)
-
-    reference_transcription = reference_asr.inference(torch.from_numpy(adversarial)[None, :])[0][0]
-    reference_gt_transcription = reference_asr.inference(torch.from_numpy(ground_truth)[None, :])[0][0]
-    reference_wer = metrics.wer(record["gt_text"], reference_transcription)
-    valid = reference_wer <= metrics.VALIDITY_MAX_WER
-
-    # Pareto front members (GATAS / Waveform): text metrics for post-hoc threshold analysis
-    front = []
-    for member in record.pop("pareto_front"):
-        transcription = member.get("transcription")
-        entry = dict(member.get("fitness", {}))
-        if transcription is not None:
-            entry["WER"] = metrics.wer(record["gt_text"], transcription)
-            if targeted:
-                entry["TARGET_WER"] = metrics.wer(record["target_text"], transcription)
-        entry["transcription"] = transcription
-        front.append(entry)
-
+    wer = metrics.wer(record["gt_text"], record["transcription"])
+    scores = {
+        "WER": wer,  # lexical distance
+        "SEMANTIC_DISTANCE": metrics.sbert_distance(record["gt_text"], record["transcription"], device),
+        "SPECTROGRAM_DISTANCE": metrics.spectrogram_distance(original, adversarial),
+        "UTMOS": metrics.utmos_score(adversarial, device),  # naturalness, not optimized by any method
+        "UTMOS_ORIGINAL": metrics.utmos_score(original, device),
+    }
     evaluation = {
         **record,
-        "targeted": targeted,
+        "attack_transcription": attack_transcription,
+        "original_transcription": original_transcription,
+        # Control: the original audio is transcribed correctly, so a found test case is caused by the attack
+        "original_passes": bool(not metrics.is_success(metrics.wer(record["gt_text"], original_transcription))),
         "summary_path": os.path.abspath(summary_path),
         "audio": {k: os.path.abspath(v) if v else None for k, v in paths.items()},
         "scores": {k: round(float(v), 6) for k, v in scores.items()},
-        "success": bool(success),
-        "success_thresholds": dict(thresholds),
-        "validity": {
-            "reference_asr": metrics.VALIDITY_REFERENCE_ASR,
-            "reference_transcription": reference_transcription,
-            "reference_gt_transcription": reference_gt_transcription,
-            "reference_wer": round(reference_wer, 6),
-            "reference_gt_wer": round(metrics.wer(record["gt_text"], reference_gt_transcription), 6),
-            "max_wer": metrics.VALIDITY_MAX_WER,
-            "valid": bool(valid),
-        },
-        "valid_success": bool(success and valid),
-        "pareto_front": front,
+        "success": bool(metrics.is_success(wer)),
     }
+    evaluation["intent"] = _intent_evaluation(record, original_transcription, device)
     archive_history = os.path.join(folder, "archive_history.json")
     evaluation["archive_history"] = os.path.abspath(archive_history) if os.path.exists(archive_history) else None
 

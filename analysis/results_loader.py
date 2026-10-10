@@ -8,11 +8,8 @@ import json
 import warnings
 from glob import glob
 
-METHODS = ("GATAS", "Waveform", "SMACK", "ALIF", "PGD")          # main comparison (untargeted)
+METHODS = ("GATAS", "Waveform", "SMACK", "ALIF", "PGD", "SMACK_targeted")          # main comparison (untargeted)
 ALL_METHODS = ("GATAS", "GATAS_targeted", "Waveform", "SMACK", "SMACK_targeted", "ALIF", "PGD")
-BUDGET_ABLATION = ("GATAS", "GATAS_budget300", "GATAS_budget10000")  # 20x10, 20x15, 100x100
-DATASETS = ("harvard", "librispeech", "commands")
-ASR_MODELS = ("whisper-tiny", "whisper-large-v3-turbo", "wav2vec2-large")
 
 # Objective names in archives / Pareto fronts -> metric names of evaluation.json
 _METRIC_ALIASES = {"WER_TARGET": "TARGET_WER"}
@@ -25,16 +22,13 @@ def _record(path: str) -> dict:
     return {
         **e,
         # flat aliases used by the notebooks
-        "gt_wav": e["audio"]["ground_truth"],
+        "gt_wav": e["audio"]["original"],
         "adv_wav": e["audio"]["adversarial"],
-        "pesq": scores["PESQ"],
-        "set_overlap": scores["SET_OVERLAP"],
-        "wer": scores["WER"],
-        "sbert": scores["SBERT_SIMILARITY"],
+        "wer": scores["WER"],  # lexical distance
+        "semantic": scores["SEMANTIC_DISTANCE"],
+        "spectrogram": scores["SPECTROGRAM_DISTANCE"],
         "utmos": scores["UTMOS"],
-        "utmos_gt": scores["UTMOS_GT"],
-        "valid": e["validity"]["valid"],
-        "reference_wer": e["validity"]["reference_wer"],
+        "utmos_original": scores["UTMOS_ORIGINAL"],
         "budget": e["queries"],
     }
 
@@ -50,11 +44,11 @@ def _experiment_dir(results_root: str, method: str, dataset: str, asr_model: str
 
 
 def load_results(results_root: str = "../outputs/results", dataset: str = "harvard", asr_model: str = "whisper-tiny",
-                 methods=METHODS, common_sentences: bool = True) -> dict:
+                 methods=METHODS) -> dict:
     """
     Returns {method: [record, ...]} sorted by sentence_id, one record per sentence (run 0 if repeated), from the
-    latest experiment per method for (dataset, asr_model). With common_sentences, only sentences present for every
-    method are kept, so the lists are aligned by sentence for paired statistics.
+    latest experiment per method for (dataset, asr_model). No sentences are filtered: methods may cover different
+    sentences; paired statistics must match records by sentence_id.
     """
     records = {}
     for method in methods:
@@ -71,46 +65,18 @@ def load_results(results_root: str = "../outputs/results", dataset: str = "harva
                     by_sentence[record["sentence_id"]] = record
         records[method] = by_sentence
 
-    if common_sentences and records:
-        common = set.intersection(*(set(r) for r in records.values()))
-        for method, by_sentence in records.items():
-            dropped = sorted(set(by_sentence) - common)
-            if dropped:
-                warnings.warn(f"{method}: dropping sentences missing for other methods: {dropped}")
-        records = {m: {s: r for s, r in by_sentence.items() if s in common} for m, by_sentence in records.items()}
-
     return {m: [by_sentence[s] for s in sorted(by_sentence)] for m, by_sentence in records.items()}
-
-
-def success_at_thresholds(record: dict, thresholds: dict) -> bool:
-    """
-    Success of one result under other thresholds ({metric: max value}, metrics: PESQ, SET_OVERLAP, WER, ...).
-    GATAS/Waveform succeed if any member of their final Pareto front meets all thresholds (the front is what the
-    search returns); single-output baselines are judged on their one adversarial example. WER thresholds are
-    lower bounds on divergence and given as {"WER": ("min", value)}.
-    """
-    def meets(scores):
-        for name, threshold in thresholds.items():
-            if isinstance(threshold, tuple):
-                kind, value = threshold
-                if scores.get(name) is None or (kind == "min" and scores[name] < value):
-                    return False
-            elif scores.get(name) is None or scores[name] > threshold:
-                return False
-        return True
-
-    front = [{_METRIC_ALIASES.get(k, k): v for k, v in member.items()} for member in record.get("pareto_front") or []]
-    candidates = front if front else [record["scores"]]
-    return any(meets(c) for c in candidates)
 
 
 def success_at_budget(record: dict, queries: int, thresholds: dict = None) -> bool:
     """
-    Success within a query budget. GATAS/Waveform: some archive member meets the thresholds by generation
-    queries // pop_size (archive_history.json). Baselines: success if they used at most `queries`.
+    Success within a query budget. GATAS/Waveform: some archive member meets `thresholds` (required; archives hold
+    only the optimizer objectives, not transcriptions) by generation queries // pop_size (archive_history.json).
+    Baselines: success if they used at most `queries`.
     """
-    thresholds = thresholds or record["success_thresholds"]
     if record.get("archive_history"):
+        if not thresholds:
+            raise ValueError("success_at_budget needs objective thresholds for archive-based methods")
         with open(record["archive_history"]) as f:
             history = json.load(f)
         generation = min(queries // record["pop_size"], len(history["archive_per_generation"]))
@@ -123,7 +89,7 @@ def success_at_budget(record: dict, queries: int, thresholds: dict = None) -> bo
 
 
 def summary_table(records: dict):
-    """Per-method means of the evaluation metrics as a pandas DataFrame."""
+    """Per-method success rate and mean distances as a pandas DataFrame."""
     import numpy as np
     import pandas as pd
 
@@ -133,15 +99,32 @@ def summary_table(records: dict):
             continue
         rows[method] = {
             "n": len(recs),
-            "success %": 100 * np.mean([r["success"] for r in recs]),
-            "valid success %": 100 * np.mean([r["valid_success"] for r in recs]),
-            "SET_OVERLAP": np.mean([r["set_overlap"] for r in recs]),
-            "WER": np.mean([r["wer"] for r in recs]),
-            "SBERT sim.": np.mean([r["sbert"] for r in recs]),
-            "PESQ fitness": np.mean([r["pesq"] for r in recs]),
+            "original fails %": 100 * np.mean([not r["original_passes"] for r in recs]),
+            "test case found %": 100 * np.mean([r["success"] for r in recs]),
+            "found % (original passes)": 100 * np.mean([r["success"] for r in recs if r["original_passes"]] or [np.nan]),
+            "lexical (WER)": np.mean([r["wer"] for r in recs]),
+            "semantic": np.mean([r["semantic"] for r in recs]),
+            "spectrogram": np.mean([r["spectrogram"] for r in recs]),
             "UTMOS": np.mean([r["utmos"] for r in recs]),
-            "ref. ASR WER": np.mean([r["reference_wer"] for r in recs]),
-            "runtime [s]": np.mean([r["elapsed_seconds"] for r in recs]),
-            "queries": np.mean([r["queries"] for r in recs]),
         }
     return pd.DataFrame(rows).T
+
+
+def pareto_plot(ax, points: dict, x_key: str, y_key: str, x_higher_better: bool, y_higher_better: bool = True):
+    """
+    Draws one marker per method and the Pareto front (line through the non-dominated methods).
+    `points` is {label: {x_key: float, y_key: float}}, e.g. rows of `summary_table(...).to_dict("index")`.
+    Returns the labels on the front.
+    """
+    sx, sy = (1 if x_higher_better else -1), (1 if y_higher_better else -1)
+    labels = list(points)
+    xs = {l: sx * points[l][x_key] for l in labels}
+    ys = {l: sy * points[l][y_key] for l in labels}
+    front = [l for l in labels if not any(
+        xs[o] >= xs[l] and ys[o] >= ys[l] and (xs[o] > xs[l] or ys[o] > ys[l]) for o in labels if o != l)]
+    front.sort(key=lambda l: xs[l])
+    for l in labels:
+        ax.scatter(points[l][x_key], points[l][y_key], s=90, zorder=3, marker="o" if l in front else "x", label=l)
+    ax.plot([points[l][x_key] for l in front], [points[l][y_key] for l in front], color="black", alpha=0.5, zorder=2)
+    ax.grid(alpha=0.3)
+    return front

@@ -17,7 +17,7 @@ from ..models import StyleTTS2, canonical_asr_model_name, load_asr_model
 from .vector_manipulator import add_numbers_pattern, generate_similar_noise
 
 # Import dataclasses and enums
-from ..data.dataclass import ModelData, ConfigData, AudioEmbeddingData, ModelEmbeddingData
+from ..data.dataclass import ModelData, ConfigData, AudioEmbeddingData
 from ..objectives.fitness_objective import FitnessObjective
 from ..data.enum import AttackMode
 from ..objectives.base_objective import BaseObjective
@@ -36,13 +36,13 @@ class EnvironmentLoader:
         text_target: str,
         mode: AttackMode,
         audio_gt: torch.Tensor,
+        target_intent: str = None,
     ) -> dict[FitnessObjective, BaseObjective]:
         """
         Initialize objective instances from enum values.
 
         Returns dict mapping FitnessObjective enum -> objective instance.
         """
-        embedding_data = ModelEmbeddingData()
         objectives = {}
 
         for obj_enum in active_objectives:
@@ -51,9 +51,9 @@ class EnvironmentLoader:
                 objective = obj_enum.value(
                     model_data=model_data,
                     device=self.device,
-                    embedding_data=embedding_data,
                     text_gt=text_gt,
                     text_target=text_target,
+                    target_intent=target_intent,
                     mode=mode,
                     audio_gt=audio_gt,
                 )
@@ -71,17 +71,13 @@ class EnvironmentLoader:
     def load_configuration(self, args) -> ConfigData:
         """Parse command-line arguments and create validated ConfigData."""
 
-        random_matrix = torch.from_numpy(
-            np.random.rand(args.size_per_phoneme, 512)
-        ).to(self.device).float()
-
         # Validate AttackMode Enum
         try:
             mode = AttackMode[args.mode]
         except KeyError:
             raise ValueError(f"Invalid mode '{args.mode}'. Available modes: {[m.name for m in AttackMode]}")
 
-        # Parse combined objectives format (e.g., "PESQ=0.3, WER_GT=0.5")
+        # Parse combined objectives format (e.g., "PESQ=0.2, SET_OVERLAP=0.5")
         active_objectives_raw = set()
         thresholds = {}
 
@@ -127,14 +123,16 @@ class EnvironmentLoader:
             pop_size=args.pop_size,
             loop_count=args.loop_count,
             iv_scalar=args.iv_scalar,
-            size_per_phoneme=args.size_per_phoneme,
+            rank_text=getattr(args, 'rank_text', 8),
+            rank_style=getattr(args, 'rank_style', 16),
+            adaptive_scale=getattr(args, 'adaptive_scale', False),
+            basis=getattr(args, 'basis', 'pca'),
+            text_dct=getattr(args, 'text_dct', 0),
             batch_size=batch_size,
             asr_model_name=asr_model_name,
             mode=mode,
             active_objectives=active_objectives,
             thresholds=thresholds,
-            subspace_optimization=args.subspace_optimization,
-            random_matrix=random_matrix,
             num_rms_candidates=getattr(args, 'num_rms_candidates', 20),
         )
 
@@ -172,26 +170,6 @@ class EnvironmentLoader:
             )
             audio_embedding_data_gt = tts.extract_embeddings(tokens_gt, noise)
             audio_embedding_data_target = tts.extract_embeddings(tokens_target, noise)
-        elif mode is AttackMode.ZERO_UNTARGETED:
-            audio_embedding_data_target = AudioEmbeddingData(
-                audio_embedding_data_gt.input_length,
-                audio_embedding_data_gt.text_mask,
-                torch.zeros_like(audio_embedding_data_gt.h_bert),
-                torch.zeros_like(audio_embedding_data_gt.h_text),
-                torch.zeros_like(audio_embedding_data_gt.style_vector_acoustic),
-                torch.zeros_like(audio_embedding_data_gt.style_vector_prosodic),
-            )
-
-        elif mode is AttackMode.NEGATION_UNTARGETED:
-            audio_embedding_data_target = AudioEmbeddingData(
-                audio_embedding_data_gt.input_length,
-                audio_embedding_data_gt.text_mask,
-                -audio_embedding_data_gt.h_bert,
-                -audio_embedding_data_gt.h_text,
-                -audio_embedding_data_gt.style_vector_acoustic,
-                -audio_embedding_data_gt.style_vector_prosodic,
-            )
-
         else:
             gt_rms = tts.inference_on_embedding(audio_embedding_data_gt).flatten().pow(2).mean().sqrt().item()
             min_rms = 0.1 * gt_rms

@@ -3,7 +3,7 @@ from typing import Optional
 import torch
 
 from ..data.enum import AttackMode
-from ..data.dataclass import ModelData, ModelEmbeddingData, ObjectiveContext
+from ..data.dataclass import ModelData, ObjectiveContext
 
 
 class BaseObjective(ABC):
@@ -15,17 +15,17 @@ class BaseObjective(ABC):
         self,
         model_data: ModelData,
         device: str = None,
-        embedding_data: ModelEmbeddingData = None,
         text_gt: Optional[str] = None,
         text_target: Optional[str] = None,
+        target_intent: Optional[str] = None,
         mode: Optional["AttackMode"] = None,
         audio_gt: Optional[torch.Tensor] = None,
     ):
         self.model_data = model_data
         self.device = device or ('cuda' if torch.cuda.is_available() else 'cpu')
-        self.embedding_data = embedding_data
         self.text_gt = text_gt
         self.text_target = text_target
+        self.target_intent = target_intent
         self.mode = mode
         self.audio_gt = audio_gt
 

@@ -11,7 +11,7 @@ against a waveform-space ablation and three external baselines: SMACK, ALIF and 
 |---|---|
 | `src/` | GATAS: StyleTTS2 wrapper (`models/`, `tts_core/`), ASR wrappers (`models/`), objectives, optimizer, trainers, logging |
 | `src/data/` | Seed-sentence datasets (`datasets.py`, `seed_sentences/`) |
-| `src/metrics.py` | Shared metrics, success criteria and validity check for all methods |
+| `src/metrics.py` | Shared metrics and success criterion for all methods |
 | `src/evaluation.py` | Uniform evaluation of saved results (used by `scripts/evaluate_results.py`) |
 | `src/baselines/` | Adapters for the external baselines (`smack.py`, `alif.py`, `pgd.py`) |
 | `third_party/` | Unmodified external baselines as git submodules |
@@ -51,8 +51,10 @@ The external baselines are unmodified upstream code, called through adapters:
   Known issues in the upstream code are kept as is.
 - **ALIF** perturbs Tacotron2 encoder outputs (linguistic features) with particle swarm optimization (ALIF-OTA).
   Its native goal is the reverse of ours (keep the transcription, maximize distortion). The adapter keeps ALIF's
-  search space, perturbation bound, optimizer and hyperparameters and swaps objective and constraint:
-  minimize SET_OVERLAP subject to PESQ fitness ≤ 0.2. ALIF's audio-degrading mel knobs are left neutral.
+  search space, perturbation bound (its quality control), optimizer and hyperparameters and swaps the objective:
+  minimize SET_OVERLAP. ALIF's audio-degrading mel knobs are left neutral. Unlike GATAS, ALIF's search has no PESQ
+  constraint: its Tacotron2/WaveGlow synthesis is stochastic (dropout stays on, WaveGlow noise), so two syntheses of
+  the same text already have PESQ fitness ≈ 0.69 and a bound of 0.2 is never met. PESQ is only measured in the evaluation.
 - **PGD** is a white-box attack on Whisper-tiny and serves as a reference upper bound.
 
 ## Checkpoints
@@ -73,8 +75,16 @@ StyleTTS2 also needs its text aligner and pitch extractor from the [StyleTTS2 re
 [SMACK README](https://github.com/WUSTL-CSPL/SMACK?tab=readme-ov-file#installation)). SMACK downloads
 `facebook/wav2vec2-base` from the Hugging Face Hub on first use.
 
-**ALIF:** `tacotron2_statedict.pt` (NVIDIA Tacotron2 LJSpeech model, link in the
-[Tacotron2 README](https://github.com/NVIDIA/tacotron2#inference-demo)) and the same `waveglow_256channels_universal_v5.pt`.
+**ALIF:** `tacotron2_statedict.pt` (NVIDIA Tacotron2 LJSpeech model) and the same `waveglow_256channels_universal_v5.pt`.
+The Google Drive link of the [Tacotron2 README](https://github.com/NVIDIA/tacotron2#inference-demo) requires a Google
+login. Instead, convert the checkpoint of the [NVIDIA torch hub model](https://pytorch.org/hub/nvidia_deeplearningexamples_tacotron2/)
+(same LJSpeech Tacotron2, its keys match ALIF's model exactly):
+
+```bash
+wget -O /tmp/nvidia_tacotron2.pt https://api.ngc.nvidia.com/v2/models/nvidia/tacotron2_pyt_ckpt_amp/versions/19.09.0/files/nvidia_tacotron2pyt_fp16_20190427
+python -c "import torch; sd = torch.load('/tmp/nvidia_tacotron2.pt', map_location='cpu', weights_only=True)['state_dict']; \
+torch.save({'state_dict': {k.removeprefix('module.'): v for k, v in sd.items()}}, 'checkpoints/tacotron2_statedict.pt')"
+```
 
 ASR models and UTMOS are downloaded automatically.
 
@@ -85,10 +95,9 @@ Sentences are only used as text: every method synthesizes the reference speech w
 | Dataset | Content | Source |
 |---|---|---|
 | `harvard` | Harvard sentences (phonetically balanced), IDs 1–100 used | `src/data/harvard_sentences.py` |
-| `librispeech` | 100 LibriSpeech test-clean transcripts, 8–20 words | `src/data/seed_sentences/librispeech.txt` |
-| `commands` | 100 SLURP voice-assistant commands, ≥ 4 words | `src/data/seed_sentences/commands.txt` |
+| `commands` | 100 SLURP voice-assistant commands, ≥ 4 words, with reference intents (intent matching task) | `src/data/seed_sentences/commands.txt`, `commands.intents.txt` |
 
-`scripts/prepare_datasets.py` documents and reproduces the selection of the two text lists.
+`scripts/prepare_datasets.py` documents and reproduces the selection of the `commands` list.
 
 | ASR model (`ASR_MODEL`) | Checkpoint |
 |---|---|
@@ -103,24 +112,21 @@ Run everything from the project root. `bash scripts/run_experiments.sh` runs the
 
 | Study | Methods | ASR | Datasets |
 |---|---|---|---|
-| Main comparison (RQ1–RQ3) | GATAS, Waveform, SMACK, ALIF, PGD | whisper-tiny | harvard, librispeech |
+| Main comparison (RQ1–RQ3) | GATAS, Waveform, SMACK, ALIF, PGD | whisper-tiny | harvard (ASR), commands (intent matching) |
 | Objective formulation | SMACK (native targeted), GATAS (targeted) | whisper-tiny | harvard |
-| Generalization | GATAS, Waveform | whisper-tiny, whisper-large-v3-turbo, wav2vec2-large | harvard, librispeech, commands |
-| Budget ablation (experimental) | GATAS 20x10, 20x15 (`GATAS_budget300`), 100x100 (`GATAS_budget10000`) | whisper-tiny | harvard |
 
 Each method also has its own run script. Every run script generates the shared reference audios for its
 sentences, runs the attack in one sequential process, and evaluates the results. Settings come from
 environment variables (defaults in `scripts/common.sh`): `DATASET`, `ASR_MODEL`, `SEED` (0), `GPU` (0), `START`/`END` (1/100).
 
 ```bash
-DATASET=librispeech ASR_MODEL=whisper-large-v3-turbo bash scripts/run_gatas.sh
+DATASET=commands ASR_MODEL=whisper-large-v3-turbo bash scripts/run_gatas.sh
 ```
 
 | Method | Run script | Environment |
 |---|---|---|
 | `GATAS` | `run_gatas.sh` | main |
 | `GATAS_targeted` | `run_gatas_targeted.sh` | main |
-| `GATAS_budget300`, `GATAS_budget10000` | `run_gatas_budget_ablation.sh` | main |
 | `Waveform` | `run_waveform.sh` | main |
 | `SMACK` (untargeted adaptation) | `run_smack.sh` | smack |
 | `SMACK_targeted` (native) | `run_smack_targeted.sh` | smack |
@@ -128,10 +134,11 @@ DATASET=librispeech ASR_MODEL=whisper-large-v3-turbo bash scripts/run_gatas.sh
 | `PGD` | `run_pgd.sh` (Whisper-tiny only) | pgd |
 
 GATAS settings: NSGA-II with population 20 for 10 generations, i.e. 200 ASR queries per sentence (the budget of ALIF;
-SMACK uses 300). Early stopping is disabled (`--min_generations` = generations); the first generation meeting the
+SMACK uses 300). There is no early stopping (full budget); the first generation meeting the
 thresholds is logged as `generation_found`. Budget and population are set with `POP_SIZE` / `NUM_GENERATIONS`
 (same for Waveform). Objectives `PESQ=0.2, SET_OVERLAP=0.5` (the values are the thresholds used to select the final
-candidate from the Pareto front), mode `NOISE_UNTARGETED` (interpolation of the StyleTTS2 text embedding
+candidate from the Pareto front, among the candidates whose transcription differs from the ground truth text, i.e.
+that already are test cases), mode `NOISE_UNTARGETED` (interpolation of the StyleTTS2 text embedding
 between the GT and a noise embedding), and `--seed_target` (one initial individual is the pure noise target). The
 targeted variant uses `PESQ=0.2, WER_TARGET=0.0` in mode `TARGETED`; targets are drawn per sentence from the same
 dataset, identically for GATAS and SMACK (`src/helper.target_sentence`). See `python scripts/adversarial_gatas.py --help`.
@@ -155,18 +162,18 @@ every generation).
 `python scripts/evaluate_results.py` (main env; the run scripts call it) evaluates every saved result the same way
 and writes `evaluation.json`. All definitions are in `src/metrics.py`:
 
-- **SET_OVERLAP**: fraction of ground-truth content words (stopwords removed, WordNet-lemmatized) left in the
-  transcription (bag-of-words; 0 = none left). Used as optimization objective.
-- **WER** (order-sensitive) and **SBERT similarity** (meaning-level) between ground truth and transcription.
-- **PESQ fitness**: wideband PESQ mapped to [0, 1] (0 = perfect). PESQ needs a time-aligned reference in the same
-  voice: GATAS, Waveform and PGD use the StyleTTS2 ground truth; SMACK and ALIF re-synthesize with their own TTS and
-  use their own clean synthesis of the sentence as reference. PESQ is also a GATAS objective.
-- **UTMOS**: predicted MOS in [1, 5] ([balacoon/utmos](https://huggingface.co/balacoon/utmos)), no reference; the
-  naturalness metric not optimized by any method.
-- **Success**: untargeted `PESQ ≤ 0.2 and SET_OVERLAP ≤ 0.5` (`SUCCESS_THRESHOLDS`); targeted `PESQ ≤ 0.2 and
-  TARGET_WER = 0` (`TARGETED_SUCCESS_THRESHOLDS`).
-- **Validity**: the reference ASR (Whisper large-v3, not attacked) still recognizes the ground truth in the
-  adversarial audio, `WER ≤ 0.3` (`VALIDITY_MAX_WER`). **Valid success** = success and valid.
+The attacked ASR model is re-run on the saved original audio (`ground_truth.wav`) and the final candidate
+(`best_*.wav`); the attack-time transcription is kept as `attack_transcription`. `original_passes` is the control
+(the original audio is transcribed correctly).
+
+- **Test case found**: the transcription differs from the ground truth text, `WER(gt_text, transcription) > 0`.
+- **Lexical distance**: WER between ground truth text and transcription.
+- **Semantic distance**: 1 − cosine similarity of SBERT embeddings (all-MiniLM-L6-v2) of ground truth text and
+  transcription.
+- **Spectrogram distance**: Frobenius norm of the mel spectrogram (dB) difference between the original audio and the final candidate, divided by the spectrogram size.
+
+- **Naturalness**: UTMOS of the final candidate (UTMOS of the original audio stored as reference). PESQ and SET_OVERLAP are
+  optimization objectives of GATAS / Waveform and therefore not used for evaluation.
 
 Runtimes are end-to-end wall clock per sentence, from attack start until the adversarial audio exists (one-time
 model loading excluded). PGD runs whisper_attack in a subprocess per sentence, so its runtime includes loading the
@@ -177,12 +184,19 @@ Whisper model. Query budgets count attacked-ASR queries (PGD: gradient iteration
 The notebooks load results through `analysis/results_loader.py` (`load_results(dataset=..., asr_model=...)`): the
 latest experiment per method, only sentences present for every method, sorted by sentence ID (for paired tests).
 
-- `RQ1_Effectiveness`: success, semantic divergence (SET_OVERLAP, WER, SBERT), naturalness (UTMOS), main comparison per
-  dataset, threshold sensitivity (from the stored Pareto fronts), native vs. adapted SMACK, generalization matrix.
+- `RQ1_Effectiveness`: test case found, lexical / semantic / spectrogram distance, paired tests.
 - `RQ2_Validity`: human study (survey) and the automatic validity check (reference ASR).
-- `RQ3_Efficiency`: runtime, query budget, convergence, success vs. query budget (from `archive_history.json`),
-  budget ablation.
+- `RQ3_Efficiency`: runtime, query budget, convergence, success vs. query budget (from `archive_history.json`).
 - `QualAnalysis`: qualitative examples.
+
+## Intent matching
+
+For the `commands` dataset the evaluation also reports the intent of the transcription, predicted by the pretrained
+text classifier [`cartesinus/slurp-intent_baseline-xlm_r-en`](https://huggingface.co/cartesinus/slurp-intent_baseline-xlm_r-en)
+(`src/intent.py`, downloaded automatically, no training). `evaluation.json` gets an `intent` block: `changed`
+(adversarial intent differs from the intent of the original audio's transcription), `target_match` (targeted attacks:
+predicted intent equals the reference intent of the target sentence) and `original_correct`. Targeted attacks on `commands`
+get a target sentence with a different reference intent (the classifier's prediction on the clean text; SLURP gold labels are in `commands.gold_intents.txt`). ALIF and PGD are untargeted and are compared on `changed`.
 
 ## Reproducibility
 

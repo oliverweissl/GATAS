@@ -36,6 +36,7 @@ def save_attack_result(
     pop_size: int,
     seed: int,
     target_text: str = None,
+    target_intent: str = None,
     clean_reference_audio: np.ndarray = None,
     params: dict = None,
 ) -> dict:
@@ -51,6 +52,7 @@ def save_attack_result(
         queries:           Number of attacked-model queries (PGD: gradient iterations).
         generations, pop_size: Search budget in the method's own terms.
         target_text:       Target transcription for targeted attacks.
+        target_intent:     Target intent of the intent matching attacks.
         clean_reference_audio: Benign synthesis with the method's own TTS, used as PESQ reference.
         params:            Method-specific hyperparameters.
     """
@@ -71,6 +73,7 @@ def save_attack_result(
         "timestamp": datetime.datetime.now().isoformat(),
         "gt_text": gt_text,
         "target_text": target_text,
+        "target_intent": target_intent,
         "transcription": transcription,
         "gt_transcription": gt_transcription,
         "elapsed_seconds": round(float(elapsed_seconds), 2),

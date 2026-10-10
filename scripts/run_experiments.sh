@@ -4,8 +4,8 @@
 set -e
 export SEED=${SEED:-0} GPU=${GPU:-0}
 
-# 1. Main comparison (RQ1-RQ3): all methods, Whisper-tiny, Harvard + LibriSpeech
-for dataset in harvard librispeech; do
+# 1. Main comparison (RQ1-RQ3): all methods, Whisper-tiny, Harvard (ASR task) + SLURP commands (intent matching)
+for dataset in harvard commands; do
     for script in run_gatas run_waveform run_smack run_alif run_pgd; do
         DATASET=$dataset ASR_MODEL=whisper-tiny bash scripts/$script.sh
     done
@@ -16,15 +16,8 @@ for script in run_smack_targeted run_gatas_targeted; do
     DATASET=harvard ASR_MODEL=whisper-tiny bash scripts/$script.sh
 done
 
-# 3. Generalization: GATAS and its waveform ablation on all datasets and ASR models
-for asr in whisper-tiny whisper-large-v3-turbo wav2vec2-large; do
-    for dataset in harvard librispeech commands; do
-        if [ "$asr" = "whisper-tiny" ] && [ "$dataset" != "commands" ]; then continue; fi  # done in block 1
-        for script in run_gatas run_waveform; do
-            DATASET=$dataset ASR_MODEL=$asr bash scripts/$script.sh
-        done
-    done
+# 3. Intent matching (commands): the methods that can use the intent classifier output optimize toward the target intent
+#    (PGD is white-box on Whisper's text decoder and stays untargeted, see block 1)
+for script in run_gatas_intent run_waveform_intent run_smack_intent run_alif_intent; do
+    DATASET=commands ASR_MODEL=whisper-tiny bash scripts/$script.sh
 done
-
-# 4. Budget ablation of GATAS (experimental): 20x15 and 100x100 next to the main 20x10
-DATASET=harvard ASR_MODEL=whisper-tiny bash scripts/run_gatas_budget_ablation.sh

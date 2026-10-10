@@ -55,7 +55,7 @@ class AdversarialTrainer:
                 print(f"[ERROR] {obj_enum.name} evaluation failed: {e}")
         return scores
 
-    def run_full_iteration(self, optimizer, num_generations, pop_size, batch_size, min_generations: int = 0) -> tuple[list[np.ndarray], list[np.ndarray], int, float, bool, int]:
+    def run_full_iteration(self, optimizer, num_generations, pop_size, batch_size) -> tuple[list[np.ndarray], list[np.ndarray], int, float, bool, int]:
 
         fitness_history = []
         archive_history = []
@@ -101,10 +101,6 @@ class AdversarialTrainer:
                     if stop_optimization and generation_found is None:
                         generation_found = gen + 1
                         pbar.write(f"[!] Thresholds first met at Generation {gen + 1}.")
-
-                    if generation_found is not None and (gen + 1) >= min_generations:
-                        pbar.write(f"[!] Early Stopping at Generation {gen + 1}.")
-                        break
 
         except KeyboardInterrupt:
             pbar.write(f"\n[!] Manual Stop triggered at Generation {gen + 1}. Saving results so far...")

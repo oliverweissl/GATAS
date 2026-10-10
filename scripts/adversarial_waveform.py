@@ -25,7 +25,7 @@ nltk.download('punkt_tab', quiet=True)
 nltk.download('stopwords', quiet=True)
 
 from src.data.dataclass import ModelData
-from src.data.datasets import DATASETS, load_sentences
+from src.data.datasets import DATASETS, load_sentences, load_target_intents
 from src.helper import set_seed, run_seed, load_reference_embedding, results_dir, experiment_name, target_sentence
 from src.trainer.environment_loader import EnvironmentLoader
 from src.trainer.waveform_adversarial_trainer import WaveformAdversarialTrainer
@@ -35,7 +35,6 @@ from pymoo.algorithms.moo.nsga2 import NSGA2
 
 
 
-METHOD = "Waveform"
 
 from src.models import ASR_MODEL_CHOICES, canonical_asr_model_name
 
@@ -52,11 +51,8 @@ def initialize_parser():
     parser.add_argument("--mode", type=str, default="TARGETED")
     parser.add_argument("--target_text", type=str, default="")
     parser.add_argument("--objectives", type=str, default="PESQ=0.2, SET_OVERLAP=0.5")
+    parser.add_argument("--method_name", type=str, default=None, help="Result folder name (default: Waveform, Waveform_intent with INTENT_TARGET)")
     parser.add_argument("--seed_target", action="store_true", default=False)
-    parser.add_argument("--seed_gt", action="store_true", default=False)
-    parser.add_argument("--min_generations", type=int, default=0)
-    parser.add_argument("--save_spectrograms", action=argparse.BooleanOptionalAction, default=True)
-    parser.add_argument("--save_graphs", action=argparse.BooleanOptionalAction, default=True)
     parser.add_argument("--seed", type=int, default=0, help="Base random seed (per run: seed + sentence_id + 1000 * run_id)")
     parser.add_argument('--gpu', type=int, default=0,
                         help='CUDA device index to use (default: 0)')
@@ -68,6 +64,7 @@ def initialize_parser():
 def main():
     parser = initialize_parser()
     args = parser.parse_args()
+    METHOD = args.method_name or ("Waveform_intent" if "INTENT_TARGET" in args.objectives else "Waveform")
 
     def _handle_sigterm(signum, frame):
         raise KeyboardInterrupt
@@ -97,7 +94,6 @@ def main():
     print(f"  batch_size:         {args.batch_size}")
     print(f"  objectives:         {args.objectives}")
     print(f"  seed_target:        {args.seed_target}")
-    print(f"  min_generations:    {args.min_generations}")
     print(f"{'='*60}")
 
     all_summaries = []
@@ -107,7 +103,10 @@ def main():
             sentence_text = sentences[sentence_id - 1]
             target_text = args.target_text if args.target_text else target_sentence(sentences, sentence_id, args.seed)
             print(f"\n{'='*60}")
+            target_intent = load_target_intents(args.dataset)[sentence_id - 1] if "INTENT_TARGET" in args.objectives else None
             print(f"[Sentence {sentence_id}] {sentence_text}")
+            if target_intent:
+                print(f"[Target intent] {target_intent}")
             if args.mode == "TARGETED":
                 print(f"[Target]     {target_text}")
             print(f"{'='*60}")
@@ -124,15 +123,14 @@ def main():
                     num_generations=args.num_generations,
                     pop_size=args.pop_size,
                     iv_scalar=0.0,
-                    size_per_phoneme=1,
                     num_rms_candidates=1,
                     batch_size=args.batch_size,
                     asr_model=asr_model_name,
-                    subspace_optimization=False,
                     mode=args.mode,
                     objectives=args.objectives,
                 )
                 config_data = loader.load_configuration(run_args)
+                config_data.target_intent = target_intent
 
                 audio_gt, audio_target, audio_embedding_gt, audio_embedding_target, gt_rms, target_rms = loader.generate_audio_data(
                     config_data.mode, config_data.text_gt, config_data.text_target, tts_model,
@@ -147,6 +145,7 @@ def main():
                     text_target=config_data.text_target,
                     mode=config_data.mode,
                     audio_gt=audio_gt,
+                    target_intent=target_intent,
                 )
 
                 trainer = WaveformAdversarialTrainer(
@@ -169,16 +168,13 @@ def main():
                     ),
                 )
 
-                if args.seed_target or args.seed_gt:
+                if args.seed_target:
                     n_var = audio_gt.shape[-1]
                     initial_pop = np.random.uniform(waveform_bounds[0], waveform_bounds[1], (args.pop_size, n_var))
-                    if args.seed_target:
-                        initial_pop[0] = waveform_bounds[1]  # Anchor: pure target → SET_OVERLAP = 0
-                    if args.seed_gt:
-                        initial_pop[1] = waveform_bounds[0]  # Anchor: pure GT → PESQ ≈ 0
+                    initial_pop[0] = waveform_bounds[1]  # Anchor: pure target → SET_OVERLAP = 0
                     optimizer.update_problem((n_var,), sampling=initial_pop)
 
-                fitness_data, archive_data, generation_count, optimization_time, interrupted, generation_found = trainer.run_full_iteration(optimizer, args.num_generations, args.pop_size, args.batch_size, min_generations=args.min_generations)
+                fitness_data, archive_data, generation_count, optimization_time, interrupted, generation_found = trainer.run_full_iteration(optimizer, args.num_generations, args.pop_size, args.batch_size)
                 elapsed_time_total = time.time() - attack_start
 
                 if fitness_data:
@@ -198,11 +194,7 @@ def main():
                         run_timestamp=run_timestamp,
                         num_generations=args.num_generations,
                         generation_found=generation_found,
-                        save_spectrograms=args.save_spectrograms,
-                        save_graphs=args.save_graphs,
                         seed_target=args.seed_target,
-                        seed_gt=args.seed_gt,
-                        min_generations=args.min_generations,
                         gt_rms=gt_rms,
                         target_rms=target_rms,
                         optimization_time_seconds=optimization_time,

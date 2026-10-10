@@ -18,7 +18,8 @@ class ConfigData:
     pop_size: int
     loop_count: int
     iv_scalar: float
-    size_per_phoneme: int
+    rank_text: int
+    rank_style: int
     batch_size: int
     asr_model_name: str
 
@@ -27,51 +28,18 @@ class ConfigData:
     active_objectives: List["FitnessObjective"]
     thresholds: Dict["FitnessObjective", float]
 
-    # --- Subspace Optimization ---
-    subspace_optimization: bool
-    random_matrix: torch.Tensor
-
     # --- Target Selection ---
     num_rms_candidates: int = 20
+    adaptive_scale: bool = False
+    basis: str = "pca"  # "pca" | "jacobian" (directions ranked by audible effect)
+    text_dct: int = 0  # >0: text coefficients are this many DCT components along the phoneme axis
+    sens_phonemes: int = 8  # jacobian basis: phonemes probed for the text sensitivity
+    target_intent: Optional[str] = None  # intent matching: target intent of the INTENT_TARGET objective
 
 @dataclass
 class ModelData:
-    # Required Audio
     tts_model: Any  # StyleTTS2
     asr_model: Any  # AutomaticSpeechRecognitionModel
-
-    # Conditional Audio (Default to None)
-    embedding_model: Optional[Any] = None  # SentenceTransformer (MPNet)
-    sbert_model: Optional[Any] = None  # SentenceTransformer (MiniLM)
-
-    # JIWER Transformation Object
-    wer_transformations: Optional[Any] = None
-
-    # GPT-2 / Perplexity
-    perplexity_model: Optional[Any] = None  # GPT2LMHeadModel
-    perplexity_tokenizer: Optional[Any] = None  # GPT2Tokenizer
-
-    # Wav2Vec2
-    wav2vec_model: Optional[Any] = None  # Wav2Vec2Model
-    wav2vec_processor: Optional[Any] = None  # Wav2Vec2Processor
-
-@dataclass
-class ModelEmbeddingData:
-    """
-    Dynamic container for conditional reference embeddings.
-    Initialize with EmbeddingData() to start empty.
-    """
-    # Sentence Transformer Embeddings (MPNet)
-    text_embedding_gt: Optional[torch.Tensor] = None
-    text_embedding_target: Optional[torch.Tensor] = None
-
-    # SBERT Embeddings (MiniLM)
-    s_bert_embedding_gt: Optional[torch.Tensor] = None
-    s_bert_embedding_target: Optional[torch.Tensor] = None
-
-    # Wav2Vec2 Embeddings
-    wav2vec_embedding_gt: Optional[torch.Tensor] = None
-    wav2vec_embedding_target: Optional[torch.Tensor] = None
 
 @dataclass
 class ObjectiveContext:

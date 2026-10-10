@@ -1,5 +1,6 @@
 """
-GATAS: black-box ASR test generation by NSGA-II search over StyleTTS2 phoneme-level text embeddings.
+GATAS: black-box ASR test generation by NSGA-II search over a low-rank additive perturbation of the StyleTTS2
+text embedding and style vectors of the sentence.
 
 Generate reference audios first:
     python scripts/generate_reference_audios.py --dataset harvard --start 1 --end 100
@@ -23,13 +24,14 @@ nltk.download('punkt_tab', quiet=True)
 nltk.download('stopwords', quiet=True)
 
 from src.data.dataclass import ModelData
-from src.data.datasets import DATASETS, load_sentences
+from src.data.datasets import DATASETS, load_sentences, load_target_intents
 from src.helper import set_seed, run_seed, load_reference_embedding, results_dir, experiment_name, target_sentence
 from src.trainer.environment_loader import EnvironmentLoader
 from src.trainer.adversarial_trainer import AdversarialTrainer
 from src.trainer.run_logger import RunLogger
 from src.trainer.vector_manipulator import VectorManipulator
 from src.optimizer.pymoo_optimizer import PymooOptimizer
+from src.optimizer.cma_optimizer import CmaesOptimizer, MoCmaOptimizer
 from pymoo.algorithms.moo.nsga2 import NSGA2
 
 
@@ -45,20 +47,21 @@ def initialize_parser():
     parser.add_argument("--num_generations", type=int, default=100)
     parser.add_argument("--pop_size", type=int, default=200)
     parser.add_argument("--batch_size", type=int, default=100)
-    parser.add_argument("--iv_scalar", type=float, default=0.5)
-    parser.add_argument("--size_per_phoneme", type=int, default=1)
-    parser.add_argument("--subspace_optimization", action="store_true")
-    parser.add_argument("--num_rms_candidates", type=int, default=1)
-    parser.add_argument("--seed_target", action="store_true", default=False)
-    parser.add_argument("--seed_gt", action="store_true", default=False)
-    parser.add_argument("--min_generations", type=int, default=0)
-    parser.add_argument("--mode", type=str, default="TARGETED")
+    parser.add_argument("--iv_scalar", type=float, default=2.0, help="Perturbation size in standard deviations per coefficient")
+    parser.add_argument("--adaptive_scale", action="store_true", help="Search the scale as an extra gene in [0.5, iv_scalar]")
+    parser.add_argument("--basis", type=str, default="pca", choices=["pca", "jacobian"],
+                        help="Perturbation directions: PCA of the embeddings, or ranked by their effect on the TTS output")
+    parser.add_argument("--text_dct", type=int, default=0,
+                        help="If > 0, text coefficients are this many DCT components along the phoneme axis instead of one set per phoneme")
+    parser.add_argument("--algorithm", type=str, default="nsga2", choices=["nsga2", "cmaes", "mocma"],
+                        help="nsga2: NSGA-II; cmaes: CMA-ES on max_i f_i / threshold_i; mocma: MO-CMA-ES")
+    parser.add_argument("--rank_text", type=int, default=8, help="Coefficients per phoneme (text embedding)")
+    parser.add_argument("--rank_style", type=int, default=16, help="Coefficients per style vector (acoustic, prosodic)")
+    parser.add_argument("--mode", type=str, default="TARGETED", help="TARGETED: objectives compare to a target text; else untargeted")
     parser.add_argument("--method_name", type=str, default=None,
                         help="Result folder / attack_method name (default: GATAS, or GATAS_targeted in TARGETED mode)")
     parser.add_argument("--target_text", type=str, default="")
     parser.add_argument("--objectives", type=str, default="PESQ=0.2, SET_OVERLAP=0.5")
-    parser.add_argument("--save_spectrograms", action=argparse.BooleanOptionalAction, default=True)
-    parser.add_argument("--save_graphs", action=argparse.BooleanOptionalAction, default=True)
     parser.add_argument("--seed", type=int, default=0, help="Base random seed (per run: seed + sentence_id + 1000 * run_id)")
     parser.add_argument('--gpu', type=int, default=0,
                         help='CUDA device index to use (default: 0)')
@@ -78,7 +81,7 @@ def main():
     device = f'cuda:{args.gpu}' if torch.cuda.is_available() else 'cpu'
     print(f"Device: {device} | GPUs: {torch.cuda.device_count()}")
 
-    method = args.method_name or ("GATAS_targeted" if args.mode == "TARGETED" else "GATAS")
+    method = args.method_name or ("GATAS_intent" if "INTENT_TARGET" in args.objectives else "GATAS_targeted" if args.mode == "TARGETED" else "GATAS")
     loader = EnvironmentLoader(device)
     tts_model, asr_model = loader.load_required_models(args.asr_model)
     print("Models loaded.")
@@ -94,12 +97,13 @@ def main():
     print(f"  sentences:          {args.start} → {args.end}")
     print(f"  runs per sentence:  {args.loop_count}")
     print(f"  generations:        {args.num_generations}")
-    print(f"  min_generations:    {args.min_generations}")
     print(f"  pop_size:           {args.pop_size}")
     print(f"  batch_size:         {args.batch_size}")
     print(f"  objectives:         {args.objectives}")
     print(f"  iv_scalar:          {args.iv_scalar}")
-    print(f"  size_per_phoneme:   {args.size_per_phoneme}")
+    print(f"  rank_text/style:    {args.rank_text}/{args.rank_style}")
+    print(f"  basis / text_dct:   {args.basis} / {args.text_dct}")
+    print(f"  algorithm:          {args.algorithm}")
     print(f"{'='*60}")
 
     all_summaries = []
@@ -109,7 +113,10 @@ def main():
             sentence_text = sentences[sentence_id - 1]
             target_text = args.target_text if args.target_text else target_sentence(sentences, sentence_id, args.seed)
             print(f"\n{'='*60}")
+            target_intent = load_target_intents(args.dataset)[sentence_id - 1] if "INTENT_TARGET" in args.objectives else None
             print(f"[Sentence {sentence_id}] {sentence_text}")
+            if target_intent:
+                print(f"[Target intent] {target_intent}")
             if args.mode == "TARGETED":
                 print(f"[Target]     {target_text}")
             print(f"{'='*60}")
@@ -126,21 +133,24 @@ def main():
                     num_generations=args.num_generations,
                     pop_size=args.pop_size,
                     iv_scalar=args.iv_scalar,
-                    size_per_phoneme=args.size_per_phoneme,
+                    rank_text=args.rank_text,
+                    rank_style=args.rank_style,
+                    adaptive_scale=args.adaptive_scale,
+                    basis=args.basis,
+                    text_dct=args.text_dct,
                     batch_size=args.batch_size,
                     asr_model=asr_model_name,
-                    subspace_optimization=args.subspace_optimization,
                     mode=args.mode,
                     objectives=args.objectives,
-                    num_rms_candidates=args.num_rms_candidates,
                 )
                 config_data = loader.load_configuration(run_args)
+                config_data.target_intent = target_intent
 
-                audio_gt, audio_target, audio_embedding_gt, audio_embedding_target, gt_rms, target_rms = loader.generate_audio_data(
-                    config_data.mode, config_data.text_gt, config_data.text_target, tts_model,
-                    num_rms_candidates=config_data.num_rms_candidates,
-                    audio_embedding_gt=load_reference_embedding(args.dataset, sentence_id, device),
-                )
+                tokens = tts_model.preprocess_text(config_data.text_gt)
+                audio_embedding_gt = load_reference_embedding(args.dataset, sentence_id, device) \
+                    or tts_model.extract_embeddings(tokens, torch.randn(1, 1, 256, device=device))
+                audio_gt = tts_model.inference_on_embedding(audio_embedding_gt).flatten()
+                gt_rms = audio_gt.pow(2).mean().sqrt().item()
 
                 objectives_dict = loader.initialize_objectives(
                     active_objectives=config_data.active_objectives,
@@ -149,9 +159,10 @@ def main():
                     text_target=config_data.text_target,
                     mode=config_data.mode,
                     audio_gt=audio_gt,
+                    target_intent=target_intent,
                 )
 
-                vector_manipulator = VectorManipulator(audio_embedding_gt, audio_embedding_target.h_text, config_data)
+                vector_manipulator = VectorManipulator(tts_model, tokens, audio_embedding_gt, config_data)
                 trainer = AdversarialTrainer(
                     tts_model, asr_model, config_data.thresholds, objectives_dict, vector_manipulator, device
                 )
@@ -159,29 +170,28 @@ def main():
                     config_data.active_objectives, tts_model, asr_model, vector_manipulator, device
                 )
 
-                solution_shape = (
-                    int(audio_embedding_gt.input_length.detach().cpu().item()), args.size_per_phoneme,
-                )
-                optimizer = PymooOptimizer(
-                    bounds=(0, 1),
-                    algorithm=NSGA2,
-                    algo_params={"pop_size": args.pop_size},
-                    num_objectives=len(config_data.active_objectives),
-                    solution_shape=solution_shape,
-                )
-
-                if args.seed_target or args.seed_gt:
-                    import numpy as np
-                    n_var = int(np.prod(solution_shape))
-                    initial_pop = np.random.uniform(0, 1, (args.pop_size, n_var))
-                    if args.seed_target:
-                        initial_pop[0] = 1.0  # Anchor: pure noise target → SET_OVERLAP = 0
-                    if args.seed_gt:
-                        initial_pop[1] = 0.0  # Anchor: pure ground truth → PESQ ≈ 0
-                    optimizer.update_problem(solution_shape, sampling=initial_pop)
+                solution_shape = (vector_manipulator.n_genes,)
+                num_objectives = len(config_data.active_objectives)
+                if args.algorithm == "cmaes":
+                    optimizer = CmaesOptimizer(
+                        bounds=(0, 1), pop_size=args.pop_size, num_objectives=num_objectives, solution_shape=solution_shape,
+                        weights=[1.0 / config_data.thresholds[o] if config_data.thresholds.get(o, 0.0) > 0 else 1.0 for o in config_data.active_objectives],
+                    )
+                elif args.algorithm == "mocma":
+                    optimizer = MoCmaOptimizer(
+                        bounds=(0, 1), pop_size=args.pop_size, num_objectives=num_objectives, solution_shape=solution_shape,
+                    )
+                else:
+                    optimizer = PymooOptimizer(
+                        bounds=(0, 1),
+                        algorithm=NSGA2,
+                        algo_params={"pop_size": args.pop_size},
+                        num_objectives=num_objectives,
+                        solution_shape=solution_shape,
+                    )
 
                 fitness_data, archive_data, generation_count, optimization_time, interrupted, generation_found = \
-                    trainer.run_full_iteration(optimizer, args.num_generations, args.pop_size, args.batch_size, min_generations=args.min_generations)
+                    trainer.run_full_iteration(optimizer, args.num_generations, args.pop_size, args.batch_size)
                 elapsed_time_total = time.time() - attack_start
 
                 if fitness_data:
@@ -193,21 +203,16 @@ def main():
                         generation_count=generation_count,
                         elapsed_time_total=elapsed_time_total,
                         audio_gt=audio_gt,
-                        audio_target=audio_target,
+                        audio_target=None,
                         config_data=config_data,
                         folder_path=folder_path,
                         sentence_id=sentence_id,
                         run_id=run_id,
                         run_timestamp=run_timestamp,
                         num_generations=args.num_generations,
-                        save_spectrograms=args.save_spectrograms,
-                        save_graphs=args.save_graphs,
                         generation_found=generation_found,
-                        seed_target=args.seed_target,
-                        seed_gt=args.seed_gt,
-                        min_generations=args.min_generations,
                         gt_rms=gt_rms,
-                        target_rms=target_rms,
+                        target_rms=None,
                         optimization_time_seconds=optimization_time,
                         seed=run_seed(args.seed, sentence_id, run_id),
                         method=method,

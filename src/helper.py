@@ -21,8 +21,11 @@ def run_seed(seed: int, sentence_id: int, run_id: int = 0) -> int:
 
 # Method names, used for result folders and the 'attack_method' field of every summary JSON
 METHODS = ("GATAS", "GATAS_targeted", "Waveform", "SMACK", "SMACK_targeted", "ALIF", "PGD",
-           # budget ablation of GATAS (main budget: population 20 x 10 generations = 200 queries)
-           "GATAS_budget300", "GATAS_budget10000")
+           "GATAS_intent", "Waveform_intent", "SMACK_intent", "ALIF_intent")  # *_intent: optimize the intent classifier output
+# Scale ablation of GATAS (scripts/run_scale_ablation.sh, analysis/Ablation_Scale.ipynb)
+ABLATION_METHODS = ("GATAS_scale_0.5", "GATAS_scale_1", "GATAS_scale_2", "GATAS_adaptive")
+# Search-space / optimizer ablation of GATAS (scripts/run_space_ablation.sh, analysis/Ablation_Space.ipynb)
+SPACE_METHODS = ("GATAS_dct", "GATAS_jac", "GATAS_jacdct", "GATAS_cmaes", "GATAS_mocma", "GATAS_cmaes_jacdct", "GATAS_mocma_jacdct")
 
 REFERENCE_DIR = os.path.join("outputs", "references")
 RESULTS_DIR = os.path.join("outputs", "results")
@@ -36,7 +39,7 @@ def experiment_name(asr_model: str) -> str:
 
 def results_dir(method: str, dataset: str, experiment: str) -> str:
     """outputs/results/<method>/<dataset>/<experiment>; method is one of METHODS."""
-    assert method in METHODS, f"Unknown method {method!r}, expected one of {METHODS}"
+    assert method in METHODS + ABLATION_METHODS + SPACE_METHODS, f"Unknown method {method!r}, expected one of {METHODS + ABLATION_METHODS + SPACE_METHODS}"
     return os.path.join(RESULTS_DIR, method, dataset, experiment)
 
 
@@ -66,37 +69,6 @@ def target_sentence(sentences, sentence_id: int, seed: int) -> str:
     candidates = [s for i, s in enumerate(sentences) if i != sentence_id - 1]
     return random.Random(run_seed(seed, sentence_id)).choice(candidates)
 
-
-def calculate_2d_hypervolume(pareto_front, ref_point):
-    """
-    Calculates the area (Hypervolume) for a 2D Pareto front.
-    pareto_front: np.ndarray of shape (N, 2)
-    ref_point: list or array [r1, r2] (the 'worst' possible values)
-    """
-    if pareto_front.size == 0:
-        return 0.0
-
-    # 1. Sort the front by the first objective
-    front = pareto_front[pareto_front[:, 0].argsort()]
-
-    # 2. Ensure all points are within the reference point bounds
-    # (Ignore points worse than the reference point)
-    mask = (front[:, 0] <= ref_point[0]) & (front[:, 1] <= ref_point[1])
-    front = front[mask]
-
-    if len(front) == 0:
-        return 0.0
-
-    # 3. Calculate the area of the rectangles
-    area = 0.0
-    last_y = ref_point[1]
-
-    for x, y in front:
-        # Area = Width (distance to ref_x) * Height (distance between steps)
-        area += (ref_point[0] - x) * (last_y - y)
-        last_y = y
-
-    return area
 
 def save_audio(audio, file_path):
     if isinstance(audio, torch.Tensor):

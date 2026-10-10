@@ -9,6 +9,7 @@ directory. This adapter:
   - stubs the SMACK modules that are imported but unused here (Google/iFlytek clients, FAKEBOB speaker models),
   - routes SMACK's ASR queries (its 'googleASR' code path) to our ASR models from src.models,
   - adds an untargeted variant (SMACK itself is targeted only),
+  - adds an intent matching variant: the target-text terms of the fitness are replaced by the intent classifier output,
   - converts SMACK's int16-scaled 22.05 kHz synthesis output to float 16 kHz audio,
   - synthesizes a clean ETTS reference (prosody taken from the GT audio) for PESQ.
 
@@ -23,6 +24,7 @@ import numpy as np
 import soundfile as sf
 import torch
 
+from ..intent import target_probability
 from ..models import load_asr_model
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -44,11 +46,14 @@ GRADIENT_SIGMA = 0.1
 GRADIENT_LEARNING_RATE = 0.01
 GRADIENT_K = 20
 
+_DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 _genetic = None
 _gradient = None
 _synthesis = None
 _asr_model = None
 query_count = 0  # attacked-ASR queries made by SMACK (reset per attack)
+_last_candidate = None  # last synthesized candidate (int16-scaled, 22.05 kHz), kept for crashed attacks
+attack_error = None  # exception of the last attack() if SMACK crashed and the last candidate was returned
 
 
 def _link(target: str, link_name: str) -> None:
@@ -105,6 +110,15 @@ def _smack_asr(audio_file: str) -> str:
     return transcribe(load_synthesis_audio(audio_file))
 
 
+def _track_last_candidate(audio_synthesis):
+    """Remember the most recent synthesized candidate of the search."""
+    def synthesize(*args, **kwargs):
+        global _last_candidate
+        _last_candidate = audio_synthesis(*args, **kwargs)
+        return _last_candidate
+    return synthesize
+
+
 def _safe_nisqa(nisqa_score):
     """NISQA crashes on zero-length synthesis (and leaves stdout redirected); score such audio as worst MOS."""
     def score(audio_file, *args, **kwargs):
@@ -148,6 +162,7 @@ def setup(asr_model_name: str, device: str = "cuda") -> None:
 
     for module in (genetic, gradient):
         module.google_ASR = _smack_asr
+        module.audio_synthesis = _track_last_candidate(module.audio_synthesis)
         module.NISQA_score = _safe_nisqa(module.NISQA_score)
         module.sf = types.SimpleNamespace(write=_write_wav_short_name)
 
@@ -203,6 +218,40 @@ def _untargeted_classes():
     return UntargetedGeneticAlgorithm, UntargetedGradientEstimation
 
 
+def _intent_classes(target_intent: str):
+    """
+    Intent matching variant of SMACK's ASR attack. SMACK's text terms reward similarity to a target text
+    (-10*lev + 0.1*cmu - 0.0001*aline, scale about 10); here they are replaced by 10 * P(target intent | transcription),
+    the intent classifier output on the ASR transcription ('NA', no transcription, counts as probability 0).
+    The audio quality term and everything else is SMACK.
+    """
+    genetic, gradient = _genetic, _gradient
+
+    def intent_score(transcription):
+        return 0.0 if transcription == "NA" else target_probability([transcription], target_intent, _DEVICE)[0]
+
+    class IntentGeneticAlgorithm(genetic.GeneticAlgorithm):
+        def _calculate_fitness(self):
+            population_fitness = []
+            for individual, _ in self.population:
+                genetic.audio_synthesis(individual.reshape(-1, 32), self.reference_audio, self.reference_text)
+                tmp_audio_file = './SampleDir/synthesis.wav'
+                audio_quality = genetic.NISQA_score(tmp_audio_file)
+                transcription = genetic.google_ASR(tmp_audio_file)
+                population_fitness.append(10 * intent_score(transcription) + 0.05 * audio_quality)  # maximized
+            return population_fitness
+
+    class IntentGradientEstimation(gradient.GradientEstimation):
+        def _calculate_loss(self, p_i):
+            gradient.audio_synthesis(p_i.reshape(-1, 32), self.reference_audio, self.reference_text)
+            tmp_audio_file = './SampleDir/synthesis.wav'
+            audio_quality = gradient.NISQA_score(tmp_audio_file)
+            transcription = gradient.google_ASR(tmp_audio_file)
+            return 10 * (1.0 - intent_score(transcription)) - 0.05 * audio_quality  # minimized
+
+    return IntentGeneticAlgorithm, IntentGradientEstimation
+
+
 def _clear_sample_dir() -> None:
     """SMACK writes one WAV per query into SampleDir; drop them between sentences."""
     sample_dir = os.path.join(WORK_DIR, "SampleDir")
@@ -211,17 +260,23 @@ def _clear_sample_dir() -> None:
             os.remove(os.path.join(sample_dir, name))
 
 
-def attack(reference_audio: str, reference_text: str, target_text: str = None) -> np.ndarray:
+def attack(reference_audio: str, reference_text: str, target_text: str = None, target_intent: str = None) -> np.ndarray:
     """
     Run SMACK (genetic algorithm + gradient estimation, as in SMACK's attack.py) for one sentence.
 
-    reference_audio: 16 kHz WAV of the ground truth. target_text: None for the untargeted variant.
-    Returns the adversarial audio as float32 in [-1, 1] at 16 kHz.
+    reference_audio: 16 kHz WAV of the ground truth. target_text: None for the untargeted variant; target_intent:
+    intent matching variant (the intent classifier output replaces the target text terms).
+    Returns the adversarial audio as float32 in [-1, 1] at 16 kHz. If SMACK crashes mid-search, returns the last
+    synthesized candidate instead (attack_error holds the exception).
     """
-    global query_count
+    global query_count, _last_candidate, attack_error
     query_count = 0
+    _last_candidate = None
+    attack_error = None
     reference_audio = os.path.abspath(reference_audio)
-    if target_text is None:
+    if target_intent is not None:
+        genetic_cls, gradient_cls = _intent_classes(target_intent)
+    elif target_text is None:
         genetic_cls, gradient_cls = _untargeted_classes()
     else:
         genetic_cls, gradient_cls = _genetic.GeneticAlgorithm, _gradient.GradientEstimation
@@ -241,6 +296,14 @@ def attack(reference_audio: str, reference_text: str, target_text: str = None) -
 
         # SMACK's synthesis returns int16-scaled samples at 22.05 kHz
         audio_int16 = _synthesis.audio_synthesis(p_refined.reshape(-1, 32), reference_audio, reference_text)
+    except Exception as e:
+        # Upstream SMACK can crash mid-search (e.g. CMU_similarity divides by zero on an empty transcription).
+        # The sentence still gets a result: the last candidate the search synthesized.
+        if _last_candidate is None:
+            raise
+        attack_error = e
+        print(f"SMACK crashed ({e!r}); using the last synthesized candidate")
+        audio_int16 = _last_candidate
     finally:
         os.chdir(cwd)
 

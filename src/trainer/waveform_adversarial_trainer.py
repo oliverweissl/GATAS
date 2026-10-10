@@ -7,7 +7,7 @@ Supports two attack modes:
       optimizer bounds: (0, 1)
       IV=0 → pure GT, IV=1 → pure target (SET_OVERLAP=0)
 
-All other optimization logic (NSGA-II, scoring, early stopping, logging) is inherited.
+All other optimization logic (NSGA-II, scoring, logging) is inherited.
 """
 
 import time

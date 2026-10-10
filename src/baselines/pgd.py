@@ -48,6 +48,7 @@ def run_attack(output_dir: str, seed: int, gpu: int = None) -> int:
         f"--root={abs_output_dir}",
         f"--data_folder={abs_output_dir}",
         f"--data_csv_name={CSV_NAME}",
+        f"--test_splits=[{CSV_NAME}]",
         f"--nb_iter={NB_ITER}",
         "--load_audio=False",
         f"--seed={seed}",

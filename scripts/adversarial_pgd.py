@@ -27,7 +27,7 @@ from src.trainer.result_writer import save_attack_result
 
 METHOD = 'PGD'
 ASR_MODEL = 'whisper-tiny'  # the model attacked by attack_configs/whisper/pgd.yaml
-WORK_DIR = os.path.join('outputs', 'pgd_workdir')  # robust_speech working files (csv/, attacks/, pgd_save/)
+WORK_DIR = os.path.join('outputs', 'pgd_workdir')  # robust_speech working files (csv/, attacks/, pgd_save/); one subfolder per dataset
 
 
 def main():
@@ -47,7 +47,8 @@ def main():
 
     device = f"cuda:{args.gpu}" if (args.gpu is not None and torch.cuda.is_available()) else ("cuda:0" if torch.cuda.is_available() else "cpu")
     asr_model = load_asr_model(ASR_MODEL, device=device)
-    os.makedirs(WORK_DIR, exist_ok=True)
+    work_dir = os.path.join(WORK_DIR, args.dataset)  # per dataset: concurrent runs must not share csv/ and pgd_save/
+    os.makedirs(work_dir, exist_ok=True)
 
     for sentence_id in range(args.start, args.end + 1):
         sentence_text = sentences[sentence_id - 1]
@@ -60,11 +61,11 @@ def main():
 
         # End-to-end per sentence: robust_speech runs in a subprocess, so this includes its model loading
         attack_start = time.time()
-        pgd.write_csv(WORK_DIR, utterance_id, reference_audio, sentence_text)
-        pgd.run_attack(WORK_DIR, seed, gpu=args.gpu)
+        pgd.write_csv(work_dir, utterance_id, reference_audio, sentence_text)
+        pgd.run_attack(work_dir, seed, gpu=args.gpu)
         elapsed = time.time() - attack_start
 
-        save_path = pgd.save_audio_dir(WORK_DIR)
+        save_path = pgd.save_audio_dir(work_dir)
         adv_path = os.path.join(save_path, f'{utterance_id}_adv.wav')
         if not os.path.exists(adv_path):
             print(f"[{sentence_id:3d}] Adversarial audio not found, skipping")

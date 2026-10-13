@@ -10,9 +10,9 @@ END=${END:-100}
 source ~/miniconda3/etc/profile.d/conda.sh
 
 generate_references() {
-    python scripts/generate_reference_audios.py --dataset $DATASET --start $START --end $END --seed $SEED --gpu $GPU
+    conda run --no-capture-output -n gatas python scripts/generate_reference_audios.py --dataset $DATASET --start $START --end $END --seed $SEED --gpu $GPU
 }
 
 evaluate() {  # $1: method
-    python scripts/evaluate_results.py --method $1 --dataset $DATASET --gpu $GPU
+    conda run --no-capture-output -n gatas python scripts/evaluate_results.py --method $1 --dataset $DATASET --gpu $GPU
 }

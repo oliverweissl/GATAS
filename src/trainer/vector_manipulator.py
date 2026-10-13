@@ -204,3 +204,46 @@ class VectorManipulator:
         prosodic = gt.style_vector_prosodic + c_prosodic @ self.basis_prosodic
 
         return batch, genomes, self._embed(h_text, acoustic, prosodic)
+
+
+class InterpolationManipulator:
+    """
+    GATAS_llm search space: interpolation in the StyleTTS2 latent space between the seed sentence and a target sentence.
+
+    The target sentence is an LLM rewrite of the seed sentence with the target intent (scripts/generate_intent_rewrites.py).
+    Its embedding is extracted with the same style noise as the seed's reference, and its text / BERT features are resampled to
+    the seed's phoneme count, so the seed's duration frame and text mask are kept. A genome x in [0, 1]^n_genes holds
+    - `knots` alphas along the phoneme axis (piecewise linear), applied to the text and BERT features: 0 = seed, 1 = target,
+      so the search can move only some words toward the target;
+    - one alpha for the acoustic and one for the prosodic style vector.
+    Interpolation only: there is no further perturbation of the seed.
+    """
+
+    def __init__(self, tts, audio_embedding_gt: AudioEmbeddingData, target_tokens: Tensor, noise: Tensor, knots: int = 8):
+        self.gt = audio_embedding_gt
+        n_phonemes = audio_embedding_gt.h_text.shape[-1]
+        target = tts.extract_embeddings(target_tokens, noise)
+        resample = lambda x: torch.nn.functional.interpolate(x.float(), size=n_phonemes, mode="linear", align_corners=True)
+        self.target_text, self.target_bert = resample(target.h_text), resample(target.h_bert)
+        self.target_acoustic, self.target_prosodic = target.style_vector_acoustic, target.style_vector_prosodic
+        self.knots = max(2, min(knots, n_phonemes))
+        self.n_genes = self.knots + 2
+        self.scale = 1.0
+
+    def scale_of(self, genome) -> float:
+        """Mean alpha (share of the way toward the target sentence), logged as the perturbation scale."""
+        return round(float(genome[:self.n_genes].mean()), 4)
+
+    def interpolate(self, genomes: Tensor):
+        batch, gt = genomes.shape[0], self.gt
+        n_phonemes = gt.h_text.shape[-1]
+        alpha = torch.nn.functional.interpolate(genomes[:, None, :self.knots].float(), size=n_phonemes, mode="linear", align_corners=True)  # [batch, 1, phonemes]
+        a_acoustic, a_prosodic = genomes[:, self.knots:self.knots + 1], genomes[:, self.knots + 1:self.knots + 2]
+
+        h_text = (1 - alpha) * gt.h_text + alpha * self.target_text
+        h_bert = (1 - alpha) * gt.h_bert + alpha * self.target_bert
+        acoustic = (1 - a_acoustic) * gt.style_vector_acoustic + a_acoustic * self.target_acoustic
+        prosodic = (1 - a_prosodic) * gt.style_vector_prosodic + a_prosodic * self.target_prosodic
+
+        embedding = AudioEmbeddingData(gt.input_length.expand(batch), gt.text_mask.expand(batch, -1), h_bert, h_text, acoustic, prosodic)
+        return batch, genomes, embedding

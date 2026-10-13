@@ -25,6 +25,9 @@ METHODS = ("GATAS", "GATAS_targeted", "Waveform", "SMACK", "SMACK_targeted", "AL
 # Scale ablation of GATAS (scripts/run_scale_ablation.sh, analysis/Ablation_Scale.ipynb)
 ABLATION_METHODS = ("GATAS_scale_0.5", "GATAS_scale_1", "GATAS_scale_2", "GATAS_adaptive")
 # Search-space / optimizer ablation of GATAS (scripts/run_space_ablation.sh, analysis/Ablation_Space.ipynb)
+# GATAS variant: latent interpolation toward an LLM intent rewrite of the sentence (scripts/run_gatas_llm.sh)
+VARIANT_METHODS = ("GATAS_llm",)
+INTENT_ABLATION_METHODS = ("GATAS_intent_sel", "GATAS_intent_margin", "GATAS_intent_margin_sel")  # run_intent_ablation.sh
 SPACE_METHODS = ("GATAS_dct", "GATAS_jac", "GATAS_jacdct", "GATAS_cmaes", "GATAS_mocma", "GATAS_cmaes_jacdct", "GATAS_mocma_jacdct")
 
 REFERENCE_DIR = os.path.join("outputs", "references")
@@ -39,7 +42,7 @@ def experiment_name(asr_model: str) -> str:
 
 def results_dir(method: str, dataset: str, experiment: str) -> str:
     """outputs/results/<method>/<dataset>/<experiment>; method is one of METHODS."""
-    assert method in METHODS + ABLATION_METHODS + SPACE_METHODS, f"Unknown method {method!r}, expected one of {METHODS + ABLATION_METHODS + SPACE_METHODS}"
+    assert method in METHODS + ABLATION_METHODS + SPACE_METHODS + INTENT_ABLATION_METHODS + VARIANT_METHODS, f"Unknown method {method!r}, expected one of {METHODS + ABLATION_METHODS + SPACE_METHODS + INTENT_ABLATION_METHODS + VARIANT_METHODS}"
     return os.path.join(RESULTS_DIR, method, dataset, experiment)
 
 

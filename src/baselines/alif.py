@@ -47,7 +47,7 @@ WAVEGLOW_SIGMA = 0.666  # as in ALIF
 
 # ALIF-OTA hyperparameters (defaults of alif_ota.py)
 NUM_PARTICLES = 20
-EPOCHS = 10
+EPOCHS = 15  # 20 particles x 15 epochs = 300 queries (ALIF default: 10; budget matched to the other methods)
 
 _DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 _alif = None
@@ -184,6 +184,6 @@ def attack(text: str, target_intent: str = None) -> tuple:
 
         noise, _, _, _ = pos.update(losses)
         noise[:, -1, :] = 0
-        print(f"[ALIF] epoch {epoch}: best SET_OVERLAP = {best_loss}")
+        print(f"[ALIF] epoch {epoch}: best loss = {best_loss}")
 
     return best_audio, clean_audio

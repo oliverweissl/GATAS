@@ -23,7 +23,7 @@ from ..data.dataclass import ObjectiveContext
 from ..objectives.fitness_objective import FitnessObjective
 from ..objectives.base_objective import BaseObjective
 
-from .vector_manipulator import VectorManipulator
+from .vector_manipulator import VectorManipulator, InterpolationManipulator
 
 
 class AdversarialTrainer:
@@ -34,7 +34,7 @@ class AdversarialTrainer:
         asr_model,
         thresholds: dict[FitnessObjective, float],
         objectives: dict[FitnessObjective, BaseObjective],
-        vector_manipulator: VectorManipulator,
+        vector_manipulator: 'VectorManipulator | InterpolationManipulator',
         device: str
     ):
         # Store state

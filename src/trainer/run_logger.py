@@ -42,9 +42,28 @@ class RunLogger:
         with open(os.path.join(self.folder_path, "archive_history.json"), "w") as f:
             json.dump(history, f)
 
-    def select_best_candidate(self, candidates, thresholds=None, text_gt=None):
+    def select_best_candidate(self, candidates, thresholds=None, text_gt=None, intent_first=False):
         if not candidates:
             raise ValueError("Candidate list is empty.")
+
+        # Intent matching: select by the intent objective, not the ASR test-case criterion. Among candidates that reach the
+        # target intent (intent fitness within its threshold) the best naturalness wins; if none does, the closest one.
+        intent_cols = [i for i, obj in enumerate(self.active_objectives) if obj.name.startswith("INTENT_")]
+        if intent_first and intent_cols:
+            f = np.array([c.fitness for c in candidates], dtype=np.float64)
+            col = intent_cols[0]
+            limit = (thresholds or {}).get(self.active_objectives[col], 0.5)
+            hits = np.where(f[:, col] <= limit)[0]
+            if len(hits):
+                others = [i for i in range(f.shape[1]) if i != col]
+                best = hits[np.argmin(f[hits][:, others].sum(axis=1))] if others else hits[0]
+                print(f"[Log] {len(hits)}/{len(candidates)} candidate(s) reach the target intent — selected the most natural.")
+            else:
+                best = int(np.argmin(f[:, col]))
+                print("[Log] No candidate reaches the target intent — selected the closest.")
+            selected = candidates[best]
+            print(f"[Log] Selected Candidate Fitness: {selected.fitness.tolist()}")
+            return selected
 
         # Step 0: Prefer candidates that already are test cases (the transcription differs from the ground truth
         # text, the success criterion of the evaluation). Uses the stored transcriptions, no extra ASR queries.
@@ -253,7 +272,8 @@ class RunLogger:
         os.makedirs(folder_path, exist_ok=True)
         self.folder_path = folder_path
 
-        best_candidate = self.select_best_candidate(optimizer.best_candidates, config_data.thresholds, config_data.text_gt)
+        best_candidate = self.select_best_candidate(optimizer.best_candidates, config_data.thresholds, config_data.text_gt,
+                                                 intent_first=config_data.intent_selection)
         audio_best, text_best = self.run_final_inference(best_candidate, batch_size=min(config_data.batch_size, config_data.pop_size))
 
         # Transcribe target audio for non-TARGETED modes (e.g. NOISE_UNTARGETED)

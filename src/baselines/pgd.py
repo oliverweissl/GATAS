@@ -17,7 +17,7 @@ REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fi
 WHISPER_ATTACK_DIR = os.path.join(REPO_ROOT, "third_party", "whisper_attack")
 
 ATTACK_CONFIG = "attack_configs/whisper/pgd.yaml"  # attacks whisper-tiny (model_label in the config)
-NB_ITER = 200
+NB_ITER = 300  # matched query budget of all methods (300)
 SNR = 35
 CSV_NAME = "harvard"
 
@@ -41,7 +41,8 @@ def save_audio_dir(output_dir: str) -> str:
 def run_attack(output_dir: str, seed: int, gpu: int = None) -> int:
     """Run PGD on the CSV in output_dir. Adversarial audio: <save_audio_dir(output_dir)>/<ID>_adv.wav."""
     abs_output_dir = os.path.abspath(output_dir)
-    device = f"cuda:{gpu}" if (gpu is not None and torch.cuda.is_available()) else ("cuda:0" if torch.cuda.is_available() else "cpu")
+    # the subprocess only sees the selected GPU (CUDA_VISIBLE_DEVICES below), so it is always cuda:0 there
+    device = "cuda:0" if torch.cuda.is_available() else "cpu"
     cmd = [
         sys.executable, "-W", "ignore", "run_attack.py",
         ATTACK_CONFIG,

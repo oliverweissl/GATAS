@@ -24,12 +24,12 @@ nltk.download('punkt_tab', quiet=True)
 nltk.download('stopwords', quiet=True)
 
 from src.data.dataclass import ModelData
-from src.data.datasets import DATASETS, load_sentences, load_target_intents
+from src.data.datasets import DATASETS, load_sentences, load_target_intents, load_intent_rewrites
 from src.helper import set_seed, run_seed, load_reference_embedding, results_dir, experiment_name, target_sentence
 from src.trainer.environment_loader import EnvironmentLoader
 from src.trainer.adversarial_trainer import AdversarialTrainer
 from src.trainer.run_logger import RunLogger
-from src.trainer.vector_manipulator import VectorManipulator
+from src.trainer.vector_manipulator import VectorManipulator, InterpolationManipulator
 from src.optimizer.pymoo_optimizer import PymooOptimizer
 from src.optimizer.cma_optimizer import CmaesOptimizer, MoCmaOptimizer
 from pymoo.algorithms.moo.nsga2 import NSGA2
@@ -61,6 +61,12 @@ def initialize_parser():
     parser.add_argument("--method_name", type=str, default=None,
                         help="Result folder / attack_method name (default: GATAS, or GATAS_targeted in TARGETED mode)")
     parser.add_argument("--target_text", type=str, default="")
+    parser.add_argument("--target_interp", action="store_true",
+                        help="GATAS_llm: search the interpolation toward the LLM intent rewrite (<dataset>.intent_rewrites.txt) "
+                             "in latent space instead of perturbing the seed")
+    parser.add_argument("--interp_knots", type=int, default=8, help="--target_interp: alphas along the phoneme axis")
+    parser.add_argument("--intent_selection", action="store_true",
+                        help="Intent matching: pick the final candidate by the intent objective (reaches target, then most natural)")
     parser.add_argument("--objectives", type=str, default="PESQ=0.2, SET_OVERLAP=0.5")
     parser.add_argument("--seed", type=int, default=0, help="Base random seed (per run: seed + sentence_id + 1000 * run_id)")
     parser.add_argument('--gpu', type=int, default=0,
@@ -81,7 +87,7 @@ def main():
     device = f'cuda:{args.gpu}' if torch.cuda.is_available() else 'cpu'
     print(f"Device: {device} | GPUs: {torch.cuda.device_count()}")
 
-    method = args.method_name or ("GATAS_intent" if "INTENT_TARGET" in args.objectives else "GATAS_targeted" if args.mode == "TARGETED" else "GATAS")
+    method = args.method_name or ("GATAS_intent" if "INTENT_" in args.objectives else "GATAS_targeted" if args.mode == "TARGETED" else "GATAS")
     loader = EnvironmentLoader(device)
     tts_model, asr_model = loader.load_required_models(args.asr_model)
     print("Models loaded.")
@@ -113,7 +119,7 @@ def main():
             sentence_text = sentences[sentence_id - 1]
             target_text = args.target_text if args.target_text else target_sentence(sentences, sentence_id, args.seed)
             print(f"\n{'='*60}")
-            target_intent = load_target_intents(args.dataset)[sentence_id - 1] if "INTENT_TARGET" in args.objectives else None
+            target_intent = load_target_intents(args.dataset)[sentence_id - 1] if "INTENT_" in args.objectives else None
             print(f"[Sentence {sentence_id}] {sentence_text}")
             if target_intent:
                 print(f"[Target intent] {target_intent}")
@@ -145,6 +151,7 @@ def main():
                 )
                 config_data = loader.load_configuration(run_args)
                 config_data.target_intent = target_intent
+                config_data.intent_selection = args.intent_selection
 
                 tokens = tts_model.preprocess_text(config_data.text_gt)
                 audio_embedding_gt = load_reference_embedding(args.dataset, sentence_id, device) \
@@ -162,7 +169,14 @@ def main():
                     target_intent=target_intent,
                 )
 
-                vector_manipulator = VectorManipulator(tts_model, tokens, audio_embedding_gt, config_data)
+                if args.target_interp:
+                    rewrite = load_intent_rewrites(args.dataset)[sentence_id - 1]
+                    print(f"[Rewrite]    {rewrite}")
+                    # same style noise as the seed's reference (generate_reference_audios.py)
+                    noise = torch.randn(1, 1, 256, generator=torch.Generator().manual_seed(run_seed(args.seed, sentence_id))).to(device)
+                    vector_manipulator = InterpolationManipulator(tts_model, audio_embedding_gt, tts_model.preprocess_text(rewrite), noise, args.interp_knots)
+                else:
+                    vector_manipulator = VectorManipulator(tts_model, tokens, audio_embedding_gt, config_data)
                 trainer = AdversarialTrainer(
                     tts_model, asr_model, config_data.thresholds, objectives_dict, vector_manipulator, device
                 )

@@ -114,6 +114,7 @@ Run everything from the project root. `bash scripts/run_experiments.sh` runs the
 |---|---|---|---|
 | Main comparison (RQ1–RQ3) | GATAS, Waveform, SMACK, ALIF, PGD | whisper-tiny | harvard (ASR), commands (intent matching) |
 | Objective formulation | SMACK (native targeted), GATAS (targeted) | whisper-tiny | harvard |
+| Intent matching | GATAS, Waveform, SMACK, ALIF toward the target intent (PGD untargeted, block 1) | whisper-tiny | commands |
 
 Each method also has its own run script. Every run script generates the shared reference audios for its
 sentences, runs the attack in one sequential process, and evaluates the results. Settings come from
@@ -131,11 +132,12 @@ DATASET=commands ASR_MODEL=whisper-large-v3-turbo bash scripts/run_gatas.sh
 | `SMACK` (untargeted adaptation) | `run_smack.sh` | smack |
 | `SMACK_targeted` (native) | `run_smack_targeted.sh` | smack |
 | `ALIF` | `run_alif.sh` | alif |
+| `GATAS_intent`, `Waveform_intent`, `SMACK_intent`, `ALIF_intent` (intent matching, `commands`) | `run_gatas_intent.sh`, `run_waveform_intent.sh`, `run_smack_intent.sh`, `run_alif_intent.sh` | main / main / smack / alif |
 | `PGD` | `run_pgd.sh` (Whisper-tiny only) | pgd |
 
-GATAS settings: NSGA-II with population 20 for 10 generations, i.e. 200 ASR queries per sentence (the budget of ALIF;
-SMACK uses 300). There is no early stopping (full budget); the first generation meeting the
-thresholds is logged as `generation_found`. Budget and population are set with `POP_SIZE` / `NUM_GENERATIONS`
+GATAS settings: CMA-ES with population 20 for up to 15 generations, i.e. a budget of 300 ASR queries per sentence, the
+same for all methods (Waveform 20 x 15, ALIF 20 particles x 15 epochs, PGD 300 iterations, SMACK upstream settings,
+about 300). There is no early stopping: every method uses the full budget. The first generation meeting the thresholds is logged as `generation_found`. Budget and population are set with `POP_SIZE` / `NUM_GENERATIONS`
 (same for Waveform). Objectives `PESQ=0.2, SET_OVERLAP=0.5` (the values are the thresholds used to select the final
 candidate from the Pareto front, among the candidates whose transcription differs from the ground truth text, i.e.
 that already are test cases), mode `NOISE_UNTARGETED` (interpolation of the StyleTTS2 text embedding
@@ -191,12 +193,18 @@ latest experiment per method, only sentences present for every method, sorted by
 
 ## Intent matching
 
-For the `commands` dataset the evaluation also reports the intent of the transcription, predicted by the pretrained
-text classifier [`cartesinus/slurp-intent_baseline-xlm_r-en`](https://huggingface.co/cartesinus/slurp-intent_baseline-xlm_r-en)
-(`src/intent.py`, downloaded automatically, no training). `evaluation.json` gets an `intent` block: `changed`
-(adversarial intent differs from the intent of the original audio's transcription), `target_match` (targeted attacks:
-predicted intent equals the reference intent of the target sentence) and `original_correct`. Targeted attacks on `commands`
-get a target sentence with a different reference intent (the classifier's prediction on the clean text; SLURP gold labels are in `commands.gold_intents.txt`). ALIF and PGD are untargeted and are compared on `changed`.
+The `commands` dataset adds an intent matching task. The system under test is the ASR model followed by the
+pretrained text classifier [`cartesinus/slurp-intent_baseline-xlm_r-en`](https://huggingface.co/cartesinus/slurp-intent_baseline-xlm_r-en)
+(`src/intent.py`, downloaded automatically, no training). Every sentence has a *reference intent* (classifier
+prediction on the clean text, `commands.intents.txt`) and a *target intent* (best other intent of a different scenario,
+`commands.target_intents.txt`; SLURP gold labels are in `commands.gold_intents.txt`).
+
+The intent output is used as optimization signal by the methods that can use a score: `GATAS_intent` and
+`Waveform_intent` (objective `INTENT_TARGET = 1 - P(target intent)` instead of SET_OVERLAP), `ALIF_intent` (PSO loss)
+and `SMACK_intent` (fitness); run scripts `run_<method>_intent.sh` with `DATASET=commands`. PGD stays untargeted.
+`evaluation.json` gets an `intent` block for every method on `commands`: `target_match` (predicted intent equals the
+target intent), `changed` (differs from the intent of the original audio's transcription), `original_correct`
+(control) and `targeted` (the method optimized toward the target).
 
 ## Reproducibility
 

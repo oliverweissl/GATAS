@@ -2,10 +2,10 @@
 # Waveform baseline, intent matching (commands only). Run from project root: DATASET=commands bash scripts/run_waveform_intent.sh
 source scripts/common.sh
 POP_SIZE=${POP_SIZE:-20}
-NUM_GENERATIONS=${NUM_GENERATIONS:-10}
+NUM_GENERATIONS=${NUM_GENERATIONS:-15}
 generate_references
 
-python scripts/adversarial_waveform.py \
+conda run --no-capture-output -n gatas python scripts/adversarial_waveform.py \
     --dataset $DATASET --start $START --end $END \
     --loop_count 1 \
     --num_generations $NUM_GENERATIONS \

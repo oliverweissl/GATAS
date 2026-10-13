@@ -6,14 +6,14 @@
 source scripts/common.sh
 END=20  # the ablation uses sentences 1-20 (set after common.sh, which defaults END to 100)
 POP_SIZE=${POP_SIZE:-20}
-NUM_GENERATIONS=${NUM_GENERATIONS:-10}
+NUM_GENERATIONS=${NUM_GENERATIONS:-15}
 TEXT_DCT=${TEXT_DCT:-8}
 generate_references
 
 run() {  # $1: method name, remaining: search-space arguments; ONLY=<method name> runs just that configuration
     name=$1; shift
     [ -n "$ONLY" ] && [ "$ONLY" != "$name" ] && return
-    python scripts/adversarial_gatas.py \
+    conda run --no-capture-output -n gatas python scripts/adversarial_gatas.py \
         --dataset $DATASET --start $START --end $END \
         --loop_count 1 --num_generations $NUM_GENERATIONS --pop_size $POP_SIZE --batch_size $POP_SIZE \
         --objectives "PESQ=0.2, SET_OVERLAP=0.5" --mode NOISE_UNTARGETED --iv_scalar 4 --adaptive_scale \

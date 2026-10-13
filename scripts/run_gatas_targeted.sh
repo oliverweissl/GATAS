@@ -3,12 +3,12 @@
 # CMA-ES, Jacobian basis, DCT text coefficients, adaptive scale. A threshold of 0 (WER_TARGET) gets weight 1 in the scalarization.
 # Run from project root: bash scripts/run_gatas_targeted.sh   (pin a GPU with CUDA_VISIBLE_DEVICES=<n> GPU=0: UTMOS is hardcoded to cuda:0)
 source scripts/common.sh
-# Search budget: POP_SIZE x NUM_GENERATIONS ASR queries per sentence (full budget, no early stopping)
+# Search budget: POP_SIZE x NUM_GENERATIONS ASR queries per sentence (300, full budget, no early stopping)
 POP_SIZE=${POP_SIZE:-20}
-NUM_GENERATIONS=${NUM_GENERATIONS:-10}
+NUM_GENERATIONS=${NUM_GENERATIONS:-15}
 generate_references
 
-python scripts/adversarial_gatas.py \
+conda run --no-capture-output -n gatas python scripts/adversarial_gatas.py \
     --dataset $DATASET --start $START --end $END \
     --loop_count 1 \
     --num_generations $NUM_GENERATIONS \

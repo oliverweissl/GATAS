@@ -46,3 +46,9 @@ def load_intents(dataset: str):
 def load_target_intents(dataset: str):
     """Target intent per sentence for the intent matching attacks (second most likely intent), or None."""
     return _load_lines(f"{dataset}.target_intents")
+
+
+@lru_cache(maxsize=None)
+def load_intent_rewrites(dataset: str):
+    """LLM rewrite per sentence whose intent is the target intent (scripts/generate_intent_rewrites.py), or None."""
+    return _load_lines(f"{dataset}.intent_rewrites")

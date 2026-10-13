@@ -29,6 +29,18 @@ def intent_labels(device: str = "cpu") -> list:
 
 
 @torch.no_grad()
+def intent_logits(texts: list, device: str = "cpu", batch_size: int = 32) -> np.ndarray:
+    """Raw classifier logits over the 93 intents for every text: array [len(texts), 93]."""
+    tokenizer, model = _load(device)
+    logits = []
+    for start in range(0, len(texts), batch_size):
+        batch = tokenizer([t or "" for t in texts[start:start + batch_size]], padding=True, truncation=True,
+                          return_tensors="pt").to(device)
+        logits.append(model(**batch).logits.float().cpu().numpy())
+    return np.concatenate(logits) if logits else np.zeros((0, len(intent_labels(device))))
+
+
+@torch.no_grad()
 def intent_probabilities(texts: list, device: str = "cpu", batch_size: int = 32) -> np.ndarray:
     """Softmax over the 93 intents for every text: array [len(texts), 93]."""
     tokenizer, model = _load(device)
@@ -50,3 +62,12 @@ def target_probability(texts: list, target_intent: str, device: str = "cpu") -> 
     """Probability of the target intent for every text (1 = the SUT outputs the target intent)."""
     column = intent_labels(device).index(target_intent)
     return intent_probabilities(texts, device)[:, column].tolist()
+
+
+def target_margin(texts: list, target_intent: str, device: str = "cpu") -> list:
+    """Logit of the target intent minus the largest other logit, per text: > 0 exactly when the target is the predicted intent."""
+    logits = intent_logits(texts, device)
+    column = intent_labels(device).index(target_intent)
+    target = logits[:, column].copy()
+    logits[:, column] = -np.inf
+    return (target - logits.max(-1)).tolist()

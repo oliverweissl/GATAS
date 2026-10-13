@@ -34,7 +34,8 @@ class ConfigData:
     basis: str = "pca"  # "pca" | "jacobian" (directions ranked by audible effect)
     text_dct: int = 0  # >0: text coefficients are this many DCT components along the phoneme axis
     sens_phonemes: int = 8  # jacobian basis: phonemes probed for the text sensitivity
-    target_intent: Optional[str] = None  # intent matching: target intent of the INTENT_TARGET objective
+    target_intent: Optional[str] = None  # intent matching: target intent of the INTENT_* objective
+    intent_selection: bool = False  # intent matching: select the final candidate by the intent objective first
 
 @dataclass
 class ModelData:

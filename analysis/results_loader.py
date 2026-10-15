@@ -88,6 +88,16 @@ def load_intent_results(results_root: str = "../outputs/results", asr_model: str
             for method, folder in INTENT_FOLDERS.items()}
 
 
+def validity_threshold(records: list, percentile: float = 2.5) -> float:
+    """
+    UTMOS threshold of a valid test case: the lower bound of the central (100 - 2 * percentile) % interval of the UTMOS
+    of the original (ground-truth) audio of the task. `records` are the records of one method (all methods share the
+    original audios), restricted to the sentences used in the analysis.
+    """
+    import numpy as np
+    return float(np.percentile([r["utmos_original"] for r in records], percentile))
+
+
 def success_at_budget(record: dict, queries: int, thresholds: dict = None) -> bool:
     """
     Success within a query budget. GATAS/Waveform: some archive member meets `thresholds` (required; archives hold

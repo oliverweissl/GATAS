@@ -110,7 +110,7 @@ Scale and space ablations run the full 300-query budget (20 x 15, no early stopp
 
 ## Waveform is only "effective" because it destroys the audio
 
-- Waveform test cases have a median SNR of about -1.4 dB to the original (noise louder than speech), UTMOS 1.37 vs 4.39 for
+- Waveform test cases have UTMOS 1.37 vs 4.39 for
   the original. Whisper-tiny then hallucinates ("you", "Thank you", or an empty transcription), so WER = 1.0 almost always.
   Its spectrogram distance (0.16) is small, so the objectives do not see the problem. In the intent task it changes the
   intent most often (83 %) but only with unnatural audio; none of its test cases has UTMOS >= 3 (GATAS: 97 of 98, SMACK: 75 of 98).
@@ -123,7 +123,7 @@ Scale and space ablations run the full 300-query budget (20 x 15, no early stopp
   thousands of genes), clamped to [-1, 1]. NSGA-II, population 20, 15 generations, objectives PESQ and SET_OVERLAP (or INTENT_TARGET).
   With `--seed_target` (used in `run_waveform.sh`) the first individual of the initial population is the all-ones genome, i.e. the pure
   target audio, so a candidate with no word overlap with the seed is in the archive from query 1. This anchor and the unconstrained
-  sample-wise mixing explain the 100 % found, SNR about -1.4 dB and UTMOS about 1.4. Describe Waveform in the paper as a deliberately
+  sample-wise mixing explain the 100 % found and UTMOS about 1.4. Describe Waveform in the paper as a deliberately
   unconstrained waveform-space baseline, not as a competitive natural-audio attacker.
 - Not analysed: why the PESQ threshold (0.2) in the waveform search does not keep the audio natural (the pure-target anchor and the selection
   fallback when no candidate meets all thresholds are likely, not verified).

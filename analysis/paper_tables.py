@@ -1,8 +1,8 @@
-"""
-LaTeX tables of the paper with both attacked ASR models side by side (column groups per model).
-Used by RQ1_Effectiveness.ipynb and RQ3_Efficiency.ipynb. A missing method / model is shown as `--`.
-"""
+"""LaTeX tables of the paper (column groups per attacked model) and the frames of values they are formatted from."""
+import json
+
 import numpy as np
+import pandas as pd
 
 from results_loader import MODELS, MODEL_LABELS
 from stats_utils import wilson_ci, paired_values, paired_compare, holm
@@ -12,15 +12,23 @@ TEX_NAME = {"GATAS": r"\tool", "GATAS_llm": r"\gllm", "Waveform": r"\wv", "SMACK
 ASR_ORDER = ("GATAS", "Waveform", "SMACK_untargeted", "SMACK", "ALIF", "PGD")
 INTENT_ORDER = ("GATAS", "Waveform", "SMACK", "ALIF", "PGD", "GATAS_llm")
 NOTE_PGD = r"\pgd is white-box on Whisper and has no wav2vec2 run."
+SEMANTIC_CACHE, JUDGE = "../outputs/semantic_scores.json", "gemma4:31b"
+_sem_cache = {}
+
+
+def verdict(r):
+    """LLM verdict of an ASR record (preserved / changed / garbled), scripts/semantic_rescore.py --llm3."""
+    if not _sem_cache:
+        _sem_cache.update(json.load(open(SEMANTIC_CACHE)))
+    return _sem_cache[json.dumps([r["gt_text"], r["transcription"] or ""])][f"llm3:{JUDGE}"]
 
 
 def _num(x, digits=1):
-    x = max(x, 0.0)  # no "-0.0" from a rounded interval bound
+    x = max(x, 0.0)
     return "100" if round(x, digits) == 100 else f"{x:.{digits}f}"
 
 
 def rate_col(name, success, valid=False, ci=True, higher=True):
-    """Share [%] of sentences with a success (and m-valid if `valid`); higher is better."""
     def f(recs, thr):
         n = len(recs)
         k = sum(success(r) and (not valid or r["utmos"] >= thr) for r in recs)
@@ -41,23 +49,7 @@ def mean_col(name, key, digits, higher):
     return name, f, higher
 
 
-SEMANTIC_CACHE, JUDGE = "../outputs/semantic_scores.json", "gemma4:31b"
-_sem_cache = {}
-
-
-def verdict(r):
-    """Three-way LLM verdict of an ASR record: preserved / changed / garbled (scripts/semantic_rescore.py --llm3)."""
-    import json
-    if not _sem_cache:
-        _sem_cache.update(json.load(open(SEMANTIC_CACHE)))
-    return _sem_cache[json.dumps([r["gt_text"], r["transcription"] or ""])][f"llm3:{JUDGE}"]
-
-
-
-
 def asr_columns(full=False):
-    """Main: share of sentences with a changed / garbled transcription (LLM verdict), m-valid changed, UTMOS.
-    Full adds the WER > 0 criterion and the distances."""
     from results_loader import asr_found
     changed = lambda r: verdict(r) == "changed"
     cols = [rate_col(r"Changed [\%] $\uparrow$", changed), rate_col(r"Garbled [\%]", lambda r: verdict(r) == "garbled", ci=False, higher=None),
@@ -79,16 +71,11 @@ def intent_columns(full=False):
     return cols + [mean_col(r"UTMOS $\uparrow$", "utmos", 2, True)]
 
 
-# ----------------------------------------------------------------------------------------------------------------------------------
-# Statistics shared by the RQ1 and RQ3 tables. The notebooks compute the frames (every value of the tables, with the test results) and
-# display / export them; the LaTeX functions only format a frame.
-# Colored bullet: the reference method (GATAS on ASR, GATAS_llm on intent) is significantly better than this baseline in this SUT / task /
-# measure (one-sided paired test, Holm-corrected over the baselines, p < 0.05); the color gives the size of the paired Cohen's d_z.
-# ----------------------------------------------------------------------------------------------------------------------------------
+# Bullet: the reference (GATAS on ASR, GATAS_llm on intent) is significantly better than the baseline in this model, task and measure;
+# the color gives the size of the paired Cohen's d_z. The LaTeX functions only format the frames.
 ALPHA = 0.05
 REFERENCE = {"ASR": "GATAS", "Intent": "GATAS_llm"}
-OWN = ("GATAS", "GATAS_llm")  # variants of the proposed method are not baselines and never get a bullet
-# effect size of a significant difference as a colored bullet (Cohen's d_z: small <= 0.5 < medium <= 1 < large)
+OWN = ("GATAS", "GATAS_llm")  # no bullets for variants of the proposed method
 BULLET_COLORS = ((1.0, "red!80!black"), (0.5, "orange!90!yellow"), (0.0, "green!50!black"))
 LEGEND = (r"A colored bullet marks a significant difference to the reference method (one-sided paired test, Holm-corrected, $p<0.05$) and "
           r"the size of the paired Cohen's $d_z$: \textcolor{green!50!black}{$\bullet$}~small ($d_z\le0.5$), \textcolor{orange!90!yellow}{$\bullet$}~medium "
@@ -105,7 +92,7 @@ def bullet(d):
 
 
 def significance(records, reference, getter, higher, binary):
-    """{method: (Holm-adjusted one-sided p, d_z)} of the reference against every other method; d_z > 0: reference better."""
+    """{method: (Holm-adjusted one-sided p, d_z)} of the reference against every other method; d_z > 0: reference better"""
     others = [m for m in records if m != reference and records[m]]
     if not records.get(reference):
         return {}
@@ -143,9 +130,7 @@ def rq1_measures(task, thr):
 
 
 def rq1_frame(asr, intent, thr, models=MODELS):
-    """Every value of the RQ1 table in long format: task, model, method, measure, n, value, Holm-adjusted one-sided p of the reference
-    against the method, paired d_z (positive: reference better), whether a bullet is set (ref_better) and its effect-size label."""
-    import pandas as pd
+    """RQ1 table values in long format with the Holm-adjusted one-sided p and paired d_z of the reference against each method."""
     rows = []
     for task, data, methods in (("ASR", asr, ASR_ORDER), ("Intent", intent, ("GATAS", "GATAS_llm") + INTENT_ORDER[1:-1])):
         for mo in models:
@@ -203,14 +188,9 @@ def rq1_tex(frame, thr, models=MODELS, asr_names=TEX_NAME, intent_names=None):
 
 
 def efficiency_frame(tasks, thr, models=MODELS):
-    """
-    Every value of the efficiency table. tasks = {"ASR"/"Intent": {model: {method: records}}} with `runtime` set on every record.
-    Per task, model and method: mean runtime [s], mean queries, m-valid success rate [%] (found / target hit with UTMOS >= threshold),
-    queries per m-valid success (mean queries / rate, inf if none), and the tests of the reference against the method: runtime
-    (one-sided Wilcoxon, reference faster) and m-valid success (exact McNemar, reference higher; the budgets are nearly equal, so the
-    queries per m-valid success are lower exactly where this rate is higher), each Holm-adjusted over the baselines with paired d_z.
-    """
-    import pandas as pd
+    """Efficiency table values per task, model and method. tasks = {"ASR"/"Intent": {model: {method: records}}} with `runtime` set.
+    Queries per m-valid success = mean queries / m-valid success rate; as budgets are nearly equal, it is tested via the m-valid success
+    rate (exact McNemar). Runtime: one-sided Wilcoxon."""
     from results_loader import asr_found, intent_hit
     success = {"ASR": asr_found, "Intent": intent_hit}
     rows = []

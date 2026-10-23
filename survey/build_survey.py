@@ -1,12 +1,9 @@
-"""
-Build the realism survey for GitHub Pages: writes the loudness-normalized audios under anonymous ids to
-docs/audio and docs/items.json (public), and survey/private/key.json (item id -> method/sentence, git-ignored, never published).
+"""Build the realism survey for GitHub Pages: loudness-normalized audios under anonymous ids in docs/audio, docs/items.json (public)
+and survey/private/key.json (item id -> condition, git-ignored).
 
-Four cells (SUT x task): Whisper-tiny / wav2vec2-large x ASR (Harvard) / intent matching (commands). Conditions per cell: our method
-(GATAS on ASR, GATAS_llm on intent), the two best baselines of RQ1 (reciprocal rank fusion of the RQ1 table measures, survey/select_baselines.py), and the clean reference audio as control. Every condition has its own pool: the sentences whose clean
-input the SUT handles correctly and for which the method produced a test case (ASR: transcription differs; intent: intent changed), at
-most MAX_POOL per condition to bound the download size. A participant hears each sentence at most once (assigned in the client).
-Run from the project root: python survey/build_survey.py
+Four cells (SUT x task). Conditions per cell: GATAS (GATAS_llm on intent), the two best baselines (survey/select_baselines.py) and the
+clean audio. Each condition has its own pool: sentences the SUT handles correctly on clean input and for which the method found a test
+case, at most MAX_POOL. Run from the project root: python survey/build_survey.py
 """
 import json
 import os
@@ -22,7 +19,7 @@ from select_baselines import select, ASR, INTENT
 
 OUT = "docs"
 PRIVATE = "survey/private"
-LOUDNESS = "I=-23:TP=-2:LRA=11"  # EBU R128 target for every audio, so no clip is much louder or quieter than the others
+LOUDNESS = "I=-23:TP=-2:LRA=11"  # EBU R128
 
 
 def normalize(src, dst):

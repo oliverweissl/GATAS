@@ -1,4 +1,4 @@
-"""Shared statistics for the RQ notebooks: bootstrap / Wilson CIs, paired tests and effect sizes (matched by sentence_id)."""
+"""Confidence intervals, paired tests and effect sizes (matched by sentence_id)."""
 import numpy as np
 from scipy.stats import wilcoxon, binomtest
 
@@ -31,11 +31,7 @@ def paired_values(records: dict, a: str, b: str, getter):
 
 
 def paired_compare(x, y, binary: bool = False, alternative: str = "two-sided") -> dict:
-    """
-    x - y per sentence. Continuous: Wilcoxon signed-rank, paired Cohen's d_z (signed) and mean difference, both with
-    bootstrap 95% CI. Binary: exact McNemar (binomial on discordant pairs), difference of proportions with bootstrap CI,
-    and the discordant-pair odds ratio (x-only / y-only successes).
-    """
+    """Paired test of x against y. Continuous: Wilcoxon signed-rank and d_z. Binary: exact McNemar and discordant-pair odds ratio."""
     diff = x - y
     out = {"n": len(x), "mean x": x.mean(), "mean y": y.mean(), "diff": diff.mean()}
     out["diff CI"] = bootstrap_ci(diff)

@@ -1,11 +1,5 @@
-"""
-Pick the two best baselines of RQ1 by reciprocal rank fusion (RRF, k=60): per cell (SUT x task) and effectiveness measure the baselines
-are ranked (ties share the mean rank), and a method's score is the sum of 1 / (k + rank) over all rankings it appears in.
-Two distinct measures per cell, taken from the columns of the RQ1 effectiveness table (analysis/paper_tables.py): effectiveness (ASR:
-Changed; intent: Target hit) and naturalness (UTMOS), because the selected baselines are rated for realism. The other directional columns
-are not used because they are nested in these: M-valid changed / hit combine the success with UTMOS, and ASR Changed / intent Target hit
-already imply WER > 0 / intent changed; Garbled has no direction.
-Methods with several configurations (SMACK native / untargeted adaptation) enter with each configuration and score with the better one.
+"""Two best baselines by reciprocal rank fusion (k=60) over the cells (SUT x task) and two measures of the RQ1 table: effectiveness (ASR:
+Changed, intent: Target hit) and UTMOS. Ties share the mean rank; a method with several configurations (SMACK) scores with the better one.
 Run from the project root: python survey/select_baselines.py
 """
 import sys
@@ -16,10 +10,9 @@ from results_loader import load_results, MODELS
 import paper_tables
 from paper_tables import asr_columns, intent_columns
 
-paper_tables.SEMANTIC_CACHE = "outputs/semantic_scores.json"  # paper_tables defaults to the notebooks' relative path
+paper_tables.SEMANTIC_CACHE = "outputs/semantic_scores.json"
 
 K = 60
-# method -> result folder per task; the value of "config" groups configurations of one method
 ASR = {"Waveform": "Waveform", "SMACK": "SMACK", "SMACK (untargeted)": "SMACK_untargeted", "ALIF": "ALIF", "PGD": "PGD"}
 INTENT = {"Waveform": "Waveform_intent", "SMACK": "SMACK", "ALIF": "ALIF_intent", "PGD": "PGD"}
 METHOD_OF = {"SMACK (untargeted)": "SMACK"}

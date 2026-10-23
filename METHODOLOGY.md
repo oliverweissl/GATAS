@@ -313,7 +313,7 @@ rarely changes the content enough.
   not spread the population along the front.
 - **Intent matching.** The additive search rarely changes the content enough to flip an intent (about 20 % intent changed,
   Section 9); a successful intent change comes with lower naturalness. Waveform reaches more intent changes but only with
-  heavily destroyed audio (median SNR to the original about $-1.4$ dB, UTMOS about 1.4 vs 4.4 for the original), so its
+  heavily destroyed audio (UTMOS about 1.4 vs 4.4 for the original), so its
   success is not comparable; report naturalness alongside every success rate. The PESQ threshold in the waveform search
   did not keep the audio natural (reason not analysed).
 - Several seeds are not run in the main comparison (seed 0 only); the intent ablation is 19 sentences.

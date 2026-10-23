@@ -5,7 +5,7 @@ Used by RQ1_Effectiveness.ipynb and RQ3_Efficiency.ipynb. A missing method / mod
 import numpy as np
 
 from results_loader import MODELS, MODEL_LABELS
-from stats_utils import wilson_ci
+from stats_utils import wilson_ci, paired_values, paired_compare, holm
 
 TEX_NAME = {"GATAS": r"\tool", "GATAS_llm": r"\gllm", "Waveform": r"\wv", "SMACK_untargeted": r"\smack$^\ddagger$", "SMACK": r"\smack",
             "ALIF": r"\alif", "PGD": r"\pgd"}
@@ -125,33 +125,6 @@ def intent_columns(full=False):
     return cols + [mean_col(r"UTMOS $\uparrow$", "utmos", 2, True)]
 
 
-def stats_tex(rows, tasks, models=MODELS, names=TEX_NAME):
-    """
-    Paired-comparison table. rows[model][task] = {method: (p_found, d_found, p_utmos, d_utmos)} as LaTeX strings;
-    `tasks` = [(task key, label)], the first method of each task's reference is stated in the label.
-    """
-    cols = "ll" + "rrrr" * len(models)
-    head1 = " & & " + " & ".join(rf"\multicolumn{{4}}{{c}}{{{MODEL_LABELS[m]}}}" for m in models) + r" \\"
-    rules = "".join(rf"\cmidrule(lr){{{3 + g * 4}-{6 + g * 4}}}" for g in range(len(models)))
-    head2 = " & & " + " & ".join(r"\multicolumn{2}{c}{Found / hit} & \multicolumn{2}{c}{UTMOS}" for _ in models) + r" \\"
-    rules2 = "".join(rf"\cmidrule(lr){{{3 + g * 4}-{4 + g * 4}}}\cmidrule(lr){{{5 + g * 4}-{6 + g * 4}}}" for g in range(len(models)))
-    head3 = "Task & vs. & " + " & ".join(r"$p$ & $d$ & $p$ & $d$" for _ in models) + r" \\ \midrule"
-    body = []
-    for ti, (task, label) in enumerate(tasks):
-        methods = [m for m in dict.fromkeys(m for model in models for m in rows[model].get(task, {}))]
-        for k, m in enumerate(methods):
-            lead = rf"\multirow{{{len(methods)}}}{{*}}{{{label}}}" if k == 0 else ""
-            out = []
-            for model in models:
-                v = rows[model].get(task, {}).get(m)
-                out += list(v) if v else ["--"] * 4
-            body.append(f"{lead} & {names[m]} & " + " & ".join(out) + r" \\" + (r" \midrule" if k == len(methods) - 1 and ti < len(tasks) - 1 else ""))
-    lines = [r"\begin{table*}[t]", r"\caption{Paired comparison of the reference method with each other method (RQ\textsubscript{1}).}",
-             r"\label{tab:stats}", r"\centering", r"\resizebox{\textwidth}{!}{%", rf"\begin{{tabular}}{{{cols}}}\toprule",
-             head1, rules, head2, rules2, head3, *body, r"\bottomrule", r"\end{tabular}}", r"\end{table*}"]
-    return "\n".join(lines)
-
-
 def efficiency_tex(tasks, thr, models=MODELS, names=TEX_NAME):
     """
     Efficiency table. tasks = {task key ("ASR"/"Intent"): {model: {method: records}}} with `runtime` set on every record.
@@ -171,6 +144,9 @@ def efficiency_tex(tasks, thr, models=MODELS, names=TEX_NAME):
             if vals:
                 best[task, model] = (min(v[0] for v in vals), min(v[1] for v in vals))
 
+    reference = {"ASR": "GATAS", "Intent": "GATAS_llm"}
+    faster = {(t, mo): significance(tasks[t].get(mo, {}), reference[t], lambda r: r["runtime"], False, False) for t in tasks for mo in models}
+
     def fmt(task, model, m):
         c = cell.get((task, model, m))
         if c is None:
@@ -179,6 +155,9 @@ def efficiency_tex(tasks, thr, models=MODELS, names=TEX_NAME):
         q = r"$\infty$" if np.isinf(c[1]) else f"{round(c[1]):,}".replace(",", r"\,")
         if abs(c[0] - best[task, model][0]) < 1e-9:
             t = rf"\textbf{{{t}}}"
+        sig = faster[task, model].get(m)
+        if sig and m not in OWN and sig[0] < ALPHA and sig[1] > 0:
+            t = SHADE + t + rf"\textsubscript{{\scriptsize $d{{=}}{sig[1]:.2f}$}}"
         if np.isfinite(c[1]) and abs(c[1] - best[task, model][1]) < 1e-9:
             q = rf"\textbf{{{q}}}"
         return [t, q]
@@ -200,7 +179,129 @@ def efficiency_tex(tasks, thr, models=MODELS, names=TEX_NAME):
     cols = "l" + "cc" * (len(tasks) * g)
     lines = [r"\begin{table*}[t]", r"\caption{Efficiency (RQ\textsubscript{3}). Mean runtime per sentence and queries per m-valid success; "
              r"$\infty$: no m-valid success. All methods use a budget of 300 queries (\smack stops earlier). "
-             r"Runtimes are comparable between methods, not between models.}",
+             r"Runtimes are comparable between methods, not between models. "
+             r"\colorbox{gray!25}{Shaded}: the reference method (\tool on ASR, \gllm on intent) is significantly faster (one-sided paired Wilcoxon, "
+             r"Holm-corrected, $p<0.05$), with the paired Cohen's $d_z$ as subscript.}",
              r"\label{tab:efficiency}", r"\centering", r"\resizebox{\textwidth}{!}{%", rf"\begin{{tabular}}{{{cols}}}\toprule",
              head1, rules1, head2, rules2, head3, *rows, r"\bottomrule", r"\end{tabular}}", r"\end{table*}"]
     return "\n".join(lines)
+
+
+# ----------------------------------------------------------------------------------------------------------------------------------
+# RQ1: one table, both tasks (panels), column groups per SUT. Shaded cell: the reference method (GATAS on ASR, GATAS_llm on intent) is
+# significantly better than this baseline in this SUT / task / measure (one-sided paired test, Holm-corrected over the baselines,
+# p < 0.05), with the paired Cohen's d_z (positive: reference better) as subscript.
+# ----------------------------------------------------------------------------------------------------------------------------------
+ALPHA = 0.05
+SHADE = r"\cellcolor{gray!25}"
+
+
+def _rate(f):
+    return lambda r: float(f(r))
+
+
+def rq1_measures(task, thr):
+    """[(header, getter, higher is better, binary, digits)] of the RQ1 table for a task; thr = m-valid UTMOS threshold."""
+    from results_loader import asr_found, intent_hit
+    dist = [(r"WER $\downarrow$", lambda r: r["wer"], False, False, 3), (r"Semantic $\downarrow$", lambda r: r["semantic"], False, False, 3),
+            (r"$d_F$-Spec $\downarrow$", lambda r: r["spectrogram"], False, False, 3), (r"UTMOS $\uparrow$", lambda r: r["utmos"], True, False, 2)]
+    if task == "ASR":
+        return [(r"Found [\%] $\uparrow$", _rate(asr_found), True, True, 1)] + dist + [
+            (r"M-valid [\%] $\uparrow$", _rate(lambda r: asr_found(r) and r["utmos"] >= thr), True, True, 1)]
+    return [(r"Changed [\%] $\uparrow$", _rate(lambda r: r["intent"]["changed"]), True, True, 1),
+            (r"Target hit [\%] $\uparrow$", _rate(intent_hit), True, True, 1)] + dist + [
+        (r"M-valid hit [\%] $\uparrow$", _rate(lambda r: intent_hit(r) and r["utmos"] >= thr), True, True, 1)]
+
+
+def significance(records, reference, getter, higher, binary):
+    """{method: (Holm-adjusted one-sided p, d_z)} of the reference against every other method; d_z > 0: reference better."""
+    others = [m for m in records if m != reference and records[m]]
+    if not records.get(reference):
+        return {}
+    ps, ds = [], []
+    for m in others:
+        x, y = paired_values(records, reference, m, getter)
+        if len(x) < 2:
+            ps.append(1.0); ds.append(float("nan")); continue
+        ps.append(paired_compare(x, y, binary=binary, alternative="greater" if higher else "less")["p"])
+        diff = (x - y) if higher else (y - x)
+        sd = diff.std(ddof=1)
+        ds.append(float(diff.mean() / sd) if sd > 0 else float("nan"))
+    return {m: (p, d) for m, p, d in zip(others, holm(ps), ds)}
+
+
+OWN = ("GATAS", "GATAS_llm")  # variants of the proposed method are not baselines and are never shaded
+
+
+def _panel(data, methods, measures, reference, models, names):
+    k = len(measures)
+    stat = {(mo, ci): significance(data.get(mo, {}), reference, getter, higher, binary)
+            for mo in models for ci, (_, getter, higher, binary, _) in enumerate(measures)}
+    value = lambda recs, getter, binary: float(np.mean([getter(r) for r in recs])) * (100 if binary else 1)
+    best = {}
+    for mo in models:
+        for ci, (_, getter, higher, binary, _) in enumerate(measures):
+            vals = [value(data[mo][m], getter, binary) for m in methods if data.get(mo, {}).get(m)]
+            if len(set(vals)) > 1:
+                best[mo, ci] = max(vals) if higher else min(vals)
+    rows = []
+    for m in methods:
+        if not any(data.get(mo, {}).get(m) for mo in models):
+            continue
+        out = []
+        for mo in models:
+            recs = data.get(mo, {}).get(m)
+            for ci, (_, getter, higher, binary, digits) in enumerate(measures):
+                if not recs:
+                    out.append("--"); continue
+                v = value(recs, getter, binary)
+                text = "100" if binary and round(v, digits) == 100 else f"{v:.{digits}f}"
+                if (mo, ci) in best and abs(v - best[mo, ci]) < 1e-9:
+                    text = rf"\textbf{{{text}}}"
+                sig = stat[mo, ci].get(m)
+                if sig and m not in OWN and sig[0] < ALPHA and sig[1] > 0:
+                    text = SHADE + text + rf"\textsubscript{{\scriptsize $d{{=}}{sig[1]:.2f}$}}"
+                out.append(text)
+        rows.append(f"{names[m]} & " + " & ".join(out) + r" \\")
+    head1 = " & " + " & ".join(rf"\multicolumn{{{k}}}{{c}}{{{MODEL_LABELS[m]}}}" for m in models) + r" \\"
+    rules = "".join(rf"\cmidrule(lr){{{2 + g * k}-{1 + (g + 1) * k}}}" for g in range(len(models)))
+    head2 = " & " + " & ".join(c[0] for _ in models for c in measures) + r" \\ \midrule"
+    return "\n".join([rf"\begin{{tabular}}{{l{'c' * (k * len(models))}}}\toprule", head1, rules, head2, *rows, r"\bottomrule", r"\end{tabular}"])
+
+
+def rq1_tex(asr, intent, thr, models=MODELS, asr_names=TEX_NAME, intent_names=None):
+    """The RQ1 table: panel (a) ASR testing, panel (b) intent matching. `asr` / `intent` are {model: {method: records}}."""
+    intent_names = intent_names or {**TEX_NAME, "GATAS_llm": r"\gllm"}
+    pa = _panel(asr, ASR_ORDER, rq1_measures("ASR", thr["ASR"]), "GATAS", models, asr_names)
+    pi = _panel(intent, ("GATAS", "GATAS_llm") + INTENT_ORDER[1:-1], rq1_measures("Intent", thr["Intent"]), "GATAS_llm", models, intent_names)
+    cap = (r"Effectiveness (RQ\textsubscript{1}) on (a) ASR testing and (b) intent matching: test cases found, lexical (WER), semantic and "
+           r"spectrogram distance to the clean audio, naturalness (UTMOS) and the share of m-valid test cases. Bold: best value. "
+           r"\colorbox{gray!25}{Shaded}: the reference method (\tool on ASR, \gllm on intent matching) is significantly better than this method "
+           r"in this model and measure (one-sided paired test, Holm-corrected, $p<0.05$), with the paired Cohen's $d_z$ as subscript. "
+           + NOTE_PGD)
+    return "\n".join([r"\begin{table*}[t]", rf"\caption{{{cap}}}", r"\label{tab:rq1}", r"\centering", r"\small",
+                       r"\textbf{(a) ASR testing}\\[2pt]", r"\resizebox{\textwidth}{!}{%", pa + "}", r"\vspace{6pt}",
+                       r"\textbf{(b) Intent matching}\\[2pt]", r"\resizebox{\textwidth}{!}{%", pi + "}", r"\end{table*}"])
+
+
+def llm_semantic_tex(asr, models=MODELS, names=TEX_NAME):
+    """Separate table of the LLM judge: share of preserved / changed / garbled transcriptions (ASR task) and of m-valid changed ones."""
+    rows = []
+    for m in ASR_ORDER:
+        if not any(asr.get(mo, {}).get(m) for mo in models):
+            continue
+        out = []
+        for mo in models:
+            recs = asr.get(mo, {}).get(m)
+            if not recs:
+                out += ["--"] * 3; continue
+            share = lambda key: 100 * np.mean([verdict(r) == key for r in recs])
+            out += [f"{share('preserved'):.1f}", f"{share('changed'):.1f}", f"{share('garbled'):.1f}"]
+        rows.append(f"{names[m]} & " + " & ".join(out) + r" \\")
+    head1 = " & " + " & ".join(rf"\multicolumn{{3}}{{c}}{{{MODEL_LABELS[m]}}}" for m in models) + r" \\"
+    rules = "".join(rf"\cmidrule(lr){{{2 + g * 3}-{4 + g * 3}}}" for g in range(len(models)))
+    head2 = " & " + " & ".join(r"Preserved & Changed & Garbled" for _ in models) + r" \\ \midrule"
+    cap = (r"Semantic outcome of the ASR transcriptions judged by a local LLM [\%]: same meaning (preserved), coherent but different meaning "
+           r"(changed), incoherent (garbled). " + NOTE_PGD)
+    return "\n".join([r"\begin{table}[t]", rf"\caption{{{cap}}}", r"\label{tab:llm-semantic}", r"\centering", r"\resizebox{\columnwidth}{!}{%",
+                       rf"\begin{{tabular}}{{l{'ccc' * len(models)}}}\toprule", head1, rules, head2, *rows, r"\bottomrule", r"\end{tabular}}", r"\end{table}"])

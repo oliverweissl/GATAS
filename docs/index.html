@@ -20,25 +20,35 @@ audio{width:100%}
 </style></head><body><main id="app"></main>
 <script src="config.js"></script>
 <script>
-const N_PER_CODE = 4;           // audios per condition and participant (6 conditions -> 24 audios)
+let N_PER_CODE = 5;             // audios per condition and participant (4 conditions -> 20 audios), set by items.json
 const ENDPOINT = window.SURVEY_ENDPOINT || "";  // POST target (config.js); the answers are offered as a download if it is empty or fails
 const app = document.getElementById("app");
 const $ = (h) => { const t = document.createElement("template"); t.innerHTML = h.trim(); return t.content.firstChild; };
 const shuffle = (a) => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 const pid = new URLSearchParams(location.search).get("pid") || (crypto.randomUUID ? crypto.randomUUID() : String(Math.random()).slice(2));
-const session = { participant: pid, started: new Date().toISOString(), profile: {}, trials: [] };
+const session = { participant: pid, cell: null, started: new Date().toISOString(), profile: {}, trials: [] };
 let trials = [], idx = 0;
 
 function esc(s) { return s.replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c])); }
 
 async function init() {
   const data = await (await fetch("items.json")).json();
-  const bySentence = {};
-  for (const it of data.items) (bySentence[it.sentence] ??= []).push(it);
-  const codes = [...new Set(data.items.map(i => i.code))].sort();
-  // one audio per sentence, N_PER_CODE per condition: assign the codes to distinct random sentences
-  const sentences = shuffle(Object.keys(bySentence)), need = shuffle(codes.flatMap(c => Array(N_PER_CODE).fill(c)));
-  trials = need.map((code, i) => bySentence[sentences[i]].find(it => it.code === code));
+  N_PER_CODE = data.per_condition;
+  // one cell (SUT x task) per participant: ?cell=<id> assigns it (one link per cell), otherwise it is drawn at random
+  const ids = Object.keys(data.cells), want = new URLSearchParams(location.search).get("cell");
+  session.cell = ids.includes(want) ? want : ids[Math.floor(Math.random() * ids.length)];
+  const items = data.cells[session.cell].items;
+  const codes = [...new Set(items.map(i => i.code))];
+  // N_PER_CODE audios per condition, all of distinct sentences (greedy from the smallest pool, retried until it fits)
+  const pool = Object.fromEntries(codes.map(c => [c, items.filter(i => i.code === c)])), order = [...codes].sort((a, b) => pool[a].length - pool[b].length);
+  for (let attempt = 0; attempt < 200; attempt++) {
+    const used = new Set(), picked = [];
+    for (const c of order) {
+      const cand = shuffle(pool[c].filter(i => !used.has(i.sentence))).slice(0, N_PER_CODE);
+      cand.forEach(i => used.add(i.sentence)); picked.push(...cand);
+    }
+    if (picked.length === N_PER_CODE * codes.length) { trials = picked; break; }
+  }
   shuffle(trials);
   intro();
 }
@@ -46,7 +56,7 @@ async function init() {
 function intro() {
   app.replaceChildren($(`<div>
     <h1>Speech listening study</h1>
-    <p>You will listen to <b>${trials.length} short recordings</b> (about 3 seconds each) of a person reading an English sentence. Some recordings contain distortions or artifacts. The study takes about <b>12 to 15 minutes</b>.</p>
+    <p>You will listen to <b>${trials.length} short recordings</b> (about 3 seconds each) of a person reading an English sentence or voice command. Some recordings contain distortions or artifacts. The study takes about <b>12 to 15 minutes</b>.</p>
     <p>For every recording you answer three short questions, one after the other. <b>You cannot change an answer after you confirmed it.</b> There are no right or wrong answers, we are interested in your impression.</p>
     <p>Please use headphones in a quiet place and set a comfortable volume before you start. The study is anonymous, we do not collect personal data, and you can stop at any time by closing the page.</p>
     <div class="card"><p class="q">Are you a native English speaker?</p>

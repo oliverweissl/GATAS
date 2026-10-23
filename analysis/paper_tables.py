@@ -122,9 +122,8 @@ def rq1_measures(task, thr):
     if task == "ASR":
         return [("Found %", r"Found [\%] $\uparrow$", rate(asr_found), True, True, 1)] + dist + [
             ("M-valid %", r"M-valid [\%] $\uparrow$", rate(lambda r: asr_found(r) and r["utmos"] >= thr), True, True, 1)]
-    return [("Changed %", r"Changed [\%] $\uparrow$", rate(lambda r: r["intent"]["changed"]), True, True, 1),
-            ("Target hit %", r"Target hit [\%] $\uparrow$", rate(intent_hit), True, True, 1)] + dist + [
-        ("M-valid hit %", r"M-valid hit [\%] $\uparrow$", rate(lambda r: intent_hit(r) and r["utmos"] >= thr), True, True, 1)]
+    return [("Target hit %", r"Target hit [\%] $\uparrow$", rate(intent_hit), True, True, 1)] + dist + [
+        ("M-valid %", r"M-valid [\%] $\uparrow$", rate(lambda r: intent_hit(r) and r["utmos"] >= thr), True, True, 1)]
 
 
 def rq1_frame(asr, intent, thr, models=MODELS):

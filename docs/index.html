@@ -8,7 +8,7 @@ body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.5 system-ui,sans-
 main{max-width:680px;margin:0 auto;padding:24px 16px 80px}
 h1{font-size:1.4rem}.mut{color:var(--mut);font-size:.95rem}
 .card{border:1px solid var(--line);border-radius:10px;padding:16px;margin:16px 0}
-.card.off{opacity:.4;pointer-events:none}.card.done{background:var(--ok)}
+.card.done{background:var(--ok)}[hidden]{display:none!important}
 .q{font-weight:600;margin:0 0 8px}.txt{font-size:1.1rem;padding:8px 12px;border-left:4px solid var(--acc);margin:8px 0 12px}
 label{display:block;padding:6px 8px;border-radius:6px;cursor:pointer}label:hover{background:var(--ok)}
 .scale{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;text-align:center}
@@ -57,7 +57,7 @@ function intro() {
   app.replaceChildren($(`<div>
     <h1>Speech listening study</h1>
     <p>You will listen to <b>${trials.length} short recordings</b> (about 3 seconds each) of a person reading an English sentence or voice command. Some recordings contain distortions or artifacts. The study takes about <b>12 to 15 minutes</b>.</p>
-    <p>For every recording you answer three short questions, one after the other. <b>You cannot change an answer after you confirmed it.</b> There are no right or wrong answers, we are interested in your impression.</p>
+    <p>For every recording you answer three short questions one after the other: how realistic it sounds, whether what you heard corresponds to the sentence the speaker was supposed to say, and whether it corresponds to the transcript of a speech recognizer. The texts are only shown after you confirmed the previous answer. <b>You cannot change an answer after you confirmed it.</b> There are no right or wrong answers, we are interested in your impression.</p>
     <p>Please use headphones in a quiet place and set a comfortable volume before you start. The study is anonymous, we do not collect personal data, and you can stop at any time by closing the page.</p>
     <div class="card"><p class="q">Are you a native English speaker?</p>
       <label><input type="radio" name="native" value="yes"> Yes</label><label><input type="radio" name="native" value="no"> No</label></div>
@@ -76,40 +76,39 @@ function choice(name, opts) {
 
 function show() {
   if (idx >= trials.length) return finish();
-  const t = trials[idx], rec = { item: t.id, order: idx, plays: 0, t_start: Date.now() };
+  const t = trials[idx], last = idx === trials.length - 1, rec = { item: t.id, order: idx, plays: 0, t_start: Date.now() };
+  const yns = (name) => choice(name, [["yes", "Yes"], ["no", "No"], ["unsure", "Unsure"]]);
   app.replaceChildren($(`<div>
     <div class="mut">Recording ${idx + 1} of ${trials.length}</div><div class="bar"><i style="width:${100 * idx / trials.length}%"></i></div>
-    <div class="card"><audio controls preload="auto" src="audio/${t.id}.wav"></audio><div class="mut">You can play the recording as often as you like.</div></div>
+    <div class="card"><audio controls preload="auto" src="audio/${t.id}.wav"></audio><div class="mut">Listen to the recording. You can play it as often as you like.</div></div>
 
-    <div class="card" id="c1"><p class="q">1. How realistic does this recording sound as a human speaker?</p>
-      <div class="scale">${[1, 2, 3, 4, 5].map(v => `<label><input type="radio" name="r1" value="${v}"><br>${v}<small>${["clearly artificial", "", "", "", "natural human speech"][v - 1] || "&nbsp;"}</small></label>`).join("")}</div>
+    <div class="card" id="c1"><p class="q">How realistic does this recording sound as human speech?</p>
+      <div class="scale">${[1, 2, 3, 4, 5].map(v => `<label><input type="radio" name="r1" value="${v}"><br>${v}<small>${["not realistic", "", "", "", "completely realistic"][v - 1] || "&nbsp;"}</small></label>`).join("")}</div>
       <button id="b1" disabled>Confirm</button></div>
 
-    <div class="card off" id="c2"><p class="q">2. Transcript of what the speaker was asked to say (the reference sentence):</p><div class="txt" id="gt"></div>
-      <p class="q">Does this transcript overlap with what you understood?</p>${choice("r2", [["yes", "Yes"], ["no", "No"], ["unsure", "Unsure"]])}
+    <div class="card" id="c2" hidden><p class="q">The speaker was supposed to say:</p><div class="txt" id="gt"></div>
+      <p class="q">Does what you heard correspond to this text?</p>${yns("r2")}
       <button id="b2" disabled>Confirm</button></div>
 
-    <div class="card off" id="c3"><p class="q">3. Transcript produced by an automatic speech recognizer for this recording:</p><div class="txt" id="tr"></div>
-      <p class="q">Could this transcript be an interpretation of what you heard?</p>${choice("r3", [["yes", "Yes"], ["no", "No"], ["unsure", "Unsure"]])}
-      <button id="b3" disabled>Confirm</button></div>
-    <button id="next" class="sec" disabled>Next recording</button></div>`));
+    <div class="card" id="c3" hidden><p class="q">A speech recognizer transcribed the recording as:</p><div class="txt" id="tr"></div>
+      <p class="q">Could what you heard correspond to this transcript?</p>${yns("r3")}
+      <button id="b3" disabled>${last ? "Confirm and finish" : "Confirm and continue"}</button></div></div>`));
   document.querySelector("audio").addEventListener("play", () => rec.plays++);
   document.getElementById("gt").textContent = t.gt_text;
   const tr = document.getElementById("tr");
   if (t.transcription) tr.textContent = t.transcription;
   else { tr.textContent = "No transcript found (the recognizer returned no text for this recording)."; tr.style.fontStyle = "italic"; }
-  const step = (n, key, nextId) => {
-    const card = document.getElementById("c" + n), b = document.getElementById("b" + n);
+  const step = (n, key) => {
+    const card = document.getElementById("c" + n), b = document.getElementById("b" + n), next = document.getElementById("c" + (n + 1));
     card.addEventListener("change", () => b.disabled = !card.querySelector("input:checked"));
     b.onclick = () => {
       rec[key] = card.querySelector("input:checked").value; rec["t_" + key] = Date.now();
       card.querySelectorAll("input,button").forEach(e => e.disabled = true); card.classList.add("done");
-      if (nextId) document.getElementById(nextId).classList.remove("off");
-      else document.getElementById("next").disabled = false;
+      if (next) { next.hidden = false; next.scrollIntoView({ behavior: "smooth", block: "center" }); return; }
+      rec.t_end = Date.now(); session.trials.push(rec); idx++; window.scrollTo(0, 0); show();
     };
   };
-  step(1, "realism", "c2"); step(2, "understood_match", "c3"); step(3, "plausible_transcription", null);
-  document.getElementById("next").onclick = () => { rec.t_end = Date.now(); session.trials.push(rec); idx++; window.scrollTo(0, 0); show(); };
+  step(1, "realism"); step(2, "understood_match"); step(3, "plausible_transcription");
 }
 
 async function finish() {

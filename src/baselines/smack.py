@@ -24,13 +24,12 @@ import numpy as np
 import soundfile as sf
 import torch
 
-from ..intent import target_probability
 from ..models import load_asr_model
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 SMACK_DIR = os.path.join(REPO_ROOT, "third_party", "SMACK")
 CHECKPOINT_DIR = os.path.join(REPO_ROOT, "checkpoints")
-WORK_DIR = os.path.join(REPO_ROOT, "outputs", "smack_workdir")
+WORK_DIR = os.environ.get("SMACK_WORKDIR", os.path.join(REPO_ROOT, "outputs", "smack_workdir"))  # one per concurrent process (SampleDir is shared state)
 
 SYNTHESIS_SAMPLE_RATE = 22_050
 SAMPLE_RATE = 16_000
@@ -218,40 +217,6 @@ def _untargeted_classes():
     return UntargetedGeneticAlgorithm, UntargetedGradientEstimation
 
 
-def _intent_classes(target_intent: str):
-    """
-    Intent matching variant of SMACK's ASR attack. SMACK's text terms reward similarity to a target text
-    (-10*lev + 0.1*cmu - 0.0001*aline, scale about 10); here they are replaced by 10 * P(target intent | transcription),
-    the intent classifier output on the ASR transcription ('NA', no transcription, counts as probability 0).
-    The audio quality term and everything else is SMACK.
-    """
-    genetic, gradient = _genetic, _gradient
-
-    def intent_score(transcription):
-        return 0.0 if transcription == "NA" else target_probability([transcription], target_intent, _DEVICE)[0]
-
-    class IntentGeneticAlgorithm(genetic.GeneticAlgorithm):
-        def _calculate_fitness(self):
-            population_fitness = []
-            for individual, _ in self.population:
-                genetic.audio_synthesis(individual.reshape(-1, 32), self.reference_audio, self.reference_text)
-                tmp_audio_file = './SampleDir/synthesis.wav'
-                audio_quality = genetic.NISQA_score(tmp_audio_file)
-                transcription = genetic.google_ASR(tmp_audio_file)
-                population_fitness.append(10 * intent_score(transcription) + 0.05 * audio_quality)  # maximized
-            return population_fitness
-
-    class IntentGradientEstimation(gradient.GradientEstimation):
-        def _calculate_loss(self, p_i):
-            gradient.audio_synthesis(p_i.reshape(-1, 32), self.reference_audio, self.reference_text)
-            tmp_audio_file = './SampleDir/synthesis.wav'
-            audio_quality = gradient.NISQA_score(tmp_audio_file)
-            transcription = gradient.google_ASR(tmp_audio_file)
-            return 10 * (1.0 - intent_score(transcription)) - 0.05 * audio_quality  # minimized
-
-    return IntentGeneticAlgorithm, IntentGradientEstimation
-
-
 def _clear_sample_dir() -> None:
     """SMACK writes one WAV per query into SampleDir; drop them between sentences."""
     sample_dir = os.path.join(WORK_DIR, "SampleDir")
@@ -260,12 +225,12 @@ def _clear_sample_dir() -> None:
             os.remove(os.path.join(sample_dir, name))
 
 
-def attack(reference_audio: str, reference_text: str, target_text: str = None, target_intent: str = None) -> np.ndarray:
+def attack(reference_audio: str, reference_text: str, target_text: str = None) -> np.ndarray:
     """
     Run SMACK (genetic algorithm + gradient estimation, as in SMACK's attack.py) for one sentence.
 
-    reference_audio: 16 kHz WAV of the ground truth. target_text: None for the untargeted variant; target_intent:
-    intent matching variant (the intent classifier output replaces the target text terms).
+    reference_audio: 16 kHz WAV of the ground truth. target_text: target sentence of SMACK's native targeted attack,
+    None for the untargeted variant.
     Returns the adversarial audio as float32 in [-1, 1] at 16 kHz. If SMACK crashes mid-search, returns the last
     synthesized candidate instead (attack_error holds the exception).
     """
@@ -274,9 +239,7 @@ def attack(reference_audio: str, reference_text: str, target_text: str = None, t
     _last_candidate = None
     attack_error = None
     reference_audio = os.path.abspath(reference_audio)
-    if target_intent is not None:
-        genetic_cls, gradient_cls = _intent_classes(target_intent)
-    elif target_text is None:
+    if target_text is None:
         genetic_cls, gradient_cls = _untargeted_classes()
     else:
         genetic_cls, gradient_cls = _genetic.GeneticAlgorithm, _gradient.GradientEstimation

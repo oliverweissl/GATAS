@@ -1,4 +1,4 @@
-"""Shared statistics for the RQ notebooks: bootstrap / Wilson CIs, paired tests and effect sizes (matched by sentence_id)."""
+"""Confidence intervals, paired tests and effect sizes (matched by sentence_id)."""
 import numpy as np
 from scipy.stats import wilcoxon, binomtest
 
@@ -22,10 +22,6 @@ def wilson_ci(k: int, n: int, z: float = 1.96):
     return c - h, c + h
 
 
-def fmt_ci(mean, lo, hi, digits: int = 3, scale: float = 1.0):
-    return f"{mean * scale:.{digits}f} [{lo * scale:.{digits}f}, {hi * scale:.{digits}f}]"
-
-
 def paired_values(records: dict, a: str, b: str, getter):
     """getter(record) for methods a and b, restricted to the sentences both cover."""
     va = {r["sentence_id"]: getter(r) for r in records[a]}
@@ -35,11 +31,7 @@ def paired_values(records: dict, a: str, b: str, getter):
 
 
 def paired_compare(x, y, binary: bool = False, alternative: str = "two-sided") -> dict:
-    """
-    x - y per sentence. Continuous: Wilcoxon signed-rank, paired Cohen's d_z (signed) and mean difference, both with
-    bootstrap 95% CI. Binary: exact McNemar (binomial on discordant pairs), difference of proportions with bootstrap CI,
-    and the discordant-pair odds ratio (x-only / y-only successes).
-    """
+    """Paired test of x against y. Continuous: Wilcoxon signed-rank and d_z. Binary: exact McNemar and discordant-pair odds ratio."""
     diff = x - y
     out = {"n": len(x), "mean x": x.mean(), "mean y": y.mean(), "diff": diff.mean()}
     out["diff CI"] = bootstrap_ci(diff)
@@ -70,28 +62,3 @@ def holm(pvalues):
     return adj
 
 
-def comparison_table(records: dict, reference: str, metrics: dict):
-    """
-    metrics: {name: (getter, binary, alternative)}. One row per (metric, other method) comparing `reference` with it,
-    Holm-corrected within each metric.
-    """
-    import pandas as pd
-    rows = []
-    for name, (getter, binary, alt) in metrics.items():
-        block = []
-        for m in records:
-            if m == reference or not records[m] or not records[reference]:
-                continue
-            x, y = paired_values(records, reference, m, getter)
-            if len(x) < 2:
-                continue
-            c = paired_compare(x, y, binary, alt)
-            block.append({"metric": name, "vs": m, "n": c["n"], f"{reference}": c["mean x"], "other": c["mean y"],
-                          "diff [95% CI]": fmt_ci(c["diff"], *c["diff CI"]), "p": c["p"],
-                          "effect": f"{c['effect name']}={c['effect']:.2f}" + ("" if binary else f" [{c['effect CI'][0]:.2f}, {c['effect CI'][1]:.2f}]")})
-        if block:
-            adj = holm([b["p"] for b in block])
-            for b, a in zip(block, adj):
-                b["p (Holm)"] = a
-            rows += block
-    return pd.DataFrame(rows)

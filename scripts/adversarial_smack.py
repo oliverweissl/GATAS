@@ -1,5 +1,6 @@
 """
-SMACK baseline (third_party/SMACK via src/baselines/smack.py), untargeted (--untargeted) or targeted.
+SMACK baseline (third_party/SMACK via src/baselines/smack.py), exactly as upstream: native targeted SMACK (default, result name SMACK; on commands the
+target text is the intent rewrite also used by GATAS_llm) or our untargeted adaptation (--untargeted, result name SMACK_untargeted, ASR comparison only).
 
 Generate reference audios first (main env):
     python scripts/generate_reference_audios.py --dataset harvard --start 1 --end 100
@@ -15,12 +16,13 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+import glob
 import time
 import argparse
 import soundfile as sf
 
 from src.baselines import smack
-from src.data.datasets import DATASETS, load_sentences, load_target_intents
+from src.data.datasets import DATASETS, load_sentences, load_target_intents, load_intent_rewrites
 from src.helper import set_seed, run_seed, reference_paths, results_dir, experiment_name, target_sentence
 from src.models import ASR_MODEL_CHOICES, canonical_asr_model_name
 from src.trainer.result_writer import save_attack_result
@@ -33,8 +35,8 @@ def main():
     parser.add_argument('--end', type=int, default=100, help='Last sentence ID (1-based, inclusive)')
     parser.add_argument('--gpu', type=int, default=None, help='GPU id to use')
     parser.add_argument("--untargeted", action="store_true")
-    parser.add_argument("--intent_targeted", action="store_true",
-                        help="Intent matching: SMACK fitness uses the intent classifier output instead of a target text")
+    parser.add_argument("--resume", action="store_true",
+                        help="Continue the latest experiment folder of this method/dataset/ASR model, skipping finished sentences")
     parser.add_argument("--seed", type=int, default=0, help="Base random seed (per sentence: seed + sentence_id)")
     parser.add_argument("--asr_model", type=str, default="whisper-tiny", choices=ASR_MODEL_CHOICES,
                         help="ASR model attacked by SMACK")
@@ -45,9 +47,14 @@ def main():
         print(f"Using GPU: {args.gpu}")
 
     asr_model = canonical_asr_model_name(args.asr_model)
-    method = 'SMACK_intent' if args.intent_targeted else 'SMACK' if args.untargeted else 'SMACK_targeted'
+    method = 'SMACK_untargeted' if args.untargeted else 'SMACK'
     sentences = load_sentences(args.dataset)
+    intent_rewrites = load_intent_rewrites(args.dataset)  # None for datasets without intents (harvard)
     output_base = results_dir(method, args.dataset, experiment_name(asr_model))
+    if args.resume:
+        previous = sorted(glob.glob(os.path.join(os.path.dirname(output_base), f"{asr_model}_*")))
+        if previous:
+            output_base = previous[-1]
 
     print(f"Dataset: {args.dataset} | sentences {args.start} → {args.end}")
     print(f"Population: {smack.POPULATION_SIZE} | Genetic: {smack.GENETIC_ITERATIONS} | Gradient: {smack.GRADIENT_ITERATIONS}")
@@ -59,6 +66,8 @@ def main():
     for sentence_id in range(args.start, args.end + 1):
         sentence_text = sentences[sentence_id - 1]
         reference_audio, _ = reference_paths(args.dataset, sentence_id)
+        if args.resume and os.path.isdir(os.path.join(output_base, f"sentence_{sentence_id:03d}")):
+            continue
         if not os.path.exists(reference_audio):
             print(f"[{sentence_id:3d}] Reference audio not found, skipping: {reference_audio}")
             continue
@@ -67,15 +76,24 @@ def main():
 
         seed = run_seed(args.seed, sentence_id)
         set_seed(seed)
-        target = None if args.untargeted or args.intent_targeted else target_sentence(sentences, sentence_id, args.seed)
-        target_intent = load_target_intents(args.dataset)[sentence_id - 1] if args.intent_targeted else None
-        if target_intent:
+        # Native targeted SMACK. Intent matching (commands): its target text is the LLM rewrite of the sentence that
+        # expresses the target intent, the same sentence that GATAS_llm interpolates toward.
+        target_intent = None
+        if args.untargeted:
+            target = None
+        elif intent_rewrites is not None:
+            target = intent_rewrites[sentence_id - 1]
+            target_intent = load_target_intents(args.dataset)[sentence_id - 1]
             print(f"[Target intent] {target_intent}")
+        else:
+            target = target_sentence(sentences, sentence_id, args.seed)
+        if target:
+            print(f"[Target] {target}")
 
         try:
             # End-to-end: from attack start until the adversarial audio exists
             attack_start = time.time()
-            audio_16k = smack.attack(reference_audio, sentence_text, target, target_intent)
+            audio_16k = smack.attack(reference_audio, sentence_text, target)
             elapsed = time.time() - attack_start
             queries = smack.query_count
             print(f"Attack finished. Time: {elapsed:.2f}s | queries: {queries}\n")

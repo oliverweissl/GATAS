@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Speech listening study</title>
+<style>
+:root{--bg:#fff;--fg:#1c1e21;--mut:#5f6670;--line:#d9dde3;--acc:#2a5db0;--ok:#e8f0fb}
+@media (prefers-color-scheme:dark){:root{--bg:#16181c;--fg:#e8eaed;--mut:#9aa0a8;--line:#363b43;--acc:#7aa7ee;--ok:#1f2a3d}}
+body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.5 system-ui,sans-serif}
+main{max-width:680px;margin:0 auto;padding:24px 16px 80px}
+h1{font-size:1.4rem}.mut{color:var(--mut);font-size:.95rem}
+.card{border:1px solid var(--line);border-radius:10px;padding:16px;margin:16px 0}
+.card.off{opacity:.4;pointer-events:none}.card.done{background:var(--ok)}
+.q{font-weight:600;margin:0 0 8px}.txt{font-size:1.1rem;padding:8px 12px;border-left:4px solid var(--acc);margin:8px 0 12px}
+label{display:block;padding:6px 8px;border-radius:6px;cursor:pointer}label:hover{background:var(--ok)}
+.scale{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;text-align:center}
+.scale label{border:1px solid var(--line)}.scale small{display:block;color:var(--mut)}
+button{font:inherit;padding:8px 18px;border-radius:8px;border:1px solid var(--acc);background:var(--acc);color:#fff;cursor:pointer;margin-top:8px}
+button:disabled{opacity:.4;cursor:default}button.sec{background:none;color:var(--acc)}
+.bar{height:6px;background:var(--line);border-radius:3px}.bar i{display:block;height:100%;background:var(--acc);border-radius:3px}
+audio{width:100%}
+</style></head><body><main id="app"></main>
+<script src="config.js"></script>
+<script>
+let N_PER_CODE = 5;             // audios per condition and participant (4 conditions -> 20 audios), set by items.json
+const ENDPOINT = window.SURVEY_ENDPOINT || "";  // POST target (config.js); the answers are offered as a download if it is empty or fails
+const app = document.getElementById("app");
+const $ = (h) => { const t = document.createElement("template"); t.innerHTML = h.trim(); return t.content.firstChild; };
+const shuffle = (a) => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const pid = new URLSearchParams(location.search).get("pid") || (crypto.randomUUID ? crypto.randomUUID() : String(Math.random()).slice(2));
+const session = { participant: pid, cell: null, started: new Date().toISOString(), profile: {}, trials: [] };
+let trials = [], idx = 0;
+
+function esc(s) { return s.replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c])); }
+
+async function init() {
+  const data = await (await fetch("items.json")).json();
+  N_PER_CODE = data.per_condition;
+  // one cell (SUT x task) per participant: ?cell=<id> assigns it (one link per cell), otherwise it is drawn at random
+  const ids = Object.keys(data.cells), want = new URLSearchParams(location.search).get("cell");
+  session.cell = ids.includes(want) ? want : ids[Math.floor(Math.random() * ids.length)];
+  const items = data.cells[session.cell].items;
+  const codes = [...new Set(items.map(i => i.code))];
+  // N_PER_CODE audios per condition, all of distinct sentences (greedy from the smallest pool, retried until it fits)
+  const pool = Object.fromEntries(codes.map(c => [c, items.filter(i => i.code === c)])), order = [...codes].sort((a, b) => pool[a].length - pool[b].length);
+  for (let attempt = 0; attempt < 200; attempt++) {
+    const used = new Set(), picked = [];
+    for (const c of order) {
+      const cand = shuffle(pool[c].filter(i => !used.has(i.sentence))).slice(0, N_PER_CODE);
+      cand.forEach(i => used.add(i.sentence)); picked.push(...cand);
+    }
+    if (picked.length === N_PER_CODE * codes.length) { trials = picked; break; }
+  }
+  shuffle(trials);
+  intro();
+}
+
+function intro() {
+  app.replaceChildren($(`<div>
+    <h1>Speech listening study</h1>
+    <p>You will listen to <b>${trials.length} short recordings</b> (about 3 seconds each) of a person reading an English sentence or voice command. Some recordings contain distortions or artifacts. The study takes about <b>12 to 15 minutes</b>.</p>
+    <p>For every recording you answer three short questions, one after the other. <b>You cannot change an answer after you confirmed it.</b> There are no right or wrong answers, we are interested in your impression.</p>
+    <p>Please use headphones in a quiet place and set a comfortable volume before you start. The study is anonymous, we do not collect personal data, and you can stop at any time by closing the page.</p>
+    <div class="card"><p class="q">Are you a native English speaker?</p>
+      <label><input type="radio" name="native" value="yes"> Yes</label><label><input type="radio" name="native" value="no"> No</label></div>
+    <div class="card"><p class="q">Are you wearing headphones?</p>
+      <label><input type="radio" name="phones" value="yes"> Yes</label><label><input type="radio" name="phones" value="no"> No</label></div>
+    <button id="go" disabled>Start</button></div>`));
+  const go = document.getElementById("go");
+  const ready = () => go.disabled = !(document.querySelector("[name=native]:checked") && document.querySelector("[name=phones]:checked"));
+  app.addEventListener("change", ready);
+  go.onclick = () => { session.profile = { native: document.querySelector("[name=native]:checked").value, headphones: document.querySelector("[name=phones]:checked").value }; show(); };
+}
+
+function choice(name, opts) {
+  return opts.map(([v, l]) => `<label><input type="radio" name="${name}" value="${v}"> ${l}</label>`).join("");
+}
+
+function show() {
+  if (idx >= trials.length) return finish();
+  const t = trials[idx], rec = { item: t.id, order: idx, plays: 0, t_start: Date.now() };
+  app.replaceChildren($(`<div>
+    <div class="mut">Recording ${idx + 1} of ${trials.length}</div><div class="bar"><i style="width:${100 * idx / trials.length}%"></i></div>
+    <div class="card"><audio controls preload="auto" src="audio/${t.id}.wav"></audio><div class="mut">You can play the recording as often as you like.</div></div>
+
+    <div class="card" id="c1"><p class="q">1. How realistic does this recording sound as a human speaker?</p>
+      <div class="scale">${[1, 2, 3, 4, 5].map(v => `<label><input type="radio" name="r1" value="${v}"><br>${v}<small>${["clearly artificial", "", "", "", "natural human speech"][v - 1] || "&nbsp;"}</small></label>`).join("")}</div>
+      <button id="b1" disabled>Confirm</button></div>
+
+    <div class="card off" id="c2"><p class="q">2. Transcript of what the speaker was asked to say (the reference sentence):</p><div class="txt" id="gt"></div>
+      <p class="q">Does this transcript overlap with what you understood?</p>${choice("r2", [["yes", "Yes"], ["no", "No"], ["unsure", "Unsure"]])}
+      <button id="b2" disabled>Confirm</button></div>
+
+    <div class="card off" id="c3"><p class="q">3. Transcript produced by an automatic speech recognizer for this recording:</p><div class="txt" id="tr"></div>
+      <p class="q">Could this transcript be an interpretation of what you heard?</p>${choice("r3", [["yes", "Yes"], ["no", "No"], ["unsure", "Unsure"]])}
+      <button id="b3" disabled>Confirm</button></div>
+    <button id="next" class="sec" disabled>Next recording</button></div>`));
+  document.querySelector("audio").addEventListener("play", () => rec.plays++);
+  document.getElementById("gt").textContent = t.gt_text;
+  const tr = document.getElementById("tr");
+  if (t.transcription) tr.textContent = t.transcription;
+  else { tr.textContent = "No transcript found (the recognizer returned no text for this recording)."; tr.style.fontStyle = "italic"; }
+  const step = (n, key, nextId) => {
+    const card = document.getElementById("c" + n), b = document.getElementById("b" + n);
+    card.addEventListener("change", () => b.disabled = !card.querySelector("input:checked"));
+    b.onclick = () => {
+      rec[key] = card.querySelector("input:checked").value; rec["t_" + key] = Date.now();
+      card.querySelectorAll("input,button").forEach(e => e.disabled = true); card.classList.add("done");
+      if (nextId) document.getElementById(nextId).classList.remove("off");
+      else document.getElementById("next").disabled = false;
+    };
+  };
+  step(1, "realism", "c2"); step(2, "understood_match", "c3"); step(3, "plausible_transcription", null);
+  document.getElementById("next").onclick = () => { rec.t_end = Date.now(); session.trials.push(rec); idx++; window.scrollTo(0, 0); show(); };
+}
+
+async function finish() {
+  session.finished = new Date().toISOString();
+  app.replaceChildren($(`<div><h1>Thank you!</h1><p id="msg">Submitting your answers ...</p></div>`));
+  const msg = document.getElementById("msg");
+  try {
+    if (!ENDPOINT) throw 0;
+    // cross-origin endpoints (e.g. Google Apps Script) answer opaquely: send as text/plain without CORS preflight
+    const cross = /^https?:/.test(ENDPOINT);
+    const r = await fetch(ENDPOINT, { method: "POST", mode: cross ? "no-cors" : "same-origin", headers: { "Content-Type": cross ? "text/plain" : "application/json" }, body: JSON.stringify(session) });
+    if (!cross && !r.ok) throw 0;
+    msg.textContent = "Your answers were submitted. You can close this page.";
+  } catch (e) {
+    msg.innerHTML = "Submitting failed. Please download your answers and send the file to the study team.";
+    const a = $(`<p><a download="responses_${pid}.json">Download answers</a></p>`);
+    a.firstChild.href = URL.createObjectURL(new Blob([JSON.stringify(session)], { type: "application/json" }));
+    app.appendChild(a);
+  }
+}
+init();
+</script></body></html>

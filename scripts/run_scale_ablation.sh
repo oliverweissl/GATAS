@@ -1,6 +1,6 @@
 #!/bin/bash
 # Perturbation-scale ablation of GATAS on 20 sentences: fixed scale 0.5 / 1 / 2 and an adaptive scale (gene in [0.5, 4]).
-# Run from project root: bash scripts/run_scale_ablation.sh   (analysis: analysis/Ablation_Scale.ipynb)
+# Run from project root: bash scripts/run_scale_ablation.sh   (analysis: analysis/Ablation_Space.ipynb)
 source scripts/common.sh
 END=20  # the ablation uses sentences 1-20 (set after common.sh, which defaults END to 100)
 POP_SIZE=${POP_SIZE:-20}

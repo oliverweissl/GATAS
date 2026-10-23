@@ -2,1123 +2,984 @@
  "cells": {
   "wt-asr": {
    "label": "Whisper-tiny, ASR",
+   "task": "harvard",
    "items": [
     {
-     "id": "i1fb7d6467b",
-     "code": "C",
+     "id": "id06d16ee18",
+     "code": "B",
      "sentence": 5,
      "gt_text": "Rice is often served in round bowls.",
      "transcription": "Rose is often served in round bowls"
     },
     {
-     "id": "i357aaf0e89",
-     "code": "C",
+     "id": "i190febd845",
+     "code": "B",
      "sentence": 7,
      "gt_text": "The box was thrown beside the parked truck.",
      "transcription": "The box was thrown beside the part to truck"
     },
     {
-     "id": "iccba26d851",
-     "code": "C",
+     "id": "i25c87a7463",
+     "code": "B",
      "sentence": 9,
      "gt_text": "Four hours of steady work faced us.",
      "transcription": "Four hours of steady woke faced us"
     },
     {
-     "id": "ief0fa34266",
-     "code": "C",
+     "id": "ib2daf66c5f",
+     "code": "B",
      "sentence": 11,
      "gt_text": "The boy was there when the sun rose.",
      "transcription": "The bully was there when the sun rose"
     },
     {
-     "id": "i05ade9b2b4",
-     "code": "C",
+     "id": "i0b38018b47",
+     "code": "B",
      "sentence": 12,
      "gt_text": "A rod is used to catch pink salmon.",
      "transcription": "A rhyme is used to catch pink salmon"
     },
     {
-     "id": "i6c8b53031d",
-     "code": "C",
+     "id": "i92d12ecbc4",
+     "code": "B",
      "sentence": 13,
      "gt_text": "The source of the huge river is the clear spring.",
      "transcription": "The source of the huge river is the clear strain"
     },
     {
-     "id": "i199edfa3da",
-     "code": "C",
+     "id": "ie8a25b59fd",
+     "code": "B",
      "sentence": 14,
      "gt_text": "Kick the ball straight and follow through.",
      "transcription": "Click the ball straight and follow through"
     },
     {
-     "id": "i42d5fdb76a",
-     "code": "C",
+     "id": "i88efbfc19e",
+     "code": "B",
      "sentence": 19,
      "gt_text": "The salt breeze came across from the sea.",
      "transcription": "The salt brews came across from the sea"
     },
     {
-     "id": "i3811ebcd49",
-     "code": "C",
-     "sentence": 23,
-     "gt_text": "Press the pants and sew a button on the vest.",
-     "transcription": "Press the pants and so well button on the vest"
-    },
-    {
-     "id": "ia5126cbc8f",
-     "code": "C",
+     "id": "iae9a27d858",
+     "code": "B",
      "sentence": 24,
      "gt_text": "The swan dive was far short of perfect.",
      "transcription": "The swam dive was far short of perfect"
     },
     {
-     "id": "i594d125e7f",
-     "code": "C",
-     "sentence": 27,
-     "gt_text": "Her purse was full of useless trash.",
-     "transcription": "Her personal full of useless trash"
-    },
-    {
-     "id": "i2e6fa231e9",
-     "code": "C",
+     "id": "i0612f175ff",
+     "code": "B",
      "sentence": 32,
      "gt_text": "Take the winding path to reach the lake.",
      "transcription": "Type the winding path to reach the lake"
     },
     {
-     "id": "i800fa07a3f",
-     "code": "C",
+     "id": "ia21fdb8b32",
+     "code": "B",
      "sentence": 33,
      "gt_text": "Note closely the size of the gas tank.",
      "transcription": "Nope closely the size of the gas tank"
     },
     {
-     "id": "i0a7795e986",
-     "code": "C",
-     "sentence": 34,
-     "gt_text": "Wipe the grease off his dirty face.",
-     "transcription": "White the grease off his dirty face"
-    },
-    {
-     "id": "i1998b33c6e",
-     "code": "C",
+     "id": "i9b3042e325",
+     "code": "B",
      "sentence": 37,
      "gt_text": "The stray cat gave birth to kittens.",
      "transcription": "The Stradie Pad gave birth to kittens"
     },
     {
-     "id": "ifcb306d700",
-     "code": "C",
+     "id": "i93d480865f",
+     "code": "B",
      "sentence": 39,
      "gt_text": "The meal was cooked before the bell rang.",
      "transcription": "The meal was parked before the bell rang"
     },
     {
-     "id": "i33642aad48",
-     "code": "C",
+     "id": "i641ea45cd6",
+     "code": "B",
      "sentence": 41,
      "gt_text": "A king ruled the state in the early days.",
      "transcription": "A king ruled the stage in the early days"
     },
     {
-     "id": "i5b429817c5",
-     "code": "C",
+     "id": "i5e176ea1b1",
+     "code": "B",
      "sentence": 42,
      "gt_text": "The ship was torn apart on the sharp reef.",
      "transcription": "The ship was torn apart on the shore brief"
     },
     {
-     "id": "ibbe786ab37",
-     "code": "C",
+     "id": "ifbd576d415",
+     "code": "B",
      "sentence": 43,
      "gt_text": "Sickness kept him home the third week.",
      "transcription": "Sipness kept him home the third week"
     },
     {
-     "id": "id678601602",
-     "code": "C",
+     "id": "i091db53334",
+     "code": "B",
      "sentence": 48,
      "gt_text": "Hop over the fence and plunge in.",
      "transcription": "Top over the fence and plunge in"
     },
     {
-     "id": "iebe6fd68e8",
-     "code": "C",
+     "id": "i059b025244",
+     "code": "B",
      "sentence": 49,
      "gt_text": "The friendly gang left the drug store.",
      "transcription": "The friendly gang left the drugstore"
     },
     {
-     "id": "i2b91dc59ef",
-     "code": "C",
+     "id": "if631d0b664",
+     "code": "B",
      "sentence": 50,
      "gt_text": "Mesh wire keeps chicks inside.",
      "transcription": "Lash wire keeps chicks inside"
     },
     {
-     "id": "iacb29c467d",
-     "code": "C",
+     "id": "i2ff87f43fd",
+     "code": "B",
      "sentence": 52,
      "gt_text": "The crooked maze failed to fool the mouse.",
      "transcription": "The crooked maze failed to fall the mouse"
     },
     {
-     "id": "if73412fc12",
-     "code": "C",
+     "id": "i1fb7d6467b",
+     "code": "B",
      "sentence": 53,
      "gt_text": "Adding fast leads to wrong sums.",
      "transcription": "Adding first leads to wrong sums"
     },
     {
-     "id": "i0ec470f0e7",
-     "code": "C",
-     "sentence": 54,
-     "gt_text": "The show was a flop from the very start.",
-     "transcription": "The show was a flap from the very start"
-    },
-    {
-     "id": "iadc9e4dab2",
-     "code": "C",
+     "id": "i357aaf0e89",
+     "code": "B",
      "sentence": 58,
      "gt_text": "A cup of sugar makes sweet fudge.",
      "transcription": "A cup of sugar makes sweet fish"
     },
     {
-     "id": "id828805c5d",
-     "code": "C",
+     "id": "iccba26d851",
+     "code": "B",
      "sentence": 60,
      "gt_text": "Both lost their lives in the raging storm.",
      "transcription": "Both lost their lives in the Roding Storm"
     },
     {
-     "id": "i572975d279",
-     "code": "C",
+     "id": "ief0fa34266",
+     "code": "B",
      "sentence": 61,
      "gt_text": "We talked of the side show in the circus.",
      "transcription": "We talked of the side shell and the surface"
     },
     {
-     "id": "i40878b9f6b",
-     "code": "C",
+     "id": "i05ade9b2b4",
+     "code": "B",
      "sentence": 65,
      "gt_text": "A small creek cut across the field.",
      "transcription": "A small creek caught across the field"
     },
     {
-     "id": "i981e01a934",
-     "code": "C",
+     "id": "i6c8b53031d",
+     "code": "B",
      "sentence": 70,
      "gt_text": "Those words were the cue for the actor to leave.",
      "transcription": "Those words were the QFity actor to leave"
     },
     {
-     "id": "i71ebe21368",
-     "code": "C",
+     "id": "i199edfa3da",
+     "code": "B",
      "sentence": 72,
      "gt_text": "The two met while playing on the sand.",
      "transcription": "The two met while playing on the sad"
     },
     {
-     "id": "i2caa6524ab",
-     "code": "C",
+     "id": "i42d5fdb76a",
+     "code": "B",
      "sentence": 76,
      "gt_text": "A tame squirrel makes a nice pet.",
      "transcription": "A term squirrel makes a nice pet"
     },
     {
-     "id": "i780361524c",
-     "code": "C",
+     "id": "i3811ebcd49",
+     "code": "B",
      "sentence": 80,
      "gt_text": "The fruit peel was cut in thick slices.",
      "transcription": "The fruit pier was cut and thick slices was made"
     },
     {
-     "id": "i68ae68690a",
-     "code": "C",
+     "id": "ia5126cbc8f",
+     "code": "B",
      "sentence": 82,
      "gt_text": "See the cat glaring at the scared mouse.",
      "transcription": "See the CAD glaring at the scared mouse"
     },
     {
-     "id": "i91e66cd36e",
-     "code": "C",
+     "id": "i594d125e7f",
+     "code": "B",
      "sentence": 83,
      "gt_text": "There are more than two factors here.",
      "transcription": "There are noise and tow factors here"
     },
     {
-     "id": "i82dff3334b",
-     "code": "C",
+     "id": "i2e6fa231e9",
+     "code": "B",
      "sentence": 85,
      "gt_text": "The lawyer tried to lose his case.",
      "transcription": "The lawyer tries to lose his case"
     },
     {
-     "id": "i4feae2025e",
-     "code": "C",
+     "id": "i800fa07a3f",
+     "code": "B",
      "sentence": 86,
      "gt_text": "The grass curled around the fence post.",
      "transcription": "The grass crawled around the phones post"
     },
     {
-     "id": "i5ba6208143",
-     "code": "C",
+     "id": "i0a7795e986",
+     "code": "B",
      "sentence": 87,
      "gt_text": "Cut the pie into large parts.",
      "transcription": "Cut the pine into large parts"
     },
     {
-     "id": "id6637e0edc",
-     "code": "C",
+     "id": "i1998b33c6e",
+     "code": "B",
      "sentence": 91,
      "gt_text": "The slush lay deep along the street.",
      "transcription": "The slurred lay deep along with street"
     },
     {
-     "id": "i40a859890c",
-     "code": "C",
-     "sentence": 100,
-     "gt_text": "The bill was paid every third week.",
-     "transcription": "will will repay every third week"
-    },
-    {
-     "id": "i8f27460f22",
-     "code": "D",
+     "id": "ifcb306d700",
+     "code": "A",
      "sentence": 2,
      "gt_text": "Glue the sheet to the dark blue background.",
      "transcription": "below the sheet to the door blow back around"
     },
     {
-     "id": "i03b0d9c2aa",
-     "code": "D",
+     "id": "i33642aad48",
+     "code": "A",
      "sentence": 4,
      "gt_text": "These days a chicken leg is a rare dish.",
      "transcription": "These days a check leg is over your tips"
     },
     {
-     "id": "ibd753c7c99",
-     "code": "D",
+     "id": "i5b429817c5",
+     "code": "A",
      "sentence": 7,
      "gt_text": "The box was thrown beside the parked truck.",
      "transcription": "The back slithrome is sidetoparked truck"
     },
     {
-     "id": "i55143e2e04",
-     "code": "D",
+     "id": "ibbe786ab37",
+     "code": "A",
      "sentence": 8,
      "gt_text": "The hogs were fed chopped corn and garbage.",
      "transcription": "the halves were fitchat porn and guarded age"
     },
     {
-     "id": "i0bbd30291a",
-     "code": "D",
-     "sentence": 9,
-     "gt_text": "Four hours of steady work faced us.",
-     "transcription": "for our of stick distance"
-    },
-    {
-     "id": "i478b5885ca",
-     "code": "D",
+     "id": "id678601602",
+     "code": "A",
      "sentence": 10,
      "gt_text": "A large size in stockings is hard to sell.",
      "transcription": "A large descend stuckings is hard to sell"
     },
     {
-     "id": "i3d2284b7a4",
-     "code": "D",
+     "id": "iebe6fd68e8",
+     "code": "A",
      "sentence": 12,
      "gt_text": "A rod is used to catch pink salmon.",
      "transcription": "Or it is used to catkake solvent"
     },
     {
-     "id": "if4c31d5a97",
-     "code": "D",
+     "id": "i2b91dc59ef",
+     "code": "A",
      "sentence": 14,
      "gt_text": "Kick the ball straight and follow through.",
      "transcription": "Take the doll straight and follow through"
     },
     {
-     "id": "i5a7b59051b",
-     "code": "D",
+     "id": "iacb29c467d",
+     "code": "A",
      "sentence": 15,
      "gt_text": "Help the woman get back to her feet.",
      "transcription": "that well make that to her feet"
     },
     {
-     "id": "i499c31d9b2",
-     "code": "D",
-     "sentence": 19,
-     "gt_text": "The salt breeze came across from the sea.",
-     "transcription": "The salt rease came across from the seaf"
-    },
-    {
-     "id": "i5bac642b4c",
-     "code": "D",
+     "id": "if73412fc12",
+     "code": "A",
      "sentence": 22,
      "gt_text": "The fish twisted and turned on the bent hook.",
      "transcription": "The fish took her to the bed"
     },
     {
-     "id": "if2971c702d",
-     "code": "D",
+     "id": "i0ec470f0e7",
+     "code": "A",
      "sentence": 23,
      "gt_text": "Press the pants and sew a button on the vest.",
      "transcription": "Thank you"
     },
     {
-     "id": "ia2e456697c",
-     "code": "D",
-     "sentence": 27,
-     "gt_text": "Her purse was full of useless trash.",
-     "transcription": "Our personal views list stretch"
-    },
-    {
-     "id": "i9eda90f534",
-     "code": "D",
-     "sentence": 30,
-     "gt_text": "Read verse out loud for pleasure.",
-     "transcription": "Redverse Out the Law of Applesure"
-    },
-    {
-     "id": "ib721e15094",
-     "code": "D",
+     "id": "iadc9e4dab2",
+     "code": "A",
      "sentence": 32,
      "gt_text": "Take the winding path to reach the lake.",
      "transcription": "Take the winning path to reach the book"
     },
     {
-     "id": "i634f6fa985",
-     "code": "D",
+     "id": "id828805c5d",
+     "code": "A",
      "sentence": 33,
      "gt_text": "Note closely the size of the gas tank.",
      "transcription": "That closely the subject is"
     },
     {
-     "id": "i6abf9cc545",
-     "code": "D",
+     "id": "i572975d279",
+     "code": "A",
+     "sentence": 39,
+     "gt_text": "The meal was cooked before the bell rang.",
+     "transcription": "and the old lookup before the ball ran"
+    },
+    {
+     "id": "i40878b9f6b",
+     "code": "A",
+     "sentence": 40,
+     "gt_text": "What joy there is in living.",
+     "transcription": "But you are there is in loving"
+    },
+    {
+     "id": "i981e01a934",
+     "code": "A",
      "sentence": 42,
      "gt_text": "The ship was torn apart on the sharp reef.",
      "transcription": "The ship was toward a part on the shark reef"
     },
     {
-     "id": "ia6d432f8db",
-     "code": "D",
+     "id": "i71ebe21368",
+     "code": "A",
      "sentence": 45,
      "gt_text": "The lazy cow lay in the cool grass.",
      "transcription": "Valaisi Coley in the Coolgrass"
     },
     {
-     "id": "i0014aa451c",
-     "code": "D",
-     "sentence": 46,
-     "gt_text": "Lift the square stone over the fence.",
-     "transcription": "with the squarestone over the feds"
-    },
-    {
-     "id": "i3198363189",
-     "code": "D",
+     "id": "i2caa6524ab",
+     "code": "A",
      "sentence": 47,
      "gt_text": "The rope will bind the seven books at once.",
      "transcription": "The robot line the seven looks at once"
     },
     {
-     "id": "i55b2d650af",
-     "code": "D",
+     "id": "i780361524c",
+     "code": "A",
      "sentence": 48,
      "gt_text": "Hop over the fence and plunge in.",
      "transcription": "up over the weapons and the planet"
     },
     {
-     "id": "i3d28fafd04",
-     "code": "D",
-     "sentence": 49,
-     "gt_text": "The friendly gang left the drug store.",
-     "transcription": "You can change the extra drugs too"
-    },
-    {
-     "id": "ia3391cf046",
-     "code": "D",
+     "id": "i68ae68690a",
+     "code": "A",
      "sentence": 50,
      "gt_text": "Mesh wire keeps chicks inside.",
      "transcription": "Michigan Michigan Michigan Michigan Michigan Michigan Michigan Michigan Michigan Michigan Michigan M ..."
     },
     {
-     "id": "i6072b8ff39",
-     "code": "D",
+     "id": "i91e66cd36e",
+     "code": "A",
      "sentence": 52,
      "gt_text": "The crooked maze failed to fool the mouse.",
      "transcription": "The crew may as well be able to fold maps"
     },
     {
-     "id": "ie0b5d97ef7",
-     "code": "D",
+     "id": "i82dff3334b",
+     "code": "A",
      "sentence": 53,
      "gt_text": "Adding fast leads to wrong sums.",
      "transcription": "heading fest leads to roll zones"
     },
     {
-     "id": "i91ac7c8803",
-     "code": "D",
+     "id": "i4feae2025e",
+     "code": "A",
+     "sentence": 54,
+     "gt_text": "The show was a flop from the very start.",
+     "transcription": "The shell was a flock from the very start"
+    },
+    {
+     "id": "i5ba6208143",
+     "code": "A",
+     "sentence": 58,
+     "gt_text": "A cup of sugar makes sweet fudge.",
+     "transcription": "a cup of sugarmakes food for jujube"
+    },
+    {
+     "id": "id6637e0edc",
+     "code": "A",
      "sentence": 62,
      "gt_text": "Use a pencil to write the first draft.",
      "transcription": "Youre so good Youre so good Youre so good Youre so good Youre so good Youre so good Youre so good Yo ..."
     },
     {
-     "id": "i6adfe1b307",
-     "code": "D",
+     "id": "i40a859890c",
+     "code": "A",
      "sentence": 64,
      "gt_text": "The clock struck to mark the third period.",
      "transcription": "The full structure one should serve period"
     },
     {
-     "id": "i6608135d58",
-     "code": "D",
-     "sentence": 67,
-     "gt_text": "The set of china hit the floor with a crash.",
-     "transcription": "Instead of tuning it the floor with a crest"
+     "id": "i8f27460f22",
+     "code": "A",
+     "sentence": 69,
+     "gt_text": "The dune rose from the edge of the water.",
+     "transcription": "The DNA grows from the age of the war firm"
     },
     {
-     "id": "ib3df26f517",
-     "code": "D",
-     "sentence": 70,
-     "gt_text": "Those words were the cue for the actor to leave.",
-     "transcription": "That was Wards worthy cube for the actor to leave"
-    },
-    {
-     "id": "i6b9145de05",
-     "code": "D",
+     "id": "i03b0d9c2aa",
+     "code": "A",
      "sentence": 71,
      "gt_text": "A yacht slid around the point into the bay.",
      "transcription": "aks"
     },
     {
-     "id": "ia9c5adf681",
-     "code": "D",
-     "sentence": 79,
-     "gt_text": "The pearl was worn in a thin silver ring.",
-     "transcription": "The Piero Luzborn in a finsilvered rain"
+     "id": "ibd753c7c99",
+     "code": "A",
+     "sentence": 72,
+     "gt_text": "The two met while playing on the sand.",
+     "transcription": "The twomet war plane on the same"
     },
     {
-     "id": "i0bb5816b74",
-     "code": "D",
+     "id": "i55143e2e04",
+     "code": "A",
      "sentence": 80,
      "gt_text": "The fruit peel was cut in thick slices.",
      "transcription": "The fritial was cut in the exclicious"
     },
     {
-     "id": "i722a69acc7",
-     "code": "D",
+     "id": "i0bbd30291a",
+     "code": "A",
      "sentence": 81,
      "gt_text": "The Navy attacked the big task force.",
      "transcription": "the name detected the tax force"
     },
     {
-     "id": "i42105ada6b",
-     "code": "D",
-     "sentence": 82,
-     "gt_text": "See the cat glaring at the scared mouse.",
-     "transcription": "CDKDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD ..."
-    },
-    {
-     "id": "i28b3969057",
-     "code": "D",
+     "id": "i478b5885ca",
+     "code": "A",
      "sentence": 83,
      "gt_text": "There are more than two factors here.",
      "transcription": "There are more that can take here"
     },
     {
-     "id": "i877244f536",
-     "code": "D",
-     "sentence": 84,
-     "gt_text": "The hat brim was wide and too droopy.",
-     "transcription": "The headrem was widened to droople"
-    },
-    {
-     "id": "i7ce28bc9ff",
-     "code": "D",
+     "id": "i3d2284b7a4",
+     "code": "A",
      "sentence": 85,
      "gt_text": "The lawyer tried to lose his case.",
      "transcription": "the Lord your tribe to lose his case"
     },
     {
-     "id": "i8fe8754cd3",
-     "code": "D",
-     "sentence": 87,
-     "gt_text": "Cut the pie into large parts.",
-     "transcription": "Cook the pea into large parts"
+     "id": "if4c31d5a97",
+     "code": "A",
+     "sentence": 86,
+     "gt_text": "The grass curled around the fence post.",
+     "transcription": "The grace coo round the fence pose"
     },
     {
-     "id": "ic19a9e4310",
-     "code": "D",
+     "id": "i5a7b59051b",
+     "code": "A",
      "sentence": 91,
      "gt_text": "The slush lay deep along the street.",
      "transcription": "The slushly eat along the street"
     },
     {
-     "id": "ie20004884c",
-     "code": "D",
-     "sentence": 95,
-     "gt_text": "The play seems dull and quite stupid.",
-     "transcription": "The placings dull and quiet steppet"
+     "id": "i499c31d9b2",
+     "code": "A",
+     "sentence": 98,
+     "gt_text": "A tusk is used to make costly gifts.",
+     "transcription": "Attices used to make cost legit"
     },
     {
-     "id": "i7e09f6048f",
-     "code": "A",
+     "id": "i5bac642b4c",
+     "code": "C",
+     "sentence": 4,
+     "gt_text": "These days a chicken leg is a rare dish.",
+     "transcription": "\u8036 \u8036 \u8036 \u8036"
+    },
+    {
+     "id": "if2971c702d",
+     "code": "C",
      "sentence": 5,
      "gt_text": "Rice is often served in round bowls.",
      "transcription": "Rice is born balls"
     },
     {
-     "id": "i4f53710f57",
-     "code": "A",
+     "id": "ia2e456697c",
+     "code": "C",
      "sentence": 7,
      "gt_text": "The box was thrown beside the parked truck.",
      "transcription": "\u62dc\u62dc"
     },
     {
-     "id": "i77d675ebf7",
-     "code": "A",
+     "id": "i9eda90f534",
+     "code": "C",
      "sentence": 8,
      "gt_text": "The hogs were fed chopped corn and garbage.",
      "transcription": "Christmas with Fed Chat Corn and Garbage"
     },
     {
-     "id": "icf0cc36d8c",
-     "code": "A",
+     "id": "ib721e15094",
+     "code": "C",
      "sentence": 9,
      "gt_text": "Four hours of steady work faced us.",
      "transcription": "for hours of steady work faced us"
     },
     {
-     "id": "ie0d29dc5df",
-     "code": "A",
+     "id": "i634f6fa985",
+     "code": "C",
      "sentence": 10,
      "gt_text": "A large size in stockings is hard to sell.",
      "transcription": "ALies stockings is hard to sell"
     },
     {
-     "id": "icff963a7ef",
-     "code": "A",
+     "id": "i6abf9cc545",
+     "code": "C",
      "sentence": 11,
      "gt_text": "The boy was there when the sun rose.",
      "transcription": "\u0414\u043e \u0434\u043e\u0437\u044b \u0437\u0430 \u043d\u0430 \u043d\u0430 \u043d\u0430 \u043c\u043e\u0440\u043e\u0437"
     },
     {
-     "id": "i306a46721a",
-     "code": "A",
+     "id": "ia6d432f8db",
+     "code": "C",
      "sentence": 12,
      "gt_text": "A rod is used to catch pink salmon.",
      "transcription": "Rod is used to catch pink pink salmon"
     },
     {
-     "id": "iff8c6e9037",
-     "code": "A",
-     "sentence": 13,
-     "gt_text": "The source of the huge river is the clear spring.",
-     "transcription": "The source of this immune to river is the clear spring"
-    },
-    {
-     "id": "ia2f689a4a5",
-     "code": "A",
-     "sentence": 14,
-     "gt_text": "Kick the ball straight and follow through.",
-     "transcription": "Kick the ball straight follow through"
-    },
-    {
-     "id": "i15fa83ada4",
-     "code": "A",
-     "sentence": 15,
-     "gt_text": "Help the woman get back to her feet.",
-     "transcription": "The woman can get back to her feet"
-    },
-    {
-     "id": "ib9d663049d",
-     "code": "A",
+     "id": "i0014aa451c",
+     "code": "C",
      "sentence": 19,
      "gt_text": "The salt breeze came across from the sea.",
      "transcription": "Okay came across the sea"
     },
     {
-     "id": "ifc2169df82",
-     "code": "A",
-     "sentence": 23,
-     "gt_text": "Press the pants and sew a button on the vest.",
-     "transcription": "press thats in soobso button on the vest"
-    },
-    {
-     "id": "i6603c54c71",
-     "code": "A",
+     "id": "i3198363189",
+     "code": "C",
      "sentence": 26,
      "gt_text": "Two blue fish swam in the tank.",
      "transcription": "\ub450 \ubd84 \ubd80\ud0c1\ub4dc\ub9b4 \uc77c\uc740"
     },
     {
-     "id": "iadf3158c0c",
-     "code": "A",
-     "sentence": 27,
-     "gt_text": "Her purse was full of useless trash.",
-     "transcription": "For purpose were supposed to full of useless trash"
-    },
-    {
-     "id": "i506ae04d52",
-     "code": "A",
-     "sentence": 30,
-     "gt_text": "Read verse out loud for pleasure.",
-     "transcription": "Redverse out loud for pleasure"
-    },
-    {
-     "id": "i3600de59f5",
-     "code": "A",
+     "id": "i55b2d650af",
+     "code": "C",
      "sentence": 33,
      "gt_text": "Note closely the size of the gas tank.",
      "transcription": "Dont flee the size of the gas of the gas tank"
     },
     {
-     "id": "ib703a89879",
-     "code": "A",
+     "id": "i3d28fafd04",
+     "code": "C",
+     "sentence": 34,
+     "gt_text": "Wipe the grease off his dirty face.",
+     "transcription": "\u0412\u043e\u0442 \u043a\u0430\u043a \u043a\u0430\u043a \u043a\u0430\u043a \u043a\u0430\u043a \u043a\u0430\u043a \u043a\u0430\u043a \u043a\u0430\u043a \u043a\u0430\u043a \u043a\u0430\u043a \u043a\u0430\u043a \u043a\u0430\u043a \u043a\u0430\u043a \u043a\u0430\u043a \u043a\u0430\u043a \u043a\u0430\u043a \u043a\u0430\u043a \u043a\u0430\u043a \u043a\u0430\u043a \u043a\u0430\u043a \u043a\u0430\u043a \u043a\u0430\u043a \u043a\u0430\u043a \u043a\u0430\u043a \u043a\u0430\u043a ..."
+    },
+    {
+     "id": "ia3391cf046",
+     "code": "C",
      "sentence": 37,
      "gt_text": "The stray cat gave birth to kittens.",
      "transcription": "The straight baby is"
     },
     {
-     "id": "i00c1378be5",
-     "code": "A",
+     "id": "i6072b8ff39",
+     "code": "C",
      "sentence": 38,
      "gt_text": "The young girl gave no clear response.",
      "transcription": "The young girl gave no clear response spots"
     },
     {
-     "id": "id2faf1501b",
-     "code": "A",
-     "sentence": 41,
-     "gt_text": "A king ruled the state in the early days.",
-     "transcription": "\ud30c\ud0b9 \ub86f"
-    },
-    {
-     "id": "i87acfebb4b",
-     "code": "A",
-     "sentence": 42,
-     "gt_text": "The ship was torn apart on the sharp reef.",
-     "transcription": "Shoulds torn apart on the sharp on the sharp reef"
-    },
-    {
-     "id": "i199cb017c1",
-     "code": "A",
+     "id": "ie0b5d97ef7",
+     "code": "C",
      "sentence": 43,
      "gt_text": "Sickness kept him home the third week.",
      "transcription": "\u0421\u043d\u0438\u0441\u043a\u0430 \u043a \u0441\u043a\u043e\u0431\u0443\u043d\u0443 \u0434\u043e \u0442\u043e\u0440\u0433\u043e\u0433\u043e"
     },
     {
-     "id": "i1e30c1fb6a",
-     "code": "A",
+     "id": "i91ac7c8803",
+     "code": "C",
+     "sentence": 45,
+     "gt_text": "The lazy cow lay in the cool grass.",
+     "transcription": "the lazy cow lay in the cool cool grass"
+    },
+    {
+     "id": "i6adfe1b307",
+     "code": "C",
      "sentence": 47,
      "gt_text": "The rope will bind the seven books at once.",
      "transcription": "The rope will combine the seven books at once"
     },
     {
-     "id": "ia69bbd750d",
-     "code": "A",
-     "sentence": 48,
-     "gt_text": "Hop over the fence and plunge in.",
-     "transcription": "up over the fence and plunge in"
-    },
-    {
-     "id": "idf32d1f81b",
-     "code": "A",
+     "id": "i6608135d58",
+     "code": "C",
      "sentence": 49,
      "gt_text": "The friendly gang left the drug store.",
      "transcription": "You friendly big and left the drug store store"
     },
     {
-     "id": "i474d6b234f",
-     "code": "A",
-     "sentence": 55,
-     "gt_text": "A saw is a tool used for making boards.",
-     "transcription": "So tool is a tool is from news from boards"
+     "id": "ib3df26f517",
+     "code": "C",
+     "sentence": 51,
+     "gt_text": "The frosty air passed through the coat.",
+     "transcription": "the frosty air pass through the coat"
     },
     {
-     "id": "ifab044284a",
-     "code": "A",
+     "id": "i6b9145de05",
+     "code": "C",
      "sentence": 58,
      "gt_text": "A cup of sugar makes sweet fudge.",
      "transcription": "\u0422\u0430\u043a \u0430 \u043f\u043e\u043f\u043e\u0447\u0435\u0448\u044c \u043a\u0441\u0442\u0430\u0442\u0438"
     },
     {
-     "id": "i192ea60b99",
-     "code": "A",
+     "id": "ia9c5adf681",
+     "code": "C",
+     "sentence": 61,
+     "gt_text": "We talked of the side show in the circus.",
+     "transcription": "Tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt ..."
+    },
+    {
+     "id": "i0bb5816b74",
+     "code": "C",
      "sentence": 67,
      "gt_text": "The set of china hit the floor with a crash.",
      "transcription": "the setting he hit the floor with a crash"
     },
     {
-     "id": "ida79c147c7",
-     "code": "A",
+     "id": "i722a69acc7",
+     "code": "C",
      "sentence": 68,
      "gt_text": "This is a grand season for hikes on the road.",
      "transcription": "This is a grand season for bikes on the roads"
     },
     {
-     "id": "i65ec3aa314",
-     "code": "A",
+     "id": "i42105ada6b",
+     "code": "C",
+     "sentence": 69,
+     "gt_text": "The dune rose from the edge of the water.",
+     "transcription": "\u041d\u0443 \u0432\u0441\u043f\u043e\u0441\u043f\u043e\u0441\u043f\u043e\u0431\u0438\u044f \u041b\u0435\u043d\u0438\u043d"
+    },
+    {
+     "id": "i28b3969057",
+     "code": "C",
      "sentence": 70,
      "gt_text": "Those words were the cue for the actor to leave.",
      "transcription": "the words were that the Pughal for the actor to leave"
     },
     {
-     "id": "i14a0acf4c9",
-     "code": "A",
-     "sentence": 71,
-     "gt_text": "A yacht slid around the point into the bay.",
-     "transcription": "\u0415\u0441\u0442\u044c"
+     "id": "i877244f536",
+     "code": "C",
+     "sentence": 79,
+     "gt_text": "The pearl was worn in a thin silver ring.",
+     "transcription": "The Pearl was worn in a fin silver ring"
     },
     {
-     "id": "i460597aab6",
-     "code": "A",
-     "sentence": 72,
-     "gt_text": "The two met while playing on the sand.",
-     "transcription": "to two Met Bobo Paul playing on the set"
-    },
-    {
-     "id": "i73e9f41cc0",
-     "code": "A",
+     "id": "i7ce28bc9ff",
+     "code": "C",
      "sentence": 81,
      "gt_text": "The Navy attacked the big task force.",
      "transcription": "\u0644\u0646 \u062a\u062d\u0627\u062c\u0629"
     },
     {
-     "id": "icaccc14d51",
-     "code": "A",
+     "id": "i8fe8754cd3",
+     "code": "C",
      "sentence": 82,
      "gt_text": "See the cat glaring at the scared mouse.",
      "transcription": "See the cat layering at the scared mounds"
     },
     {
-     "id": "idc1da3b7e2",
-     "code": "A",
-     "sentence": 84,
-     "gt_text": "The hat brim was wide and too droopy.",
-     "transcription": "Dont hesitate Institute to droopy"
+     "id": "ic19a9e4310",
+     "code": "C",
+     "sentence": 87,
+     "gt_text": "Cut the pie into large parts.",
+     "transcription": "Cut large parts"
     },
     {
-     "id": "i2241a93f90",
-     "code": "A",
+     "id": "ie20004884c",
+     "code": "C",
      "sentence": 88,
      "gt_text": "Men strive but seldom get rich.",
      "transcription": "Ha ha ha ha get rich"
     },
     {
-     "id": "i85a7502a81",
-     "code": "A",
+     "id": "i7e09f6048f",
+     "code": "C",
      "sentence": 91,
      "gt_text": "The slush lay deep along the street.",
      "transcription": "\u30b9\u30ed\u30b9\u30ed\u30b9\u30ed\u30b9\u30ed\u30b9\u30ed\u30b9\u30ed\u30b9"
     },
     {
-     "id": "ia6d138d150",
-     "code": "A",
+     "id": "i4f53710f57",
+     "code": "C",
      "sentence": 93,
      "gt_text": "A pound of sugar costs more than eggs.",
      "transcription": "and of sugar costs more than eggs"
     },
     {
-     "id": "i58a51ad4f3",
-     "code": "A",
+     "id": "i77d675ebf7",
+     "code": "C",
      "sentence": 95,
      "gt_text": "The play seems dull and quite stupid.",
      "transcription": "The play seems end point"
     },
     {
-     "id": "idf1d77ce40",
-     "code": "A",
+     "id": "icf0cc36d8c",
+     "code": "C",
      "sentence": 98,
      "gt_text": "A tusk is used to make costly gifts.",
      "transcription": "a task is used to make costly gifts"
     },
     {
-     "id": "i4727896389",
-     "code": "A",
+     "id": "ie0d29dc5df",
+     "code": "C",
      "sentence": 100,
      "gt_text": "The bill was paid every third week.",
      "transcription": "the paid ever ever week"
     },
     {
-     "id": "i04d9ead926",
-     "code": "B",
+     "id": "icff963a7ef",
+     "code": "D",
      "sentence": 4,
      "gt_text": "These days a chicken leg is a rare dish.",
      "transcription": "These days a chicken leg is a rare dish"
     },
     {
-     "id": "i0a0ad40415",
-     "code": "B",
-     "sentence": 5,
-     "gt_text": "Rice is often served in round bowls.",
-     "transcription": "Rice is often served in round bowls"
-    },
-    {
-     "id": "iae34ab18fd",
-     "code": "B",
+     "id": "i306a46721a",
+     "code": "D",
      "sentence": 7,
      "gt_text": "The box was thrown beside the parked truck.",
      "transcription": "The box was thrown beside the parked truck"
     },
     {
-     "id": "i8e4279b14d",
-     "code": "B",
-     "sentence": 8,
-     "gt_text": "The hogs were fed chopped corn and garbage.",
-     "transcription": "The hogs were fed chopped corn and garbage"
+     "id": "iff8c6e9037",
+     "code": "D",
+     "sentence": 9,
+     "gt_text": "Four hours of steady work faced us.",
+     "transcription": "Four hours of steady work faced us"
     },
     {
-     "id": "if250910bdc",
-     "code": "B",
-     "sentence": 10,
-     "gt_text": "A large size in stockings is hard to sell.",
-     "transcription": "A large size in stockings is hard to sell"
-    },
-    {
-     "id": "if05decc06a",
-     "code": "B",
+     "id": "ia2f689a4a5",
+     "code": "D",
      "sentence": 11,
      "gt_text": "The boy was there when the sun rose.",
      "transcription": "The boy was there when the sun rose"
     },
     {
-     "id": "ie8914591ae",
-     "code": "B",
-     "sentence": 13,
-     "gt_text": "The source of the huge river is the clear spring.",
-     "transcription": "The source of the huge river is the clear spring"
-    },
-    {
-     "id": "i0ad974c146",
-     "code": "B",
-     "sentence": 14,
-     "gt_text": "Kick the ball straight and follow through.",
-     "transcription": "Kick the ball straight and follow through"
-    },
-    {
-     "id": "ibfd8ab0b30",
-     "code": "B",
-     "sentence": 15,
-     "gt_text": "Help the woman get back to her feet.",
-     "transcription": "Help the woman get back to her feet"
-    },
-    {
-     "id": "ib3f61164ce",
-     "code": "B",
+     "id": "i15fa83ada4",
+     "code": "D",
      "sentence": 19,
      "gt_text": "The salt breeze came across from the sea.",
      "transcription": "The salt breeze came across from the sea"
     },
     {
-     "id": "ia79b8b71a1",
-     "code": "B",
-     "sentence": 23,
-     "gt_text": "Press the pants and sew a button on the vest.",
-     "transcription": "Press the pants and sew a button on the vest"
+     "id": "ib9d663049d",
+     "code": "D",
+     "sentence": 22,
+     "gt_text": "The fish twisted and turned on the bent hook.",
+     "transcription": "The fish twisted and turned on the bent hook"
     },
     {
-     "id": "ib67e969cf3",
-     "code": "B",
+     "id": "ifc2169df82",
+     "code": "D",
      "sentence": 24,
      "gt_text": "The swan dive was far short of perfect.",
      "transcription": "The Swan dive was far short of perfect"
     },
     {
-     "id": "ie7a4e695c9",
-     "code": "B",
-     "sentence": 27,
-     "gt_text": "Her purse was full of useless trash.",
-     "transcription": "Her purse was full of useless trash"
-    },
-    {
-     "id": "ia3756b0715",
-     "code": "B",
+     "id": "i6603c54c71",
+     "code": "D",
      "sentence": 32,
      "gt_text": "Take the winding path to reach the lake.",
      "transcription": "Take the winding path to reach the lake"
     },
     {
-     "id": "i5f6f790959",
-     "code": "B",
-     "sentence": 34,
-     "gt_text": "Wipe the grease off his dirty face.",
-     "transcription": "wipe the grease off his dirty face"
+     "id": "iadf3158c0c",
+     "code": "D",
+     "sentence": 37,
+     "gt_text": "The stray cat gave birth to kittens.",
+     "transcription": "The stray cat gave birth to kittens"
     },
     {
-     "id": "i89df14c612",
-     "code": "B",
+     "id": "i506ae04d52",
+     "code": "D",
      "sentence": 38,
      "gt_text": "The young girl gave no clear response.",
      "transcription": "The Young Girl gave no clear response"
     },
     {
-     "id": "i352da44da1",
-     "code": "B",
-     "sentence": 41,
-     "gt_text": "A king ruled the state in the early days.",
-     "transcription": "A king ruled the state in the early days"
+     "id": "i3600de59f5",
+     "code": "D",
+     "sentence": 39,
+     "gt_text": "The meal was cooked before the bell rang.",
+     "transcription": "The meal was cooked before the bell rang"
     },
     {
-     "id": "i966025f0ae",
-     "code": "B",
+     "id": "ib703a89879",
+     "code": "D",
      "sentence": 42,
      "gt_text": "The ship was torn apart on the sharp reef.",
      "transcription": "The ship was torn apart on the sharp reef"
     },
     {
-     "id": "i024a814d53",
-     "code": "B",
+     "id": "i00c1378be5",
+     "code": "D",
      "sentence": 43,
      "gt_text": "Sickness kept him home the third week.",
      "transcription": "Sickness kept him home the third week"
     },
     {
-     "id": "i262371ea2c",
-     "code": "B",
-     "sentence": 48,
-     "gt_text": "Hop over the fence and plunge in.",
-     "transcription": "Hop over the fence and plunge in"
+     "id": "id2faf1501b",
+     "code": "D",
+     "sentence": 47,
+     "gt_text": "The rope will bind the seven books at once.",
+     "transcription": "The rope will bind the seven books at once"
     },
     {
-     "id": "i554578bab3",
-     "code": "B",
+     "id": "i87acfebb4b",
+     "code": "D",
+     "sentence": 50,
+     "gt_text": "Mesh wire keeps chicks inside.",
+     "transcription": "Mesh wire keeps chicks inside"
+    },
+    {
+     "id": "i199cb017c1",
+     "code": "D",
      "sentence": 52,
      "gt_text": "The crooked maze failed to fool the mouse.",
      "transcription": "The crooked maze failed to fool the mouse"
     },
     {
-     "id": "ica56672017",
-     "code": "B",
+     "id": "i1e30c1fb6a",
+     "code": "D",
      "sentence": 53,
      "gt_text": "Adding fast leads to wrong sums.",
      "transcription": "Adding fast leads to wrong sums"
     },
     {
-     "id": "ib75e00ea6d",
-     "code": "B",
-     "sentence": 54,
-     "gt_text": "The show was a flop from the very start.",
-     "transcription": "The show was a flop from the very start"
-    },
-    {
-     "id": "i5617fd3736",
-     "code": "B",
-     "sentence": 55,
-     "gt_text": "A saw is a tool used for making boards.",
-     "transcription": "A saw is a tool used for making boards"
-    },
-    {
-     "id": "i9ec787ddfb",
-     "code": "B",
+     "id": "ia69bbd750d",
+     "code": "D",
      "sentence": 60,
      "gt_text": "Both lost their lives in the raging storm.",
      "transcription": "Both lost their lives in the raging storm"
     },
     {
-     "id": "i0a09215f4f",
-     "code": "B",
-     "sentence": 61,
-     "gt_text": "We talked of the side show in the circus.",
-     "transcription": "We talked of the side show in the circus"
+     "id": "idf32d1f81b",
+     "code": "D",
+     "sentence": 64,
+     "gt_text": "The clock struck to mark the third period.",
+     "transcription": "The clock struck to mark the third period"
     },
     {
-     "id": "i294505f4f6",
-     "code": "B",
-     "sentence": 62,
-     "gt_text": "Use a pencil to write the first draft.",
-     "transcription": "Use a pencil to write the first draft"
-    },
-    {
-     "id": "ifb2640211e",
-     "code": "B",
+     "id": "i474d6b234f",
+     "code": "D",
      "sentence": 65,
      "gt_text": "A small creek cut across the field.",
      "transcription": "A small creek cut across the field"
     },
     {
-     "id": "i4a955d0e77",
-     "code": "B",
+     "id": "ifab044284a",
+     "code": "D",
+     "sentence": 67,
+     "gt_text": "The set of china hit the floor with a crash.",
+     "transcription": "The set of China hit the floor with a crash"
+    },
+    {
+     "id": "i192ea60b99",
+     "code": "D",
      "sentence": 68,
      "gt_text": "This is a grand season for hikes on the road.",
      "transcription": "This is a grand season for Hikes on the road"
     },
     {
-     "id": "i655c646036",
-     "code": "B",
+     "id": "ida79c147c7",
+     "code": "D",
+     "sentence": 69,
+     "gt_text": "The dune rose from the edge of the water.",
+     "transcription": "The Dune rose from the edge of the water"
+    },
+    {
+     "id": "i65ec3aa314",
+     "code": "D",
      "sentence": 70,
      "gt_text": "Those words were the cue for the actor to leave.",
      "transcription": "Those words were the cue for the actor to leave"
     },
     {
-     "id": "i8cfd42f697",
-     "code": "B",
+     "id": "i14a0acf4c9",
+     "code": "D",
      "sentence": 72,
      "gt_text": "The two met while playing on the sand.",
      "transcription": "The two met while playing on the sand"
     },
     {
-     "id": "i4b2130260c",
-     "code": "B",
-     "sentence": 79,
-     "gt_text": "The pearl was worn in a thin silver ring.",
-     "transcription": "The Pearl was worn in a thin silver ring"
+     "id": "i460597aab6",
+     "code": "D",
+     "sentence": 80,
+     "gt_text": "The fruit peel was cut in thick slices.",
+     "transcription": "The fruit peel was cut in thick slices"
     },
     {
-     "id": "i7a1d69d9fc",
-     "code": "B",
+     "id": "i73e9f41cc0",
+     "code": "D",
      "sentence": 82,
      "gt_text": "See the cat glaring at the scared mouse.",
      "transcription": "See the cat glaring at the scared mouse"
     },
     {
-     "id": "i3dbb0378eb",
-     "code": "B",
+     "id": "icaccc14d51",
+     "code": "D",
      "sentence": 83,
      "gt_text": "There are more than two factors here.",
      "transcription": "There are more than two factors here"
     },
     {
-     "id": "i0cef0a81ed",
-     "code": "B",
-     "sentence": 84,
-     "gt_text": "The hat brim was wide and too droopy.",
-     "transcription": "The hat brim was wide and too droopy"
+     "id": "idc1da3b7e2",
+     "code": "D",
+     "sentence": 85,
+     "gt_text": "The lawyer tried to lose his case.",
+     "transcription": "The lawyer tried to lose his case"
     },
     {
-     "id": "i2d4ed13553",
-     "code": "B",
+     "id": "i2241a93f90",
+     "code": "D",
      "sentence": 86,
      "gt_text": "The grass curled around the fence post.",
      "transcription": "The grass curled around the fence post"
     },
     {
-     "id": "i85db66bfda",
-     "code": "B",
+     "id": "i85a7502a81",
+     "code": "D",
      "sentence": 88,
      "gt_text": "Men strive but seldom get rich.",
      "transcription": "Men strive but seldom get rich"
     },
     {
-     "id": "i12ba8982dd",
-     "code": "B",
+     "id": "ia6d138d150",
+     "code": "D",
      "sentence": 93,
      "gt_text": "A pound of sugar costs more than eggs.",
      "transcription": "A pound of sugar costs more than eggs"
     },
     {
-     "id": "i674d7bd307",
-     "code": "B",
+     "id": "i58a51ad4f3",
+     "code": "D",
      "sentence": 95,
      "gt_text": "The play seems dull and quite stupid.",
      "transcription": "The play seems dull and quite stupid"
     },
     {
-     "id": "i54d5e73e3f",
-     "code": "B",
+     "id": "idf1d77ce40",
+     "code": "D",
+     "sentence": 98,
+     "gt_text": "A tusk is used to make costly gifts.",
+     "transcription": "A tusk is used to make costly gifts"
+    },
+    {
+     "id": "i4727896389",
+     "code": "D",
      "sentence": 100,
      "gt_text": "The bill was paid every third week.",
      "transcription": "The bill was paid every third week"
@@ -1127,3176 +988,2829 @@
   },
   "w2v-asr": {
    "label": "wav2vec2-large, ASR",
+   "task": "harvard",
    "items": [
     {
-     "id": "i62cf5e9ea3",
-     "code": "D",
-     "sentence": 1,
-     "gt_text": "The birch canoe slid on the smooth planks.",
-     "transcription": "THE BIRCH CANOE SLID ON THE SMOOTH PLANKSAND"
+     "id": "i9c8af58903",
+     "code": "A",
+     "sentence": 4,
+     "gt_text": "These days a chicken leg is a rare dish.",
+     "transcription": "THESE DAYS A TICKEN LEG IS A RARE DISH"
     },
     {
-     "id": "i290ff030b8",
-     "code": "D",
-     "sentence": 6,
-     "gt_text": "The juice of lemons makes fine punch.",
-     "transcription": "THE JUICE OF LEMONS MAKES FINE PUNCHI"
+     "id": "i38ee6a8e2f",
+     "code": "A",
+     "sentence": 5,
+     "gt_text": "Rice is often served in round bowls.",
+     "transcription": "ROSE IS OFTEN SERVED IN ROUND BOWS"
     },
     {
-     "id": "iefa417956f",
-     "code": "D",
-     "sentence": 7,
-     "gt_text": "The box was thrown beside the parked truck.",
-     "transcription": "THE BOX WAS THROWN BESIDE THE PARKD TRUCK"
+     "id": "i57027c013f",
+     "code": "A",
+     "sentence": 8,
+     "gt_text": "The hogs were fed chopped corn and garbage.",
+     "transcription": "THE HOGS WERE FID CHOPPED CORN AND GARBAGE"
     },
     {
-     "id": "i3d209818d1",
-     "code": "D",
-     "sentence": 9,
-     "gt_text": "Four hours of steady work faced us.",
-     "transcription": "FOUR HOURS OF STURDY WORK FACED US"
+     "id": "if6b4a1ca79",
+     "code": "A",
+     "sentence": 23,
+     "gt_text": "Press the pants and sew a button on the vest.",
+     "transcription": "PRESS THE PATS AND SEW A BUTTON ON THE VEST"
     },
     {
-     "id": "iba497e9f1a",
-     "code": "D",
-     "sentence": 11,
-     "gt_text": "The boy was there when the sun rose.",
-     "transcription": "THE BOY WAS THERE WHEN THE SIN ROSE"
-    },
-    {
-     "id": "i55d476fe38",
-     "code": "D",
-     "sentence": 13,
-     "gt_text": "The source of the huge river is the clear spring.",
-     "transcription": "THE SOURCE OF THE HUGE RIVER IS THE CREER SPRING"
-    },
-    {
-     "id": "if10e370526",
-     "code": "D",
-     "sentence": 14,
-     "gt_text": "Kick the ball straight and follow through.",
-     "transcription": "KICKED THE BALL STRAIGHT AND FOLLOW THROUGH"
-    },
-    {
-     "id": "i7b0932f5b6",
-     "code": "D",
-     "sentence": 16,
-     "gt_text": "A pot of tea helps to pass the evening.",
-     "transcription": "A POT OF TEA HELPS TO PASS THE EVENINGT"
-    },
-    {
-     "id": "i246af944e0",
-     "code": "D",
-     "sentence": 17,
-     "gt_text": "Smoky fires lack flame and heat.",
-     "transcription": "SMOKY FIRES LACK FLAME AND HATE"
-    },
-    {
-     "id": "ie37de8a234",
-     "code": "D",
-     "sentence": 19,
-     "gt_text": "The salt breeze came across from the sea.",
-     "transcription": "THE SALT BRUISE CAME ACROSS FROM THE SEA"
-    },
-    {
-     "id": "i9add02e100",
-     "code": "D",
-     "sentence": 20,
-     "gt_text": "The girl at the booth sold fifty bonds.",
-     "transcription": "THE GIRL AT THE BOTH SOLD FIFTY BONDS"
-    },
-    {
-     "id": "i14b799ae8e",
-     "code": "D",
-     "sentence": 24,
-     "gt_text": "The swan dive was far short of perfect.",
-     "transcription": "THE SWAN DIVE WAS FAR SHORT OF PERFECTTHE"
-    },
-    {
-     "id": "ib2ac6d5df8",
-     "code": "D",
+     "id": "ie6bf3df0bb",
+     "code": "A",
      "sentence": 25,
      "gt_text": "The beauty of the view stunned the young boy.",
      "transcription": "THE BEAUTY OF THE VIEW STUNNS THE YOUNG BOY"
     },
     {
-     "id": "icf26c06e67",
-     "code": "D",
+     "id": "id151797350",
+     "code": "A",
      "sentence": 28,
      "gt_text": "The colt reared and threw the tall rider.",
      "transcription": "THE COLT REARED UN THROGH THE TALL RIDER"
     },
     {
-     "id": "i5afc98c279",
-     "code": "D",
-     "sentence": 31,
-     "gt_text": "Hoist the load to your left shoulder.",
-     "transcription": "HOIST THE LOW TO YOUR LEFT SHOULDER"
+     "id": "i0952631db9",
+     "code": "A",
+     "sentence": 29,
+     "gt_text": "It snowed, rained, and hailed the same morning.",
+     "transcription": "IT SNOWED RAINED AND HAILED THE SAME MORNINGA"
     },
     {
-     "id": "i0969407be7",
-     "code": "D",
-     "sentence": 32,
-     "gt_text": "Take the winding path to reach the lake.",
-     "transcription": "TIGHT THE WINDING PATH TO REACH THE LAKE"
+     "id": "i25866d7002",
+     "code": "A",
+     "sentence": 30,
+     "gt_text": "Read verse out loud for pleasure.",
+     "transcription": "READVERSE OUT LOUD FOR PLEASURE"
     },
     {
-     "id": "i779c9d03f3",
-     "code": "D",
-     "sentence": 35,
-     "gt_text": "Mend the coat before you go out.",
-     "transcription": "MEND THE COAT BEFORE YOU GET OUT"
+     "id": "i41dfde2281",
+     "code": "A",
+     "sentence": 33,
+     "gt_text": "Note closely the size of the gas tank.",
+     "transcription": "NOTE CLOSELY THE SIZE OF THE GAZ TANK"
     },
     {
-     "id": "i7562fda854",
-     "code": "D",
-     "sentence": 38,
-     "gt_text": "The young girl gave no clear response.",
-     "transcription": "THE YOUNGER GAVE NO CLEOMOSFAS"
-    },
-    {
-     "id": "i190c0a5967",
-     "code": "D",
+     "id": "ic89a431f7a",
+     "code": "A",
      "sentence": 41,
      "gt_text": "A king ruled the state in the early days.",
      "transcription": "A KING REATED THE STRAIGHT IN THE EARLY DAYS"
     },
     {
-     "id": "ic7788c31f6",
-     "code": "D",
-     "sentence": 43,
-     "gt_text": "Sickness kept him home the third week.",
-     "transcription": "SUTMUS KEPT HIM HOME THE THIRD WEEK"
+     "id": "id727e969e2",
+     "code": "A",
+     "sentence": 42,
+     "gt_text": "The ship was torn apart on the sharp reef.",
+     "transcription": "THE SHIP WAS TORN APART ON THE SHORP REEF"
     },
     {
-     "id": "i0526c00984",
-     "code": "D",
+     "id": "i9561067a8c",
+     "code": "A",
      "sentence": 45,
      "gt_text": "The lazy cow lay in the cool grass.",
      "transcription": "THE LAZY COWLAY IN THE COOL GRASS"
     },
     {
-     "id": "i99084fa819",
-     "code": "D",
-     "sentence": 46,
-     "gt_text": "Lift the square stone over the fence.",
-     "transcription": "LIFT THE SQUARESTONE OVER THE FENCE"
+     "id": "ib74b5ca436",
+     "code": "A",
+     "sentence": 47,
+     "gt_text": "The rope will bind the seven books at once.",
+     "transcription": "THE ROPE WILL BIND THE SEVEN BUCKS AT ONCE"
     },
     {
-     "id": "i219e0df45b",
-     "code": "D",
-     "sentence": 51,
-     "gt_text": "The frosty air passed through the coat.",
-     "transcription": "THE FROSTY AIR PASSED THROUGH COT"
+     "id": "iceb4d4dfcc",
+     "code": "A",
+     "sentence": 48,
+     "gt_text": "Hop over the fence and plunge in.",
+     "transcription": "TOP OVER THE FENCE AND PLUNGE IN"
     },
     {
-     "id": "i52a1457899",
-     "code": "D",
-     "sentence": 53,
-     "gt_text": "Adding fast leads to wrong sums.",
-     "transcription": "ADDING FAST LEADS TO WRONG SUMSTE"
-    },
-    {
-     "id": "ib31af4787f",
-     "code": "D",
+     "id": "i10786e30ef",
+     "code": "A",
      "sentence": 55,
      "gt_text": "A saw is a tool used for making boards.",
      "transcription": "A SAW IS A TOOL USED FOR MAKING BOARDSTH"
     },
     {
-     "id": "ia68c94af98",
-     "code": "D",
+     "id": "i15ccc93ff7",
+     "code": "A",
+     "sentence": 56,
+     "gt_text": "The wagon moved on well oiled wheels.",
+     "transcription": "THE RACKEN MOVED ON WELL OILED WHEELS"
+    },
+    {
+     "id": "ide843b2a7d",
+     "code": "A",
      "sentence": 57,
      "gt_text": "March the soldiers past the next hill.",
      "transcription": "MARCH THE SOLDIERS PAST THE NEST HILL"
     },
     {
-     "id": "i3158bf3b9e",
-     "code": "D",
+     "id": "i0aea5f24b6",
+     "code": "A",
      "sentence": 58,
      "gt_text": "A cup of sugar makes sweet fudge.",
      "transcription": "A CUP OF SUGAR MAKES SWEET FUDGEAD"
     },
     {
-     "id": "ic862276cbc",
-     "code": "D",
+     "id": "i3910fc9eee",
+     "code": "A",
+     "sentence": 60,
+     "gt_text": "Both lost their lives in the raging storm.",
+     "transcription": "BOTH LOST THEIR LIVES IN THE RAVING STORM"
+    },
+    {
+     "id": "i0a21681081",
+     "code": "A",
+     "sentence": 61,
+     "gt_text": "We talked of the side show in the circus.",
+     "transcription": "WE TALKED OF THE SACO IN THE CIRCUS"
+    },
+    {
+     "id": "i034cea2df0",
+     "code": "A",
      "sentence": 65,
      "gt_text": "A small creek cut across the field.",
      "transcription": "A SMALL CREEK CUT ACROSS THE FIELDIT"
     },
     {
-     "id": "ic7c6c3744c",
-     "code": "D",
-     "sentence": 67,
-     "gt_text": "The set of china hit the floor with a crash.",
-     "transcription": "BUSETTE OF CHINA HIT THE FLOOR WITH A CRASH"
+     "id": "id8c2472fd6",
+     "code": "A",
+     "sentence": 68,
+     "gt_text": "This is a grand season for hikes on the road.",
+     "transcription": "THIS IS A GRAND SEASON FOR HAKS ON THE ROAD"
     },
     {
-     "id": "i1c7d859725",
-     "code": "D",
-     "sentence": 74,
-     "gt_text": "The walled town was seized without a fight.",
-     "transcription": "THE WAL TOWN WAS SEIZED WITHOUT A FIGHT"
+     "id": "i5472d6bc20",
+     "code": "A",
+     "sentence": 71,
+     "gt_text": "A yacht slid around the point into the bay.",
+     "transcription": "A YACHT SLID AROUND THE POINT INTO THE BAYA"
     },
     {
-     "id": "i0fe19b5837",
-     "code": "D",
+     "id": "i29dca5b353",
+     "code": "A",
      "sentence": 75,
      "gt_text": "The lease ran out in sixteen weeks.",
      "transcription": "THE LEASE RAN OUT IN SIXTEEN WAKES"
     },
     {
-     "id": "ib39c30ceaa",
-     "code": "D",
+     "id": "i26ccf719ab",
+     "code": "A",
+     "sentence": 76,
+     "gt_text": "A tame squirrel makes a nice pet.",
+     "transcription": "BUT TAM SQUIRREL MAKES A NICE PET"
+    },
+    {
+     "id": "ia7de62d43f",
+     "code": "A",
      "sentence": 77,
      "gt_text": "The horn of the car woke the sleeping cop.",
      "transcription": "THE HORN OF THE CAR WOKE THE SLEEPING COB"
     },
     {
-     "id": "i9d7799a8e2",
-     "code": "D",
+     "id": "if775f2bc20",
+     "code": "A",
+     "sentence": 79,
+     "gt_text": "The pearl was worn in a thin silver ring.",
+     "transcription": "THE PEARL WAS WORN IN A FIN SILVER RING"
+    },
+    {
+     "id": "i815f0ef320",
+     "code": "A",
+     "sentence": 82,
+     "gt_text": "See the cat glaring at the scared mouse.",
+     "transcription": "SEE THE CAT GLARING AT THE STEARED MOUSE AD"
+    },
+    {
+     "id": "ie661d9fe39",
+     "code": "A",
      "sentence": 86,
      "gt_text": "The grass curled around the fence post.",
      "transcription": "THE GRASS CURLED AROUND THE PONCE POST"
     },
     {
-     "id": "iefa1df3da7",
-     "code": "D",
-     "sentence": 89,
-     "gt_text": "Always close the barn door tight.",
-     "transcription": "ALWAYS CLOSE THE BON DOOR TIGHT"
+     "id": "i8087a1798f",
+     "code": "A",
+     "sentence": 87,
+     "gt_text": "Cut the pie into large parts.",
+     "transcription": "CUT THE PIE INTO LARGE POTS"
     },
     {
-     "id": "ia6567e5862",
-     "code": "D",
-     "sentence": 92,
-     "gt_text": "A wisp of cloud hung in the blue air.",
-     "transcription": "A WISP OF CLOUD HING IN THE BLUE AIR"
+     "id": "i92089b30a0",
+     "code": "A",
+     "sentence": 91,
+     "gt_text": "The slush lay deep along the street.",
+     "transcription": "THE SLUT LAY DEEP ALONG THE STREET"
     },
     {
-     "id": "if81fd3af07",
-     "code": "D",
-     "sentence": 93,
-     "gt_text": "A pound of sugar costs more than eggs.",
-     "transcription": "A POUND OF SUGAR COSTS MORE THAN UGS"
-    },
-    {
-     "id": "ib6aeba42d0",
-     "code": "D",
-     "sentence": 95,
-     "gt_text": "The play seems dull and quite stupid.",
-     "transcription": "THE PLAYE SEEMS DULL AND QUITE STUPID"
-    },
-    {
-     "id": "i4b9f3dd894",
-     "code": "D",
+     "id": "iad1734a26c",
+     "code": "A",
      "sentence": 97,
      "gt_text": "The term ended in late June that year.",
      "transcription": "THE TERM ENDED IN LATE JUNE THAT YEAR HE"
     },
     {
-     "id": "id9c9df7e44",
-     "code": "D",
+     "id": "icecb4d18d6",
+     "code": "A",
      "sentence": 98,
      "gt_text": "A tusk is used to make costly gifts.",
      "transcription": "BUT COS IS USED TO MAKE COSTLY GIFTS"
     },
     {
-     "id": "if5208a393e",
-     "code": "D",
+     "id": "ic2849b8a44",
+     "code": "A",
+     "sentence": 99,
+     "gt_text": "Ten pins were set in order.",
+     "transcription": "TEN PINS WERE SET IN ORDERA"
+    },
+    {
+     "id": "ifd99a2ecb1",
+     "code": "A",
      "sentence": 100,
      "gt_text": "The bill was paid every third week.",
      "transcription": "THE BILL WAS PAID EVERY THIRD WEEK OR"
     },
     {
-     "id": "i63e96aa1af",
+     "id": "ibf138c3460",
      "code": "B",
-     "sentence": 5,
-     "gt_text": "Rice is often served in round bowls.",
-     "transcription": "RASSIS OFFENCE HERV MULES"
+     "sentence": 4,
+     "gt_text": "These days a chicken leg is a rare dish.",
+     "transcription": "THESE DAYS A CHECK IN LIFE IS A RATER DIS"
     },
     {
-     "id": "i4bcca1a034",
-     "code": "B",
-     "sentence": 7,
-     "gt_text": "The box was thrown beside the parked truck.",
-     "transcription": "BOX WAS THROWN BESIDE THE PARTRAK"
-    },
-    {
-     "id": "ibeeab9221b",
+     "id": "ie76d265dd8",
      "code": "B",
      "sentence": 8,
      "gt_text": "The hogs were fed chopped corn and garbage.",
      "transcription": "HEHULLS WERE FAN CHICKED CORN AND GARVAGE"
     },
     {
-     "id": "if5df5e6f78",
+     "id": "i34c12ea9b8",
      "code": "B",
-     "sentence": 10,
-     "gt_text": "A large size in stockings is hard to sell.",
-     "transcription": "A LARGE SUZ IN STOCKINGS IS HEARD TO SELL"
+     "sentence": 9,
+     "gt_text": "Four hours of steady work faced us.",
+     "transcription": "FOUR HOURS OF STENDING WORK FACED ASES"
     },
     {
-     "id": "ifbae56702a",
+     "id": "i894a276dda",
      "code": "B",
      "sentence": 11,
      "gt_text": "The boy was there when the sun rose.",
      "transcription": "BOL WAS THERE ON THE SUN ROOMS"
     },
     {
-     "id": "i1fcf6c9992",
+     "id": "i99e6b106e2",
      "code": "B",
-     "sentence": 12,
-     "gt_text": "A rod is used to catch pink salmon.",
-     "transcription": "OUD IS USED TO CAT PAK SOLEM"
+     "sentence": 14,
+     "gt_text": "Kick the ball straight and follow through.",
+     "transcription": "TAKE THE BOLL STRIPED AND FOLLOW THROUGH"
     },
     {
-     "id": "idc84dda9b9",
+     "id": "id36af79ad2",
      "code": "B",
      "sentence": 15,
      "gt_text": "Help the woman get back to her feet.",
      "transcription": "HELP THE WOMAN GE TAT BAC TOTEAT"
     },
     {
-     "id": "ifec915d113",
+     "id": "i7bf8f8f071",
      "code": "B",
      "sentence": 16,
      "gt_text": "A pot of tea helps to pass the evening.",
      "transcription": "A POT OF CE HILPS TO PASE THE EVENING"
     },
     {
-     "id": "i09306aa871",
+     "id": "icad872298c",
      "code": "B",
      "sentence": 17,
      "gt_text": "Smoky fires lack flame and heat.",
      "transcription": "SUMTITE BLACK FLAME AND HAT"
     },
     {
-     "id": "i64c838a145",
+     "id": "i63f8e45086",
      "code": "B",
-     "sentence": 22,
-     "gt_text": "The fish twisted and turned on the bent hook.",
-     "transcription": "THEFISH TOOK REST INTER TURNED ON THE BOUT"
+     "sentence": 19,
+     "gt_text": "The salt breeze came across from the sea.",
+     "transcription": "SALTBREES CAME ACROSS FROM THE SEA"
     },
     {
-     "id": "i5f71cff814",
+     "id": "i969b8086da",
      "code": "B",
-     "sentence": 25,
-     "gt_text": "The beauty of the view stunned the young boy.",
-     "transcription": "HBEAUTY OF THE VIEWSTONE BEUNBO"
+     "sentence": 23,
+     "gt_text": "Press the pants and sew a button on the vest.",
+     "transcription": "PRESS THE PENOTS AND SE OT AFIN THE VESS"
     },
     {
-     "id": "i30c1b199c4",
+     "id": "id93bcb50b3",
      "code": "B",
-     "sentence": 29,
-     "gt_text": "It snowed, rained, and hailed the same morning.",
-     "transcription": "IT SLOWED RAID AND HELD THE SAME WARNING"
+     "sentence": 24,
+     "gt_text": "The swan dive was far short of perfect.",
+     "transcription": "HESWOLLEN DYE WAS FOR SHORT OF PERFECT"
     },
     {
-     "id": "i5b7499b28c",
+     "id": "iccdd620222",
      "code": "B",
-     "sentence": 30,
-     "gt_text": "Read verse out loud for pleasure.",
-     "transcription": "REVERSE OUTLAUD FOR PLEASURE"
+     "sentence": 27,
+     "gt_text": "Her purse was full of useless trash.",
+     "transcription": "HER PURSEE LITLE OF IF YOU STRASH"
     },
     {
-     "id": "ia1ca20854d",
-     "code": "B",
-     "sentence": 31,
-     "gt_text": "Hoist the load to your left shoulder.",
-     "transcription": "BOAST THE LOA TAKOU WIT SHELDER"
-    },
-    {
-     "id": "if41349747a",
+     "id": "ia8053e4b42",
      "code": "B",
      "sentence": 32,
      "gt_text": "Take the winding path to reach the lake.",
      "transcription": "E THE WINDID BATH TO REACH THE LAKE"
     },
     {
-     "id": "ie60b6d9611",
+     "id": "i00e2a01335",
      "code": "B",
-     "sentence": 33,
-     "gt_text": "Note closely the size of the gas tank.",
-     "transcription": "NCLOSELY THE SIZE OF THE GASTANK"
+     "sentence": 35,
+     "gt_text": "Mend the coat before you go out.",
+     "transcription": "MEN COOKD BEFORE HE GOT"
     },
     {
-     "id": "i0aef2d9a38",
+     "id": "i2ebda17da2",
      "code": "B",
      "sentence": 36,
      "gt_text": "The wrist was badly strained and hung limp.",
      "transcription": "HEWRIST WAS BADLY STRAINED AND HUNGLIV"
     },
     {
-     "id": "i417c7550f2",
+     "id": "i814d6cd782",
      "code": "B",
-     "sentence": 37,
-     "gt_text": "The stray cat gave birth to kittens.",
-     "transcription": "THE STRAKE HAD GAINED BURST TUPTONS"
+     "sentence": 42,
+     "gt_text": "The ship was torn apart on the sharp reef.",
+     "transcription": "HSHIP WAS TORN APART ON THE SHARPISH"
     },
     {
-     "id": "i06e6ac9d8a",
-     "code": "B",
-     "sentence": 38,
-     "gt_text": "The young girl gave no clear response.",
-     "transcription": "THE YOUNGGER AHEVED NO CLEAR RESPONSE"
-    },
-    {
-     "id": "i85f1dd50bf",
-     "code": "B",
-     "sentence": 39,
-     "gt_text": "The meal was cooked before the bell rang.",
-     "transcription": "THE MILLS  BEFORE THE BELL RANG"
-    },
-    {
-     "id": "i91aaa07996",
-     "code": "B",
-     "sentence": 41,
-     "gt_text": "A king ruled the state in the early days.",
-     "transcription": "AKING ROLED THE STATE IN THE EARLY DAYS"
-    },
-    {
-     "id": "ie0926146de",
+     "id": "i4191fcfe88",
      "code": "B",
      "sentence": 43,
      "gt_text": "Sickness kept him home the third week.",
      "transcription": "SICKNESS KEPT HIM HOME THE FIRN WHEAT"
     },
     {
-     "id": "i3a374a6cc9",
+     "id": "i10552ae5ca",
      "code": "B",
-     "sentence": 45,
-     "gt_text": "The lazy cow lay in the cool grass.",
-     "transcription": "LASAGE COLATE IN THE COL BREATHS"
+     "sentence": 44,
+     "gt_text": "The wide road shimmered in the hot sun.",
+     "transcription": "EWIDE ROOD SHE MARED IN THE HOPZONE"
     },
     {
-     "id": "ic617ee0eb0",
+     "id": "idc7e56ac3d",
+     "code": "B",
+     "sentence": 47,
+     "gt_text": "The rope will bind the seven books at once.",
+     "transcription": "THE REP WILL BUYING THE SEVEN BOKES AT ONCE"
+    },
+    {
+     "id": "if14312ece2",
      "code": "B",
      "sentence": 48,
      "gt_text": "Hop over the fence and plunge in.",
      "transcription": "HOPOWITH EVENTS AND PLUNGIN"
     },
     {
-     "id": "ie2d1c3d1bc",
+     "id": "i4dd334886f",
      "code": "B",
-     "sentence": 50,
-     "gt_text": "Mesh wire keeps chicks inside.",
-     "transcription": "MISS LAR PEEPS STICKS INSIDE"
+     "sentence": 49,
+     "gt_text": "The friendly gang left the drug store.",
+     "transcription": "THE FRIENDLY GAN LEFT THE DROG STOOL"
     },
     {
-     "id": "ia0e38690e7",
+     "id": "i68c5c14262",
      "code": "B",
      "sentence": 51,
      "gt_text": "The frosty air passed through the coat.",
      "transcription": "FROTIER PASSED THROUGH THE COTE"
     },
     {
-     "id": "i80c7867a38",
-     "code": "B",
-     "sentence": 53,
-     "gt_text": "Adding fast leads to wrong sums.",
-     "transcription": "ADDING FAST LEANS TO ROM SUMS"
-    },
-    {
-     "id": "i86b2d10e3d",
-     "code": "B",
-     "sentence": 54,
-     "gt_text": "The show was a flop from the very start.",
-     "transcription": "ESHOW WAS A FLOCK FROM THE VERY START"
-    },
-    {
-     "id": "i816b8c66f2",
+     "id": "icf62584ab3",
      "code": "B",
      "sentence": 56,
      "gt_text": "The wagon moved on well oiled wheels.",
      "transcription": "WADEN MOTON WERE OLD WHEELS"
     },
     {
-     "id": "if24e28e674",
+     "id": "i0f6238d0a0",
      "code": "B",
-     "sentence": 58,
-     "gt_text": "A cup of sugar makes sweet fudge.",
-     "transcription": "A CUPOSE MAKES SWEET FOACH"
+     "sentence": 57,
+     "gt_text": "March the soldiers past the next hill.",
+     "transcription": "WATCHED THE SOLDIERS PASS THE NEXT"
     },
     {
-     "id": "i251d0ab994",
+     "id": "ia429ee7f3d",
      "code": "B",
-     "sentence": 61,
-     "gt_text": "We talked of the side show in the circus.",
-     "transcription": "WE CARKED THE SIDE SHOOK THE SURFACE"
+     "sentence": 60,
+     "gt_text": "Both lost their lives in the raging storm.",
+     "transcription": "BOLOST THEIR LIFT IN THE REGIME STORE"
     },
     {
-     "id": "ie46d0c62c3",
-     "code": "B",
-     "sentence": 62,
-     "gt_text": "Use a pencil to write the first draft.",
-     "transcription": "IS APISCIL TO ERECT THE FIRST BERF"
-    },
-    {
-     "id": "i6c90e639e1",
-     "code": "B",
-     "sentence": 64,
-     "gt_text": "The clock struck to mark the third period.",
-     "transcription": "HECLOCK STRUCK TO MARK THE THIRD CURIA"
-    },
-    {
-     "id": "i15ec41e6f6",
-     "code": "B",
-     "sentence": 65,
-     "gt_text": "A small creek cut across the field.",
-     "transcription": "A SMALL OR QUAKE COT AFIELD"
-    },
-    {
-     "id": "i1aef8d9ff0",
+     "id": "i20ef7e85ec",
      "code": "B",
      "sentence": 68,
      "gt_text": "This is a grand season for hikes on the road.",
      "transcription": "THIS IS A GRANS HES IN FOUR FIGHTS ON THE ROAD"
     },
     {
-     "id": "i106a677623",
+     "id": "i493d2bf042",
      "code": "B",
-     "sentence": 71,
-     "gt_text": "A yacht slid around the point into the bay.",
-     "transcription": "AND H SLATED ROUND THE POINT INTO THE BEE"
+     "sentence": 69,
+     "gt_text": "The dune rose from the edge of the water.",
+     "transcription": "DIN BOS FROM THE AGE OF THE WATER"
     },
     {
-     "id": "i6a1965e435",
+     "id": "id4babd4745",
+     "code": "B",
+     "sentence": 74,
+     "gt_text": "The walled town was seized without a fight.",
+     "transcription": "WALT AND USESED WITHOUT A FIGHT"
+    },
+    {
+     "id": "i0e5582a3bd",
      "code": "B",
      "sentence": 75,
      "gt_text": "The lease ran out in sixteen weeks.",
      "transcription": "LEES RAN OUT IN SIXTEEN WAKES"
     },
     {
-     "id": "i27c618fc1e",
+     "id": "i09f11ddff7",
      "code": "B",
-     "sentence": 76,
-     "gt_text": "A tame squirrel makes a nice pet.",
-     "transcription": "A TAME SQUIRREL LEGS AN ICE PIT"
+     "sentence": 79,
+     "gt_text": "The pearl was worn in a thin silver ring.",
+     "transcription": "PEER WAS WORNN VINSILVER MOR"
     },
     {
-     "id": "if4bbf9bb01",
+     "id": "i6a7b38785b",
      "code": "B",
      "sentence": 83,
      "gt_text": "There are more than two factors here.",
      "transcription": "THER ARE MORE THAN INTIE FACTORS HERE"
     },
     {
-     "id": "ica07dc02b1",
+     "id": "i7d2412579d",
      "code": "B",
-     "sentence": 85,
-     "gt_text": "The lawyer tried to lose his case.",
-     "transcription": "THE LAWYER TRIED TO LOSE HIS KINS"
+     "sentence": 89,
+     "gt_text": "Always close the barn door tight.",
+     "transcription": "ALORDIES CLOSE THE BARN DORTAE"
     },
     {
-     "id": "i6e725c2675",
-     "code": "C",
+     "id": "idde3d48408",
+     "code": "B",
+     "sentence": 90,
+     "gt_text": "He lay prone and hardly moved a limb.",
+     "transcription": "HE LAI FROWN AND HURRIEDLY MOVED A LIMB"
+    },
+    {
+     "id": "ib79a1a7d6f",
+     "code": "B",
+     "sentence": 97,
+     "gt_text": "The term ended in late June that year.",
+     "transcription": "RETERN AND DEAD IN LATE JUE THAT YEAR"
+    },
+    {
+     "id": "iac14e5064c",
+     "code": "B",
+     "sentence": 98,
+     "gt_text": "A tusk is used to make costly gifts.",
+     "transcription": "ATUSITES USED TO MAKE COSTLIS"
+    },
+    {
+     "id": "i26b2ddc481",
+     "code": "D",
      "sentence": 2,
      "gt_text": "Glue the sheet to the dark blue background.",
      "transcription": "GLOTING IN THE DARK BLUE BLUE BLUE BAND"
     },
     {
-     "id": "i6aafb918c8",
-     "code": "C",
-     "sentence": 7,
-     "gt_text": "The box was thrown beside the parked truck.",
-     "transcription": "I WAS THROWN THROWN BESIDE THE PARKED TRUCK"
+     "id": "ifccf6f111c",
+     "code": "D",
+     "sentence": 8,
+     "gt_text": "The hogs were fed chopped corn and garbage.",
+     "transcription": "HOGS WERE FED CHOPPED CORN AND GARBAGE"
     },
     {
-     "id": "i7f07b6e08e",
-     "code": "C",
+     "id": "i695a4f4145",
+     "code": "D",
      "sentence": 9,
      "gt_text": "Four hours of steady work faced us.",
      "transcription": "S OF STEADY WORK FACED US"
     },
     {
-     "id": "iddeb561699",
-     "code": "C",
+     "id": "i9c09018aee",
+     "code": "D",
      "sentence": 10,
      "gt_text": "A large size in stockings is hard to sell.",
      "transcription": "A LARGE STOCKINGS IS HARD TO HARD TO SELL"
     },
     {
-     "id": "i53f655860b",
-     "code": "C",
-     "sentence": 14,
-     "gt_text": "Kick the ball straight and follow through.",
-     "transcription": "BAR STRAIGHT FOLLOW THROUGH"
+     "id": "i62775e0ec3",
+     "code": "D",
+     "sentence": 11,
+     "gt_text": "The boy was there when the sun rose.",
+     "transcription": "A BOY WAS THERE WHEN THE SUN ROSE"
     },
     {
-     "id": "i40b8f8903b",
-     "code": "C",
-     "sentence": 16,
-     "gt_text": "A pot of tea helps to pass the evening.",
-     "transcription": "THOUGHT OF TEA HELPS TO PASS THE EVENING"
+     "id": "i0c7579501a",
+     "code": "D",
+     "sentence": 19,
+     "gt_text": "The salt breeze came across from the sea.",
+     "transcription": "THATACROSS FROM THE SEA"
     },
     {
-     "id": "i5a141b1a1b",
-     "code": "C",
+     "id": "i7819faa06e",
+     "code": "D",
      "sentence": 22,
      "gt_text": "The fish twisted and turned on the bent hook.",
      "transcription": "HFIH WAS TWISTED AND TURNED ON THE BENT HOOK"
     },
     {
-     "id": "i1f12011caa",
-     "code": "C",
+     "id": "i26c734bb05",
+     "code": "D",
+     "sentence": 23,
+     "gt_text": "Press the pants and sew a button on the vest.",
+     "transcription": "PRESS THE PANTS AND SEW A BUTTON UTON ON THE VEST"
+    },
+    {
+     "id": "i08052daad3",
+     "code": "D",
      "sentence": 24,
      "gt_text": "The swan dive was far short of perfect.",
      "transcription": "ON UN HIS WOR FOR SHORT"
     },
     {
-     "id": "ib15bf80676",
-     "code": "C",
+     "id": "i9e992a34a1",
+     "code": "D",
      "sentence": 30,
      "gt_text": "Read verse out loud for pleasure.",
      "transcription": "FOR FOR PLEASURE"
     },
     {
-     "id": "i58078548d7",
-     "code": "C",
+     "id": "ia121f8c156",
+     "code": "D",
      "sentence": 34,
      "gt_text": "Wipe the grease off his dirty face.",
      "transcription": "WIPE THEIDIIN OFF HIS DIRTY FAR FA FACE"
     },
     {
-     "id": "i2d590e83da",
-     "code": "C",
-     "sentence": 37,
-     "gt_text": "The stray cat gave birth to kittens.",
-     "transcription": "FRAK HAD GAD GD GA KITTENS"
+     "id": "i1a52ebdac5",
+     "code": "D",
+     "sentence": 35,
+     "gt_text": "Mend the coat before you go out.",
+     "transcription": "AND THE COLD PEPEPERVI OUT"
     },
     {
-     "id": "id4028d042b",
-     "code": "C",
+     "id": "i8cb3386c3e",
+     "code": "D",
      "sentence": 38,
      "gt_text": "The young girl gave no clear response.",
      "transcription": "A YOUNG GIRL GIRL GAVE NO CLEAR RESPONSE"
     },
     {
-     "id": "i3bf96d4403",
-     "code": "C",
+     "id": "i58a6245b59",
+     "code": "D",
+     "sentence": 39,
+     "gt_text": "The meal was cooked before the bell rang.",
+     "transcription": "THE MEAL WAS COOKED BEFORE THE THE BELL RANG"
+    },
+    {
+     "id": "i6231e9ca80",
+     "code": "D",
+     "sentence": 40,
+     "gt_text": "What joy there is in living.",
+     "transcription": "WHAT JOY THERE THERES IN LIVING"
+    },
+    {
+     "id": "ic6c88e03b6",
+     "code": "D",
      "sentence": 41,
      "gt_text": "A king ruled the state in the early days.",
      "transcription": "EDIN THE EARLY DAY DAYS"
     },
     {
-     "id": "i5dd1aa6c5e",
-     "code": "C",
-     "sentence": 53,
-     "gt_text": "Adding fast leads to wrong sums.",
-     "transcription": "INFEST LEADS TO WRONG SUMS"
+     "id": "i7dc707aef9",
+     "code": "D",
+     "sentence": 44,
+     "gt_text": "The wide road shimmered in the hot sun.",
+     "transcription": "WIDE RIDE ROACH AND THE HOT SUN"
     },
     {
-     "id": "i98120d7126",
-     "code": "C",
+     "id": "ie11c6a4b5e",
+     "code": "D",
+     "sentence": 47,
+     "gt_text": "The rope will bind the seven books at once.",
+     "transcription": "ROPE WILL GO ON SEVEN BOOKS AT ONCE"
+    },
+    {
+     "id": "i9c0f66b32d",
+     "code": "D",
+     "sentence": 48,
+     "gt_text": "Hop over the fence and plunge in.",
+     "transcription": "OP AWAYEAIININ IN HIM"
+    },
+    {
+     "id": "i77b368c553",
+     "code": "D",
      "sentence": 54,
      "gt_text": "The show was a flop from the very start.",
      "transcription": "HESHOW WAS A FLOP FROM THE VERY STARRY START"
     },
     {
-     "id": "i24e4b82987",
-     "code": "C",
+     "id": "ia19d44c93e",
+     "code": "D",
      "sentence": 57,
      "gt_text": "March the soldiers past the next hill.",
      "transcription": "E TASK TO BASK THE NEXT HILL"
     },
     {
-     "id": "i00353e0c86",
-     "code": "C",
-     "sentence": 58,
-     "gt_text": "A cup of sugar makes sweet fudge.",
-     "transcription": "A CUP UP OF SUGAR MAK AAFIED BUDGE"
-    },
-    {
-     "id": "ia8346d2b7e",
-     "code": "C",
+     "id": "i56ef151673",
+     "code": "D",
      "sentence": 60,
      "gt_text": "Both lost their lives in the raging storm.",
      "transcription": "BOTH LOST THEIR LIVES IN THE REGAT"
     },
     {
-     "id": "ibbac7b7ab2",
-     "code": "C",
+     "id": "i1fa6855857",
+     "code": "D",
      "sentence": 62,
      "gt_text": "Use a pencil to write the first draft.",
      "transcription": "USE A PENCIL TO WRITE THE FRAFT"
     },
     {
-     "id": "ie6f031f4b9",
-     "code": "C",
+     "id": "iaef8303249",
+     "code": "D",
      "sentence": 63,
      "gt_text": "He ran half way to the hardware store.",
      "transcription": "AHEN HADTE WAY TO T THE STORE"
     },
     {
-     "id": "ibf1f8941b6",
-     "code": "C",
-     "sentence": 65,
-     "gt_text": "A small creek cut across the field.",
-     "transcription": "A SMALL FI MALL FOR"
-    },
-    {
-     "id": "i4b01d6d903",
-     "code": "C",
+     "id": "i9fb6af98b2",
+     "code": "D",
      "sentence": 67,
      "gt_text": "The set of china hit the floor with a crash.",
      "transcription": "SITO TIME THE FLOOR LOR MATI A CRASH"
     },
     {
-     "id": "ib05e7f503c",
-     "code": "C",
+     "id": "ic94bdffa7d",
+     "code": "D",
      "sentence": 68,
      "gt_text": "This is a grand season for hikes on the road.",
      "transcription": "THIS IS A GRAND SEASON FOR PIKES ON THE ROAD"
     },
     {
-     "id": "iee064f768d",
-     "code": "C",
+     "id": "i20d960af85",
+     "code": "D",
      "sentence": 69,
      "gt_text": "The dune rose from the edge of the water.",
      "transcription": "DEDERS FOREEENEEWITHTHE DEDEDEEETETENTENTETENENTENTENTENTENTENTENT E NON"
     },
     {
-     "id": "i3b9ad7558f",
-     "code": "C",
-     "sentence": 70,
-     "gt_text": "Those words were the cue for the actor to leave.",
-     "transcription": "WARDS WORDS WERE THE CUE FOR THE ACTOR TO LEAVE"
-    },
-    {
-     "id": "i24dbf2eed1",
-     "code": "C",
-     "sentence": 71,
-     "gt_text": "A yacht slid around the point into the bay.",
-     "transcription": "I GOT SLID AROUND THE POINT INTO THE BAY"
-    },
-    {
-     "id": "i742fdeb035",
-     "code": "C",
-     "sentence": 74,
-     "gt_text": "The walled town was seized without a fight.",
-     "transcription": "WAT WAS SEIZED WITHOUT A TOUT A FIGHT"
-    },
-    {
-     "id": "i7a1cc5a8a0",
-     "code": "C",
-     "sentence": 75,
-     "gt_text": "The lease ran out in sixteen weeks.",
-     "transcription": "LEASE RUN OUT IN SIXTEENKS"
-    },
-    {
-     "id": "ib5582dd972",
-     "code": "C",
+     "id": "ie9f55e3aa2",
+     "code": "D",
      "sentence": 76,
      "gt_text": "A tame squirrel makes a nice pet.",
      "transcription": "TE MAKES A NICE PIT"
     },
     {
-     "id": "i42f58c43ce",
-     "code": "C",
+     "id": "icc633cbf79",
+     "code": "D",
      "sentence": 77,
      "gt_text": "The horn of the car woke the sleeping cop.",
      "transcription": "THE PHONE OF THE CAR WOKE THE SLEEPING CAR"
     },
     {
-     "id": "i07215203c7",
-     "code": "C",
-     "sentence": 79,
-     "gt_text": "The pearl was worn in a thin silver ring.",
-     "transcription": "PEARL WAS WORN IN A THIN SILVER RING"
-    },
-    {
-     "id": "i35f76dce6e",
-     "code": "C",
+     "id": "iea4b36b545",
+     "code": "D",
      "sentence": 80,
      "gt_text": "The fruit peel was cut in thick slices.",
      "transcription": "THE FIRT PEEL WAS CUT IN THICK SLICES"
     },
     {
-     "id": "i555cbbc080",
-     "code": "C",
+     "id": "idfbeebb4ea",
+     "code": "D",
      "sentence": 84,
      "gt_text": "The hat brim was wide and too droopy.",
      "transcription": "A BI"
     },
     {
-     "id": "if5792ecd75",
-     "code": "C",
-     "sentence": 86,
-     "gt_text": "The grass curled around the fence post.",
-     "transcription": "GGRESS CURLED AROUND THE FENCE POST"
+     "id": "iaef521ca9f",
+     "code": "D",
+     "sentence": 87,
+     "gt_text": "Cut the pie into large parts.",
+     "transcription": "CUTIT INTO LARGE PARTS"
     },
     {
-     "id": "i4b4ae9ee11",
-     "code": "C",
-     "sentence": 91,
-     "gt_text": "The slush lay deep along the street.",
-     "transcription": "SLUSH LADY ALONG THE STREET"
+     "id": "icffbbff9e0",
+     "code": "D",
+     "sentence": 88,
+     "gt_text": "Men strive but seldom get rich.",
+     "transcription": "MEN VE ET SELDOM GET RICH"
     },
     {
-     "id": "ie0efe78b60",
-     "code": "C",
+     "id": "i841f1e0ee9",
+     "code": "D",
      "sentence": 92,
      "gt_text": "A wisp of cloud hung in the blue air.",
      "transcription": "CLAT HAR HARTHIM IN THE BLUE"
     },
     {
-     "id": "i8df5492e22",
+     "id": "ic9dc45488d",
+     "code": "D",
+     "sentence": 94,
+     "gt_text": "The fin was sharp and cut the clear water.",
+     "transcription": "THE FIFIN WAS SHARP AND CUT THE CLEAR WATER"
+    },
+    {
+     "id": "i30feef71cb",
      "code": "C",
-     "sentence": 95,
-     "gt_text": "The play seems dull and quite stupid.",
-     "transcription": "THE PLACE SEEMS DULL AND QUITE IE LELE LE LE LE LE LE LE LE LE LELELE"
+     "sentence": 5,
+     "gt_text": "Rice is often served in round bowls.",
+     "transcription": "RICE IS OFTEN SERVED IN ROUND BOWLS"
     },
     {
-     "id": "i53a2cb5f38",
+     "id": "ic809c67417",
      "code": "C",
-     "sentence": 98,
-     "gt_text": "A tusk is used to make costly gifts.",
-     "transcription": "TUSKS USED TO MAKE COSTLY GIFTS"
+     "sentence": 8,
+     "gt_text": "The hogs were fed chopped corn and garbage.",
+     "transcription": "THE HOGS WERE FED CHOPPED CORN AND GARBAGE"
     },
     {
-     "id": "i972f1d9bef",
+     "id": "i71645bd776",
      "code": "C",
-     "sentence": 99,
-     "gt_text": "Ten pins were set in order.",
-     "transcription": "ANTENS WERE SET IN ORDER"
+     "sentence": 11,
+     "gt_text": "The boy was there when the sun rose.",
+     "transcription": "THE BOY WAS THERE WHEN THE SUN ROSE"
     },
     {
-     "id": "i14fe3216bd",
+     "id": "ic15f1ff97c",
      "code": "C",
-     "sentence": 100,
-     "gt_text": "The bill was paid every third week.",
-     "transcription": "HBILL WAS PAID EVERY THIRD WEEK"
+     "sentence": 15,
+     "gt_text": "Help the woman get back to her feet.",
+     "transcription": "HELP THE WOMAN GET BACK TO HER FEET"
     },
     {
-     "id": "i881a42b629",
-     "code": "A",
-     "sentence": 1,
-     "gt_text": "The birch canoe slid on the smooth planks.",
-     "transcription": "THE BIRCH CANOE SLID ON THE SMOOTH PLANKS"
-    },
-    {
-     "id": "i4e94b28b9d",
-     "code": "A",
-     "sentence": 2,
-     "gt_text": "Glue the sheet to the dark blue background.",
-     "transcription": "GLUE THE SHEET TO THE DARK BLUE BACKGROUND"
-    },
-    {
-     "id": "i60280a07ee",
-     "code": "A",
-     "sentence": 7,
-     "gt_text": "The box was thrown beside the parked truck.",
-     "transcription": "THE BOX WAS THROWN BESIDE THE PARKED TRUCK"
-    },
-    {
-     "id": "i25e5ce0ca6",
-     "code": "A",
-     "sentence": 12,
-     "gt_text": "A rod is used to catch pink salmon.",
-     "transcription": "A ROD IS USED TO CATCH PINK SALMON"
-    },
-    {
-     "id": "i20f217faac",
-     "code": "A",
-     "sentence": 14,
-     "gt_text": "Kick the ball straight and follow through.",
-     "transcription": "KICK THE BALL STRAIGHT AND FOLLOW THROUGH"
-    },
-    {
-     "id": "i39cdec85da",
-     "code": "A",
+     "id": "i7430c32323",
+     "code": "C",
      "sentence": 16,
      "gt_text": "A pot of tea helps to pass the evening.",
      "transcription": "A POT OF TEA HELPS TO PASS THE EVENING"
     },
     {
-     "id": "i8250de4292",
-     "code": "A",
-     "sentence": 17,
-     "gt_text": "Smoky fires lack flame and heat.",
-     "transcription": "SMOKY FIRES LACK FLAME AND HEAT"
+     "id": "ica5b471c43",
+     "code": "C",
+     "sentence": 22,
+     "gt_text": "The fish twisted and turned on the bent hook.",
+     "transcription": "THE FISH TWISTED AND TURNED ON THE BENT HOOK"
     },
     {
-     "id": "i3c3e2aad3e",
-     "code": "A",
-     "sentence": 20,
-     "gt_text": "The girl at the booth sold fifty bonds.",
-     "transcription": "THE GIRL AT THE BOOTH SOLD FIFTY BONDS"
+     "id": "i13a1cba182",
+     "code": "C",
+     "sentence": 23,
+     "gt_text": "Press the pants and sew a button on the vest.",
+     "transcription": "PRESS THE PANTS AND SEW A BUTTON ON THE VEST"
     },
     {
-     "id": "i2fc13e66af",
-     "code": "A",
+     "id": "i0bf4dd05d5",
+     "code": "C",
      "sentence": 24,
      "gt_text": "The swan dive was far short of perfect.",
      "transcription": "THE SWAN DIVE WAS FAR SHORT OF PERFECT"
     },
     {
-     "id": "i5f4a82e06a",
-     "code": "A",
+     "id": "iefe6e4b8df",
+     "code": "C",
      "sentence": 25,
      "gt_text": "The beauty of the view stunned the young boy.",
      "transcription": "THE BEAUTY OF THE VIEW STUNNED THE YOUNG BOY"
     },
     {
-     "id": "ia96b770df1",
-     "code": "A",
-     "sentence": 28,
-     "gt_text": "The colt reared and threw the tall rider.",
-     "transcription": "THE COLT REARED AND THREW THE TALL RIDER"
+     "id": "i7c0a3c2c6f",
+     "code": "C",
+     "sentence": 27,
+     "gt_text": "Her purse was full of useless trash.",
+     "transcription": "HER PURSE WAS FULL OF USELESS TRASH"
     },
     {
-     "id": "idc0bd7696f",
-     "code": "A",
-     "sentence": 29,
-     "gt_text": "It snowed, rained, and hailed the same morning.",
-     "transcription": "IT SNOWED RAINED AND HAILED THE SAME MORNING"
-    },
-    {
-     "id": "i9921da132c",
-     "code": "A",
+     "id": "ie64160ff92",
+     "code": "C",
      "sentence": 32,
      "gt_text": "Take the winding path to reach the lake.",
      "transcription": "TAKE THE WINDING PATH TO REACH THE LAKE"
     },
     {
-     "id": "i640542bd75",
-     "code": "A",
-     "sentence": 34,
-     "gt_text": "Wipe the grease off his dirty face.",
-     "transcription": "WIPE THE GREASE OFF HIS DIRTY FACE"
-    },
-    {
-     "id": "ib313f2a37c",
-     "code": "A",
+     "id": "if106d2ed7c",
+     "code": "C",
      "sentence": 35,
      "gt_text": "Mend the coat before you go out.",
      "transcription": "MEND THE COAT BEFORE YOU GO OUT"
     },
     {
-     "id": "i2112bdf75f",
-     "code": "A",
+     "id": "iaa8522dc4e",
+     "code": "C",
+     "sentence": 36,
+     "gt_text": "The wrist was badly strained and hung limp.",
+     "transcription": "THE WRIST WAS BADLY STRAINED AND HUNG LIMP"
+    },
+    {
+     "id": "i9291bacf80",
+     "code": "C",
      "sentence": 38,
      "gt_text": "The young girl gave no clear response.",
      "transcription": "THE YOUNG GIRL GAVE NO CLEAR RESPONSE"
     },
     {
-     "id": "i4c6b944e09",
-     "code": "A",
-     "sentence": 39,
-     "gt_text": "The meal was cooked before the bell rang.",
-     "transcription": "THE MEAL WAS COOKED BEFORE THE BELL RANG"
+     "id": "i37e0397e67",
+     "code": "C",
+     "sentence": 40,
+     "gt_text": "What joy there is in living.",
+     "transcription": "WHAT JOY THERE IS IN LIVING"
     },
     {
-     "id": "i6a8cffbbb1",
-     "code": "A",
-     "sentence": 41,
-     "gt_text": "A king ruled the state in the early days.",
-     "transcription": "A KING RULED THE STATE IN THE EARLY DAYS"
+     "id": "i173acaaf82",
+     "code": "C",
+     "sentence": 42,
+     "gt_text": "The ship was torn apart on the sharp reef.",
+     "transcription": "THE SHIP WAS TORN APART ON THE SHARP REEF"
     },
     {
-     "id": "iedbdaa3bfa",
-     "code": "A",
-     "sentence": 45,
-     "gt_text": "The lazy cow lay in the cool grass.",
-     "transcription": "THE LAZY COW LAY IN THE COOL GRASS"
+     "id": "id1c6be6432",
+     "code": "C",
+     "sentence": 44,
+     "gt_text": "The wide road shimmered in the hot sun.",
+     "transcription": "THE WIDE ROAD SHIMMERED IN THE HOT SUN"
     },
     {
-     "id": "i97246cb09c",
-     "code": "A",
+     "id": "ie3e27ac8e9",
+     "code": "C",
+     "sentence": 47,
+     "gt_text": "The rope will bind the seven books at once.",
+     "transcription": "THE ROPE WILL BIND THE SEVEN BOOKS AT ONCE"
+    },
+    {
+     "id": "ic7a09f1aed",
+     "code": "C",
      "sentence": 48,
      "gt_text": "Hop over the fence and plunge in.",
      "transcription": "HOP OVER THE FENCE AND PLUNGE IN"
     },
     {
-     "id": "i4c6c148fc6",
-     "code": "A",
-     "sentence": 50,
-     "gt_text": "Mesh wire keeps chicks inside.",
-     "transcription": "MESH WIRE KEEPS CHICKS INSIDE"
-    },
-    {
-     "id": "i5aa31034dd",
-     "code": "A",
+     "id": "ib2809e2109",
+     "code": "C",
      "sentence": 51,
      "gt_text": "The frosty air passed through the coat.",
      "transcription": "THE FROSTY AIR PASSED THROUGH THE COAT"
     },
     {
-     "id": "i3f15a5712c",
-     "code": "A",
-     "sentence": 53,
-     "gt_text": "Adding fast leads to wrong sums.",
-     "transcription": "ADDING FAST LEADS TO WRONG SUMS"
+     "id": "i6b8611f583",
+     "code": "C",
+     "sentence": 55,
+     "gt_text": "A saw is a tool used for making boards.",
+     "transcription": "A SAW IS A TOOL USED FOR MAKING BOARDS"
     },
     {
-     "id": "ia171df24d9",
-     "code": "A",
+     "id": "i4e81d1bf06",
+     "code": "C",
      "sentence": 56,
      "gt_text": "The wagon moved on well oiled wheels.",
      "transcription": "THE WAGON MOVED ON WELL OILED WHEELS"
     },
     {
-     "id": "ia35e87905a",
-     "code": "A",
-     "sentence": 62,
-     "gt_text": "Use a pencil to write the first draft.",
-     "transcription": "USE A PENCIL TO WRITE THE FIRST DRAFT"
+     "id": "i1df20b575d",
+     "code": "C",
+     "sentence": 57,
+     "gt_text": "March the soldiers past the next hill.",
+     "transcription": "MARCH THE SOLDIERS PAST THE NEXT HILL"
     },
     {
-     "id": "i87f2ed33e1",
-     "code": "A",
+     "id": "i6d254bf7ae",
+     "code": "C",
+     "sentence": 58,
+     "gt_text": "A cup of sugar makes sweet fudge.",
+     "transcription": "A CUP OF SUGAR MAKES SWEET FUDGE"
+    },
+    {
+     "id": "i90e44fc3a9",
+     "code": "C",
      "sentence": 63,
      "gt_text": "He ran half way to the hardware store.",
      "transcription": "HE RAN HALF WAY TO THE HARDWARE STORE"
     },
     {
-     "id": "i600ecfb95b",
-     "code": "A",
-     "sentence": 65,
-     "gt_text": "A small creek cut across the field.",
-     "transcription": "A SMALL CREEK CUT ACROSS THE FIELD"
-    },
-    {
-     "id": "i02689bba65",
-     "code": "A",
+     "id": "iec6c0be55c",
+     "code": "C",
      "sentence": 68,
      "gt_text": "This is a grand season for hikes on the road.",
      "transcription": "THIS IS A GRAND SEASON FOR HIKES ON THE ROAD"
     },
     {
-     "id": "if66acf49eb",
-     "code": "A",
+     "id": "ief15831fee",
+     "code": "C",
      "sentence": 71,
      "gt_text": "A yacht slid around the point into the bay.",
      "transcription": "A YACHT SLID AROUND THE POINT INTO THE BAY"
     },
     {
-     "id": "ie6ba6a098f",
-     "code": "A",
-     "sentence": 75,
-     "gt_text": "The lease ran out in sixteen weeks.",
-     "transcription": "THE LEASE RAN OUT IN SIXTEEN WEEKS"
+     "id": "i6a1ad1daaa",
+     "code": "C",
+     "sentence": 74,
+     "gt_text": "The walled town was seized without a fight.",
+     "transcription": "THE WALLED TOWN WAS SEIZED WITHOUT A FIGHT"
     },
     {
-     "id": "i7052177eb7",
-     "code": "A",
-     "sentence": 76,
-     "gt_text": "A tame squirrel makes a nice pet.",
-     "transcription": "A TAME SQUIRREL MAKES A NICE PET"
+     "id": "i19101bb5fa",
+     "code": "C",
+     "sentence": 77,
+     "gt_text": "The horn of the car woke the sleeping cop.",
+     "transcription": "THE HORN OF THE CAR WOKE THE SLEEPING COP"
     },
     {
-     "id": "i5f3438b4e4",
-     "code": "A",
-     "sentence": 85,
-     "gt_text": "The lawyer tried to lose his case.",
-     "transcription": "THE LAWYER TRIED TO LOSE HIS CASE"
+     "id": "ic66a480542",
+     "code": "C",
+     "sentence": 79,
+     "gt_text": "The pearl was worn in a thin silver ring.",
+     "transcription": "THE PEARL WAS WORN IN A THIN SILVER RING"
     },
     {
-     "id": "if34b1678e4",
-     "code": "A",
-     "sentence": 86,
-     "gt_text": "The grass curled around the fence post.",
-     "transcription": "THE GRASS CURLED AROUND THE FENCE POST"
+     "id": "ibb27f9e728",
+     "code": "C",
+     "sentence": 82,
+     "gt_text": "See the cat glaring at the scared mouse.",
+     "transcription": "SEE THE CAT GLARING AT THE SCARED MOUSE"
     },
     {
-     "id": "i17788c161e",
-     "code": "A",
+     "id": "i07f45da406",
+     "code": "C",
+     "sentence": 87,
+     "gt_text": "Cut the pie into large parts.",
+     "transcription": "CUT THE PIE INTO LARGE PARTS"
+    },
+    {
+     "id": "i72ca9571e4",
+     "code": "C",
      "sentence": 89,
      "gt_text": "Always close the barn door tight.",
      "transcription": "ALWAYS CLOSE THE BARN DOOR TIGHT"
     },
     {
-     "id": "i2ff344c911",
-     "code": "A",
-     "sentence": 91,
-     "gt_text": "The slush lay deep along the street.",
-     "transcription": "THE SLUSH LAY DEEP ALONG THE STREET"
-    },
-    {
-     "id": "i1bcbe88a3f",
-     "code": "A",
+     "id": "iaf6e5bac20",
+     "code": "C",
      "sentence": 92,
      "gt_text": "A wisp of cloud hung in the blue air.",
      "transcription": "A WISP OF CLOUD HUNG IN THE BLUE AIR"
     },
     {
-     "id": "i1c46e785ad",
-     "code": "A",
-     "sentence": 93,
-     "gt_text": "A pound of sugar costs more than eggs.",
-     "transcription": "A POUND OF SUGAR COSTS MORE THAN EGGS"
-    },
-    {
-     "id": "i9b8ee4fd02",
-     "code": "A",
-     "sentence": 97,
-     "gt_text": "The term ended in late June that year.",
-     "transcription": "THE TERM ENDED IN LATE JUNE THAT YEAR"
-    },
-    {
-     "id": "i27b02de52c",
-     "code": "A",
-     "sentence": 99,
-     "gt_text": "Ten pins were set in order.",
-     "transcription": "TEN PINS WERE SET IN ORDER"
-    },
-    {
-     "id": "ib3cbb02fe9",
-     "code": "A",
-     "sentence": 100,
-     "gt_text": "The bill was paid every third week.",
-     "transcription": "THE BILL WAS PAID EVERY THIRD WEEK"
+     "id": "i076ac1ca75",
+     "code": "C",
+     "sentence": 94,
+     "gt_text": "The fin was sharp and cut the clear water.",
+     "transcription": "THE FIN WAS SHARP AND CUT THE CLEAR WATER"
     }
    ]
   },
   "wt-intent": {
    "label": "Whisper-tiny, intent",
+   "task": "commands",
    "items": [
     {
-     "id": "i7225e4979d",
-     "code": "D",
+     "id": "i3701fda698",
+     "code": "B",
      "sentence": 1,
      "gt_text": "Read my grocery list.",
      "transcription": "Read my gross outing alert"
     },
     {
-     "id": "ib5eee84bcb",
-     "code": "D",
-     "sentence": 8,
-     "gt_text": "Order one pizza from pizza hut.",
-     "transcription": "Get an alarm feet are from feet to hut"
+     "id": "i1d4c6e6fbb",
+     "code": "B",
+     "sentence": 2,
+     "gt_text": "Send an email to my boss.",
+     "transcription": "Query the stessa my take away order"
     },
     {
-     "id": "i8625c29b6a",
-     "code": "D",
+     "id": "ifac4c536fb",
+     "code": "B",
+     "sentence": 5,
+     "gt_text": "What are my current list.",
+     "transcription": "What are my current events"
+    },
+    {
+     "id": "i4da100ed14",
+     "code": "B",
      "sentence": 10,
      "gt_text": "Please remind me to call mom in half an hour.",
      "transcription": "Please Rimdine Alarm to call Mom in half an hour"
     },
     {
-     "id": "i2150ea1324",
-     "code": "D",
+     "id": "i9b8b92c247",
+     "code": "B",
      "sentence": 12,
      "gt_text": "I wish to know the weather in san fransico.",
      "transcription": "I wish to know the data time in San Francisco"
     },
     {
-     "id": "ie935783f66",
-     "code": "D",
+     "id": "i6c27fe1b4b",
+     "code": "B",
+     "sentence": 13,
+     "gt_text": "Tweet that there was an insect in the chocolate packet.",
+     "transcription": "Rate that likeness of music in the chocolate packet"
+    },
+    {
+     "id": "ic0b4cfafa8",
+     "code": "B",
      "sentence": 14,
      "gt_text": "Go back to the last episode in this podcast.",
      "transcription": "go back to the last track in this part york"
     },
     {
-     "id": "i712fd3b9f2",
-     "code": "D",
-     "sentence": 17,
-     "gt_text": "Do I have any alarms set for six am tomorrow.",
-     "transcription": "Do I have any losses Set for 6M tomorrow"
-    },
-    {
-     "id": "ica596305b3",
-     "code": "D",
+     "id": "i1778aff58e",
+     "code": "B",
      "sentence": 19,
      "gt_text": "Let me know any new emails I've received.",
      "transcription": "Let me know any math questions I received"
     },
     {
-     "id": "i63fbc59e92",
-     "code": "D",
+     "id": "i7fad9d1f42",
+     "code": "B",
+     "sentence": 20,
+     "gt_text": "What is eastern standard time right noe.",
+     "transcription": "What is these to alarm to the time right now"
+    },
+    {
+     "id": "if5c2953f51",
+     "code": "B",
      "sentence": 23,
      "gt_text": "Play for me the game harry potter and the chamber of secrets.",
      "transcription": "Recommend for me the movie prepater in the Chamber of Secrets"
     },
     {
-     "id": "ice6d62e40c",
-     "code": "D",
-     "sentence": 25,
-     "gt_text": "Could you please create a pandora channel for adele.",
-     "transcription": "Could you please create a Penshora channel for a Dell"
-    },
-    {
-     "id": "i637df0fe6b",
-     "code": "D",
+     "id": "i8b3b7c1f9a",
+     "code": "B",
      "sentence": 29,
      "gt_text": "Do not make any noise until morning alarm.",
      "transcription": "Do not make any noise our muntowning alarm"
     },
     {
-     "id": "i38bad3116b",
-     "code": "D",
+     "id": "i67c3121af6",
+     "code": "B",
      "sentence": 30,
      "gt_text": "Please play the notebook audio.",
      "transcription": "Please play a movie like the NATO"
     },
     {
-     "id": "i32cbab5b51",
-     "code": "D",
-     "sentence": 32,
-     "gt_text": "Play my midnight love playlist.",
-     "transcription": "PLETE MY MEDNIGHT LOVE PLAYLIST"
-    },
-    {
-     "id": "if0707421d4",
-     "code": "D",
+     "id": "ia147b3df41",
+     "code": "B",
      "sentence": 34,
      "gt_text": "I want it to remember my preferences and recommend me things based on them when I ask.",
      "transcription": "I want it to remember my preferences and recommend me the music outlet when I ask"
     },
     {
-     "id": "i96344af454",
-     "code": "D",
-     "sentence": 35,
-     "gt_text": "What is the nearest pizza shop.",
-     "transcription": "What pizza do you have for a vehicle to shop"
+     "id": "i05fbe86a8e",
+     "code": "B",
+     "sentence": 38,
+     "gt_text": "What degree is it outside.",
+     "transcription": "Whats the date as Im outside"
     },
     {
-     "id": "i0cb5c25d42",
-     "code": "D",
-     "sentence": 39,
-     "gt_text": "Look up the map to stores near me.",
-     "transcription": "Look up the Mammy or me for take away"
+     "id": "i451eeed219",
+     "code": "B",
+     "sentence": 41,
+     "gt_text": "What is the highest rated movie now out.",
+     "transcription": "What is the highest rated move out"
     },
     {
-     "id": "i63e7e3f52c",
-     "code": "D",
-     "sentence": 40,
-     "gt_text": "Check for all the movie theater prices and availability for a newly released movie in my location.",
-     "transcription": "Check for all the Vitheter prices and availability for a newly released Moved Movie in my location"
-    },
-    {
-     "id": "i3b0884fd16",
-     "code": "D",
-     "sentence": 44,
-     "gt_text": "Remove birthday from calendar.",
-     "transcription": "Play say from calendar"
-    },
-    {
-     "id": "i15a217cf25",
-     "code": "D",
-     "sentence": 49,
-     "gt_text": "Please add practice on feb four at king's park at two pm.",
-     "transcription": "Please set the alarm on Fib 4 at Kings Park at 2pm"
-    },
-    {
-     "id": "i2fdefa7864",
-     "code": "D",
+     "id": "iabe23b580e",
+     "code": "B",
      "sentence": 50,
      "gt_text": "It must be taste.",
      "transcription": "It must be coffee"
     },
     {
-     "id": "i0e5d158e44",
-     "code": "D",
-     "sentence": 53,
-     "gt_text": "I like senatra songs.",
-     "transcription": "Im at a post about for songs"
+     "id": "i000a614be3",
+     "code": "B",
+     "sentence": 54,
+     "gt_text": "What movies are out this week.",
+     "transcription": "What modiobooks are out this week"
     },
     {
-     "id": "ia3be3feafd",
-     "code": "D",
+     "id": "i6541aef3f7",
+     "code": "B",
+     "sentence": 55,
+     "gt_text": "I would need to be notified of church services on sundays at eleven am.",
+     "transcription": "I would need to set an alarm trip services on Sundays at 11am See"
+    },
+    {
+     "id": "ie386ae9d5c",
+     "code": "B",
      "sentence": 56,
      "gt_text": "Is there any news about the presidency.",
      "transcription": "Is there any email about the presidency"
     },
     {
-     "id": "i2cad7027cf",
-     "code": "D",
+     "id": "ib594e4cc44",
+     "code": "B",
+     "sentence": 58,
+     "gt_text": "What is the definition of logic.",
+     "transcription": "Whats the Lawdination of Logic"
+    },
+    {
+     "id": "i71656fa7e6",
+     "code": "B",
      "sentence": 59,
      "gt_text": "Show me the best recipe for spaghetti.",
      "transcription": "Show me the space to rest at the key for Skitty"
     },
     {
-     "id": "i9c3baa17f9",
-     "code": "D",
-     "sentence": 62,
-     "gt_text": "Play one more time.",
-     "transcription": "play it one more time"
+     "id": "ibf1a1ec042",
+     "code": "B",
+     "sentence": 60,
+     "gt_text": "Disable alarm for three pm.",
+     "transcription": "Disable Aloe for 3 pm"
     },
     {
-     "id": "i9c4c2abdaa",
-     "code": "D",
-     "sentence": 63,
-     "gt_text": "Wanna netflix and chill.",
-     "transcription": "Warnabletflix and Geo"
+     "id": "i5a40aaec7a",
+     "code": "B",
+     "sentence": 61,
+     "gt_text": "Cut down the volume.",
+     "transcription": "Cut down the light"
     },
     {
-     "id": "ib4162d5c72",
-     "code": "D",
-     "sentence": 65,
-     "gt_text": "Don't speak for an hour.",
-     "transcription": "Dont spin alarm an hour"
-    },
-    {
-     "id": "i83de6c8762",
-     "code": "D",
-     "sentence": 67,
-     "gt_text": "What is the location of moldova.",
-     "transcription": "What is the local dismal driver"
-    },
-    {
-     "id": "i48c061c99b",
-     "code": "D",
-     "sentence": 69,
-     "gt_text": "Front page news articles please.",
-     "transcription": "So to me news our likes please"
-    },
-    {
-     "id": "ie0c57c7998",
-     "code": "D",
+     "id": "idf488cac4e",
+     "code": "B",
      "sentence": 71,
      "gt_text": "Please add my pay days.",
      "transcription": "Please set my my day the lines"
     },
     {
-     "id": "i5ae2091f49",
-     "code": "D",
-     "sentence": 73,
-     "gt_text": "I want a meeting till three o clock.",
-     "transcription": "I want an alarm till 3 o clock"
+     "id": "iacc15648ff",
+     "code": "B",
+     "sentence": 79,
+     "gt_text": "Display list of recent emails.",
+     "transcription": "display list of recent events"
     },
     {
-     "id": "i756953a115",
-     "code": "D",
-     "sentence": 74,
-     "gt_text": "When's mark lanegan's next album out.",
-     "transcription": "Whens Mark Lee and next all them out"
+     "id": "i32e8a56f31",
+     "code": "B",
+     "sentence": 80,
+     "gt_text": "Whats the current weather.",
+     "transcription": "Whats the current or time"
     },
     {
-     "id": "ia10dcf035b",
-     "code": "D",
-     "sentence": 75,
-     "gt_text": "What is the first metro to dc.",
-     "transcription": "What is the defer Im convert to DC"
-    },
-    {
-     "id": "i84b261d0d2",
-     "code": "D",
-     "sentence": 76,
-     "gt_text": "What's on the radio right now.",
-     "transcription": "Whats muted on the rate now"
-    },
-    {
-     "id": "if4aa66b464",
-     "code": "D",
+     "id": "i15986cc8d5",
+     "code": "B",
      "sentence": 81,
      "gt_text": "Read me the latest new york times headlines.",
      "transcription": "Read me the latest in your YouTube sounds headlines"
     },
     {
-     "id": "if4a604e5af",
-     "code": "D",
+     "id": "i1209135087",
+     "code": "B",
      "sentence": 82,
      "gt_text": "Play my playlist starting from the bottom.",
      "transcription": "Slide my playlist starting from the bottom"
     },
     {
-     "id": "iee8c141838",
-     "code": "D",
+     "id": "i43cad00273",
+     "code": "B",
+     "sentence": 83,
+     "gt_text": "What time is it in austin.",
+     "transcription": "What does the meeting in Austin"
+    },
+    {
+     "id": "i884e3c0f2d",
+     "code": "B",
+     "sentence": 85,
+     "gt_text": "Olly tell me the time in g. m. t. plus five.",
+     "transcription": "Ill tell me the currency Mt plus 5"
+    },
+    {
+     "id": "i1e57030ede",
+     "code": "B",
      "sentence": 88,
      "gt_text": "I didn't get the product on time send a tweet to jcpenney.",
      "transcription": "I didnt get the Proud on time Sam till a general joke"
     },
     {
-     "id": "iefbc02ba67",
-     "code": "D",
-     "sentence": 89,
-     "gt_text": "Calendar event send invite bill malinda.",
-     "transcription": "Calarms set for a vital male endo"
+     "id": "idc87ba3b90",
+     "code": "B",
+     "sentence": 90,
+     "gt_text": "Which pole is colder south or north.",
+     "transcription": "which poll is colder south or north"
     },
     {
-     "id": "i946e3c18c9",
-     "code": "D",
-     "sentence": 92,
-     "gt_text": "Tell me the weather in barcelona in two days from now.",
-     "transcription": "Tell me the data in Barcelona in two days from now"
+     "id": "ie43fc18c00",
+     "code": "B",
+     "sentence": 91,
+     "gt_text": "Look up the definition of blunder.",
+     "transcription": "Look up the definite subblunder"
     },
     {
-     "id": "i7d7460d20d",
-     "code": "D",
-     "sentence": 94,
-     "gt_text": "Did I set an alarm to have tablets in the noon.",
-     "transcription": "Did I set a reminder to have tablets in the noon"
+     "id": "ic3eb83af16",
+     "code": "B",
+     "sentence": 95,
+     "gt_text": "Give details of rock sand.",
+     "transcription": "Give details of Rock Sand"
     },
     {
-     "id": "ib4413770e2",
-     "code": "D",
+     "id": "i1129deb984",
+     "code": "B",
      "sentence": 96,
      "gt_text": "Hey cancel all my other meetings and calls for second march as it is jim's birthday tag it as an event in your calendar.",
      "transcription": "Hey play all my podcast meetings and calls for second march as it is Jims birthday tag it as an even ..."
     },
     {
-     "id": "i3779c45c38",
-     "code": "D",
-     "sentence": 100,
-     "gt_text": "Remind me on fifth march of every year to arrange wedding anniversary presents.",
-     "transcription": "Set an alarm fifth March of every year to arrange wedding anniversary presents"
+     "id": "idc6a325333",
+     "code": "C",
+     "sentence": 3,
+     "gt_text": "Can you erase the haircut I have scheduled for friday.",
+     "transcription": "Can you erase the haircuts Good old for Freddy"
     },
     {
-     "id": "i4456525ce0",
-     "code": "B",
-     "sentence": 2,
-     "gt_text": "Send an email to my boss.",
-     "transcription": "send and availed my buffs"
-    },
-    {
-     "id": "i0b0acfeba4",
-     "code": "B",
-     "sentence": 4,
-     "gt_text": "Locate me the amazon restaurants.",
-     "transcription": "Look eat be the Amazon Restarants"
-    },
-    {
-     "id": "i290d742256",
-     "code": "B",
-     "sentence": 6,
-     "gt_text": "Today I searched all over for my phone and couldn't find it.",
-     "transcription": "To dial I searched all over for my phone and couldnt find it"
-    },
-    {
-     "id": "i00598ca3b4",
-     "code": "B",
+     "id": "i484a294067",
+     "code": "C",
      "sentence": 9,
      "gt_text": "Tell me the weather this week.",
      "transcription": "Tell me whether this week"
     },
     {
-     "id": "ia74a30f7cd",
-     "code": "B",
+     "id": "i228513d91e",
+     "code": "C",
      "sentence": 10,
      "gt_text": "Please remind me to call mom in half an hour.",
      "transcription": "Please command me to call mom in half an hour"
     },
     {
-     "id": "i2301d34690",
-     "code": "B",
-     "sentence": 11,
-     "gt_text": "What's been happening for the last two months.",
-     "transcription": "Whats been a hand in for the last two months"
+     "id": "i8592f078b8",
+     "code": "C",
+     "sentence": 12,
+     "gt_text": "I wish to know the weather in san fransico.",
+     "transcription": "Id like to know whether in San Francisco"
     },
     {
-     "id": "ic9104dff66",
-     "code": "B",
+     "id": "i35a08c3a00",
+     "code": "C",
      "sentence": 13,
      "gt_text": "Tweet that there was an insect in the chocolate packet.",
      "transcription": "to wait that there was an insect in the chocolate packet"
     },
     {
-     "id": "iae6d80ab08",
-     "code": "B",
+     "id": "i1a88083ebc",
+     "code": "C",
      "sentence": 14,
      "gt_text": "Go back to the last episode in this podcast.",
      "transcription": "the back to the last a piece in this protest"
     },
     {
-     "id": "if838dfe76b",
-     "code": "B",
-     "sentence": 18,
-     "gt_text": "Will I need an umbrella this week.",
-     "transcription": "Well I need it and braille this week"
+     "id": "if4692a7bce",
+     "code": "C",
+     "sentence": 17,
+     "gt_text": "Do I have any alarms set for six am tomorrow.",
+     "transcription": "Do I have any alms set for six in tomorrow"
     },
     {
-     "id": "i659bcfb1c4",
-     "code": "B",
+     "id": "i8ba274c0d7",
+     "code": "C",
      "sentence": 19,
      "gt_text": "Let me know any new emails I've received.",
      "transcription": "Let me know any new meals ever saved"
     },
     {
-     "id": "ieb8ec9ea98",
-     "code": "B",
+     "id": "ibd674610eb",
+     "code": "C",
+     "sentence": 21,
+     "gt_text": "When was last academy award winning movie.",
+     "transcription": "When it was lost it came in more winning movie"
+    },
+    {
+     "id": "ie7c74f11cd",
+     "code": "C",
      "sentence": 22,
      "gt_text": "Have I received new emails in the last ten minutes.",
      "transcription": "I received you may meals in the last 10 minutes"
     },
     {
-     "id": "i743891aef5",
-     "code": "B",
+     "id": "i47c9c5fef1",
+     "code": "C",
      "sentence": 23,
      "gt_text": "Play for me the game harry potter and the chamber of secrets.",
      "transcription": "Paul for Lady Game Harry Potter and the Chamber of Secrets"
     },
     {
-     "id": "i56315e8080",
-     "code": "B",
-     "sentence": 25,
-     "gt_text": "Could you please create a pandora channel for adele.",
-     "transcription": "Could you please create a panther of channel for a follow"
-    },
-    {
-     "id": "i1a9bbac838",
-     "code": "B",
+     "id": "i714ad12b4c",
+     "code": "C",
      "sentence": 26,
      "gt_text": "Play the twilight book.",
      "transcription": "Thanks for watching"
     },
     {
-     "id": "ie29b3a0c89",
-     "code": "B",
+     "id": "i915f2e9167",
+     "code": "C",
      "sentence": 29,
      "gt_text": "Do not make any noise until morning alarm.",
      "transcription": "Do not make any nose until morning alarm"
     },
     {
-     "id": "icb15eb3a3d",
-     "code": "B",
+     "id": "i23a0f9c074",
+     "code": "C",
+     "sentence": 30,
+     "gt_text": "Please play the notebook audio.",
+     "transcription": "Please play the notebook VOD8"
+    },
+    {
+     "id": "i1f2835bcdb",
+     "code": "C",
      "sentence": 31,
      "gt_text": "Set my alarm for twelve pm.",
      "transcription": "Set my law on for 12th"
     },
     {
-     "id": "i5251abf5e5",
-     "code": "B",
+     "id": "i1eb270af55",
+     "code": "C",
      "sentence": 32,
      "gt_text": "Play my midnight love playlist.",
      "transcription": "Delay my midnight love playlists"
     },
     {
-     "id": "i748930d179",
-     "code": "B",
-     "sentence": 36,
-     "gt_text": "Tell me today's date.",
-     "transcription": "Tell me to do to date"
+     "id": "i6661a53fdd",
+     "code": "C",
+     "sentence": 33,
+     "gt_text": "Where was will ferrell seen last night.",
+     "transcription": "Or was will Ferrell see last night"
     },
     {
-     "id": "i53e4bacd78",
-     "code": "B",
-     "sentence": 39,
-     "gt_text": "Look up the map to stores near me.",
-     "transcription": "Well get the mapped to stores near me"
+     "id": "i77974fdedc",
+     "code": "C",
+     "sentence": 34,
+     "gt_text": "I want it to remember my preferences and recommend me things based on them when I ask.",
+     "transcription": "I want it to remember my preference serves and recommendy things based on the Winniacs"
     },
     {
-     "id": "i074168705a",
-     "code": "B",
-     "sentence": 40,
-     "gt_text": "Check for all the movie theater prices and availability for a newly released movie in my location.",
-     "transcription": "Check for all of the Vtheta prices and validability for a new aluminum allocation"
+     "id": "i8f23b870f3",
+     "code": "C",
+     "sentence": 42,
+     "gt_text": "Alexa remove dinner with mike from my calendar.",
+     "transcription": "Also I removed dinner with Mike from MyKylender"
     },
     {
-     "id": "i0b85a1282a",
-     "code": "B",
+     "id": "i4cab12fb53",
+     "code": "C",
+     "sentence": 48,
+     "gt_text": "Turn off the lamps.",
+     "transcription": "tear off the labs"
+    },
+    {
+     "id": "ia15aa3892a",
+     "code": "C",
      "sentence": 52,
      "gt_text": "Check for emails from steve.",
      "transcription": "Check for amazes from Steve"
     },
     {
-     "id": "i5e30ac79dd",
-     "code": "B",
+     "id": "ibe79009c61",
+     "code": "C",
      "sentence": 53,
      "gt_text": "I like senatra songs.",
      "transcription": "A likes and address solves"
     },
     {
-     "id": "i3514827a89",
-     "code": "B",
+     "id": "i376a447a90",
+     "code": "C",
      "sentence": 56,
      "gt_text": "Is there any news about the presidency.",
      "transcription": "Is there any use about the presidency"
     },
     {
-     "id": "i86deb4e6c4",
-     "code": "B",
+     "id": "i7d7a0a02ba",
+     "code": "C",
      "sentence": 59,
      "gt_text": "Show me the best recipe for spaghetti.",
      "transcription": "Show me that it best for safety"
     },
     {
-     "id": "i305882e3bb",
-     "code": "B",
+     "id": "i80b1d792a0",
+     "code": "C",
      "sentence": 60,
      "gt_text": "Disable alarm for three pm.",
      "transcription": "Disable alone for three pep"
     },
     {
-     "id": "i33d658b1b3",
-     "code": "B",
+     "id": "i7e51783032",
+     "code": "C",
      "sentence": 62,
      "gt_text": "Play one more time.",
      "transcription": "Play it one more time"
     },
     {
-     "id": "iac4053b188",
-     "code": "B",
-     "sentence": 64,
-     "gt_text": "Turn my morning alarm on.",
-     "transcription": "Im sorry"
-    },
-    {
-     "id": "ibcbaa172ac",
-     "code": "B",
-     "sentence": 66,
-     "gt_text": "Open the radio app.",
-     "transcription": "The pump the radiot pump"
-    },
-    {
-     "id": "i4f4d236555",
-     "code": "B",
+     "id": "if5a6ed0ac0",
+     "code": "C",
      "sentence": 71,
      "gt_text": "Please add my pay days.",
      "transcription": "Please add my pay gaze"
     },
     {
-     "id": "idc84539813",
-     "code": "B",
+     "id": "i710f6ab75b",
+     "code": "C",
+     "sentence": 72,
+     "gt_text": "What is the current state of the investigation into trump's ties with russia.",
+     "transcription": "Why theres the current state of the investigation into Trumps ties with Russia"
+    },
+    {
+     "id": "i244cd8ef24",
+     "code": "C",
      "sentence": 73,
      "gt_text": "I want a meeting till three o clock.",
      "transcription": "Ill amaging till three oclock"
     },
     {
-     "id": "i416279d944",
-     "code": "B",
+     "id": "i7ebec60ffe",
+     "code": "C",
      "sentence": 74,
      "gt_text": "When's mark lanegan's next album out.",
      "transcription": "Wednesdays mark lettings next all known apps"
     },
     {
-     "id": "i587b69e690",
-     "code": "B",
-     "sentence": 77,
-     "gt_text": "Olly play music from the jazz genre.",
-     "transcription": "Oliplah he leaves it from the jazz general"
+     "id": "ie30d6a78b0",
+     "code": "C",
+     "sentence": 79,
+     "gt_text": "Display list of recent emails.",
+     "transcription": "Display list over sent in males"
     },
     {
-     "id": "ib6df39ccaa",
-     "code": "B",
-     "sentence": 82,
-     "gt_text": "Play my playlist starting from the bottom.",
-     "transcription": "I am blind by playlists starting from the bottom"
-    },
-    {
-     "id": "i0b3d6e2667",
-     "code": "B",
-     "sentence": 87,
-     "gt_text": "I hate this song.",
-     "transcription": "I hate to some"
-    },
-    {
-     "id": "ief4e49df56",
-     "code": "B",
-     "sentence": 88,
-     "gt_text": "I didn't get the product on time send a tweet to jcpenney.",
-     "transcription": "I didnt care the product on time Senator Twitt to Japanese"
-    },
-    {
-     "id": "i128d4e2753",
-     "code": "B",
+     "id": "i379f032cdc",
+     "code": "C",
      "sentence": 90,
      "gt_text": "Which pole is colder south or north.",
      "transcription": "which poll us colder south or north"
     },
     {
-     "id": "i75025b7c5f",
-     "code": "B",
-     "sentence": 92,
-     "gt_text": "Tell me the weather in barcelona in two days from now.",
-     "transcription": "Tell me whether in Barcelona two days from now"
-    },
-    {
-     "id": "ib97ecc040c",
-     "code": "B",
-     "sentence": 94,
-     "gt_text": "Did I set an alarm to have tablets in the noon.",
-     "transcription": "Did I set an all to have tablets in the known"
-    },
-    {
-     "id": "i0c702dc88a",
-     "code": "B",
+     "id": "i5a068a3c38",
+     "code": "C",
      "sentence": 97,
      "gt_text": "Can you cook something special for me and my wife.",
      "transcription": "Okay he looks something special for me and my wife"
     },
     {
-     "id": "icfeaca3811",
-     "code": "B",
+     "id": "i6478b61daf",
+     "code": "C",
      "sentence": 98,
      "gt_text": "Current time new york.",
      "transcription": "Cutter time New York"
     },
     {
-     "id": "ifa6980b561",
+     "id": "ifee377b008",
      "code": "C",
+     "sentence": 99,
+     "gt_text": "What is the current temperature outside.",
+     "transcription": "What is the current and character outside"
+    },
+    {
+     "id": "id802969326",
+     "code": "D",
      "sentence": 1,
      "gt_text": "Read my grocery list.",
      "transcription": "Red Light Rosary List"
     },
     {
-     "id": "i757e5b637d",
-     "code": "C",
-     "sentence": 4,
-     "gt_text": "Locate me the amazon restaurants.",
-     "transcription": "Locate me on as on restaurant"
+     "id": "ifa86de3365",
+     "code": "D",
+     "sentence": 2,
+     "gt_text": "Send an email to my boss.",
+     "transcription": "Send in an an an an an an an an an an an an an an an an an an an an an an an an an an an an an an an ..."
     },
     {
-     "id": "i1e70aaf525",
-     "code": "C",
+     "id": "iaf11035083",
+     "code": "D",
+     "sentence": 3,
+     "gt_text": "Can you erase the haircut I have scheduled for friday.",
+     "transcription": "scheduled for Friday"
+    },
+    {
+     "id": "i14ddfae808",
+     "code": "D",
      "sentence": 13,
      "gt_text": "Tweet that there was an insect in the chocolate packet.",
      "transcription": "\u30d4\u30fc\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf\u30bf ..."
     },
     {
-     "id": "i1415eae9d2",
-     "code": "C",
+     "id": "if3afb120f4",
+     "code": "D",
      "sentence": 14,
      "gt_text": "Go back to the last episode in this podcast.",
      "transcription": "\u0e01\u0e39\u0e01\u0e39\u0e15\u0e49\u0e2d\u0e07\u0e2d\u0e32\u0e28 \u0e2d\u0e32\u0e28 \u0e2d\u0e32\u0e28 \u0e2d\u0e32\u0e28 \u0e2d\u0e32\u0e28 \u0e2d\u0e32\u0e28 \u0e2d\u0e32\u0e28 \u0e2d\u0e32\u0e28 \u0e2d\u0e32\u0e28 \u0e2d\u0e32\u0e28 \u0e2d\u0e32\u0e28 \u0e2d\u0e32\u0e28 \u0e2d\u0e32\u0e28 \u0e2d\u0e32\u0e28 \u0e2d\u0e32\u0e28 \u0e2d\u0e32\u0e28 \u0e2d\u0e32\u0e28 \u0e2d\u0e32\u0e28 \u0e2d\u0e32\u0e28 \u0e2d\u0e32\u0e28 \u0e2d\u0e32\u0e28 \u0e2d\u0e32\u0e28 \u0e2d\u0e32\u0e28 ..."
     },
     {
-     "id": "i193dbba3af",
-     "code": "C",
+     "id": "iecbdf0b015",
+     "code": "D",
      "sentence": 15,
      "gt_text": "Olly do they deliver home.",
      "transcription": "\uc544\uc720 \uc774 \uc911\ub3c5 \ub2e4\uc74c\ub0a0 \ub2e4\uc74c\ub0a0 \ub2e4\uc74c\ub0a0 \ub2e4\uc74c\ub0a0 \ub2e4\uc74c\ub0a0 \ub2e4\uc74c\ub0a0 \ub2e4\uc74c\ub0a0 \ub2e4\uc74c\ub0a0 \ub2e4\uc74c\ub0a0 \ub2e4\uc74c\ub0a0 \ub2e4\uc74c\ub0a0 \ub2e4\uc74c\ub0a0 \ub2e4\uc74c\ub0a0 \ub2e4\uc74c\ub0a0 \ub2e4\uc74c\ub0a0 \ub2e4\uc74c\ub0a0 \ub2e4\uc74c\ub0a0 \ub2e4\uc74c\ub0a0 \ub2e4\uc74c\ub0a0 \ub2e4\uc74c\ub0a0 \ub2e4\uc74c\ub0a0 \ub2e4\uc74c\ub0a0 \ub2e4\uc74c\ub0a0 ..."
     },
     {
-     "id": "ic3d3861b58",
-     "code": "C",
+     "id": "i65ab4414ae",
+     "code": "D",
      "sentence": 18,
      "gt_text": "Will I need an umbrella this week.",
      "transcription": "Bye"
     },
     {
-     "id": "i69275f275c",
-     "code": "C",
+     "id": "i5c01a4f7a1",
+     "code": "D",
      "sentence": 22,
      "gt_text": "Have I received new emails in the last ten minutes.",
      "transcription": "\u3055\u305f\u305f\u305f\u308b\u306b\u5922\u3092"
     },
     {
-     "id": "iebe25e6512",
-     "code": "C",
+     "id": "i1d0a8aa1e4",
+     "code": "D",
      "sentence": 25,
      "gt_text": "Could you please create a pandora channel for adele.",
      "transcription": "\ub05d\uc5d0 \ub05d\uc5d0 \ub300\ud574\uc548"
     },
     {
-     "id": "i7036a5be06",
-     "code": "C",
-     "sentence": 26,
-     "gt_text": "Play the twilight book.",
-     "transcription": "\u041f\u043b\u044d\u0434\u0438\u043a \u043b\u044d\u0434\u0438\u043a \u043b\u044d\u0434\u0438\u043a \u043b\u044d\u0434\u0438\u043a \u043b\u044d\u0434\u0438\u043a \u043b\u044d\u0434\u0438\u043a \u043b\u044d\u0434\u0438\u043a \u043b\u044d\u0434\u0438\u043a \u043b\u044d\u0434\u0438\u043a \u043b\u044d\u0434\u0438\u043a \u043b\u044d\u0434\u0438\u043a \u043b\u044d\u0434\u0438\u043a \u043b\u044d\u0434\u0438\u043a \u043b\u044d\u0434\u0438\u043a \u043b\u044d\u0434\u0438\u043a \u043b\u044d\u0434\u0438\u043a \u043b\u044d\u0434 ..."
-    },
-    {
-     "id": "i139cdd9f6c",
-     "code": "C",
+     "id": "i009ef1c846",
+     "code": "D",
      "sentence": 29,
      "gt_text": "Do not make any noise until morning alarm.",
      "transcription": "\ud070 \ub7f0\uc758 \uc778\uc778\uc778\uc778\uc544"
     },
     {
-     "id": "i6dd16903f2",
-     "code": "C",
+     "id": "i45ffeb5d5f",
+     "code": "D",
      "sentence": 33,
      "gt_text": "Where was will ferrell seen last night.",
      "transcription": "was wellprepared"
     },
     {
-     "id": "ic18f1b5be1",
-     "code": "C",
+     "id": "ia3df8693ce",
+     "code": "D",
      "sentence": 36,
      "gt_text": "Tell me today's date.",
      "transcription": "\u3055\u307f\u3066\u3066\u3066\u3066\u3066\u3066\u3066\u3066\u3066\u3066\u3066\u3066"
     },
     {
-     "id": "id4e2f88051",
-     "code": "C",
+     "id": "i4ab31e9be8",
+     "code": "D",
      "sentence": 40,
      "gt_text": "Check for all the movie theater prices and availability for a newly released movie in my location.",
      "transcription": "\u0410 \u0441\u0435\u0439\u0447\u0430\u0441 \u0437\u0432\u0435\u043b \u0432 \u044e\u0440\u043d\u0438\u043b \u0438 \u043d\u0435 \u043b\u044b\u0440 \u043d\u0435 \u043b\u044b\u0440 \u043d\u0435 \u043b\u044b\u0440"
     },
     {
-     "id": "i0a64fc0dba",
-     "code": "C",
-     "sentence": 41,
-     "gt_text": "What is the highest rated movie now out.",
-     "transcription": "Moving out"
-    },
-    {
-     "id": "i2ef57b8a92",
-     "code": "C",
+     "id": "ie6ba2338fe",
+     "code": "D",
      "sentence": 42,
      "gt_text": "Alexa remove dinner with mike from my calendar.",
      "transcription": "\u0627\u0644\u0644\u0647"
     },
     {
-     "id": "i7d3fee2fc7",
-     "code": "C",
-     "sentence": 43,
-     "gt_text": "Do I have a date on friday.",
-     "transcription": "\u3042\u305f\u3066\u30fc"
-    },
-    {
-     "id": "i2038553ac8",
-     "code": "C",
+     "id": "i243a082921",
+     "code": "D",
      "sentence": 46,
      "gt_text": "Add a meeting at the office with brian for three pm on tuesday.",
      "transcription": "at a mingmingmingmingmm Tasty"
     },
     {
-     "id": "ided7285256",
-     "code": "C",
+     "id": "i92c069c542",
+     "code": "D",
+     "sentence": 50,
+     "gt_text": "It must be taste.",
+     "transcription": "It must be TTAstaste"
+    },
+    {
+     "id": "i3049b564fb",
+     "code": "D",
      "sentence": 54,
      "gt_text": "What movies are out this week.",
      "transcription": "Oh Ill speak"
     },
     {
-     "id": "ief476c4878",
-     "code": "C",
+     "id": "i6f1aff71ae",
+     "code": "D",
      "sentence": 56,
      "gt_text": "Is there any news about the presidency.",
      "transcription": "Is there any other other thing to say to say"
     },
     {
-     "id": "i515a23754b",
-     "code": "C",
-     "sentence": 58,
-     "gt_text": "What is the definition of logic.",
-     "transcription": "\u0648\u0627\u062a\u0633\u062f \u062f\u0641\u0639 \u062e\u0645\u064a\u0634"
-    },
-    {
-     "id": "i6ffea2a33a",
-     "code": "C",
+     "id": "ib775fd3537",
+     "code": "D",
      "sentence": 61,
      "gt_text": "Cut down the volume.",
      "transcription": "\uce74\ub4dc\uc5d0\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974\ub974 ..."
     },
     {
-     "id": "i8e1b770deb",
-     "code": "C",
-     "sentence": 62,
-     "gt_text": "Play one more time.",
-     "transcription": "\uc190\uc73c\ub85c \ucc3e\uc544"
-    },
-    {
-     "id": "i49e64ddd91",
-     "code": "C",
+     "id": "i625487b5c3",
+     "code": "D",
      "sentence": 64,
      "gt_text": "Turn my morning alarm on.",
      "transcription": "\uc778\uc73c\ub85c"
     },
     {
-     "id": "i8a9c2e5562",
-     "code": "C",
+     "id": "i542b12c92c",
+     "code": "D",
      "sentence": 66,
      "gt_text": "Open the radio app.",
      "transcription": "\uc5b4\uad6c\uc694"
     },
     {
-     "id": "i33c9fe6036",
-     "code": "C",
-     "sentence": 67,
-     "gt_text": "What is the location of moldova.",
-     "transcription": "\u54c7 \u554a \u554a \u554a \u554a \u554a \u554a \u554a \u554a \u554a \u554a \u554a \u554a \u554a \u554a \u554a \u554a \u554a \u554a \u554a \u554a \u554a \u554a \u554a \u554a \u554a \u554a \u554a \u554a \u554a \u554a \u554a \u554a \u554a \u554a \u554a \u554a \u554a \u554a \u554a \u554a \u554a \u554a \u554a \u554a \u554a \u554a \u554a \u554a \u554a ..."
-    },
-    {
-     "id": "i4bb6088c97",
-     "code": "C",
-     "sentence": 76,
-     "gt_text": "What's on the radio right now.",
-     "transcription": "the pond on the rear area right now"
-    },
-    {
-     "id": "i71c707e77b",
-     "code": "C",
+     "id": "ia56bf52dfd",
+     "code": "D",
      "sentence": 77,
      "gt_text": "Olly play music from the jazz genre.",
      "transcription": "Ill explain plain uses on this onscreen"
     },
     {
-     "id": "i9a8397d412",
-     "code": "C",
+     "id": "iafe5aef699",
+     "code": "D",
      "sentence": 78,
      "gt_text": "Show me my meeting for the next month.",
      "transcription": "\u54b1\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec\u4eec ..."
     },
     {
-     "id": "i89764ab510",
-     "code": "C",
+     "id": "i256f6ddf79",
+     "code": "D",
      "sentence": 79,
      "gt_text": "Display list of recent emails.",
      "transcription": "Dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd ..."
     },
     {
-     "id": "i42a2652c9e",
-     "code": "C",
+     "id": "iee7281b8a9",
+     "code": "D",
      "sentence": 84,
      "gt_text": "Is this program is scheduled.",
      "transcription": "This is this scope ram is scheduled"
     },
     {
-     "id": "i3b45c596d4",
-     "code": "C",
+     "id": "i25b575bc6e",
+     "code": "D",
      "sentence": 87,
      "gt_text": "I hate this song.",
      "transcription": "\u9019 \u9019 \u9019 \u9019"
     },
     {
-     "id": "i1e043d2c47",
-     "code": "C",
-     "sentence": 88,
-     "gt_text": "I didn't get the product on time send a tweet to jcpenney.",
-     "transcription": "\ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 \ub124 ..."
+     "id": "i50862f78e1",
+     "code": "D",
+     "sentence": 90,
+     "gt_text": "Which pole is colder south or north.",
+     "transcription": "which poll is called or South or North"
     },
     {
-     "id": "ic89d683a9e",
-     "code": "C",
+     "id": "i352114c2d6",
+     "code": "D",
      "sentence": 91,
      "gt_text": "Look up the definition of blunder.",
      "transcription": "\u0644\u0642\u062f \u0623\u0628\u062f\u0627\u064b \u062f\u0641\u0646\u0634 \u0646\u0638\u0648\u0627\u0646"
     },
     {
-     "id": "i19b63f83c6",
-     "code": "C",
-     "sentence": 92,
-     "gt_text": "Tell me the weather in barcelona in two days from now.",
-     "transcription": "Tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt ..."
-    },
-    {
-     "id": "ibb2c2df3c2",
-     "code": "C",
+     "id": "i2fe90f79f8",
+     "code": "D",
      "sentence": 94,
      "gt_text": "Did I set an alarm to have tablets in the noon.",
      "transcription": "alarm to have tablets in the new"
     },
     {
-     "id": "i3f6a27241f",
-     "code": "C",
+     "id": "i5971b221e4",
+     "code": "D",
      "sentence": 95,
      "gt_text": "Give details of rock sand.",
      "transcription": "give details of Roxanne"
     },
     {
-     "id": "i4837d316a4",
-     "code": "C",
+     "id": "ifbca1209ad",
+     "code": "D",
      "sentence": 96,
      "gt_text": "Hey cancel all my other meetings and calls for second march as it is jim's birthday tag it as an event in your calendar.",
      "transcription": "other other other other beings and calls for second march as it is Jims birthday tag at as an event ..."
     },
     {
-     "id": "ibce139d15d",
-     "code": "C",
+     "id": "i6d638d521a",
+     "code": "D",
+     "sentence": 97,
+     "gt_text": "Can you cook something special for me and my wife.",
+     "transcription": "Go go go go go go go go go go go go go go go go go go go go go go go go go go go go go go go go go g ..."
+    },
+    {
+     "id": "i7dce8d75f2",
+     "code": "D",
      "sentence": 98,
      "gt_text": "Current time new york.",
      "transcription": "for in time New York"
     },
     {
-     "id": "ia8ff4533fe",
-     "code": "C",
+     "id": "iba63b8a897",
+     "code": "D",
      "sentence": 99,
      "gt_text": "What is the current temperature outside.",
      "transcription": "\u6211\u9019\u4e16\u754c"
     },
     {
-     "id": "ibd01a6009e",
-     "code": "C",
+     "id": "icb385c5fdc",
+     "code": "D",
      "sentence": 100,
      "gt_text": "Remind me on fifth march of every year to arrange wedding anniversary presents.",
      "transcription": "Re99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999 ..."
     },
     {
-     "id": "i8389181ba3",
+     "id": "i703239d04b",
      "code": "A",
      "sentence": 1,
      "gt_text": "Read my grocery list.",
      "transcription": "Read my grocery list"
     },
     {
-     "id": "idb6da313e7",
-     "code": "A",
-     "sentence": 2,
-     "gt_text": "Send an email to my boss.",
-     "transcription": "Send an email to my boss"
-    },
-    {
-     "id": "i1f0cbdc014",
-     "code": "A",
-     "sentence": 4,
-     "gt_text": "Locate me the amazon restaurants.",
-     "transcription": "Locate me the Amazon restaurants"
-    },
-    {
-     "id": "ia5627b585f",
-     "code": "A",
-     "sentence": 6,
-     "gt_text": "Today I searched all over for my phone and couldn't find it.",
-     "transcription": "Today I searched all over for my phone and couldnt find it"
-    },
-    {
-     "id": "i1e45c190a8",
-     "code": "A",
-     "sentence": 9,
-     "gt_text": "Tell me the weather this week.",
-     "transcription": "Tell me the weather this week"
-    },
-    {
-     "id": "ibcf89d3fda",
+     "id": "i34f0a61c5e",
      "code": "A",
      "sentence": 10,
      "gt_text": "Please remind me to call mom in half an hour.",
      "transcription": "Please remind me to call mom in half an hour"
     },
     {
-     "id": "i5b908e0372",
-     "code": "A",
-     "sentence": 11,
-     "gt_text": "What's been happening for the last two months.",
-     "transcription": "Whats been happening for the last two months"
-    },
-    {
-     "id": "iac3ac49efa",
+     "id": "ib59626d8c4",
      "code": "A",
      "sentence": 12,
      "gt_text": "I wish to know the weather in san fransico.",
      "transcription": "I wish to know the weather in San Francisco"
     },
     {
-     "id": "ib4b76fc5b2",
+     "id": "ie70cbf404d",
      "code": "A",
      "sentence": 13,
      "gt_text": "Tweet that there was an insect in the chocolate packet.",
      "transcription": "Tweet that there was an insect in the chocolate packet"
     },
     {
-     "id": "ia98bf06f64",
+     "id": "i08636abf8c",
      "code": "A",
-     "sentence": 14,
-     "gt_text": "Go back to the last episode in this podcast.",
-     "transcription": "Go back to the last episode in this podcast"
+     "sentence": 15,
+     "gt_text": "Olly do they deliver home.",
+     "transcription": "Alley do they deliver home"
     },
     {
-     "id": "i38483c1a4e",
+     "id": "ia23be95767",
      "code": "A",
-     "sentence": 17,
-     "gt_text": "Do I have any alarms set for six am tomorrow.",
-     "transcription": "Do I have any alarms set for 6m to borrow"
+     "sentence": 18,
+     "gt_text": "Will I need an umbrella this week.",
+     "transcription": "Will I need an umbrella this week"
     },
     {
-     "id": "id4bd6817b6",
+     "id": "ide15ac15c3",
      "code": "A",
-     "sentence": 19,
-     "gt_text": "Let me know any new emails I've received.",
-     "transcription": "Let me know any new emails Ive received"
+     "sentence": 20,
+     "gt_text": "What is eastern standard time right noe.",
+     "transcription": "What is Eastern Standard Time Right No"
     },
     {
-     "id": "i3de6cd3595",
+     "id": "i5d2fcf3b87",
+     "code": "A",
+     "sentence": 22,
+     "gt_text": "Have I received new emails in the last ten minutes.",
+     "transcription": "Have I received new emails in the last 10 minutes"
+    },
+    {
+     "id": "ibe0e96ed9b",
      "code": "A",
      "sentence": 25,
      "gt_text": "Could you please create a pandora channel for adele.",
      "transcription": "Could you please create a Pandora channel for a Dell"
     },
     {
-     "id": "i841095e497",
+     "id": "iada358cb1d",
      "code": "A",
      "sentence": 26,
      "gt_text": "Play the twilight book.",
      "transcription": "Play the Twilight book"
     },
     {
-     "id": "iac4eb98768",
+     "id": "i3b2c623ac3",
      "code": "A",
      "sentence": 31,
      "gt_text": "Set my alarm for twelve pm.",
      "transcription": "Set my alarm for 12pm"
     },
     {
-     "id": "i3b53ca8c05",
+     "id": "i4c9c5c11eb",
+     "code": "A",
+     "sentence": 32,
+     "gt_text": "Play my midnight love playlist.",
+     "transcription": "Play My Midnight Love playlist"
+    },
+    {
+     "id": "i169ccd3e1f",
      "code": "A",
      "sentence": 33,
      "gt_text": "Where was will ferrell seen last night.",
      "transcription": "Where was Will Ferrell seen last night"
     },
     {
-     "id": "ia05f89d54d",
+     "id": "ideb475e15e",
      "code": "A",
-     "sentence": 34,
-     "gt_text": "I want it to remember my preferences and recommend me things based on them when I ask.",
-     "transcription": "I want it to remember my preferences and recommend me things based on them when I ask"
+     "sentence": 36,
+     "gt_text": "Tell me today's date.",
+     "transcription": "Tell me todays date"
     },
     {
-     "id": "i497af2f402",
+     "id": "ic0831a352a",
      "code": "A",
-     "sentence": 35,
-     "gt_text": "What is the nearest pizza shop.",
-     "transcription": "What is the nearest pizza shop"
+     "sentence": 38,
+     "gt_text": "What degree is it outside.",
+     "transcription": "What degree is it outside"
     },
     {
-     "id": "i2b9501e917",
+     "id": "ic548d002be",
      "code": "A",
-     "sentence": 39,
-     "gt_text": "Look up the map to stores near me.",
-     "transcription": "Look up the map to stores near me"
+     "sentence": 40,
+     "gt_text": "Check for all the movie theater prices and availability for a newly released movie in my location.",
+     "transcription": "Check for all the movie theater prices and availability for a newly released movie in my location"
     },
     {
-     "id": "icf23254d81",
+     "id": "ie2e0a10d2b",
      "code": "A",
      "sentence": 41,
      "gt_text": "What is the highest rated movie now out.",
      "transcription": "What is the highest rated movie now out"
     },
     {
-     "id": "i8d03f7ba05",
+     "id": "i695a62ddc4",
+     "code": "A",
+     "sentence": 42,
+     "gt_text": "Alexa remove dinner with mike from my calendar.",
+     "transcription": "Alexa removed dinner with Mike from my calendar"
+    },
+    {
+     "id": "i0d7552c6e8",
+     "code": "A",
+     "sentence": 46,
+     "gt_text": "Add a meeting at the office with brian for three pm on tuesday.",
+     "transcription": "Add a meeting at the office with Brian for 3 pm on Tuesday"
+    },
+    {
+     "id": "ib2a1c2d9bf",
      "code": "A",
      "sentence": 52,
      "gt_text": "Check for emails from steve.",
      "transcription": "Check for emails from Steve"
     },
     {
-     "id": "i53813dd49a",
+     "id": "iaa8420b8d9",
      "code": "A",
      "sentence": 54,
      "gt_text": "What movies are out this week.",
      "transcription": "What movies are out this week"
     },
     {
-     "id": "i955df2e073",
+     "id": "ia6f4db1c1e",
      "code": "A",
      "sentence": 56,
      "gt_text": "Is there any news about the presidency.",
      "transcription": "Is there any news about the presidency"
     },
     {
-     "id": "i06a2834536",
+     "id": "i8cf46860a2",
      "code": "A",
      "sentence": 58,
      "gt_text": "What is the definition of logic.",
      "transcription": "What is the definition of logic"
     },
     {
-     "id": "i21cfdef303",
+     "id": "ibcee04bdde",
      "code": "A",
-     "sentence": 60,
-     "gt_text": "Disable alarm for three pm.",
-     "transcription": "Disable alarm for 3 pm"
+     "sentence": 66,
+     "gt_text": "Open the radio app.",
+     "transcription": "Open the radio app"
     },
     {
-     "id": "i65e0789f97",
+     "id": "i6eef1fa0a3",
      "code": "A",
-     "sentence": 61,
-     "gt_text": "Cut down the volume.",
-     "transcription": "Cut down the volume"
+     "sentence": 73,
+     "gt_text": "I want a meeting till three o clock.",
+     "transcription": "I want a meeting till 3 oclock"
     },
     {
-     "id": "if927be0381",
-     "code": "A",
-     "sentence": 62,
-     "gt_text": "Play one more time.",
-     "transcription": "Play one more time"
-    },
-    {
-     "id": "i822d4076bc",
-     "code": "A",
-     "sentence": 63,
-     "gt_text": "Wanna netflix and chill.",
-     "transcription": "Want a Netflix and chill"
-    },
-    {
-     "id": "i13fdc12930",
-     "code": "A",
-     "sentence": 64,
-     "gt_text": "Turn my morning alarm on.",
-     "transcription": "Turn my morning alarm on"
-    },
-    {
-     "id": "ic322b56be1",
-     "code": "A",
-     "sentence": 65,
-     "gt_text": "Don't speak for an hour.",
-     "transcription": "Dont speak for an hour"
-    },
-    {
-     "id": "ic834dd7624",
-     "code": "A",
-     "sentence": 69,
-     "gt_text": "Front page news articles please.",
-     "transcription": "Front page news articles please"
-    },
-    {
-     "id": "ic6ea455fc7",
-     "code": "A",
-     "sentence": 76,
-     "gt_text": "What's on the radio right now.",
-     "transcription": "Whats on the radio right now"
-    },
-    {
-     "id": "i917f2a2e65",
+     "id": "i7494b9cdb5",
      "code": "A",
      "sentence": 77,
      "gt_text": "Olly play music from the jazz genre.",
      "transcription": "Ill play music from the Jazz genre"
     },
     {
-     "id": "ib2c46ac0d6",
+     "id": "i417d7de1f5",
+     "code": "A",
+     "sentence": 78,
+     "gt_text": "Show me my meeting for the next month.",
+     "transcription": "Show me my meeting for the next month"
+    },
+    {
+     "id": "i79b440ffe0",
+     "code": "A",
+     "sentence": 81,
+     "gt_text": "Read me the latest new york times headlines.",
+     "transcription": "Read me the latest New York Times headlines"
+    },
+    {
+     "id": "i563725bd0c",
      "code": "A",
      "sentence": 82,
      "gt_text": "Play my playlist starting from the bottom.",
      "transcription": "Play my playlist starting from the bottom"
     },
     {
-     "id": "i36f8247e70",
+     "id": "i0a441030ae",
+     "code": "A",
+     "sentence": 83,
+     "gt_text": "What time is it in austin.",
+     "transcription": "What time is it in Austin"
+    },
+    {
+     "id": "i0d0b36f3cd",
      "code": "A",
      "sentence": 84,
      "gt_text": "Is this program is scheduled.",
      "transcription": "Is this program is scheduled"
     },
     {
-     "id": "ibb3c3da911",
+     "id": "i5929b10823",
      "code": "A",
-     "sentence": 87,
-     "gt_text": "I hate this song.",
-     "transcription": "I hate this song"
+     "sentence": 90,
+     "gt_text": "Which pole is colder south or north.",
+     "transcription": "which poll is called or south or north"
     },
     {
-     "id": "id021d32e24",
+     "id": "i4a00fdec23",
      "code": "A",
-     "sentence": 88,
-     "gt_text": "I didn't get the product on time send a tweet to jcpenney.",
-     "transcription": "I didnt get the product on time send a tweet to JC Penny"
+     "sentence": 94,
+     "gt_text": "Did I set an alarm to have tablets in the noon.",
+     "transcription": "Did I set an alarm to have tablets in the noon"
     },
     {
-     "id": "ic23bd3147d",
-     "code": "A",
-     "sentence": 95,
-     "gt_text": "Give details of rock sand.",
-     "transcription": "Give details a rock sand"
-    },
-    {
-     "id": "i5a62759469",
+     "id": "i01a795ac54",
      "code": "A",
      "sentence": 96,
      "gt_text": "Hey cancel all my other meetings and calls for second march as it is jim's birthday tag it as an event in your calendar.",
      "transcription": "Hey cancel all my other meetings and calls for second March as it is Jims birthday tag it as an even ..."
     },
     {
-     "id": "i979bc69882",
+     "id": "i1023f1b67e",
      "code": "A",
-     "sentence": 98,
-     "gt_text": "Current time new york.",
-     "transcription": "Currents time New York"
+     "sentence": 100,
+     "gt_text": "Remind me on fifth march of every year to arrange wedding anniversary presents.",
+     "transcription": "Remind me on 5th March of every year to arrange wedding anniversary presents"
     }
    ]
   },
   "w2v-intent": {
    "label": "wav2vec2-large, intent",
+   "task": "commands",
    "items": [
     {
-     "id": "ie468c6dd5e",
-     "code": "A",
+     "id": "i2038553ac8",
+     "code": "D",
      "sentence": 1,
      "gt_text": "Read my grocery list.",
      "transcription": "READ MY CALILARS"
     },
     {
-     "id": "i884384860c",
-     "code": "A",
+     "id": "ided7285256",
+     "code": "D",
      "sentence": 2,
      "gt_text": "Send an email to my boss.",
      "transcription": "SARRY THAT TATS THE MONTEGO BOSS"
     },
     {
-     "id": "icd8805ae31",
-     "code": "A",
+     "id": "ief476c4878",
+     "code": "D",
      "sentence": 4,
      "gt_text": "Locate me the amazon restaurants.",
      "transcription": "LRI ME RESTAURANTS ON RESTAURANTS"
     },
     {
-     "id": "ifbbc52b34e",
-     "code": "A",
+     "id": "i515a23754b",
+     "code": "D",
      "sentence": 5,
      "gt_text": "What are my current list.",
      "transcription": "WHAT ARE MY CURRENT EVENTS"
     },
     {
-     "id": "ib4afc8128a",
-     "code": "A",
+     "id": "i6ffea2a33a",
+     "code": "D",
      "sentence": 7,
      "gt_text": "Remove the second row from the list.",
      "transcription": "REMOVE THE SECOND EVENT FROM THE CALENDAR"
     },
     {
-     "id": "ic276703835",
-     "code": "A",
+     "id": "i8e1b770deb",
+     "code": "D",
      "sentence": 14,
      "gt_text": "Go back to the last episode in this podcast.",
      "transcription": "GO BACK TO THE LAST EPISODE IN THIS MUSIC HA"
     },
     {
-     "id": "i900abc847e",
-     "code": "A",
+     "id": "i49e64ddd91",
+     "code": "D",
      "sentence": 15,
      "gt_text": "Olly do they deliver home.",
      "transcription": "OLLY DO FACROME HOME"
     },
     {
-     "id": "i1febe7ef91",
-     "code": "A",
-     "sentence": 19,
-     "gt_text": "Let me know any new emails I've received.",
-     "transcription": "LET ME NOW INNES QUESTIONS I RECEIVED"
-    },
-    {
-     "id": "if468afe2b8",
-     "code": "A",
+     "id": "i8a9c2e5562",
+     "code": "D",
      "sentence": 21,
      "gt_text": "When was last academy award winning movie.",
      "transcription": "WHEN THE LAST O CAT AD A MEA WARN MOVI COMERI"
     },
     {
-     "id": "i2b63eaa07f",
-     "code": "A",
-     "sentence": 24,
-     "gt_text": "Do I have anything set for the fourth of july this year.",
-     "transcription": "DO I HAVE ANYTHING SAID FOR THE FIRG OF JULY THIS YEAR WHO"
-    },
-    {
-     "id": "i8000cbd313",
-     "code": "A",
+     "id": "i33c9fe6036",
+     "code": "D",
      "sentence": 26,
      "gt_text": "Play the twilight book.",
      "transcription": "PLAY THE TWILIGHT MOVIE"
     },
     {
-     "id": "i9f2362dbc1",
-     "code": "A",
+     "id": "i4bb6088c97",
+     "code": "D",
      "sentence": 27,
      "gt_text": "Tell me some business news.",
      "transcription": "TELL ME ABOUT SOME O THEM SOCIAL TRENDS"
     },
     {
-     "id": "ia9de6d2d7e",
-     "code": "A",
+     "id": "i71c707e77b",
+     "code": "D",
      "sentence": 31,
      "gt_text": "Set my alarm for twelve pm.",
      "transcription": "SET MY CALENDAR FOR TWELVE P M"
     },
     {
-     "id": "id7839137a6",
-     "code": "A",
+     "id": "i9a8397d412",
+     "code": "D",
      "sentence": 32,
      "gt_text": "Play my midnight love playlist.",
      "transcription": "SETIN MY MIDNIGHT LOVE PLAYLIST"
     },
     {
-     "id": "ib3bb80d98d",
-     "code": "A",
+     "id": "i89764ab510",
+     "code": "D",
      "sentence": 33,
      "gt_text": "Where was will ferrell seen last night.",
      "transcription": "WHERE WAS FERR FARRES CONTACT INFORMATION O"
     },
     {
-     "id": "i1425ee54ab",
-     "code": "A",
+     "id": "i42a2652c9e",
+     "code": "D",
      "sentence": 34,
      "gt_text": "I want it to remember my preferences and recommend me things based on them when I ask.",
      "transcription": "I WANT IT TO REMEMBER MY PREFERENCES AND RECOMMEND ME THE MUSICA LEM WHEN I ASK"
     },
     {
-     "id": "i3c547e3918",
-     "code": "A",
+     "id": "i3b45c596d4",
+     "code": "D",
      "sentence": 35,
      "gt_text": "What is the nearest pizza shop.",
      "transcription": "WHAT PIECE THE NURSE PLETS A SHOP HER"
     },
     {
-     "id": "id4d7133061",
-     "code": "A",
+     "id": "i1e043d2c47",
+     "code": "D",
      "sentence": 40,
      "gt_text": "Check for all the movie theater prices and availability for a newly released movie in my location.",
      "transcription": "CHECK FOR AMOVI THEATRE PRICES AND AVAILABILITY FOR A NEWLY RELEASED MOVEE INMOVE IN MY LOCATION"
     },
     {
-     "id": "i2dd216ad53",
-     "code": "A",
+     "id": "ic89d683a9e",
+     "code": "D",
      "sentence": 46,
      "gt_text": "Add a meeting at the office with brian for three pm on tuesday.",
      "transcription": "SET AN ALARM OFFICE WITH BRIAN FOR THREE P M TUESDAY"
     },
     {
-     "id": "if23f2de8a8",
-     "code": "A",
-     "sentence": 49,
-     "gt_text": "Please add practice on feb four at king's park at two pm.",
-     "transcription": "PLEASE SET ALARM FOR FEB FOUR AT KINGS PARK AT TWO P M"
-    },
-    {
-     "id": "if405a02c72",
-     "code": "A",
+     "id": "i19b63f83c6",
+     "code": "D",
      "sentence": 50,
      "gt_text": "It must be taste.",
      "transcription": "IT MUST BE COFFEE"
     },
     {
-     "id": "ie5ce749e8a",
-     "code": "A",
+     "id": "ibb2c2df3c2",
+     "code": "D",
      "sentence": 51,
      "gt_text": "Play the last doctor who radio broadcast.",
      "transcription": "PLET LAST DOR YOU RAVEAUMDE"
     },
     {
-     "id": "ibe2b395c4e",
-     "code": "A",
+     "id": "i3f6a27241f",
+     "code": "D",
      "sentence": 53,
      "gt_text": "I like senatra songs.",
      "transcription": "I LEN A POST ABOUT FOR SONGS"
     },
     {
-     "id": "id6c9a57cd1",
-     "code": "A",
-     "sentence": 54,
-     "gt_text": "What movies are out this week.",
-     "transcription": "WHAT MODIO BOOKS ARE OUT THIS WEEK"
-    },
-    {
-     "id": "i8faf044a8d",
-     "code": "A",
+     "id": "i4837d316a4",
+     "code": "D",
      "sentence": 58,
      "gt_text": "What is the definition of logic.",
      "transcription": "WHATS THE DEFINITION O LOGICS I"
     },
     {
-     "id": "ib72b16ad04",
-     "code": "A",
+     "id": "ibce139d15d",
+     "code": "D",
      "sentence": 59,
      "gt_text": "Show me the best recipe for spaghetti.",
      "transcription": "SHOW ME THE BEST RECIPE FOR SKETTY"
     },
     {
-     "id": "i6d1417d4f9",
-     "code": "A",
+     "id": "ia8ff4533fe",
+     "code": "D",
      "sentence": 60,
      "gt_text": "Disable alarm for three pm.",
      "transcription": "DISABLE ALON FOR THREE P M"
     },
     {
-     "id": "idded7a6edf",
-     "code": "A",
+     "id": "ibd01a6009e",
+     "code": "D",
      "sentence": 62,
      "gt_text": "Play one more time.",
      "transcription": "PLAY AN AUDIOUR TIME"
     },
     {
-     "id": "i1a990e8f01",
-     "code": "A",
+     "id": "i8389181ba3",
+     "code": "D",
      "sentence": 65,
      "gt_text": "Don't speak for an hour.",
      "transcription": "DONT SPIN ALARM FOR HOUR"
     },
     {
-     "id": "ia09ed9c124",
-     "code": "A",
-     "sentence": 66,
-     "gt_text": "Open the radio app.",
-     "transcription": "ORN ON THE REMU DEVICE"
-    },
-    {
-     "id": "ib5751f7e54",
-     "code": "A",
+     "id": "idb6da313e7",
+     "code": "D",
      "sentence": 68,
      "gt_text": "Olly turn the light off in the living room.",
      "transcription": "ALLI MUTE THE ODD OFF IN THE LIVING ROOM"
     },
     {
-     "id": "i9d266b0d37",
-     "code": "A",
+     "id": "i1f0cbdc014",
+     "code": "D",
      "sentence": 76,
      "gt_text": "What's on the radio right now.",
      "transcription": "WHATS MUTED IO RIGHT NOW"
     },
     {
-     "id": "i0a9a1ab357",
-     "code": "A",
+     "id": "ia5627b585f",
+     "code": "D",
      "sentence": 77,
      "gt_text": "Olly play music from the jazz genre.",
      "transcription": "ALLI SIMME FROM THE JAS JAN"
     },
     {
-     "id": "i5740a21015",
-     "code": "A",
+     "id": "i1e45c190a8",
+     "code": "D",
      "sentence": 78,
      "gt_text": "Show me my meeting for the next month.",
      "transcription": "SHOW ME MY MEETING THE NETA CONTET"
     },
     {
-     "id": "ibcce4f1ca0",
-     "code": "A",
+     "id": "ibcf89d3fda",
+     "code": "D",
      "sentence": 82,
      "gt_text": "Play my playlist starting from the bottom.",
      "transcription": "SET MY PLALIS STARTING FROM THE BOTTOM"
     },
     {
-     "id": "i60bb937826",
-     "code": "A",
+     "id": "i5b908e0372",
+     "code": "D",
      "sentence": 83,
      "gt_text": "What time is it in austin.",
      "transcription": "WHAT IS THE MEETING IN AUSTEN"
     },
     {
-     "id": "ia006fafb60",
-     "code": "A",
+     "id": "iac3ac49efa",
+     "code": "D",
      "sentence": 84,
      "gt_text": "Is this program is scheduled.",
      "transcription": "IS THIS PROPROGRAM SCHEDULED"
     },
     {
-     "id": "ie3eeb3462c",
-     "code": "A",
+     "id": "ib4b76fc5b2",
+     "code": "D",
      "sentence": 87,
      "gt_text": "I hate this song.",
      "transcription": "I HATE THIS JOW"
     },
     {
-     "id": "i7f094c0230",
-     "code": "A",
+     "id": "ia98bf06f64",
+     "code": "D",
      "sentence": 90,
      "gt_text": "Which pole is colder south or north.",
      "transcription": "WET POLE IS COLDER SOUTH OR NORTH"
     },
     {
-     "id": "i5b16f14aad",
-     "code": "A",
+     "id": "i38483c1a4e",
+     "code": "D",
      "sentence": 98,
      "gt_text": "Current time new york.",
      "transcription": "CURRENT WEATHER NEW YORK"
     },
     {
-     "id": "iab4af0a6fe",
-     "code": "B",
+     "id": "id4bd6817b6",
+     "code": "A",
      "sentence": 1,
      "gt_text": "Read my grocery list.",
      "transcription": "READ MY GROCERY LIFTS"
     },
     {
-     "id": "i75269b6c3b",
-     "code": "B",
+     "id": "i3de6cd3595",
+     "code": "A",
      "sentence": 4,
      "gt_text": "Locate me the amazon restaurants.",
      "transcription": "W TAKE METEAMOUSAN RESTORANT"
     },
     {
-     "id": "i813c740119",
-     "code": "B",
+     "id": "i841095e497",
+     "code": "A",
      "sentence": 5,
      "gt_text": "What are my current list.",
      "transcription": "TARE MY CURANT LEAST"
     },
     {
-     "id": "i295b1654ad",
-     "code": "B",
+     "id": "iac4eb98768",
+     "code": "A",
      "sentence": 7,
      "gt_text": "Remove the second row from the list.",
      "transcription": "RUME THE SECOND WROTE FROM THE LIST"
     },
     {
-     "id": "ic0bc49b58e",
-     "code": "B",
+     "id": "i3b53ca8c05",
+     "code": "A",
      "sentence": 14,
      "gt_text": "Go back to the last episode in this podcast.",
      "transcription": "BAT TO THE LAST APUSIT IN THIS PONTIS"
     },
     {
-     "id": "i56679b29e8",
-     "code": "B",
+     "id": "ia05f89d54d",
+     "code": "A",
      "sentence": 18,
      "gt_text": "Will I need an umbrella this week.",
      "transcription": "WN NEDAN UMBRELLA THIS WOO"
     },
     {
-     "id": "icd451437d6",
-     "code": "B",
+     "id": "i497af2f402",
+     "code": "A",
      "sentence": 21,
      "gt_text": "When was last academy award winning movie.",
      "transcription": "IT WAS LAST A CADMIN OR WITTING MOVING"
     },
     {
-     "id": "if17e083c1b",
-     "code": "B",
+     "id": "i2b9501e917",
+     "code": "A",
      "sentence": 27,
      "gt_text": "Tell me some business news.",
      "transcription": "TELL ME SOME BUSINESS NENS"
     },
     {
-     "id": "i036480fdc0",
-     "code": "B",
+     "id": "icf23254d81",
+     "code": "A",
      "sentence": 31,
      "gt_text": "Set my alarm for twelve pm.",
      "transcription": "SET ME ALONG FOR TWELVEPENC"
     },
     {
-     "id": "i874f8e3e01",
-     "code": "B",
+     "id": "i8d03f7ba05",
+     "code": "A",
      "sentence": 32,
      "gt_text": "Play my midnight love playlist.",
      "transcription": "PLOD MY MIDNIGHT LOVE PLAINEST"
     },
     {
-     "id": "i49e689e5e8",
-     "code": "B",
+     "id": "i53813dd49a",
+     "code": "A",
      "sentence": 33,
      "gt_text": "Where was will ferrell seen last night.",
      "transcription": "HERE IS WOLF FERDLE SEEN LAST NIGHT"
     },
     {
-     "id": "i788cea309b",
-     "code": "B",
+     "id": "i955df2e073",
+     "code": "A",
      "sentence": 40,
      "gt_text": "Check for all the movie theater prices and availability for a newly released movie in my location.",
      "transcription": "CHECK FOR ALL THE MOVI THEATRE PRICES AND AVAILABILITY FOR A NEWLY RELEASED MOVING AND MY LOCATION"
     },
     {
-     "id": "i08fa3222c4",
-     "code": "B",
+     "id": "i06a2834536",
+     "code": "A",
      "sentence": 41,
      "gt_text": "What is the highest rated movie now out.",
      "transcription": "HAT IS THE HIGHEST RATE IN MOVIE NOW OUT"
     },
     {
-     "id": "i88c5dd967b",
-     "code": "B",
+     "id": "i21cfdef303",
+     "code": "A",
      "sentence": 46,
      "gt_text": "Add a meeting at the office with brian for three pm on tuesday.",
      "transcription": "IMMEDIATE U OFFICE WITH BRAIN FOR THREE P ON TUESDAY"
     },
     {
-     "id": "i8d920c3de9",
-     "code": "B",
+     "id": "i65e0789f97",
+     "code": "A",
      "sentence": 47,
      "gt_text": "Which film the music comes from what is the name of the music.",
      "transcription": "WHICH FILM THE MUSIC UMS FROM WHAT IS THE NAME OF THE MUSIC"
     },
     {
-     "id": "ief432fb308",
-     "code": "B",
+     "id": "if927be0381",
+     "code": "A",
      "sentence": 48,
      "gt_text": "Turn off the lamps.",
      "transcription": "TARED OFF THE LENNOPS"
     },
     {
-     "id": "i09afd4fc7b",
-     "code": "B",
+     "id": "i822d4076bc",
+     "code": "A",
      "sentence": 49,
      "gt_text": "Please add practice on feb four at king's park at two pm.",
      "transcription": "PLEASE ADD PRACTICE ON FEP FOUR AT KINGS PARK AT TWO COCK"
     },
     {
-     "id": "i6574b7061c",
-     "code": "B",
+     "id": "i13fdc12930",
+     "code": "A",
      "sentence": 50,
      "gt_text": "It must be taste.",
      "transcription": "IT MUST BE TOAST"
     },
     {
-     "id": "i1eb8acdd81",
-     "code": "B",
+     "id": "ic322b56be1",
+     "code": "A",
      "sentence": 53,
      "gt_text": "I like senatra songs.",
      "transcription": "LIKE SENATOR SOS"
     },
     {
-     "id": "i58675e0c52",
-     "code": "B",
+     "id": "ic834dd7624",
+     "code": "A",
      "sentence": 54,
      "gt_text": "What movies are out this week.",
      "transcription": "NOVES ARE OUT THIS WEEK"
     },
     {
-     "id": "i0d7efa2faf",
-     "code": "B",
+     "id": "ic6ea455fc7",
+     "code": "A",
      "sentence": 58,
      "gt_text": "What is the definition of logic.",
      "transcription": "IN THE DEFINITION OF LOGIC"
     },
     {
-     "id": "i45054b8816",
-     "code": "B",
+     "id": "i917f2a2e65",
+     "code": "A",
      "sentence": 59,
      "gt_text": "Show me the best recipe for spaghetti.",
      "transcription": "SHENL MEAN THAT THE RACE SOT THE FIRST PAVE AT IT"
     },
     {
-     "id": "ifebd6deb92",
-     "code": "B",
+     "id": "ib2c46ac0d6",
+     "code": "A",
      "sentence": 60,
      "gt_text": "Disable alarm for three pm.",
      "transcription": "DISABLE ALON FOR THREE PEN"
     },
     {
-     "id": "i4108c626a9",
-     "code": "B",
+     "id": "i36f8247e70",
+     "code": "A",
      "sentence": 62,
      "gt_text": "Play one more time.",
      "transcription": "CLAIM ONE MORE TONGUE"
     },
     {
-     "id": "iaeae4404d7",
-     "code": "B",
+     "id": "ibb3c3da911",
+     "code": "A",
      "sentence": 66,
      "gt_text": "Open the radio app.",
      "transcription": "OPEN THE RADIA UP"
     },
     {
-     "id": "ib394fe31a0",
-     "code": "B",
+     "id": "id021d32e24",
+     "code": "A",
      "sentence": 67,
      "gt_text": "What is the location of moldova.",
      "transcription": "HIS THE LOCATION OF MOLD"
     },
     {
-     "id": "iedc6a2894d",
-     "code": "B",
+     "id": "ic23bd3147d",
+     "code": "A",
      "sentence": 69,
      "gt_text": "Front page news articles please.",
      "transcription": "FRONT PAGE NEW AS ARTICLES PLEASE"
     },
     {
-     "id": "ife4a2edd41",
-     "code": "B",
+     "id": "i5a62759469",
+     "code": "A",
      "sentence": 73,
      "gt_text": "I want a meeting till three o clock.",
      "transcription": "IL WALK TO MEETING TILL THREE OCLOCK"
     },
     {
-     "id": "ic3afa4f554",
-     "code": "B",
+     "id": "i979bc69882",
+     "code": "A",
      "sentence": 77,
      "gt_text": "Olly play music from the jazz genre.",
      "transcription": "ONLY PLAIN MUDES FROM THE JES GEE"
     },
     {
-     "id": "ic335045f77",
-     "code": "B",
+     "id": "ia121ee302e",
+     "code": "A",
      "sentence": 78,
      "gt_text": "Show me my meeting for the next month.",
      "transcription": "SURELY MAY MAN MEETING FOR THE NEXT MONTH"
     },
     {
-     "id": "i84877e5ea1",
-     "code": "B",
+     "id": "ie67f9b76ef",
+     "code": "A",
      "sentence": 82,
      "gt_text": "Play my playlist starting from the bottom.",
      "transcription": "LAING MY PLALIS STARTING FROM THE BOTTOM"
     },
     {
-     "id": "i62571c9d78",
-     "code": "B",
+     "id": "i1beaf94919",
+     "code": "A",
      "sentence": 87,
      "gt_text": "I hate this song.",
      "transcription": "I DIS SUNG"
     },
     {
-     "id": "id5fa7bff5f",
-     "code": "B",
+     "id": "id59db3466d",
+     "code": "A",
      "sentence": 90,
      "gt_text": "Which pole is colder south or north.",
      "transcription": "POLOS COLDER SOUTH OR NORTH"
     },
     {
-     "id": "i40f8cc3f3b",
-     "code": "D",
+     "id": "i8606a8e22f",
+     "code": "B",
      "sentence": 1,
      "gt_text": "Read my grocery list.",
      "transcription": "FOM A GROCERY LIST"
     },
     {
-     "id": "i1d357f0a64",
-     "code": "D",
+     "id": "i5b989bb030",
+     "code": "B",
      "sentence": 15,
      "gt_text": "Olly do they deliver home.",
      "transcription": "ALLI DO THEY DELIVER HOME"
     },
     {
-     "id": "ifb90e7e1a1",
-     "code": "D",
+     "id": "i747d3c279b",
+     "code": "B",
      "sentence": 18,
      "gt_text": "Will I need an umbrella this week.",
      "transcription": "ILE IVED AN UMBRELLA THE"
     },
     {
-     "id": "ice54565b12",
-     "code": "D",
+     "id": "i034f06ea18",
+     "code": "B",
      "sentence": 19,
      "gt_text": "Let me know any new emails I've received.",
      "transcription": "LET C C CC C O LOLON LONLON LON LEN LON LON LNLONN LON LOLAN EN LAND LET LET LET LET LET"
     },
     {
-     "id": "if1f7f21e5c",
-     "code": "D",
+     "id": "i38f568c9c6",
+     "code": "B",
      "sentence": 21,
      "gt_text": "When was last academy award winning movie.",
      "transcription": "WAS LESS LESS LES LESS HADEAN A EI VIEE ININAN"
     },
     {
-     "id": "i3eecadbb86",
-     "code": "D",
+     "id": "ia78e36b82f",
+     "code": "B",
      "sentence": 22,
      "gt_text": "Have I received new emails in the last ten minutes.",
      "transcription": "OS"
     },
     {
-     "id": "iac960da788",
-     "code": "D",
+     "id": "ia929bccee9",
+     "code": "B",
      "sentence": 26,
      "gt_text": "Play the twilight book.",
      "transcription": "A TWILIGHT TWILIGHT COOK"
     },
     {
-     "id": "i88b8577478",
-     "code": "D",
+     "id": "i7ee10b4aad",
+     "code": "B",
      "sentence": 28,
      "gt_text": "What is the traffic situation at the bazaar highway.",
      "transcription": "INECIATION OF TEF THETZAR HIGHWAY"
     },
     {
-     "id": "ie0ae6b4c8e",
-     "code": "D",
+     "id": "if4cf2a2198",
+     "code": "B",
      "sentence": 30,
      "gt_text": "Please play the notebook audio.",
      "transcription": "BLEASE ON BOOKADIO"
     },
     {
-     "id": "i295a7583c0",
-     "code": "D",
+     "id": "i7bbcc4616d",
+     "code": "B",
      "sentence": 33,
      "gt_text": "Where was will ferrell seen last night.",
      "transcription": "WHERE WAS WILL FARRELL SEEN LAST NIGHT"
     },
     {
-     "id": "ideea96abe6",
-     "code": "D",
+     "id": "i508bc88bcf",
+     "code": "B",
      "sentence": 34,
      "gt_text": "I want it to remember my preferences and recommend me things based on them when I ask.",
      "transcription": "I WANTED TO REMEMERMEMBER MEMBER MY PREFREFRE FOR MAAMITHA METHINKS THINKS THINKS DONE THAT I ASK"
     },
     {
-     "id": "i27e642965c",
-     "code": "D",
+     "id": "id9b4480761",
+     "code": "B",
      "sentence": 50,
      "gt_text": "It must be taste.",
      "transcription": "T FEET FACE TASTE"
     },
     {
-     "id": "id854a6087c",
-     "code": "D",
+     "id": "i42142a6c95",
+     "code": "B",
      "sentence": 53,
      "gt_text": "I like senatra songs.",
      "transcription": ""
     },
     {
-     "id": "id1bf5545ce",
-     "code": "D",
+     "id": "i9a232f8c5b",
+     "code": "B",
      "sentence": 54,
      "gt_text": "What movies are out this week.",
      "transcription": "WHAT MORE OUT THIS WEEK"
     },
     {
-     "id": "i950253dc8c",
-     "code": "D",
+     "id": "ib466dfeb1e",
+     "code": "B",
      "sentence": 66,
      "gt_text": "Open the radio app.",
      "transcription": "OPENED THE RADIA"
     },
     {
-     "id": "i0dd0fce922",
-     "code": "D",
+     "id": "id230e9be17",
+     "code": "B",
      "sentence": 73,
      "gt_text": "I want a meeting till three o clock.",
      "transcription": "AEEEEEEEEEEEEEEEEEAAAAAM"
     },
     {
-     "id": "i27909b471c",
-     "code": "D",
+     "id": "ic95100f186",
+     "code": "B",
      "sentence": 76,
      "gt_text": "What's on the radio right now.",
      "transcription": "ATS THE IEEETMEN WAT WAT AT WA WT AT AT AT WAT WT WAT WAT"
     },
     {
-     "id": "i58f3ca5f64",
-     "code": "D",
+     "id": "i624aaeb212",
+     "code": "B",
      "sentence": 84,
      "gt_text": "Is this program is scheduled.",
      "transcription": "S IT IS"
     },
     {
-     "id": "i4a5cfa38b1",
-     "code": "D",
+     "id": "i0ff19b43da",
+     "code": "B",
      "sentence": 100,
      "gt_text": "Remind me on fifth march of every year to arrange wedding anniversary presents.",
      "transcription": "NA MAFIT EVERY YEAR TO ARRANGE WAITING ANNIVERSARY PRESENTS"
     },
     {
-     "id": "i4ba02ebb76",
+     "id": "i09356af737",
      "code": "C",
      "sentence": 1,
      "gt_text": "Read my grocery list.",
      "transcription": "READ MY GROCERY LIST"
     },
     {
-     "id": "i7e52b04994",
+     "id": "ib950ae2652",
      "code": "C",
      "sentence": 2,
      "gt_text": "Send an email to my boss.",
      "transcription": "SEND AN EMAIL TO MY BOSS"
     },
     {
-     "id": "i67c8649f78",
+     "id": "if6bf401e04",
      "code": "C",
      "sentence": 4,
      "gt_text": "Locate me the amazon restaurants.",
      "transcription": "LOCATE ME THE AMAZON RESTAURANTS"
     },
     {
-     "id": "i6e99c7abea",
+     "id": "i573fe65f90",
      "code": "C",
      "sentence": 5,
      "gt_text": "What are my current list.",
      "transcription": "WHAT ARE MY CURRENT LIST"
     },
     {
-     "id": "i2bfccae6b8",
+     "id": "i70dceb2013",
      "code": "C",
      "sentence": 7,
      "gt_text": "Remove the second row from the list.",
      "transcription": "REMOVE THE SECOND ROW FROM THE LIST"
     },
     {
-     "id": "ic900425fc6",
-     "code": "C",
-     "sentence": 14,
-     "gt_text": "Go back to the last episode in this podcast.",
-     "transcription": "GO BACK TO THE LAST EPISODE IN THIS PODCAST"
-    },
-    {
-     "id": "i912408c3c2",
+     "id": "ib9ab1e6794",
      "code": "C",
      "sentence": 15,
      "gt_text": "Olly do they deliver home.",
      "transcription": "OLLY DO THEY DELIVER HOME"
     },
     {
-     "id": "i710b2975c6",
+     "id": "ia8a8e6a772",
      "code": "C",
      "sentence": 18,
      "gt_text": "Will I need an umbrella this week.",
      "transcription": "WILL I NEED AN UMBRELLA THIS WEEK"
     },
     {
-     "id": "i5720379089",
-     "code": "C",
-     "sentence": 21,
-     "gt_text": "When was last academy award winning movie.",
-     "transcription": "WHEN WAS LAST ACADEMY AWARD WINNING MOVIE"
-    },
-    {
-     "id": "i02edec31ef",
-     "code": "C",
-     "sentence": 22,
-     "gt_text": "Have I received new emails in the last ten minutes.",
-     "transcription": "HAVE I RECEIVED NEW EMALES IN THE LAST TEN MINUTES"
-    },
-    {
-     "id": "ib8f2d7fe55",
-     "code": "C",
-     "sentence": 24,
-     "gt_text": "Do I have anything set for the fourth of july this year.",
-     "transcription": "DO I HAVE ANYTHING SET FOR THE FOURTH OF JULY THIS YEAR"
-    },
-    {
-     "id": "ie87afc50cd",
+     "id": "i4239d5b552",
      "code": "C",
      "sentence": 27,
      "gt_text": "Tell me some business news.",
      "transcription": "TELL ME SOME BUSINESS NEWS"
     },
     {
-     "id": "iaaf25a3c68",
+     "id": "iab581ba307",
      "code": "C",
      "sentence": 28,
      "gt_text": "What is the traffic situation at the bazaar highway.",
      "transcription": "WHAT IS THE TRAFFIC SITUATION AT THE BAZAAR HIGHWAY"
     },
     {
-     "id": "ia9d181d9bf",
+     "id": "i4e298e9a79",
      "code": "C",
      "sentence": 30,
      "gt_text": "Please play the notebook audio.",
      "transcription": "PLEASE PLAY THE NOTE BOOK AUDIO"
     },
     {
-     "id": "i41c7537df5",
+     "id": "i5b045892c1",
      "code": "C",
      "sentence": 31,
      "gt_text": "Set my alarm for twelve pm.",
      "transcription": "SET MY ALARM FOR TWELVE P M"
     },
     {
-     "id": "i9cbf4ddeaa",
+     "id": "i8a92d6ff73",
      "code": "C",
-     "sentence": 34,
-     "gt_text": "I want it to remember my preferences and recommend me things based on them when I ask.",
-     "transcription": "I WANT IT TO REMEMBER MY PREFERENCES AND RECOMMEND ME THINGS BASED ON THEM WHEN I ASK"
+     "sentence": 32,
+     "gt_text": "Play my midnight love playlist.",
+     "transcription": "PLAY MY MIDNIGHT LOVE PLALIST"
     },
     {
-     "id": "i11300a2187",
+     "id": "ibb0ee5144d",
+     "code": "C",
+     "sentence": 33,
+     "gt_text": "Where was will ferrell seen last night.",
+     "transcription": "WHERE WAS WILL FERRELL SEEN LAST NIGHT"
+    },
+    {
+     "id": "i26a1645f58",
      "code": "C",
      "sentence": 35,
      "gt_text": "What is the nearest pizza shop.",
      "transcription": "WHAT IS THE NEAREST PETESA SHOP"
     },
     {
-     "id": "ief8c833848",
-     "code": "C",
-     "sentence": 40,
-     "gt_text": "Check for all the movie theater prices and availability for a newly released movie in my location.",
-     "transcription": "CHECK FOR ALL THE MOVIE THEATRE PRICES AND AVAILABILITY FOR A NEWLY RELEASED MOVIE IN MY LOCATION"
-    },
-    {
-     "id": "i476c835975",
-     "code": "C",
-     "sentence": 41,
-     "gt_text": "What is the highest rated movie now out.",
-     "transcription": "WHAT IS THE HIGHEST RATED MOVIE NOW OUT"
-    },
-    {
-     "id": "id4f3254f2d",
+     "id": "i055a79b46a",
      "code": "C",
      "sentence": 46,
      "gt_text": "Add a meeting at the office with brian for three pm on tuesday.",
      "transcription": "AD A MEETING AT THE OFFICE WITH BRYAN FOR THREE P M ON TUESDAY"
     },
     {
-     "id": "i872c805ac7",
+     "id": "ia07db931ce",
      "code": "C",
      "sentence": 47,
      "gt_text": "Which film the music comes from what is the name of the music.",
      "transcription": "WHICH FILM THE MUSIC COMES FROM WHAT IS THE NAME OF THE MUSIC"
     },
     {
-     "id": "i102b7bde99",
+     "id": "i060fb2de1e",
      "code": "C",
-     "sentence": 49,
-     "gt_text": "Please add practice on feb four at king's park at two pm.",
-     "transcription": "PLEASE ADD PRACTICE ON FEB FOURTH AT KINGS PARK AT TWO P M"
+     "sentence": 48,
+     "gt_text": "Turn off the lamps.",
+     "transcription": "TURN OFF THE LAMPS"
     },
     {
-     "id": "ia3a8ab29f1",
+     "id": "i0b3dd0c866",
      "code": "C",
      "sentence": 50,
      "gt_text": "It must be taste.",
      "transcription": "IT MUST BE TASTE"
     },
     {
-     "id": "i94284b7bcd",
+     "id": "i39032f594d",
      "code": "C",
-     "sentence": 51,
-     "gt_text": "Play the last doctor who radio broadcast.",
-     "transcription": "PLAY THE LAST DOCTOR WHO RADIO BROADCAST"
+     "sentence": 53,
+     "gt_text": "I like senatra songs.",
+     "transcription": "I LIKE SENATRA SONGS"
     },
     {
-     "id": "if11c2c7a34",
+     "id": "ia7f20e8bda",
+     "code": "C",
+     "sentence": 54,
+     "gt_text": "What movies are out this week.",
+     "transcription": "WHAT MOVIES ARE OUT THIS WEEK"
+    },
+    {
+     "id": "i1153a081a6",
      "code": "C",
      "sentence": 58,
      "gt_text": "What is the definition of logic.",
      "transcription": "WHAT IS THE DEFINITION OF LOGIC"
     },
     {
-     "id": "ia181011c5b",
+     "id": "i0fd22a3a62",
      "code": "C",
      "sentence": 59,
      "gt_text": "Show me the best recipe for spaghetti.",
      "transcription": "SHOW ME THE BEST RECIPE FOR SPAGHETTI"
     },
     {
-     "id": "i8bcbf1f93c",
+     "id": "if8584d3c02",
+     "code": "C",
+     "sentence": 60,
+     "gt_text": "Disable alarm for three pm.",
+     "transcription": "DISABLE ALARM FOR THREE P M"
+    },
+    {
+     "id": "i6ca9fa4ea6",
      "code": "C",
      "sentence": 62,
      "gt_text": "Play one more time.",
      "transcription": "PLAY ONE MORE TIME"
     },
     {
-     "id": "i629ae445e0",
+     "id": "ie422c71d04",
      "code": "C",
      "sentence": 66,
      "gt_text": "Open the radio app.",
      "transcription": "OPEN THE RADIO P"
     },
     {
-     "id": "i6fc1378e75",
+     "id": "i37ec071cf1",
      "code": "C",
      "sentence": 67,
      "gt_text": "What is the location of moldova.",
      "transcription": "WHAT IS THE LOCATION OF MOLDOVA"
     },
     {
-     "id": "i4f4408c04c",
+     "id": "i6f72ef7dce",
      "code": "C",
      "sentence": 68,
      "gt_text": "Olly turn the light off in the living room.",
      "transcription": "OLLI TURNED THE LIGHT OFF IN THE LIVING ROOM"
     },
     {
-     "id": "i0348f3531c",
+     "id": "i5b245db6ca",
      "code": "C",
      "sentence": 69,
      "gt_text": "Front page news articles please.",
      "transcription": "FRONT PAGE NEWS ARTICLES PLEASE"
     },
     {
-     "id": "ic76dbf859c",
-     "code": "C",
-     "sentence": 73,
-     "gt_text": "I want a meeting till three o clock.",
-     "transcription": "I WANT A MEETING TILL THREE OCLOCK"
-    },
-    {
-     "id": "id1fda834ea",
+     "id": "i2d4fdc1351",
      "code": "C",
      "sentence": 76,
      "gt_text": "What's on the radio right now.",
      "transcription": "WHATS ON THE RADIO RIGHT NOW"
     },
     {
-     "id": "i47b7c97da8",
+     "id": "i54a629d332",
      "code": "C",
      "sentence": 77,
      "gt_text": "Olly play music from the jazz genre.",
      "transcription": "ALI PLAY MUSIC FROM THE JAONA"
     },
     {
-     "id": "i42f23db306",
+     "id": "ifcba626aee",
+     "code": "C",
+     "sentence": 78,
+     "gt_text": "Show me my meeting for the next month.",
+     "transcription": "SHOW ME MY MEETING FOR THE NEXT MONTH"
+    },
+    {
+     "id": "ibfc90853fd",
      "code": "C",
      "sentence": 82,
      "gt_text": "Play my playlist starting from the bottom.",
      "transcription": "PLAY MY PLALIST STARTING FROM THE BOTTOM"
     },
     {
-     "id": "i8689b1e0d4",
-     "code": "C",
-     "sentence": 83,
-     "gt_text": "What time is it in austin.",
-     "transcription": "WHAT TIME IS IT IN AUSTEN"
-    },
-    {
-     "id": "i518df7a267",
+     "id": "i61689c0559",
      "code": "C",
      "sentence": 87,
      "gt_text": "I hate this song.",
      "transcription": "I HATE THIS SONG"
     },
     {
-     "id": "i57fd768f63",
-     "code": "C",
-     "sentence": 90,
-     "gt_text": "Which pole is colder south or north.",
-     "transcription": "WHICH POLE IS COLDER SOUTH OR NORTH"
-    },
-    {
-     "id": "ib430a31251",
+     "id": "i68027752fe",
      "code": "C",
      "sentence": 98,
      "gt_text": "Current time new york.",
      "transcription": "CURRENT TIME NEW YORK"
     },
     {
-     "id": "i6ec857d8c3",
+     "id": "i43e413961f",
      "code": "C",
      "sentence": 100,
      "gt_text": "Remind me on fifth march of every year to arrange wedding anniversary presents.",
@@ -4305,5 +3819,5 @@
    ]
   }
  },
- "per_condition": 5
+ "per_config": 2
 }

@@ -17,6 +17,15 @@ class Handler(SimpleHTTPRequestHandler):
 
     def do_GET(self):
         path = self.path.split("?")[0]
+        if path == "/submit":
+            counts = {}
+            if os.path.exists(OUT):
+                for line in open(OUT):
+                    for t in json.loads(line).get("trials", []):
+                        counts[t["item"]] = counts.get(t["item"], 0) + 1
+            body = json.dumps(counts).encode()
+            self.send_response(200); self.send_header("Content-Type", "application/json"); self.end_headers(); self.wfile.write(body)
+            return
         if path in PUBLIC or (path.startswith("/audio/") and ".." not in path):
             return super().do_GET()
         self.send_error(404)

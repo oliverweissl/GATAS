@@ -41,7 +41,7 @@ CELLS = {  # id: (label, dataset, SUT, {condition: result folder})
     "wt-intent": ("Whisper-tiny, intent", "commands", "whisper-tiny", {"ours": "GATAS_llm", **{b: INTENT[b] for b in BASELINES}}),
     "w2v-intent": ("wav2vec2-large, intent", "commands", "wav2vec2-large", {"ours": "GATAS_llm", **{b: INTENT[b] for b in BASELINES}}),
 }
-MAX_POOL = 40
+MAX_POOL = 35
 
 
 def silent(wav):
@@ -83,7 +83,7 @@ for cell, (label, dataset, sut, folders) in CELLS.items():
             normalize(wav, f"{OUT}/audio/{item_id}.wav")
             items.append({"id": item_id, "code": code_of[cond], "sentence": sid, "gt_text": ref["gt_text"], "transcription": shorten(transcription)})
             key[item_id] = {"cell": cell, "sentence": sid, "condition": cond, "source": os.path.relpath(wav)}
-    cells[cell] = {"label": label, "items": items}
-json.dump({"cells": cells, "per_condition": 5}, open(f"{OUT}/items.json", "w"), indent=1)
+    cells[cell] = {"label": label, "task": dataset, "items": items}
+json.dump({"cells": cells, "per_config": 2}, open(f"{OUT}/items.json", "w"), indent=1)
 json.dump(key, open(f"{PRIVATE}/key.json", "w"), indent=1)
 print(f"{len(key)} items")

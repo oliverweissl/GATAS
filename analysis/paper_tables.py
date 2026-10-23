@@ -111,7 +111,7 @@ def efficiency_tex(tasks, thr, models=MODELS, names=TEX_NAME):
             t = rf"\textbf{{{t}}}"
         sig = faster[task, model].get(m)
         if sig and m not in OWN and sig[0] < ALPHA and sig[1] > 0:
-            t = SHADE + t + rf"\textsubscript{{\scriptsize $d{{=}}{sig[1]:.2f}$}}"
+            t += bullet(sig[1])
         if np.isfinite(c[1]) and abs(c[1] - best[task, model][1]) < 1e-9:
             q = rf"\textbf{{{q}}}"
         return [t, q]
@@ -134,20 +134,28 @@ def efficiency_tex(tasks, thr, models=MODELS, names=TEX_NAME):
     lines = [r"\begin{table*}[t]", r"\caption{Efficiency (RQ\textsubscript{3}). Mean runtime per sentence and queries per m-valid success; "
              r"$\infty$: no m-valid success. All methods use a budget of 300 queries (\smack stops earlier). "
              r"Runtimes are comparable between methods, not between models. "
-             r"\colorbox{gray!25}{Shaded}: the reference method (\tool on ASR, \gllm on intent) is significantly faster (one-sided paired Wilcoxon, "
-             r"Holm-corrected, $p<0.05$), with the paired Cohen's $d_z$ as subscript.}",
+             r"The reference method is \tool on ASR and \gllm on intent; bullets mark where it is significantly faster. " + LEGEND + "}",
              r"\label{tab:efficiency}", r"\centering", r"\resizebox{\textwidth}{!}{%", rf"\begin{{tabular}}{{{cols}}}\toprule",
              head1, rules1, head2, rules2, head3, *rows, r"\bottomrule", r"\end{tabular}}", r"\end{table*}"]
     return "\n".join(lines)
 
 
 # ----------------------------------------------------------------------------------------------------------------------------------
-# RQ1: one table, both tasks (panels), column groups per SUT. Shaded cell: the reference method (GATAS on ASR, GATAS_llm on intent) is
+# RQ1: one table, both tasks (panels), column groups per SUT. Colored bullet: the reference method (GATAS on ASR, GATAS_llm on intent) is
 # significantly better than this baseline in this SUT / task / measure (one-sided paired test, Holm-corrected over the baselines,
-# p < 0.05), with the paired Cohen's d_z (positive: reference better) as subscript.
+# p < 0.05); the bullet color gives the size of the paired Cohen's d_z (positive: reference better).
 # ----------------------------------------------------------------------------------------------------------------------------------
 ALPHA = 0.05
-SHADE = r"\cellcolor{gray!25}"
+# effect size of a significant difference as a colored bullet (Cohen's d_z: small <= 0.5 < medium <= 1 < large)
+BULLET_COLORS = ((1.0, "green!50!black"), (0.5, "blue!70"), (0.0, "orange!80!black"))
+LEGEND = (r"A colored bullet marks a significant difference to the reference method (one-sided paired test, Holm-corrected, $p<0.05$) and "
+          r"the size of the paired Cohen's $d_z$: \textcolor{orange!80!black}{$\bullet$}~small ($d_z\le0.5$), \textcolor{blue!70}{$\bullet$}~medium "
+          r"($0.5<d_z\le1$), \textcolor{green!50!black}{$\bullet$}~large ($d_z>1$).")
+
+
+def bullet(d):
+    color = next(c for lo, c in BULLET_COLORS if d > lo or lo == 0.0)
+    return rf"\,\textcolor{{{color}}}{{$\bullet$}}"
 
 
 def _rate(f):
@@ -184,7 +192,7 @@ def significance(records, reference, getter, higher, binary):
     return {m: (p, d) for m, p, d in zip(others, holm(ps), ds)}
 
 
-OWN = ("GATAS", "GATAS_llm")  # variants of the proposed method are not baselines and are never shaded
+OWN = ("GATAS", "GATAS_llm")  # variants of the proposed method are not baselines and never get a bullet
 
 
 def _panel(data, methods, measures, reference, models, names):
@@ -214,7 +222,7 @@ def _panel(data, methods, measures, reference, models, names):
                     text = rf"\textbf{{{text}}}"
                 sig = stat[mo, ci].get(m)
                 if sig and m not in OWN and sig[0] < ALPHA and sig[1] > 0:
-                    text = SHADE + text + rf"\textsubscript{{\scriptsize $d{{=}}{sig[1]:.2f}$}}"
+                    text += bullet(sig[1])
                 out.append(text)
         rows.append(f"{names[m]} & " + " & ".join(out) + r" \\")
     head1 = " & " + " & ".join(rf"\multicolumn{{{k}}}{{c}}{{{MODEL_LABELS[m]}}}" for m in models) + r" \\"
@@ -230,9 +238,7 @@ def rq1_tex(asr, intent, thr, models=MODELS, asr_names=TEX_NAME, intent_names=No
     pi = _panel(intent, ("GATAS", "GATAS_llm") + INTENT_ORDER[1:-1], rq1_measures("Intent", thr["Intent"]), "GATAS_llm", models, intent_names)
     cap = (r"Effectiveness (RQ\textsubscript{1}) on (a) ASR testing and (b) intent matching: test cases found, lexical (WER), semantic and "
            r"spectrogram distance to the clean audio, naturalness (UTMOS) and the share of m-valid test cases. Bold: best value. "
-           r"\colorbox{gray!25}{Shaded}: the reference method (\tool on ASR, \gllm on intent matching) is significantly better than this method "
-           r"in this model and measure (one-sided paired test, Holm-corrected, $p<0.05$), with the paired Cohen's $d_z$ as subscript. "
-           + NOTE_PGD)
+           r"The reference method is \tool on ASR and \gllm on intent matching; " + LEGEND + " " + NOTE_PGD)
     return "\n".join([r"\begin{table*}[t]", rf"\caption{{{cap}}}", r"\label{tab:rq1}", r"\centering", r"\small",
                        r"\textbf{(a) ASR testing}\\[2pt]", r"\resizebox{\textwidth}{!}{%", pa + "}", r"\vspace{6pt}",
                        r"\textbf{(b) Intent matching}\\[2pt]", r"\resizebox{\textwidth}{!}{%", pi + "}", r"\end{table*}"])

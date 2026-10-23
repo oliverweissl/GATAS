@@ -236,26 +236,3 @@ def rq1_tex(asr, intent, thr, models=MODELS, asr_names=TEX_NAME, intent_names=No
     return "\n".join([r"\begin{table*}[t]", rf"\caption{{{cap}}}", r"\label{tab:rq1}", r"\centering", r"\small",
                        r"\textbf{(a) ASR testing}\\[2pt]", r"\resizebox{\textwidth}{!}{%", pa + "}", r"\vspace{6pt}",
                        r"\textbf{(b) Intent matching}\\[2pt]", r"\resizebox{\textwidth}{!}{%", pi + "}", r"\end{table*}"])
-
-
-def llm_semantic_tex(asr, models=MODELS, names=TEX_NAME):
-    """Separate table of the LLM judge: share of preserved / changed / garbled transcriptions (ASR task) and of m-valid changed ones."""
-    rows = []
-    for m in ASR_ORDER:
-        if not any(asr.get(mo, {}).get(m) for mo in models):
-            continue
-        out = []
-        for mo in models:
-            recs = asr.get(mo, {}).get(m)
-            if not recs:
-                out += ["--"] * 3; continue
-            share = lambda key: 100 * np.mean([verdict(r) == key for r in recs])
-            out += [f"{share('preserved'):.1f}", f"{share('changed'):.1f}", f"{share('garbled'):.1f}"]
-        rows.append(f"{names[m]} & " + " & ".join(out) + r" \\")
-    head1 = " & " + " & ".join(rf"\multicolumn{{3}}{{c}}{{{MODEL_LABELS[m]}}}" for m in models) + r" \\"
-    rules = "".join(rf"\cmidrule(lr){{{2 + g * 3}-{4 + g * 3}}}" for g in range(len(models)))
-    head2 = " & " + " & ".join(r"Preserved & Changed & Garbled" for _ in models) + r" \\ \midrule"
-    cap = (r"Semantic outcome of the ASR transcriptions judged by a local LLM [\%]: same meaning (preserved), coherent but different meaning "
-           r"(changed), incoherent (garbled). " + NOTE_PGD)
-    return "\n".join([r"\begin{table}[t]", rf"\caption{{{cap}}}", r"\label{tab:llm-semantic}", r"\centering", r"\resizebox{\columnwidth}{!}{%",
-                       rf"\begin{{tabular}}{{l{'ccc' * len(models)}}}\toprule", head1, rules, head2, *rows, r"\bottomrule", r"\end{tabular}}", r"\end{table}"])

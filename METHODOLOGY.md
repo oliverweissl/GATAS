@@ -5,8 +5,8 @@ recognition (ASR) systems. Instead of perturbing a waveform, it perturbs the *in
 Every candidate is therefore speech that a TTS model could plausibly produce, and the search only needs the
 transcription of the system under test (SUT), with no gradients or logits.
 
-This document describes the best configuration found in the ablation studies (`analysis/Ablation_Scale.ipynb`,
-`analysis/Ablation_Space.ipynb`):
+This document describes the best configuration found in the ablation studies (`analysis/Ablation_Space.ipynb`:
+scale, search space and optimizer):
 
 | Component | Choice | Flag |
 |---|---|---|

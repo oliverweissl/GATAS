@@ -53,52 +53,6 @@ def verdict(r):
     return _sem_cache[json.dumps([r["gt_text"], r["transcription"] or ""])][f"llm3:{JUDGE}"]
 
 
-def _top(columns, models, data, methods, thr):
-    """Cell values {(model, col, method): (val, num, suffix)} and the best value per (model, col)."""
-    cells, best = {}, {}
-    for model in models:
-        for ci, (_, fn, higher) in enumerate(columns):
-            vals = []
-            for m in methods:
-                recs = data.get(model, {}).get(m)
-                if recs:
-                    cells[model, ci, m] = fn(recs, thr)
-                    vals.append(cells[model, ci, m][0])
-            if higher is not None and len(set(vals)) > 1:  # no bold when all methods tie or the column has no direction
-                best[model, ci] = max(vals) if higher else min(vals)
-    return cells, best
-
-
-def effectiveness_tex(data, methods, columns, thr, caption, label, models=MODELS, names=TEX_NAME, footnote=None):
-    """Effectiveness table: one column group per model. `data` is {model: {method: records}}."""
-    cells, best = _top(columns, models, data, methods, thr)
-    k = len(columns)
-    head1 = " & " + " & ".join(rf"\multicolumn{{{k}}}{{c}}{{{MODEL_LABELS[m]}}}" for m in models) + r" \\"
-    rules = "".join(rf"\cmidrule(lr){{{2 + g * k}-{1 + (g + 1) * k}}}" for g in range(len(models)))
-    head2 = " & " + " & ".join(c[0] for _ in models for c in columns) + r" \\ \midrule"
-    rows = []
-    for m in methods:
-        if not any(data.get(model, {}).get(m) for model in models):
-            continue
-        out = []
-        for model in models:
-            for ci, (_, _, _) in enumerate(columns):
-                c = cells.get((model, ci, m))
-                if c is None:
-                    out.append("--")
-                    continue
-                num = rf"\textbf{{{c[1]}}}" if (model, ci) in best and abs(c[0] - best[model, ci]) < 1e-9 else c[1]
-                out.append(num + c[2])
-        rows.append(f"{names[m]} & " + " & ".join(out) + r" \\")
-    star = "*" if k * len(models) >= 8 else ""
-    cols = "l" + "c" * (k * len(models))
-    lines = [rf"\begin{{table{star}}}[t]", rf"\caption{{{caption}}}", rf"\label{{{label}}}", r"\centering",
-             rf"\resizebox{{\{'textwidth' if star else 'columnwidth'}}}{{!}}{{%", rf"\begin{{tabular}}{{{cols}}}\toprule", head1, rules, head2,
-             *rows, r"\bottomrule", r"\end{tabular}}", rf"\end{{table{star}}}"]
-    return "\n".join(lines)
-
-
-ASR_COLUMNS_MAIN = None  # built lazily to avoid importing asr_found at import time
 
 
 def asr_columns(full=False):

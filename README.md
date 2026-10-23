@@ -189,7 +189,6 @@ latest experiment per method, only sentences present for every method, sorted by
 - `RQ1_Effectiveness`: test case found, lexical / semantic / spectrogram distance, paired tests.
 - `RQ2_Validity`: human study (survey) and the automatic validity check (reference ASR).
 - `RQ3_Efficiency`: runtime, query budget, convergence, success vs. query budget (from `archive_history.json`).
-- `QualAnalysis`: qualitative examples.
 
 ## Intent matching
 

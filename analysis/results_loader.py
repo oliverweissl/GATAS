@@ -160,93 +160,6 @@ def success_at_budget(record: dict, queries: int, thresholds: dict = None) -> bo
     return record["success"] and record["queries"] <= queries
 
 
-def summary_table(records: dict):
-    """Per-method success rate and mean distances as a pandas DataFrame."""
-    import numpy as np
-    import pandas as pd
-
-    rows = {}
-    for method, recs in records.items():
-        if not recs:
-            continue
-        rows[method] = {
-            "test case found %": 100 * np.mean([r["success"] for r in recs]),
-            "lexical (WER)": np.mean([r["wer"] for r in recs]),
-            "semantic": np.mean([r["semantic"] for r in recs]),
-            "spectrogram": np.mean([r["spectrogram"] for r in recs]),
-            "UTMOS": np.mean([r["utmos"] for r in recs]),
-        }
-    return pd.DataFrame(rows).T
-
-
-def intent_summary_table(records: dict):
-    """
-    Intent matching per method (records from load_intent_results).
-      intent changed %: share of sentences where the adversarial transcription is classified differently than the clean one
-      target intent %:  share of the changed intents that are the target intent (untargeted methods: by chance)
-    """
-    import numpy as np
-    import pandas as pd
-
-    rows = {}
-    for method, recs in records.items():
-        recs = [r for r in recs if r.get("intent")]
-        if not recs:
-            continue
-        changed = [r for r in recs if r["intent"]["changed"]]
-        rows[method] = {
-            "intent changed %": 100 * len(changed) / len(recs),
-            "target intent %": 100 * np.mean([r["intent"]["target_match"] for r in changed]) if changed else np.nan,
-            "lexical (WER)": np.mean([r["wer"] for r in recs]),
-            "semantic": np.mean([r["semantic"] for r in recs]),
-            "spectrogram": np.mean([r["spectrogram"] for r in recs]),
-            "UTMOS": np.mean([r["utmos"] for r in recs]),
-        }
-    return pd.DataFrame(rows).T
-
-
-def pareto_plot(ax, points: dict, x_key: str, y_key: str, x_higher_better: bool, y_higher_better: bool = True):
-    """
-    Draws one marker per method and the Pareto front (line through the non-dominated methods).
-    `points` is {label: {x_key: float, y_key: float}}, e.g. rows of `summary_table(...).to_dict("index")`.
-    Returns the labels on the front.
-    """
-    sx, sy = (1 if x_higher_better else -1), (1 if y_higher_better else -1)
-    labels = list(points)
-    xs = {l: sx * points[l][x_key] for l in labels}
-    ys = {l: sy * points[l][y_key] for l in labels}
-    front = [l for l in labels if not any(
-        xs[o] >= xs[l] and ys[o] >= ys[l] and (xs[o] > xs[l] or ys[o] > ys[l]) for o in labels if o != l)]
-    front.sort(key=lambda l: xs[l])
-    for l in labels:
-        ax.scatter(points[l][x_key], points[l][y_key], s=90, zorder=3, marker="o" if l in front else "x", label=l)
-    ax.plot([points[l][x_key] for l in front], [points[l][y_key] for l in front], color="black", alpha=0.5, zorder=2)
-    ax.grid(alpha=0.3)
-    return front
-
-
-def first_success_queries(record: dict, thresholds_from_summary: bool = True) -> float:
-    """
-    Queries until the first test case (inf if none). Archive methods (GATAS/Waveform): first generation whose archive has a
-    member meeting the run's objective thresholds (run_summary.json) times pop_size, as a proxy since archives store optimizer
-    objectives only; if the final candidate is a success but no archive member meets them, the full budget. Baselines (no
-    per-query history): total queries used if successful (upper bound).
-    """
-    if not record["success"]:
-        return float("inf")
-    if not record.get("archive_history"):
-        return float(record["queries"])
-    with open(record["summary_path"]) as f:
-        thresholds = json.load(f)["objectives"]["thresholds"]
-    with open(record["archive_history"]) as f:
-        history = json.load(f)
-    names = [_METRIC_ALIASES.get(n, n) for n in history["objectives"]]
-    for g, archive in enumerate(history["archive_per_generation"], 1):
-        if any(all(dict(zip(names, m)).get(k, float("inf")) <= v for k, v in thresholds.items()) for m in archive):
-            return float(g * record["pop_size"])
-    return float(record["queries"])
-
-
 # ---------------------------------------------------------------- display names / plot style
 PCT = r"\%"
 _DAGGER = r"\textsuperscript{$\dagger$}"
@@ -265,18 +178,6 @@ _NAMES = {
 
 def tex_name(method: str) -> str:
     return _NAMES.get(method, (method.replace("_", r"\_"),))[0]
-
-
-def plain_name(method: str) -> str:
-    return _NAMES.get(method, (None, method))[1]
-
-
-def pretty(df):
-    """Plain display names for method rows / the `vs` column of a table."""
-    df = df.rename(index=plain_name)
-    if "vs" in df:
-        df = df.assign(vs=df["vs"].map(plain_name))
-    return df
 
 
 def setup_latex_plots(font_size: int = 18):

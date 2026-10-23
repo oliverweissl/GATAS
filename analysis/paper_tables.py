@@ -182,9 +182,9 @@ def rq1_tex(frame, thr, models=MODELS, asr_names=TEX_NAME, intent_names=None):
     cap = (r"Effectiveness (RQ\textsubscript{1}) on (a) ASR testing and (b) intent matching: test cases found, lexical (WER), semantic and "
            r"spectrogram distance to the clean audio, naturalness (UTMOS) and the share of m-valid test cases. Bold: best value. "
            r"The reference method is \tool on ASR and \gllm on intent matching; " + LEGEND + " " + NOTE_PGD)
-    return "\n".join([r"\begin{table*}[t]", rf"\caption{{{cap}}}", r"\label{tab:rq1}", r"\centering", r"\scriptsize",
-                       r"\textbf{(a) ASR testing}\\[2pt]", r"\resizebox{\textwidth}{!}{%", pa + "}", r"\vspace{6pt}",
-                       r"\textbf{(b) Intent matching}\\[2pt]", r"\resizebox{\textwidth}{!}{%", pi + "}", r"\end{table*}"])
+    return "\n".join([r"\begin{table*}[t]", rf"\caption{{{cap}}}", r"\label{tab:rq1}", r"\centering", r"\footnotesize",
+                       r"\textbf{(a) ASR testing}\\[2pt]", r"\adjustbox{max width=\textwidth}{%", pa + "}", r"\vspace{6pt}",
+                       r"\textbf{(b) Intent matching}\\[2pt]", r"\adjustbox{max width=\textwidth}{%", pi + "}", r"\end{table*}"])
 
 
 def efficiency_frame(tasks, thr, models=MODELS):
@@ -254,6 +254,6 @@ def efficiency_tex(frame, models=MODELS, names=TEX_NAME):
              r"$\infty$: no m-valid success. All methods use a budget of 300 queries (\smack stops earlier). "
              r"Runtimes are comparable between methods, not between models. "
              r"The reference method is \tool on ASR and \gllm on intent; bullets mark where it is significantly faster (time) or has a significantly higher m-valid success rate (queries per m-valid success). " + LEGEND + "}",
-             r"\label{tab:efficiency}", r"\centering", r"\scriptsize", r"\resizebox{\textwidth}{!}{%", rf"\begin{{tabular}}{{{cols}}}\toprule",
+             r"\label{tab:efficiency}", r"\centering", r"\footnotesize", r"\adjustbox{max width=\textwidth}{%", rf"\begin{{tabular}}{{{cols}}}\toprule",
              head1, rules1, head2, rules2, head3, *rows, r"\bottomrule", r"\end{tabular}}", r"\end{table*}"]
     return "\n".join(lines)

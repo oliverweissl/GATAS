@@ -101,6 +101,11 @@ def efficiency_tex(tasks, thr, models=MODELS, names=TEX_NAME):
     reference = {"ASR": "GATAS", "Intent": "GATAS_llm"}
     faster = {(t, mo): significance(tasks[t].get(mo, {}), reference[t], lambda r: r["runtime"], False, False) for t in tasks for mo in models}
 
+    # queries per m-valid success: the budgets are (nearly) equal, so it is lower exactly where the m-valid success rate is higher,
+    # which is tested per sentence (exact McNemar, reference has the higher rate)
+    cheaper = {(t, mo): significance(tasks[t].get(mo, {}), reference[t], lambda r, t=t: float(success[t](r) and r["utmos"] >= thr[t]), True, True)
+               for t in tasks for mo in models}
+
     def fmt(task, model, m):
         c = cell.get((task, model, m))
         if c is None:
@@ -114,6 +119,9 @@ def efficiency_tex(tasks, thr, models=MODELS, names=TEX_NAME):
             t += bullet(sig[1])
         if np.isfinite(c[1]) and abs(c[1] - best[task, model][1]) < 1e-9:
             q = rf"\textbf{{{q}}}"
+        sig = cheaper[task, model].get(m)
+        if sig and m not in OWN and sig[0] < ALPHA and sig[1] > 0:
+            q += bullet(sig[1])
         return [t, q]
 
     task_labels = {"ASR": "ASR", "Intent": "Intent (target hit)"}
@@ -134,7 +142,7 @@ def efficiency_tex(tasks, thr, models=MODELS, names=TEX_NAME):
     lines = [r"\begin{table*}[t]", r"\caption{Efficiency (RQ\textsubscript{3}). Mean runtime per sentence and queries per m-valid success; "
              r"$\infty$: no m-valid success. All methods use a budget of 300 queries (\smack stops earlier). "
              r"Runtimes are comparable between methods, not between models. "
-             r"The reference method is \tool on ASR and \gllm on intent; bullets mark where it is significantly faster. " + LEGEND + "}",
+             r"The reference method is \tool on ASR and \gllm on intent; bullets mark where it is significantly faster (time) or has a significantly higher m-valid success rate (queries per m-valid success). " + LEGEND + "}",
              r"\label{tab:efficiency}", r"\centering", r"\resizebox{\textwidth}{!}{%", rf"\begin{{tabular}}{{{cols}}}\toprule",
              head1, rules1, head2, rules2, head3, *rows, r"\bottomrule", r"\end{tabular}}", r"\end{table*}"]
     return "\n".join(lines)

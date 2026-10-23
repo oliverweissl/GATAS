@@ -8,13 +8,13 @@ import json
 import warnings
 from glob import glob
 
-METHODS = ("GATAS", "Waveform", "SMACK", "ALIF", "PGD", "SMACK_targeted")          # main comparison (untargeted)
+METHODS = ("GATAS", "Waveform", "SMACK_untargeted", "ALIF", "PGD", "SMACK")          # main comparison
 # Intent matching task (commands dataset): the same methods as in the ASR task (harvard), run with the objective toward the
 # target intent. Their result folders carry an `_intent` suffix (run_*_intent.sh); PGD is white-box on Whisper and stays untargeted.
-INTENT_FOLDERS = {"GATAS": "GATAS_intent", "Waveform": "Waveform_intent", "SMACK_targeted": "SMACK_intent", "ALIF": "ALIF_intent", "PGD": "PGD",
+INTENT_FOLDERS = {"GATAS": "GATAS_intent", "Waveform": "Waveform_intent", "SMACK": "SMACK", "ALIF": "ALIF_intent", "PGD": "PGD",
                   "GATAS_llm": "GATAS_llm"}
-ALL_METHODS = ("GATAS", "GATAS_targeted", "Waveform", "SMACK", "SMACK_targeted", "ALIF", "PGD",
-               "GATAS_intent", "Waveform_intent", "SMACK_intent", "ALIF_intent", "GATAS_llm")
+ALL_METHODS = ("GATAS", "GATAS_targeted", "Waveform", "SMACK_untargeted", "SMACK", "ALIF", "PGD",
+               "GATAS_intent", "Waveform_intent", "ALIF_intent", "GATAS_llm")
 
 # Objective names in archives / Pareto fronts -> metric names of evaluation.json
 _METRIC_ALIASES = {"WER_TARGET": "TARGET_WER"}
@@ -86,6 +86,48 @@ def load_intent_results(results_root: str = "../outputs/results", asr_model: str
                            exclude_original_fails=False)
     return {method: [r for r in folders[folder] if r["intent"] and (r["intent"]["original_correct"] or not exclude_original_wrong)]
             for method, folder in INTENT_FOLDERS.items()}
+
+
+MODELS = ("whisper-tiny", "wav2vec2-large")  # attacked ASR models of the paper; the first one is the primary model
+MODEL_LABELS = {"whisper-tiny": "Whisper-tiny", "wav2vec2-large": "wav2vec2-large"}
+
+
+def asr_found(r: dict) -> bool:
+    """ASR task: a test case is found. Single place to change if the success criterion changes."""
+    return bool(r["success"])
+
+
+def intent_hit(r: dict) -> bool:
+    """Intent task: the intent changed to the target intent."""
+    return bool(r["intent"]["changed"] and r["intent"]["target_match"])
+
+
+def load_all(results_root: str = "../outputs/results", models=MODELS, exclude_baseline_failures: bool = True):
+    """
+    Both tasks for every attacked model: returns (asr, intent), each {model: {method: [record, ...]}} with empty methods
+    dropped. With `exclude_baseline_failures`, sentences whose clean input already fails (ASR: transcription != ground
+    truth; intent: clean intent != reference) are dropped per model.
+    """
+    asr, intent = {}, {}
+    for model in models:
+        a = load_results(results_root, dataset="harvard", asr_model=model)
+        i = load_intent_results(results_root, asr_model=model)
+        if exclude_baseline_failures:
+            a = {m: [r for r in rs if r["original_passes"]] for m, rs in a.items()}
+            i = {m: [r for r in rs if r["intent"]["original_correct"]] for m, rs in i.items()}
+        asr[model] = {m: rs for m, rs in a.items() if rs}
+        intent[model] = {m: rs for m, rs in i.items() if rs}
+    return asr, intent
+
+
+def task_thresholds(asr: dict, intent: dict, models=MODELS) -> dict:
+    """m-valid UTMOS threshold per task. The ground-truth audio does not depend on the attacked model, so the threshold is
+    computed once on the first model that has GATAS results."""
+    out = {}
+    for task, data in (("ASR", asr), ("Intent", intent)):
+        model = next(m for m in models if data.get(m, {}).get("GATAS"))
+        out[task] = validity_threshold(data[model]["GATAS"])
+    return out
 
 
 def validity_threshold(records: list, percentile: float = 2.5) -> float:
@@ -209,12 +251,12 @@ def first_success_queries(record: dict, thresholds_from_summary: bool = True) ->
 PCT = r"\%"
 _DAGGER = r"\textsuperscript{$\dagger$}"
 _DDAGGER = r"\textsuperscript{$\ddagger$}"
-# folder/key name -> (LaTeX name for plots, plain name for tables). SMACK_targeted is the original SMACK, SMACK our modified version.
+# folder/key name -> (LaTeX name for plots, plain name for tables). SMACK is the original (native targeted) SMACK, SMACK_untargeted our untargeted adaptation for the ASR task.
 _NAMES = {
     "GATAS": (r"\textsc{Gatas}", "GATAS"),
     "GATAS_llm": (r"\textsc{Gatas}" + _DAGGER, "GATAS†"),
-    "SMACK_targeted": (r"\textsc{Smack}", "SMACK"),
-    "SMACK": (r"\textsc{Smack}" + _DDAGGER, "SMACK‡"),
+    "SMACK": (r"\textsc{Smack}", "SMACK"),
+    "SMACK_untargeted": (r"\textsc{Smack}" + _DDAGGER, "SMACK‡"),
     "Waveform": (r"\textsc{Waveform}", "Waveform"),
     "ALIF": (r"\textsc{Alif}", "ALIF"),
     "PGD": (r"\textsc{Pgd}", "PGD"),
@@ -243,7 +285,7 @@ def setup_latex_plots(font_size: int = 18):
 
 
 # plotting order: related methods next to each other (GATAS variants, SMACK variants, then the rest)
-METHOD_ORDER = ("GATAS", "GATAS_llm", "SMACK_targeted", "SMACK", "Waveform", "ALIF", "PGD")
+METHOD_ORDER = ("GATAS", "GATAS_llm", "SMACK", "SMACK_untargeted", "Waveform", "ALIF", "PGD")
 
 
 def ordered(methods):

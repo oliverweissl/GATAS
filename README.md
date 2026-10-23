@@ -129,10 +129,10 @@ DATASET=commands ASR_MODEL=whisper-large-v3-turbo bash scripts/run_gatas.sh
 | `GATAS` | `run_gatas.sh` | main |
 | `GATAS_targeted` | `run_gatas_targeted.sh` | main |
 | `Waveform` | `run_waveform.sh` | main |
-| `SMACK` (untargeted adaptation) | `run_smack.sh` | smack |
-| `SMACK_targeted` (native) | `run_smack_targeted.sh` | smack |
+| `SMACK` (native targeted, as in the SMACK repository; on `commands` the target text is the intent rewrite) | `run_smack.sh` | smack |
+| `SMACK_untargeted` (our untargeted adaptation, ASR task only) | `run_smack_untargeted.sh` | smack |
 | `ALIF` | `run_alif.sh` | alif |
-| `GATAS_intent`, `Waveform_intent`, `SMACK_intent`, `ALIF_intent` (intent matching, `commands`) | `run_gatas_intent.sh`, `run_waveform_intent.sh`, `run_smack_intent.sh`, `run_alif_intent.sh` | main / main / smack / alif |
+| `GATAS_intent`, `Waveform_intent`, `ALIF_intent` (intent matching, `commands`) | `run_gatas_intent.sh`, `run_waveform_intent.sh`, `run_alif_intent.sh` | main / main / alif |
 | `PGD` | `run_pgd.sh` (Whisper-tiny only) | pgd |
 
 GATAS settings: CMA-ES with population 20 for up to 15 generations, i.e. a budget of 300 ASR queries per sentence, the
@@ -201,7 +201,7 @@ prediction on the clean text, `commands.intents.txt`) and a *target intent* (bes
 
 The intent output is used as optimization signal by the methods that can use a score: `GATAS_intent` and
 `Waveform_intent` (objective `INTENT_TARGET = 1 - P(target intent)` instead of SET_OVERLAP), `ALIF_intent` (PSO loss)
-and `SMACK_intent` (fitness); run scripts `run_<method>_intent.sh` with `DATASET=commands`. PGD stays untargeted.
+(PSO loss); run scripts `run_<method>_intent.sh` with `DATASET=commands`. SMACK is not modified: its native targeted attack gets the LLM intent rewrite (`commands.intent_rewrites.txt`, also the target of `GATAS_llm`) as target text. PGD stays untargeted.
 `evaluation.json` gets an `intent` block for every method on `commands`: `target_match` (predicted intent equals the
 target intent), `changed` (differs from the intent of the original audio's transcription), `original_correct`
 (control) and `targeted` (the method optimized toward the target).

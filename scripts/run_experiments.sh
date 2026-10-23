@@ -11,13 +11,13 @@ for dataset in harvard commands; do
     done
 done
 
-# 2. Objective formulation: native targeted SMACK vs targeted GATAS (untargeted SMACK is part of block 1)
-for script in run_smack_targeted run_gatas_targeted; do
+# 2. Objective formulation: targeted GATAS vs native SMACK (block 1), and our untargeted SMACK adaptation (ASR task only)
+for script in run_smack_untargeted run_gatas_targeted; do
     DATASET=harvard ASR_MODEL=whisper-tiny bash scripts/$script.sh
 done
 
 # 3. Intent matching (commands): the methods that can use the intent classifier output optimize toward the target intent
 #    (PGD is white-box on Whisper's text decoder and stays untargeted, see block 1)
-for script in run_gatas_intent run_waveform_intent run_smack_intent run_alif_intent; do
+for script in run_gatas_intent run_waveform_intent run_alif_intent; do  # SMACK (block 1) uses the intent rewrite as its native target text
     DATASET=commands ASR_MODEL=whisper-tiny bash scripts/$script.sh
 done

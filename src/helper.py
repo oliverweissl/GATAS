@@ -20,8 +20,8 @@ def run_seed(seed: int, sentence_id: int, run_id: int = 0) -> int:
 
 
 # Method names, used for result folders and the 'attack_method' field of every summary JSON
-METHODS = ("GATAS", "GATAS_targeted", "Waveform", "SMACK", "SMACK_targeted", "ALIF", "PGD",
-           "GATAS_intent", "Waveform_intent", "SMACK_intent", "ALIF_intent")  # *_intent: optimize the intent classifier output
+METHODS = ("GATAS", "GATAS_targeted", "Waveform", "SMACK_untargeted", "SMACK", "ALIF", "PGD",
+           "GATAS_intent", "Waveform_intent", "ALIF_intent")  # *_intent: optimize the intent classifier output
 # Scale ablation of GATAS (scripts/run_scale_ablation.sh, analysis/Ablation_Scale.ipynb)
 ABLATION_METHODS = ("GATAS_scale_0.5", "GATAS_scale_1", "GATAS_scale_2", "GATAS_adaptive")
 # Search-space / optimizer ablation of GATAS (scripts/run_space_ablation.sh, analysis/Ablation_Space.ipynb)

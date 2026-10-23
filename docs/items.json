@@ -1,0 +1,2316 @@
+{
+ "items": [
+  {
+   "id": "ieb67a9c378",
+   "code": "E",
+   "sentence": 2,
+   "gt_text": "Glue the sheet to the dark blue background.",
+   "transcription": "Glue the sheet to the dark blue background"
+  },
+  {
+   "id": "id4c8a70639",
+   "code": "C",
+   "sentence": 2,
+   "gt_text": "Glue the sheet to the dark blue background.",
+   "transcription": "Glue the sheet to the dark low background"
+  },
+  {
+   "id": "if74da5e709",
+   "code": "B",
+   "sentence": 2,
+   "gt_text": "Glue the sheet to the dark blue background.",
+   "transcription": "you"
+  },
+  {
+   "id": "i5b7a024204",
+   "code": "A",
+   "sentence": 2,
+   "gt_text": "Glue the sheet to the dark blue background.",
+   "transcription": "that she cheats to the dark blue background"
+  },
+  {
+   "id": "ie49558867f",
+   "code": "F",
+   "sentence": 2,
+   "gt_text": "Glue the sheet to the dark blue background.",
+   "transcription": "below the sheet to the door blow back around"
+  },
+  {
+   "id": "i37e87a1613",
+   "code": "D",
+   "sentence": 2,
+   "gt_text": "Glue the sheet to the dark blue background.",
+   "transcription": "than one of the shimting which at the bidar LimmodVag for Audid"
+  },
+  {
+   "id": "i2381332876",
+   "code": "E",
+   "sentence": 4,
+   "gt_text": "These days a chicken leg is a rare dish.",
+   "transcription": "These days a chicken leg is a rare dish"
+  },
+  {
+   "id": "i2348268673",
+   "code": "C",
+   "sentence": 4,
+   "gt_text": "These days a chicken leg is a rare dish.",
+   "transcription": "These days a taken leg is a rare dish"
+  },
+  {
+   "id": "i18c17c6279",
+   "code": "B",
+   "sentence": 4,
+   "gt_text": "These days a chicken leg is a rare dish.",
+   "transcription": ""
+  },
+  {
+   "id": "icc9e4d6e3c",
+   "code": "A",
+   "sentence": 4,
+   "gt_text": "These days a chicken leg is a rare dish.",
+   "transcription": "\uc21c \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 \uc608 ..."
+  },
+  {
+   "id": "ifc40212ef7",
+   "code": "F",
+   "sentence": 4,
+   "gt_text": "These days a chicken leg is a rare dish.",
+   "transcription": "These days a check leg is over your tips"
+  },
+  {
+   "id": "i88e8e5216a",
+   "code": "D",
+   "sentence": 4,
+   "gt_text": "These days a chicken leg is a rare dish.",
+   "transcription": "Please galeist if a cheating write is a real action"
+  },
+  {
+   "id": "ib4fb97d435",
+   "code": "E",
+   "sentence": 5,
+   "gt_text": "Rice is often served in round bowls.",
+   "transcription": "Rice is often served in round bowls"
+  },
+  {
+   "id": "i9acf6a659e",
+   "code": "C",
+   "sentence": 5,
+   "gt_text": "Rice is often served in round bowls.",
+   "transcription": "Rose is often served in round bowls"
+  },
+  {
+   "id": "i25e6f4590b",
+   "code": "B",
+   "sentence": 5,
+   "gt_text": "Rice is often served in round bowls.",
+   "transcription": "you"
+  },
+  {
+   "id": "i194f65d4d9",
+   "code": "A",
+   "sentence": 5,
+   "gt_text": "Rice is often served in round bowls.",
+   "transcription": "You"
+  },
+  {
+   "id": "i12bad640fb",
+   "code": "F",
+   "sentence": 5,
+   "gt_text": "Rice is often served in round bowls.",
+   "transcription": "Rise up and serve you around balls"
+  },
+  {
+   "id": "id9e61a441c",
+   "code": "D",
+   "sentence": 5,
+   "gt_text": "Rice is often served in round bowls.",
+   "transcription": "With greats this often serotonin round the Esiff"
+  },
+  {
+   "id": "i54af19922a",
+   "code": "E",
+   "sentence": 6,
+   "gt_text": "The juice of lemons makes fine punch.",
+   "transcription": "The juice of lemons makes fine punch"
+  },
+  {
+   "id": "i8f78de5857",
+   "code": "C",
+   "sentence": 6,
+   "gt_text": "The juice of lemons makes fine punch.",
+   "transcription": "The juice of lemons makes spine punch"
+  },
+  {
+   "id": "i5a19c78df4",
+   "code": "B",
+   "sentence": 6,
+   "gt_text": "The juice of lemons makes fine punch.",
+   "transcription": ""
+  },
+  {
+   "id": "i506f25e2a2",
+   "code": "A",
+   "sentence": 6,
+   "gt_text": "The juice of lemons makes fine punch.",
+   "transcription": "\u0414\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438\u0438 ..."
+  },
+  {
+   "id": "ia39c6316b9",
+   "code": "F",
+   "sentence": 6,
+   "gt_text": "The juice of lemons makes fine punch.",
+   "transcription": "The joys of lemons makes fun butch"
+  },
+  {
+   "id": "i34e9bb17bc",
+   "code": "D",
+   "sentence": 6,
+   "gt_text": "The juice of lemons makes fine punch.",
+   "transcription": "reduce on the lamelys in a combined tire"
+  },
+  {
+   "id": "i8df77383c1",
+   "code": "E",
+   "sentence": 8,
+   "gt_text": "The hogs were fed chopped corn and garbage.",
+   "transcription": "The hogs were fed chopped corn and garbage"
+  },
+  {
+   "id": "i717a1d5006",
+   "code": "C",
+   "sentence": 8,
+   "gt_text": "The hogs were fed chopped corn and garbage.",
+   "transcription": "The hogs were fit chopped corn and garbage"
+  },
+  {
+   "id": "i85dd84f39e",
+   "code": "B",
+   "sentence": 8,
+   "gt_text": "The hogs were fed chopped corn and garbage.",
+   "transcription": ""
+  },
+  {
+   "id": "i0f42af9fc3",
+   "code": "A",
+   "sentence": 8,
+   "gt_text": "The hogs were fed chopped corn and garbage.",
+   "transcription": "The Hobbes were fed chopped corn and garbage"
+  },
+  {
+   "id": "iebce164dba",
+   "code": "F",
+   "sentence": 8,
+   "gt_text": "The hogs were fed chopped corn and garbage.",
+   "transcription": "the halves were fitchat porn and guarded age"
+  },
+  {
+   "id": "iea8c778ea6",
+   "code": "D",
+   "sentence": 8,
+   "gt_text": "The hogs were fed chopped corn and garbage.",
+   "transcription": "your house grouifutein chat coronium and midR ribs shields"
+  },
+  {
+   "id": "i1703983ca8",
+   "code": "E",
+   "sentence": 9,
+   "gt_text": "Four hours of steady work faced us.",
+   "transcription": "Four hours of steady work faced us"
+  },
+  {
+   "id": "id7b83e90ec",
+   "code": "C",
+   "sentence": 9,
+   "gt_text": "Four hours of steady work faced us.",
+   "transcription": "Four hours of steady woke faced us"
+  },
+  {
+   "id": "ib566194cb1",
+   "code": "B",
+   "sentence": 9,
+   "gt_text": "Four hours of steady work faced us.",
+   "transcription": ""
+  },
+  {
+   "id": "ic8d3290a4c",
+   "code": "A",
+   "sentence": 9,
+   "gt_text": "Four hours of steady work faced us.",
+   "transcription": "Thadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad ..."
+  },
+  {
+   "id": "ia0ab0c1681",
+   "code": "F",
+   "sentence": 9,
+   "gt_text": "Four hours of steady work faced us.",
+   "transcription": "for our of stick distance"
+  },
+  {
+   "id": "i9c004ae545",
+   "code": "D",
+   "sentence": 9,
+   "gt_text": "Four hours of steady work faced us.",
+   "transcription": "good for our research to fit into our other fame scouts"
+  },
+  {
+   "id": "id37e5b1e7f",
+   "code": "E",
+   "sentence": 10,
+   "gt_text": "A large size in stockings is hard to sell.",
+   "transcription": "A large size in stockings is hard to sell"
+  },
+  {
+   "id": "i55de1b372a",
+   "code": "C",
+   "sentence": 10,
+   "gt_text": "A large size in stockings is hard to sell.",
+   "transcription": "A large size in starkings is hard to sell"
+  },
+  {
+   "id": "iba3e70f16a",
+   "code": "B",
+   "sentence": 10,
+   "gt_text": "A large size in stockings is hard to sell.",
+   "transcription": "Thank you"
+  },
+  {
+   "id": "ib4534097ca",
+   "code": "A",
+   "sentence": 10,
+   "gt_text": "A large size in stockings is hard to sell.",
+   "transcription": "Orch size in stockings and stockings"
+  },
+  {
+   "id": "i10ded733e8",
+   "code": "F",
+   "sentence": 10,
+   "gt_text": "A large size in stockings is hard to sell.",
+   "transcription": "A large descend stuckings is hard to sell"
+  },
+  {
+   "id": "iea30e9c5cc",
+   "code": "D",
+   "sentence": 10,
+   "gt_text": "A large size in stockings is hard to sell.",
+   "transcription": "on large pizzaalgaes Instagram camis with Harakis Tale Up"
+  },
+  {
+   "id": "i389148624f",
+   "code": "E",
+   "sentence": 11,
+   "gt_text": "The boy was there when the sun rose.",
+   "transcription": "The boy was there when the sun rose"
+  },
+  {
+   "id": "icd3d15eef7",
+   "code": "C",
+   "sentence": 11,
+   "gt_text": "The boy was there when the sun rose.",
+   "transcription": "The bully was there when the sun rose"
+  },
+  {
+   "id": "i24f7b0b7d2",
+   "code": "B",
+   "sentence": 11,
+   "gt_text": "The boy was there when the sun rose.",
+   "transcription": "Oh oh oh oh oh oh oh oh oh oh oh oh oh oh oh oh oh oh oh oh oh oh oh oh oh oh oh oh oh oh oh oh oh o ..."
+  },
+  {
+   "id": "i8bcd9d2b7d",
+   "code": "A",
+   "sentence": 11,
+   "gt_text": "The boy was there when the sun rose.",
+   "transcription": "\u0414\u043e\u0431\u043e\u0439 \u0441 \u043d\u0438\u043c \u043e\u0441\u0442\u0430\u043b\u043e\u0441\u044c"
+  },
+  {
+   "id": "i1772ae2244",
+   "code": "F",
+   "sentence": 11,
+   "gt_text": "The boy was there when the sun rose.",
+   "transcription": "The bull was there on the sunrobes"
+  },
+  {
+   "id": "ife149818d1",
+   "code": "D",
+   "sentence": 11,
+   "gt_text": "The boy was there when the sun rose.",
+   "transcription": "\u042f \u0434\u0443\u043c\u0430\u044e \u0447\u0442\u043e \u044f \u043d\u0435 \u0437\u043d\u0430\u044e \u0447\u0442\u043e \u044f \u043d\u0435 \u0437\u043d\u0430\u044e \u0447\u0442\u043e \u044f \u043d\u0435 \u0437\u043d\u0430\u044e \u0447\u0442\u043e \u044f \u043d\u0435 \u0437\u043d\u0430\u044e \u0447\u0442\u043e \u044f \u043d\u0435 \u0437\u043d\u0430\u044e \u0447\u0442\u043e \u044f \u043d\u0435 \u0437\u043d\u0430\u044e \u0447\u0442\u043e \u044f \u043d\u0435 ..."
+  },
+  {
+   "id": "ie051ef1922",
+   "code": "E",
+   "sentence": 12,
+   "gt_text": "A rod is used to catch pink salmon.",
+   "transcription": "A rod is used to catch pink salmon"
+  },
+  {
+   "id": "iff820865d6",
+   "code": "C",
+   "sentence": 12,
+   "gt_text": "A rod is used to catch pink salmon.",
+   "transcription": "A rhyme is used to catch pink salmon"
+  },
+  {
+   "id": "i7deece328b",
+   "code": "B",
+   "sentence": 12,
+   "gt_text": "A rod is used to catch pink salmon.",
+   "transcription": "Thank you"
+  },
+  {
+   "id": "i4d1beb3711",
+   "code": "A",
+   "sentence": 12,
+   "gt_text": "A rod is used to catch pink salmon.",
+   "transcription": "You rot is used to catch pink salmon"
+  },
+  {
+   "id": "i4a8d1fd9b7",
+   "code": "F",
+   "sentence": 12,
+   "gt_text": "A rod is used to catch pink salmon.",
+   "transcription": "Or it is used to catkake solvent"
+  },
+  {
+   "id": "i1fb4e1357d",
+   "code": "D",
+   "sentence": 12,
+   "gt_text": "A rod is used to catch pink salmon.",
+   "transcription": "oeddwn rwim oedd hwns oedd y caird ar ddim ar ddim"
+  },
+  {
+   "id": "i558c25166a",
+   "code": "E",
+   "sentence": 13,
+   "gt_text": "The source of the huge river is the clear spring.",
+   "transcription": "The source of the huge river is the clear spring"
+  },
+  {
+   "id": "iecd080e66e",
+   "code": "C",
+   "sentence": 13,
+   "gt_text": "The source of the huge river is the clear spring.",
+   "transcription": "The source of the huge river is the clear strain"
+  },
+  {
+   "id": "i348a5006c1",
+   "code": "B",
+   "sentence": 13,
+   "gt_text": "The source of the huge river is the clear spring.",
+   "transcription": "you"
+  },
+  {
+   "id": "iccf6be1f72",
+   "code": "A",
+   "sentence": 13,
+   "gt_text": "The source of the huge river is the clear spring.",
+   "transcription": "If youre Spears Spears Spring"
+  },
+  {
+   "id": "i8c9a6a5f92",
+   "code": "F",
+   "sentence": 13,
+   "gt_text": "The source of the huge river is the clear spring.",
+   "transcription": "The source of the Hague River is the clear spread"
+  },
+  {
+   "id": "i49966e1277",
+   "code": "D",
+   "sentence": 13,
+   "gt_text": "The source of the huge river is the clear spring.",
+   "transcription": "If resources the healing reverent is then cleared for Amelio"
+  },
+  {
+   "id": "i1771eacd05",
+   "code": "E",
+   "sentence": 14,
+   "gt_text": "Kick the ball straight and follow through.",
+   "transcription": "Kick the ball straight and follow through"
+  },
+  {
+   "id": "icc98a6416d",
+   "code": "C",
+   "sentence": 14,
+   "gt_text": "Kick the ball straight and follow through.",
+   "transcription": "Click the ball straight and follow through"
+  },
+  {
+   "id": "i516288e1a5",
+   "code": "B",
+   "sentence": 14,
+   "gt_text": "Kick the ball straight and follow through.",
+   "transcription": ""
+  },
+  {
+   "id": "i3d935ddd72",
+   "code": "A",
+   "sentence": 14,
+   "gt_text": "Kick the ball straight and follow through.",
+   "transcription": "\u042d\u0442\u043e \u0434\u043e\u043b\u0436\u0435\u043d \u044d\u0442\u043e \u0434\u043e\u043b\u0436\u0435\u043d \u044d\u0442\u043e \u0434\u043e\u043b\u0436\u0435\u043d \u044d\u0442\u043e \u0434\u043e\u043b\u0436\u0435\u043d \u044d\u0442\u043e \u0434\u043e\u043b\u0436\u0435\u043d"
+  },
+  {
+   "id": "i2f4a5308cc",
+   "code": "F",
+   "sentence": 14,
+   "gt_text": "Kick the ball straight and follow through.",
+   "transcription": "Take the doll straight and follow through"
+  },
+  {
+   "id": "id2307bf326",
+   "code": "D",
+   "sentence": 14,
+   "gt_text": "Kick the ball straight and follow through.",
+   "transcription": "and were kidnapped by Thorv Strayed Themph Baloch Haromi"
+  },
+  {
+   "id": "i082fcd81b5",
+   "code": "E",
+   "sentence": 15,
+   "gt_text": "Help the woman get back to her feet.",
+   "transcription": "Help the woman get back to her feet"
+  },
+  {
+   "id": "ifb9cdeb3e6",
+   "code": "C",
+   "sentence": 15,
+   "gt_text": "Help the woman get back to her feet.",
+   "transcription": "Help the woman get back to her fate"
+  },
+  {
+   "id": "i42a81ad477",
+   "code": "B",
+   "sentence": 15,
+   "gt_text": "Help the woman get back to her feet.",
+   "transcription": "you"
+  },
+  {
+   "id": "i1179fdef7c",
+   "code": "A",
+   "sentence": 15,
+   "gt_text": "Help the woman get back to her feet.",
+   "transcription": "\ud1f4\ud2b8\uc6cc\uba39\uc774\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30\uae30 ..."
+  },
+  {
+   "id": "iad16febaa0",
+   "code": "F",
+   "sentence": 15,
+   "gt_text": "Help the woman get back to her feet.",
+   "transcription": "that well make that to her feet"
+  },
+  {
+   "id": "i21c1f254b8",
+   "code": "D",
+   "sentence": 15,
+   "gt_text": "Help the woman get back to her feet.",
+   "transcription": "held hurl in the appdact of a freelead"
+  },
+  {
+   "id": "i26e07405eb",
+   "code": "E",
+   "sentence": 19,
+   "gt_text": "The salt breeze came across from the sea.",
+   "transcription": "The salt breeze came across from the sea"
+  },
+  {
+   "id": "i09ec62b2c8",
+   "code": "C",
+   "sentence": 19,
+   "gt_text": "The salt breeze came across from the sea.",
+   "transcription": "The salt brews came across from the sea"
+  },
+  {
+   "id": "i14d7ab7928",
+   "code": "B",
+   "sentence": 19,
+   "gt_text": "The salt breeze came across from the sea.",
+   "transcription": "Thank you"
+  },
+  {
+   "id": "ib3e5eeac76",
+   "code": "A",
+   "sentence": 19,
+   "gt_text": "The salt breeze came across from the sea.",
+   "transcription": "\u5c0d\u5c0d\u5c0d\u5c0d\u5c0d\u5c0d\u5c0d"
+  },
+  {
+   "id": "id4ec4f217b",
+   "code": "F",
+   "sentence": 19,
+   "gt_text": "The salt breeze came across from the sea.",
+   "transcription": "The salt rease came across from the seaf"
+  },
+  {
+   "id": "iae8a64c1b9",
+   "code": "D",
+   "sentence": 19,
+   "gt_text": "The salt breeze came across from the sea.",
+   "transcription": "your assault and release a game of crossconlip seemed"
+  },
+  {
+   "id": "id6642bfa42",
+   "code": "E",
+   "sentence": 22,
+   "gt_text": "The fish twisted and turned on the bent hook.",
+   "transcription": "The fish twisted and turned on the bent hook"
+  },
+  {
+   "id": "i86b48d73f1",
+   "code": "C",
+   "sentence": 22,
+   "gt_text": "The fish twisted and turned on the bent hook.",
+   "transcription": "The fish twisted and turned on the bentoke"
+  },
+  {
+   "id": "i85468ff53d",
+   "code": "B",
+   "sentence": 22,
+   "gt_text": "The fish twisted and turned on the bent hook.",
+   "transcription": "Thank you"
+  },
+  {
+   "id": "i3ccfc6e625",
+   "code": "A",
+   "sentence": 22,
+   "gt_text": "The fish twisted and turned on the bent hook.",
+   "transcription": "\u0414\u0430 \u0434\u0430 \u0434\u0430 \u0434\u0430 \u0434\u0430 \u0434\u0430 \u0434\u0430 \u0434\u0430 \u0434\u0430 \u0434\u0430 \u0434\u0430 \u0434\u0430 \u0434\u0430 \u0434\u0430 \u0434\u0430 \u0434\u0430 \u0434\u0430 \u0434\u0430 \u0434\u0430 \u0434\u0430 \u0434\u0430 \u0434\u0430 \u0434\u0430 \u0434\u0430 \u0434\u0430 \u0434\u0430 \u0434\u0430 \u0434\u0430 \u0434\u0430 \u0434\u0430 \u0434\u0430 \u0434\u0430 \u0434\u0430 \u0434 ..."
+  },
+  {
+   "id": "i37d977e993",
+   "code": "F",
+   "sentence": 22,
+   "gt_text": "The fish twisted and turned on the bent hook.",
+   "transcription": "The fish took her to the bed"
+  },
+  {
+   "id": "iade5214606",
+   "code": "D",
+   "sentence": 22,
+   "gt_text": "The fish twisted and turned on the bent hook.",
+   "transcription": "with this twice the end of the femtron fell nervously"
+  },
+  {
+   "id": "id396fd35d0",
+   "code": "E",
+   "sentence": 23,
+   "gt_text": "Press the pants and sew a button on the vest.",
+   "transcription": "Press the pants and sew a button on the vest"
+  },
+  {
+   "id": "i6bf323ca74",
+   "code": "C",
+   "sentence": 23,
+   "gt_text": "Press the pants and sew a button on the vest.",
+   "transcription": "Press the pants and so well button on the vest"
+  },
+  {
+   "id": "i469466e472",
+   "code": "B",
+   "sentence": 23,
+   "gt_text": "Press the pants and sew a button on the vest.",
+   "transcription": ""
+  },
+  {
+   "id": "i7e73581a81",
+   "code": "A",
+   "sentence": 23,
+   "gt_text": "Press the pants and sew a button on the vest.",
+   "transcription": "See ya"
+  },
+  {
+   "id": "ia4a905d750",
+   "code": "F",
+   "sentence": 23,
+   "gt_text": "Press the pants and sew a button on the vest.",
+   "transcription": "Thank you"
+  },
+  {
+   "id": "ib3ff0ac0f1",
+   "code": "D",
+   "sentence": 23,
+   "gt_text": "Press the pants and sew a button on the vest.",
+   "transcription": "but for a spatastic and so do I"
+  },
+  {
+   "id": "ifbeabca8d0",
+   "code": "E",
+   "sentence": 24,
+   "gt_text": "The swan dive was far short of perfect.",
+   "transcription": "The Swan dive was far short of perfect"
+  },
+  {
+   "id": "i5bcb175a5a",
+   "code": "C",
+   "sentence": 24,
+   "gt_text": "The swan dive was far short of perfect.",
+   "transcription": "The swam dive was far short of perfect"
+  },
+  {
+   "id": "i5315166570",
+   "code": "B",
+   "sentence": 24,
+   "gt_text": "The swan dive was far short of perfect.",
+   "transcription": "you"
+  },
+  {
+   "id": "i1d9cdf5a86",
+   "code": "A",
+   "sentence": 24,
+   "gt_text": "The swan dive was far short of perfect.",
+   "transcription": "that describe the far short of perfect"
+  },
+  {
+   "id": "i967c879b74",
+   "code": "F",
+   "sentence": 24,
+   "gt_text": "The swan dive was far short of perfect.",
+   "transcription": "The slundive was foreshort of perfect"
+  },
+  {
+   "id": "i55a1515607",
+   "code": "D",
+   "sentence": 24,
+   "gt_text": "The swan dive was far short of perfect.",
+   "transcription": "plus one the iGulCitolar show it with a RotoyBitube"
+  },
+  {
+   "id": "i30d8570102",
+   "code": "E",
+   "sentence": 27,
+   "gt_text": "Her purse was full of useless trash.",
+   "transcription": "Her purse was full of useless trash"
+  },
+  {
+   "id": "i043e37952d",
+   "code": "C",
+   "sentence": 27,
+   "gt_text": "Her purse was full of useless trash.",
+   "transcription": "Her personal full of useless trash"
+  },
+  {
+   "id": "i45bb42e0b2",
+   "code": "B",
+   "sentence": 27,
+   "gt_text": "Her purse was full of useless trash.",
+   "transcription": ""
+  },
+  {
+   "id": "ib41dfc8352",
+   "code": "A",
+   "sentence": 27,
+   "gt_text": "Her purse was full of useless trash.",
+   "transcription": "For Per Perce was full of useless trash"
+  },
+  {
+   "id": "i5f38701a14",
+   "code": "F",
+   "sentence": 27,
+   "gt_text": "Her purse was full of useless trash.",
+   "transcription": "Our personal views list stretch"
+  },
+  {
+   "id": "i2bcb69ca38",
+   "code": "D",
+   "sentence": 27,
+   "gt_text": "Her purse was full of useless trash.",
+   "transcription": "the Pota Risfus for all while the Illumus nodes to crash"
+  },
+  {
+   "id": "i6d552116dd",
+   "code": "E",
+   "sentence": 32,
+   "gt_text": "Take the winding path to reach the lake.",
+   "transcription": "Take the winding path to reach the lake"
+  },
+  {
+   "id": "i0fd0dfae43",
+   "code": "C",
+   "sentence": 32,
+   "gt_text": "Take the winding path to reach the lake.",
+   "transcription": "Type the winding path to reach the lake"
+  },
+  {
+   "id": "ic819c16a0d",
+   "code": "B",
+   "sentence": 32,
+   "gt_text": "Take the winding path to reach the lake.",
+   "transcription": ""
+  },
+  {
+   "id": "ida2577bffa",
+   "code": "A",
+   "sentence": 32,
+   "gt_text": "Take the winding path to reach the lake.",
+   "transcription": "The winding path to reach the lake"
+  },
+  {
+   "id": "i38b29a8b06",
+   "code": "F",
+   "sentence": 32,
+   "gt_text": "Take the winding path to reach the lake.",
+   "transcription": "Take the winning path to reach the book"
+  },
+  {
+   "id": "id10b9475b1",
+   "code": "D",
+   "sentence": 32,
+   "gt_text": "Take the winding path to reach the lake.",
+   "transcription": "Take your rhymed in cooccurring weve still linked"
+  },
+  {
+   "id": "ia292e8e269",
+   "code": "E",
+   "sentence": 33,
+   "gt_text": "Note closely the size of the gas tank.",
+   "transcription": "Note closely the size of the gas tank"
+  },
+  {
+   "id": "iefe8f6cf32",
+   "code": "C",
+   "sentence": 33,
+   "gt_text": "Note closely the size of the gas tank.",
+   "transcription": "Nope closely the size of the gas tank"
+  },
+  {
+   "id": "i9a88c132ad",
+   "code": "B",
+   "sentence": 33,
+   "gt_text": "Note closely the size of the gas tank.",
+   "transcription": "you"
+  },
+  {
+   "id": "i12ae3b16ec",
+   "code": "A",
+   "sentence": 33,
+   "gt_text": "Note closely the size of the gas tank.",
+   "transcription": "\u63b0\u63b0"
+  },
+  {
+   "id": "i1f06d599e8",
+   "code": "F",
+   "sentence": 33,
+   "gt_text": "Note closely the size of the gas tank.",
+   "transcription": "That closely the subject is"
+  },
+  {
+   "id": "i30a28f5ab0",
+   "code": "D",
+   "sentence": 33,
+   "gt_text": "Note closely the size of the gas tank.",
+   "transcription": "could know that closely resized and lived yards to paying them"
+  },
+  {
+   "id": "id49b38fe80",
+   "code": "E",
+   "sentence": 34,
+   "gt_text": "Wipe the grease off his dirty face.",
+   "transcription": "wipe the grease off his dirty face"
+  },
+  {
+   "id": "i1e9371a71f",
+   "code": "C",
+   "sentence": 34,
+   "gt_text": "Wipe the grease off his dirty face.",
+   "transcription": "White the grease off his dirty face"
+  },
+  {
+   "id": "i1764264cd5",
+   "code": "B",
+   "sentence": 34,
+   "gt_text": "Wipe the grease off his dirty face.",
+   "transcription": "you"
+  },
+  {
+   "id": "id55ec17dbe",
+   "code": "A",
+   "sentence": 34,
+   "gt_text": "Wipe the grease off his dirty face.",
+   "transcription": "to apply the grease of the stretchy face"
+  },
+  {
+   "id": "i1dfb0323a1",
+   "code": "F",
+   "sentence": 34,
+   "gt_text": "Wipe the grease off his dirty face.",
+   "transcription": "wife the Greece office journey fix"
+  },
+  {
+   "id": "i9b0950fd13",
+   "code": "D",
+   "sentence": 34,
+   "gt_text": "Wipe the grease off his dirty face.",
+   "transcription": "flight to the police at his giragly thanks"
+  },
+  {
+   "id": "i310589f877",
+   "code": "E",
+   "sentence": 37,
+   "gt_text": "The stray cat gave birth to kittens.",
+   "transcription": "The stray cat gave birth to kittens"
+  },
+  {
+   "id": "if8f6062541",
+   "code": "C",
+   "sentence": 37,
+   "gt_text": "The stray cat gave birth to kittens.",
+   "transcription": "The Stradie Pad gave birth to kittens"
+  },
+  {
+   "id": "ib72f5a522a",
+   "code": "B",
+   "sentence": 37,
+   "gt_text": "The stray cat gave birth to kittens.",
+   "transcription": ""
+  },
+  {
+   "id": "i7a1fb797fa",
+   "code": "A",
+   "sentence": 37,
+   "gt_text": "The stray cat gave birth to kittens.",
+   "transcription": "This state gave birth to kittens"
+  },
+  {
+   "id": "iba35e8579a",
+   "code": "F",
+   "sentence": 37,
+   "gt_text": "The stray cat gave birth to kittens.",
+   "transcription": "The strike at Gabe Birth to Kittons"
+  },
+  {
+   "id": "i0fccfdba9b",
+   "code": "D",
+   "sentence": 37,
+   "gt_text": "The stray cat gave birth to kittens.",
+   "transcription": "With a Scroony of Calf Gale a Rourn Clicker kit moved stilled"
+  },
+  {
+   "id": "iadefdd35f8",
+   "code": "E",
+   "sentence": 39,
+   "gt_text": "The meal was cooked before the bell rang.",
+   "transcription": "The meal was cooked before the bell rang"
+  },
+  {
+   "id": "i8b05d51433",
+   "code": "C",
+   "sentence": 39,
+   "gt_text": "The meal was cooked before the bell rang.",
+   "transcription": "The meal was parked before the bell rang"
+  },
+  {
+   "id": "i9e6cf55b15",
+   "code": "B",
+   "sentence": 39,
+   "gt_text": "The meal was cooked before the bell rang.",
+   "transcription": "Thank you"
+  },
+  {
+   "id": "id519fbeb1d",
+   "code": "A",
+   "sentence": 39,
+   "gt_text": "The meal was cooked before the bell rang.",
+   "transcription": "\ubb50 \uc774\ub7f0 \ubbf8\uc6a9\uc740 \ub9e8 \ub9e8 \ub9e8 \ub9e8 \ub9e8 \ub9e8 \ub9e8 \ub9e8 \ub9e8 \ub9e8 \ub9e8 \ub9e8 \ub9e8"
+  },
+  {
+   "id": "i11428a1c22",
+   "code": "F",
+   "sentence": 39,
+   "gt_text": "The meal was cooked before the bell rang.",
+   "transcription": "and the old lookup before the ball ran"
+  },
+  {
+   "id": "i1238884479",
+   "code": "D",
+   "sentence": 39,
+   "gt_text": "The meal was cooked before the bell rang.",
+   "transcription": "and be on the list of code to the 4th of the algorithm"
+  },
+  {
+   "id": "i4da59cec98",
+   "code": "E",
+   "sentence": 40,
+   "gt_text": "What joy there is in living.",
+   "transcription": "What joy there is in living"
+  },
+  {
+   "id": "i6f59acdd98",
+   "code": "C",
+   "sentence": 40,
+   "gt_text": "What joy there is in living.",
+   "transcription": "Let joy in there as in love it"
+  },
+  {
+   "id": "i0f2e295065",
+   "code": "B",
+   "sentence": 40,
+   "gt_text": "What joy there is in living.",
+   "transcription": "you"
+  },
+  {
+   "id": "i7780ee526e",
+   "code": "A",
+   "sentence": 40,
+   "gt_text": "What joy there is in living.",
+   "transcription": "\u3046\u30fc\u3093"
+  },
+  {
+   "id": "i980a14b90a",
+   "code": "F",
+   "sentence": 40,
+   "gt_text": "What joy there is in living.",
+   "transcription": "But you are there is in loving"
+  },
+  {
+   "id": "ib319d5f970",
+   "code": "D",
+   "sentence": 40,
+   "gt_text": "What joy there is in living.",
+   "transcription": "But the joy layer is a remover valid thought"
+  },
+  {
+   "id": "i64fcfcfa81",
+   "code": "E",
+   "sentence": 41,
+   "gt_text": "A king ruled the state in the early days.",
+   "transcription": "A king ruled the state in the early days"
+  },
+  {
+   "id": "i423308fb2e",
+   "code": "C",
+   "sentence": 41,
+   "gt_text": "A king ruled the state in the early days.",
+   "transcription": "A king ruled the stage in the early days"
+  },
+  {
+   "id": "ie75bca47be",
+   "code": "B",
+   "sentence": 41,
+   "gt_text": "A king ruled the state in the early days.",
+   "transcription": "you"
+  },
+  {
+   "id": "i78bb4a06cb",
+   "code": "A",
+   "sentence": 41,
+   "gt_text": "A king ruled the state in the early days.",
+   "transcription": "\ud038\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740\uc740 ..."
+  },
+  {
+   "id": "ie6d69c91c2",
+   "code": "F",
+   "sentence": 41,
+   "gt_text": "A king ruled the state in the early days.",
+   "transcription": "I cant roll the state in the early days"
+  },
+  {
+   "id": "i91eb21a3f6",
+   "code": "D",
+   "sentence": 41,
+   "gt_text": "A king ruled the state in the early days.",
+   "transcription": "Akii roll hausdongi kente raroa mdau"
+  },
+  {
+   "id": "ib22b5f6932",
+   "code": "E",
+   "sentence": 42,
+   "gt_text": "The ship was torn apart on the sharp reef.",
+   "transcription": "The ship was torn apart on the sharp reef"
+  },
+  {
+   "id": "i34ac322c12",
+   "code": "C",
+   "sentence": 42,
+   "gt_text": "The ship was torn apart on the sharp reef.",
+   "transcription": "The ship was torn apart on the shore brief"
+  },
+  {
+   "id": "ic4f76fbfb8",
+   "code": "B",
+   "sentence": 42,
+   "gt_text": "The ship was torn apart on the sharp reef.",
+   "transcription": "Thank you"
+  },
+  {
+   "id": "ic90edc6d2b",
+   "code": "A",
+   "sentence": 42,
+   "gt_text": "The ship was torn apart on the sharp reef.",
+   "transcription": "\u0421\u0447\u0430\u0441\u0442\u043b\u0438\u0432\u043e\u0433\u043e \u0448\u0443\u0440\u043b\u0430 \u043f\u043e\u043f \u043f\u043e\u043f \u043f\u043e\u043f \u043f\u043e\u043f \u043f\u043e\u043f \u043f\u043e\u043f \u0448\u0443\u0440\u043f\u0443"
+  },
+  {
+   "id": "i28ad1b8f60",
+   "code": "F",
+   "sentence": 42,
+   "gt_text": "The ship was torn apart on the sharp reef.",
+   "transcription": "The ship was toward a part on the shark reef"
+  },
+  {
+   "id": "i29d86dbf11",
+   "code": "D",
+   "sentence": 42,
+   "gt_text": "The ship was torn apart on the sharp reef.",
+   "transcription": "a chefchristicon on the tag have me shot after rolling so Ill be clear"
+  },
+  {
+   "id": "i8757a1cb71",
+   "code": "E",
+   "sentence": 44,
+   "gt_text": "The wide road shimmered in the hot sun.",
+   "transcription": "The wide road shimmered in the hot sun"
+  },
+  {
+   "id": "i1e402d0baf",
+   "code": "C",
+   "sentence": 44,
+   "gt_text": "The wide road shimmered in the hot sun.",
+   "transcription": "The wide road shimmered in the hearts sun"
+  },
+  {
+   "id": "ieb98c75205",
+   "code": "B",
+   "sentence": 44,
+   "gt_text": "The wide road shimmered in the hot sun.",
+   "transcription": ""
+  },
+  {
+   "id": "iaa713b7e05",
+   "code": "A",
+   "sentence": 44,
+   "gt_text": "The wide road shimmered in the hot sun.",
+   "transcription": "\u5c0f\u5fc3"
+  },
+  {
+   "id": "i032cc0f859",
+   "code": "F",
+   "sentence": 44,
+   "gt_text": "The wide road shimmered in the hot sun.",
+   "transcription": "So why rude shamirad in the Hopson"
+  },
+  {
+   "id": "iae78bc7175",
+   "code": "D",
+   "sentence": 44,
+   "gt_text": "The wide road shimmered in the hot sun.",
+   "transcription": "because why girl you shallot in the Hacks saniath approved"
+  },
+  {
+   "id": "ie668ef8f5f",
+   "code": "E",
+   "sentence": 45,
+   "gt_text": "The lazy cow lay in the cool grass.",
+   "transcription": "The lazy cow lay in the cool grass"
+  },
+  {
+   "id": "idf91b15f5d",
+   "code": "C",
+   "sentence": 45,
+   "gt_text": "The lazy cow lay in the cool grass.",
+   "transcription": "The Lacy Cow lay in the cool grass"
+  },
+  {
+   "id": "iea82339e23",
+   "code": "B",
+   "sentence": 45,
+   "gt_text": "The lazy cow lay in the cool grass.",
+   "transcription": "The music has a very good rest"
+  },
+  {
+   "id": "ia64fbaecc0",
+   "code": "A",
+   "sentence": 45,
+   "gt_text": "The lazy cow lay in the cool grass.",
+   "transcription": "\u3055\u3055\u3055\u3055"
+  },
+  {
+   "id": "i635b6e4ae7",
+   "code": "F",
+   "sentence": 45,
+   "gt_text": "The lazy cow lay in the cool grass.",
+   "transcription": "Valaisi Coley in the Coolgrass"
+  },
+  {
+   "id": "ia8d670f668",
+   "code": "D",
+   "sentence": 45,
+   "gt_text": "The lazy cow lay in the cool grass.",
+   "transcription": "Lummase Eeptows made in Look of Retheston"
+  },
+  {
+   "id": "i27403d1f83",
+   "code": "E",
+   "sentence": 46,
+   "gt_text": "Lift the square stone over the fence.",
+   "transcription": "Lift the square stone over the fence"
+  },
+  {
+   "id": "ib08f837ef7",
+   "code": "C",
+   "sentence": 46,
+   "gt_text": "Lift the square stone over the fence.",
+   "transcription": "Lift the squelish stone over the fence"
+  },
+  {
+   "id": "i75032f06ca",
+   "code": "B",
+   "sentence": 46,
+   "gt_text": "Lift the square stone over the fence.",
+   "transcription": "you"
+  },
+  {
+   "id": "i14bdd7d19b",
+   "code": "A",
+   "sentence": 46,
+   "gt_text": "Lift the square stone over the fence.",
+   "transcription": "the square of the square stone over the fence"
+  },
+  {
+   "id": "ibd55fea08e",
+   "code": "F",
+   "sentence": 46,
+   "gt_text": "Lift the square stone over the fence.",
+   "transcription": "with the squarestone over the feds"
+  },
+  {
+   "id": "i8b0bb2c3f0",
+   "code": "D",
+   "sentence": 46,
+   "gt_text": "Lift the square stone over the fence.",
+   "transcription": "but the myth just queer stars fell only with fabsly"
+  },
+  {
+   "id": "i2247e7f593",
+   "code": "E",
+   "sentence": 48,
+   "gt_text": "Hop over the fence and plunge in.",
+   "transcription": "Hop over the fence and plunge in"
+  },
+  {
+   "id": "ic33d792fa1",
+   "code": "C",
+   "sentence": 48,
+   "gt_text": "Hop over the fence and plunge in.",
+   "transcription": "Top over the fence and plunge in"
+  },
+  {
+   "id": "i7bf40048d7",
+   "code": "B",
+   "sentence": 48,
+   "gt_text": "Hop over the fence and plunge in.",
+   "transcription": "you"
+  },
+  {
+   "id": "i9c5a2b745b",
+   "code": "A",
+   "sentence": 48,
+   "gt_text": "Hop over the fence and plunge in.",
+   "transcription": "\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544\uc544 ..."
+  },
+  {
+   "id": "iac49b25ded",
+   "code": "F",
+   "sentence": 48,
+   "gt_text": "Hop over the fence and plunge in.",
+   "transcription": "up over the weapons and the planet"
+  },
+  {
+   "id": "i975bf49c04",
+   "code": "D",
+   "sentence": 48,
+   "gt_text": "Hop over the fence and plunge in.",
+   "transcription": "plot that overdefinitydifandflungemium"
+  },
+  {
+   "id": "ie4f2686baa",
+   "code": "E",
+   "sentence": 49,
+   "gt_text": "The friendly gang left the drug store.",
+   "transcription": "The friendly gang left the drug store"
+  },
+  {
+   "id": "idaa23d4c9d",
+   "code": "C",
+   "sentence": 49,
+   "gt_text": "The friendly gang left the drug store.",
+   "transcription": "The friendly gang left the drugstore"
+  },
+  {
+   "id": "i219efee464",
+   "code": "B",
+   "sentence": 49,
+   "gt_text": "The friendly gang left the drug store.",
+   "transcription": "you"
+  },
+  {
+   "id": "i4fb732d46f",
+   "code": "A",
+   "sentence": 49,
+   "gt_text": "The friendly gang left the drug store.",
+   "transcription": "a fake gay gang Left drug store"
+  },
+  {
+   "id": "ibf635518f7",
+   "code": "F",
+   "sentence": 49,
+   "gt_text": "The friendly gang left the drug store.",
+   "transcription": "You can change the extra drugs too"
+  },
+  {
+   "id": "id46a174c1c",
+   "code": "D",
+   "sentence": 49,
+   "gt_text": "The friendly gang left the drug store.",
+   "transcription": "I have frangely with you and when meth the drugs still are learning"
+  },
+  {
+   "id": "i14a69cfb85",
+   "code": "E",
+   "sentence": 50,
+   "gt_text": "Mesh wire keeps chicks inside.",
+   "transcription": "Mesh wire keeps chicks inside"
+  },
+  {
+   "id": "i980063e42f",
+   "code": "C",
+   "sentence": 50,
+   "gt_text": "Mesh wire keeps chicks inside.",
+   "transcription": "Lash wire keeps chicks inside"
+  },
+  {
+   "id": "ib2313b32b7",
+   "code": "B",
+   "sentence": 50,
+   "gt_text": "Mesh wire keeps chicks inside.",
+   "transcription": "you"
+  },
+  {
+   "id": "i28559b5975",
+   "code": "A",
+   "sentence": 50,
+   "gt_text": "Mesh wire keeps chicks inside.",
+   "transcription": "Buy your keeps chicks chicks and side"
+  },
+  {
+   "id": "i393d4a5d51",
+   "code": "F",
+   "sentence": 50,
+   "gt_text": "Mesh wire keeps chicks inside.",
+   "transcription": "Michigan Michigan Michigan Michigan Michigan Michigan Michigan Michigan Michigan Michigan Michigan M ..."
+  },
+  {
+   "id": "i72a32c9b6f",
+   "code": "D",
+   "sentence": 50,
+   "gt_text": "Mesh wire keeps chicks inside.",
+   "transcription": "could measure the glare but he withspecciacican is thy dobra"
+  },
+  {
+   "id": "ib560ef1471",
+   "code": "E",
+   "sentence": 51,
+   "gt_text": "The frosty air passed through the coat.",
+   "transcription": "The frosty air passed through the coat"
+  },
+  {
+   "id": "iace01bbf50",
+   "code": "C",
+   "sentence": 51,
+   "gt_text": "The frosty air passed through the coat.",
+   "transcription": "The frosty air pass through the coat"
+  },
+  {
+   "id": "idf91725f0a",
+   "code": "B",
+   "sentence": 51,
+   "gt_text": "The frosty air passed through the coat.",
+   "transcription": ""
+  },
+  {
+   "id": "i086a1689ad",
+   "code": "A",
+   "sentence": 51,
+   "gt_text": "The frosty air passed through the coat.",
+   "transcription": "The bossy asked through the coat"
+  },
+  {
+   "id": "idf66faf989",
+   "code": "F",
+   "sentence": 51,
+   "gt_text": "The frosty air passed through the coat.",
+   "transcription": "the froshi or past through the coach"
+  },
+  {
+   "id": "i91b3ab1b2c",
+   "code": "D",
+   "sentence": 51,
+   "gt_text": "The frosty air passed through the coat.",
+   "transcription": "have frontstair thask3bittcologycom"
+  },
+  {
+   "id": "ic56b10e53a",
+   "code": "E",
+   "sentence": 52,
+   "gt_text": "The crooked maze failed to fool the mouse.",
+   "transcription": "The crooked maze failed to fool the mouse"
+  },
+  {
+   "id": "ib5a985ab61",
+   "code": "C",
+   "sentence": 52,
+   "gt_text": "The crooked maze failed to fool the mouse.",
+   "transcription": "The crooked maze failed to fall the mouse"
+  },
+  {
+   "id": "i2a0bf9c0ef",
+   "code": "B",
+   "sentence": 52,
+   "gt_text": "The crooked maze failed to fool the mouse.",
+   "transcription": "Im going to do it"
+  },
+  {
+   "id": "i10720299e3",
+   "code": "A",
+   "sentence": 52,
+   "gt_text": "The crooked maze failed to fool the mouse.",
+   "transcription": "\ubbf8\uce58\uc9c0\uc9c0\uc9c0\uc9c0\uc9c0\uc9c0\uc9c0"
+  },
+  {
+   "id": "ib3425cb200",
+   "code": "F",
+   "sentence": 52,
+   "gt_text": "The crooked maze failed to fool the mouse.",
+   "transcription": "The crew may as well be able to fold maps"
+  },
+  {
+   "id": "i72285e25b4",
+   "code": "D",
+   "sentence": 52,
+   "gt_text": "The crooked maze failed to fool the mouse.",
+   "transcription": "Det h\u00e4r kan vi med ist\u00e4llet f\u00f6r n\u00e4ra"
+  },
+  {
+   "id": "ie2870f084c",
+   "code": "E",
+   "sentence": 53,
+   "gt_text": "Adding fast leads to wrong sums.",
+   "transcription": "Adding fast leads to wrong sums"
+  },
+  {
+   "id": "ie87cbd7025",
+   "code": "C",
+   "sentence": 53,
+   "gt_text": "Adding fast leads to wrong sums.",
+   "transcription": "Adding first leads to wrong sums"
+  },
+  {
+   "id": "i9a8fb83bab",
+   "code": "B",
+   "sentence": 53,
+   "gt_text": "Adding fast leads to wrong sums.",
+   "transcription": "you"
+  },
+  {
+   "id": "i00c167733f",
+   "code": "A",
+   "sentence": 53,
+   "gt_text": "Adding fast leads to wrong sums.",
+   "transcription": "Thats the gross social social social"
+  },
+  {
+   "id": "i09e245a460",
+   "code": "F",
+   "sentence": 53,
+   "gt_text": "Adding fast leads to wrong sums.",
+   "transcription": "heading fest leads to roll zones"
+  },
+  {
+   "id": "i537e9cf84f",
+   "code": "D",
+   "sentence": 53,
+   "gt_text": "Adding fast leads to wrong sums.",
+   "transcription": "Add in the thirst if you leave your scrimmed wrong with soverly sleep"
+  },
+  {
+   "id": "id64fe30c9a",
+   "code": "E",
+   "sentence": 54,
+   "gt_text": "The show was a flop from the very start.",
+   "transcription": "The show was a flop from the very start"
+  },
+  {
+   "id": "i0c77863fe5",
+   "code": "C",
+   "sentence": 54,
+   "gt_text": "The show was a flop from the very start.",
+   "transcription": "The show was a flap from the very start"
+  },
+  {
+   "id": "id2cf1da110",
+   "code": "B",
+   "sentence": 54,
+   "gt_text": "The show was a flop from the very start.",
+   "transcription": "you"
+  },
+  {
+   "id": "if9e00111e5",
+   "code": "A",
+   "sentence": 54,
+   "gt_text": "The show was a flop from the very start.",
+   "transcription": "\u8b1d\u8b1d"
+  },
+  {
+   "id": "i6acffa6cdd",
+   "code": "F",
+   "sentence": 54,
+   "gt_text": "The show was a flop from the very start.",
+   "transcription": "The shell was a flock from the very start"
+  },
+  {
+   "id": "i8c3020da5c",
+   "code": "D",
+   "sentence": 54,
+   "gt_text": "The show was a flop from the very start.",
+   "transcription": "of the groups show and subslart from an evderry scarpypixel"
+  },
+  {
+   "id": "if6ffda0336",
+   "code": "E",
+   "sentence": 58,
+   "gt_text": "A cup of sugar makes sweet fudge.",
+   "transcription": "A cup of sugar makes sweet fudge"
+  },
+  {
+   "id": "ifaa2121ac5",
+   "code": "C",
+   "sentence": 58,
+   "gt_text": "A cup of sugar makes sweet fudge.",
+   "transcription": "A cup of sugar makes sweet fish"
+  },
+  {
+   "id": "id6155e18b1",
+   "code": "B",
+   "sentence": 58,
+   "gt_text": "A cup of sugar makes sweet fudge.",
+   "transcription": "you"
+  },
+  {
+   "id": "i21b9bdee2d",
+   "code": "A",
+   "sentence": 58,
+   "gt_text": "A cup of sugar makes sweet fudge.",
+   "transcription": "\u0623\u0643\u0628\u0631 \u0628\u0634\u0643\u0644 \u0634\u063a\u0647\u0629 \u0623\u0639\u064a"
+  },
+  {
+   "id": "i03fca05536",
+   "code": "F",
+   "sentence": 58,
+   "gt_text": "A cup of sugar makes sweet fudge.",
+   "transcription": "a cup of sugarmakes food for jujube"
+  },
+  {
+   "id": "if366dd7794",
+   "code": "D",
+   "sentence": 58,
+   "gt_text": "A cup of sugar makes sweet fudge.",
+   "transcription": "healthcoffled Shuler makes Riemphysh"
+  },
+  {
+   "id": "i6aadb328cb",
+   "code": "E",
+   "sentence": 60,
+   "gt_text": "Both lost their lives in the raging storm.",
+   "transcription": "Both lost their lives in the raging storm"
+  },
+  {
+   "id": "i0050f0fc2b",
+   "code": "C",
+   "sentence": 60,
+   "gt_text": "Both lost their lives in the raging storm.",
+   "transcription": "Both lost their lives in the Roding Storm"
+  },
+  {
+   "id": "i0336a98d74",
+   "code": "B",
+   "sentence": 60,
+   "gt_text": "Both lost their lives in the raging storm.",
+   "transcription": "you"
+  },
+  {
+   "id": "ic1b7a28e0a",
+   "code": "A",
+   "sentence": 60,
+   "gt_text": "Both lost their lives in the raging storm.",
+   "transcription": "\u0414\u0418\u041d\u0410\u041c\u0418\u0427\u041d\u0410\u042f \u041c\u0423\u0417\u042b\u041a\u0410"
+  },
+  {
+   "id": "ifa009a815b",
+   "code": "F",
+   "sentence": 60,
+   "gt_text": "Both lost their lives in the raging storm.",
+   "transcription": "Both laws fear levels in the raging stool"
+  },
+  {
+   "id": "iacd29e8693",
+   "code": "D",
+   "sentence": 60,
+   "gt_text": "Both lost their lives in the raging storm.",
+   "transcription": "If we vote be more of St M M I M Z Lergradius for Anionol"
+  },
+  {
+   "id": "i9c8741ae91",
+   "code": "E",
+   "sentence": 61,
+   "gt_text": "We talked of the side show in the circus.",
+   "transcription": "We talked of the side show in the circus"
+  },
+  {
+   "id": "i3019086515",
+   "code": "C",
+   "sentence": 61,
+   "gt_text": "We talked of the side show in the circus.",
+   "transcription": "We talked of the side shell and the surface"
+  },
+  {
+   "id": "i9b1e707c52",
+   "code": "B",
+   "sentence": 61,
+   "gt_text": "We talked of the side show in the circus.",
+   "transcription": ""
+  },
+  {
+   "id": "i32a636425c",
+   "code": "A",
+   "sentence": 61,
+   "gt_text": "We talked of the side show in the circus.",
+   "transcription": "We taught a side show in the surface"
+  },
+  {
+   "id": "i4ddfa7c6ed",
+   "code": "F",
+   "sentence": 61,
+   "gt_text": "We talked of the side show in the circus.",
+   "transcription": "We talked of the sidesharp in the circles"
+  },
+  {
+   "id": "ib047acf2f6",
+   "code": "D",
+   "sentence": 61,
+   "gt_text": "We talked of the side show in the circus.",
+   "transcription": "How do any tasks of the sad child by the surfaced"
+  },
+  {
+   "id": "i2efa7ff8bf",
+   "code": "E",
+   "sentence": 62,
+   "gt_text": "Use a pencil to write the first draft.",
+   "transcription": "Use a pencil to write the first draft"
+  },
+  {
+   "id": "i7919a5711b",
+   "code": "C",
+   "sentence": 62,
+   "gt_text": "Use a pencil to write the first draft.",
+   "transcription": "River Pensa is to write the first draft"
+  },
+  {
+   "id": "iecda9bb017",
+   "code": "B",
+   "sentence": 62,
+   "gt_text": "Use a pencil to write the first draft.",
+   "transcription": "Thank you"
+  },
+  {
+   "id": "ia0658de17e",
+   "code": "A",
+   "sentence": 62,
+   "gt_text": "Use a pencil to write the first draft.",
+   "transcription": "Thats a frothed"
+  },
+  {
+   "id": "i0514d30dbc",
+   "code": "F",
+   "sentence": 62,
+   "gt_text": "Use a pencil to write the first draft.",
+   "transcription": "Youre so good Youre so good Youre so good Youre so good Youre so good Youre so good Youre so good Yo ..."
+  },
+  {
+   "id": "ie94653a560",
+   "code": "D",
+   "sentence": 62,
+   "gt_text": "Use a pencil to write the first draft.",
+   "transcription": "use some kin stocks from ripe to form a Cidrar at the end of the game"
+  },
+  {
+   "id": "icc73f660d8",
+   "code": "E",
+   "sentence": 67,
+   "gt_text": "The set of china hit the floor with a crash.",
+   "transcription": "The set of China hit the floor with a crash"
+  },
+  {
+   "id": "i1dcad6e514",
+   "code": "C",
+   "sentence": 67,
+   "gt_text": "The set of china hit the floor with a crash.",
+   "transcription": "Instead of China hit the floor with a crash"
+  },
+  {
+   "id": "i41dc821527",
+   "code": "B",
+   "sentence": 67,
+   "gt_text": "The set of china hit the floor with a crash.",
+   "transcription": "you"
+  },
+  {
+   "id": "ia72227d96d",
+   "code": "A",
+   "sentence": 67,
+   "gt_text": "The set of china hit the floor with a crash.",
+   "transcription": "The serous serous serous serous serous"
+  },
+  {
+   "id": "id18557716a",
+   "code": "F",
+   "sentence": 67,
+   "gt_text": "The set of china hit the floor with a crash.",
+   "transcription": "Instead of tuning it the floor with a crest"
+  },
+  {
+   "id": "ia5a699bae0",
+   "code": "D",
+   "sentence": 67,
+   "gt_text": "The set of china hit the floor with a crash.",
+   "transcription": "instead of your child youll be the smaller well be parashoe"
+  },
+  {
+   "id": "i1d58d87776",
+   "code": "E",
+   "sentence": 68,
+   "gt_text": "This is a grand season for hikes on the road.",
+   "transcription": "This is a grand season for Hikes on the road"
+  },
+  {
+   "id": "i27df3277fd",
+   "code": "C",
+   "sentence": 68,
+   "gt_text": "This is a grand season for hikes on the road.",
+   "transcription": "This is a ground season for hikes on the road"
+  },
+  {
+   "id": "id94745dd9e",
+   "code": "B",
+   "sentence": 68,
+   "gt_text": "This is a grand season for hikes on the road.",
+   "transcription": ""
+  },
+  {
+   "id": "i0a04c14982",
+   "code": "A",
+   "sentence": 68,
+   "gt_text": "This is a grand season for hikes on the road.",
+   "transcription": "RADC for Hipes on the road"
+  },
+  {
+   "id": "i340a68e88e",
+   "code": "F",
+   "sentence": 68,
+   "gt_text": "This is a grand season for hikes on the road.",
+   "transcription": "This is a France season for bikes on the red"
+  },
+  {
+   "id": "i42ae55cdff",
+   "code": "D",
+   "sentence": 68,
+   "gt_text": "This is a grand season for hikes on the road.",
+   "transcription": "is a foreign C is a licohypes and the greater"
+  },
+  {
+   "id": "i508ef066d4",
+   "code": "E",
+   "sentence": 70,
+   "gt_text": "Those words were the cue for the actor to leave.",
+   "transcription": "Those words were the cue for the actor to leave"
+  },
+  {
+   "id": "i5df24dfdd8",
+   "code": "C",
+   "sentence": 70,
+   "gt_text": "Those words were the cue for the actor to leave.",
+   "transcription": "Those words were the QFity actor to leave"
+  },
+  {
+   "id": "i91f03d866a",
+   "code": "B",
+   "sentence": 70,
+   "gt_text": "Those words were the cue for the actor to leave.",
+   "transcription": "Thank you"
+  },
+  {
+   "id": "id9e8ec01b3",
+   "code": "A",
+   "sentence": 70,
+   "gt_text": "Those words were the cue for the actor to leave.",
+   "transcription": "He he he he he he actor to leave"
+  },
+  {
+   "id": "id80ac0cf0d",
+   "code": "F",
+   "sentence": 70,
+   "gt_text": "Those words were the cue for the actor to leave.",
+   "transcription": "That was Wards worthy cube for the actor to leave"
+  },
+  {
+   "id": "if6bfc74ca9",
+   "code": "D",
+   "sentence": 70,
+   "gt_text": "Those words were the cue for the actor to leave.",
+   "transcription": "when I was ordering a split Q for the aftoric tumyleids in the function"
+  },
+  {
+   "id": "i9bb38a05fb",
+   "code": "E",
+   "sentence": 71,
+   "gt_text": "A yacht slid around the point into the bay.",
+   "transcription": "a yacht slid around the point into the bay"
+  },
+  {
+   "id": "i7ea7c5cb87",
+   "code": "C",
+   "sentence": 71,
+   "gt_text": "A yacht slid around the point into the bay.",
+   "transcription": "a yacht slurred around the point into the bay"
+  },
+  {
+   "id": "ia4b65d1226",
+   "code": "B",
+   "sentence": 71,
+   "gt_text": "A yacht slid around the point into the bay.",
+   "transcription": "you"
+  },
+  {
+   "id": "i75e7180322",
+   "code": "A",
+   "sentence": 71,
+   "gt_text": "A yacht slid around the point into the bay.",
+   "transcription": "\u62dc\u62dc"
+  },
+  {
+   "id": "i6fa3e04b3b",
+   "code": "F",
+   "sentence": 71,
+   "gt_text": "A yacht slid around the point into the bay.",
+   "transcription": "aks"
+  },
+  {
+   "id": "idf5f58d5b5",
+   "code": "D",
+   "sentence": 71,
+   "gt_text": "A yacht slid around the point into the bay.",
+   "transcription": "a yacht smurder around can easily enter the van"
+  },
+  {
+   "id": "i2d89b5b368",
+   "code": "E",
+   "sentence": 76,
+   "gt_text": "A tame squirrel makes a nice pet.",
+   "transcription": "A tame squirrel makes a nice pet"
+  },
+  {
+   "id": "i6035354579",
+   "code": "C",
+   "sentence": 76,
+   "gt_text": "A tame squirrel makes a nice pet.",
+   "transcription": "A term squirrel makes a nice pet"
+  },
+  {
+   "id": "i4a964ddb77",
+   "code": "B",
+   "sentence": 76,
+   "gt_text": "A tame squirrel makes a nice pet.",
+   "transcription": "you"
+  },
+  {
+   "id": "i230247145f",
+   "code": "A",
+   "sentence": 76,
+   "gt_text": "A tame squirrel makes a nice pet.",
+   "transcription": "Thats a nice pet"
+  },
+  {
+   "id": "i4526a97465",
+   "code": "F",
+   "sentence": 76,
+   "gt_text": "A tame squirrel makes a nice pet.",
+   "transcription": "A tablespoon of mixed icepacked icepacked icepacked icepacked icepacked icepacked icepacked icepacke ..."
+  },
+  {
+   "id": "i56555a4085",
+   "code": "D",
+   "sentence": 76,
+   "gt_text": "A tame squirrel makes a nice pet.",
+   "transcription": "of octane squallor mixland and geysotharic"
+  },
+  {
+   "id": "i5eca24be4d",
+   "code": "E",
+   "sentence": 79,
+   "gt_text": "The pearl was worn in a thin silver ring.",
+   "transcription": "The Pearl was worn in a thin silver ring"
+  },
+  {
+   "id": "i17b7ef941c",
+   "code": "C",
+   "sentence": 79,
+   "gt_text": "The pearl was worn in a thin silver ring.",
+   "transcription": "The Pearl was worn in a fin silver ring"
+  },
+  {
+   "id": "ic75697f17c",
+   "code": "B",
+   "sentence": 79,
+   "gt_text": "The pearl was worn in a thin silver ring.",
+   "transcription": "BAM"
+  },
+  {
+   "id": "i099edb95f2",
+   "code": "A",
+   "sentence": 79,
+   "gt_text": "The pearl was worn in a thin silver ring.",
+   "transcription": "The fins are so verring"
+  },
+  {
+   "id": "i450a8c46c7",
+   "code": "F",
+   "sentence": 79,
+   "gt_text": "The pearl was worn in a thin silver ring.",
+   "transcription": "The Piero Luzborn in a finsilvered rain"
+  },
+  {
+   "id": "i2629f2c3c7",
+   "code": "D",
+   "sentence": 79,
+   "gt_text": "The pearl was worn in a thin silver ring.",
+   "transcription": "a problem with both and affects over RAIDTH"
+  },
+  {
+   "id": "i95fb5eb866",
+   "code": "E",
+   "sentence": 82,
+   "gt_text": "See the cat glaring at the scared mouse.",
+   "transcription": "See the cat glaring at the scared mouse"
+  },
+  {
+   "id": "i5c4a1eb1b7",
+   "code": "C",
+   "sentence": 82,
+   "gt_text": "See the cat glaring at the scared mouse.",
+   "transcription": "See the CAD glaring at the scared mouse"
+  },
+  {
+   "id": "ifd65111656",
+   "code": "B",
+   "sentence": 82,
+   "gt_text": "See the cat glaring at the scared mouse.",
+   "transcription": "you"
+  },
+  {
+   "id": "i218c69778f",
+   "code": "A",
+   "sentence": 82,
+   "gt_text": "See the cat glaring at the scared mouse.",
+   "transcription": "\u3069\u3053\u304b\u3063\u3066\u304f\u308b"
+  },
+  {
+   "id": "i1d4b1cb8bd",
+   "code": "F",
+   "sentence": 82,
+   "gt_text": "See the cat glaring at the scared mouse.",
+   "transcription": "CDKDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD ..."
+  },
+  {
+   "id": "ibb7a62722e",
+   "code": "D",
+   "sentence": 82,
+   "gt_text": "See the cat glaring at the scared mouse.",
+   "transcription": "Well see you to cap the layering of the Spirionaris Bye bye"
+  },
+  {
+   "id": "ief3d5d60bc",
+   "code": "E",
+   "sentence": 83,
+   "gt_text": "There are more than two factors here.",
+   "transcription": "There are more than two factors here"
+  },
+  {
+   "id": "i4e0c5a876f",
+   "code": "C",
+   "sentence": 83,
+   "gt_text": "There are more than two factors here.",
+   "transcription": "There are noise and tow factors here"
+  },
+  {
+   "id": "idb2df96747",
+   "code": "B",
+   "sentence": 83,
+   "gt_text": "There are more than two factors here.",
+   "transcription": "Thank you"
+  },
+  {
+   "id": "iba85e69ea9",
+   "code": "A",
+   "sentence": 83,
+   "gt_text": "There are more than two factors here.",
+   "transcription": "\uc548\ub155"
+  },
+  {
+   "id": "i4d122411e6",
+   "code": "F",
+   "sentence": 83,
+   "gt_text": "There are more than two factors here.",
+   "transcription": "There are more that can take here"
+  },
+  {
+   "id": "id5673617d9",
+   "code": "D",
+   "sentence": 83,
+   "gt_text": "There are more than two factors here.",
+   "transcription": "Make it airlarloid emptyoundtraffordery swear things"
+  },
+  {
+   "id": "i4c5419eefc",
+   "code": "E",
+   "sentence": 84,
+   "gt_text": "The hat brim was wide and too droopy.",
+   "transcription": "The hat brim was wide and too droopy"
+  },
+  {
+   "id": "i1b6a2b3200",
+   "code": "C",
+   "sentence": 84,
+   "gt_text": "The hat brim was wide and too droopy.",
+   "transcription": "The heck Threm was wide and too droopy"
+  },
+  {
+   "id": "i8f19724ce3",
+   "code": "B",
+   "sentence": 84,
+   "gt_text": "The hat brim was wide and too droopy.",
+   "transcription": ""
+  },
+  {
+   "id": "i7be89dc815",
+   "code": "A",
+   "sentence": 84,
+   "gt_text": "The hat brim was wide and too droopy.",
+   "transcription": "\u55e8\u55e8"
+  },
+  {
+   "id": "i5679585e69",
+   "code": "F",
+   "sentence": 84,
+   "gt_text": "The hat brim was wide and too droopy.",
+   "transcription": "The headrem was widened to droople"
+  },
+  {
+   "id": "iccd741d609",
+   "code": "D",
+   "sentence": 84,
+   "gt_text": "The hat brim was wide and too droopy.",
+   "transcription": "a happy memory with my THEN 2 in Jolo Banging Up"
+  },
+  {
+   "id": "icff9ea2c64",
+   "code": "E",
+   "sentence": 85,
+   "gt_text": "The lawyer tried to lose his case.",
+   "transcription": "The lawyer tried to lose his case"
+  },
+  {
+   "id": "i1f57f98d1e",
+   "code": "C",
+   "sentence": 85,
+   "gt_text": "The lawyer tried to lose his case.",
+   "transcription": "The lawyer tries to lose his case"
+  },
+  {
+   "id": "i1d7aa56a18",
+   "code": "B",
+   "sentence": 85,
+   "gt_text": "The lawyer tried to lose his case.",
+   "transcription": "Thank you"
+  },
+  {
+   "id": "i7fb318ad4c",
+   "code": "A",
+   "sentence": 85,
+   "gt_text": "The lawyer tried to lose his case.",
+   "transcription": "\u041f\u043e\u0432\u0442\u043e\u0440\u044b\u0439 \u0432\u043a\u043b\u044e\u0447\u0443 \u0432\u043a\u043b\u044e\u0447\u0443 \u0432\u043a\u043b\u044e\u0447\u0443 \u0432\u043a\u043b\u044e\u0447\u0443 \u0432\u043a\u043b\u044e\u0447\u0443 \u0432\u043a\u043b\u044e\u0447\u0443 \u0432\u043a\u043b\u044e\u0447\u0443 \u0432\u043a\u043b\u044e\u0447\u0443 \u0432\u043a\u043b\u044e\u0447\u0443 \u0432\u043a\u043b\u044e\u0447\u0443 \u0432\u043a\u043b\u044e\u0447\u0443 \u0432\u043a\u043b\u044e\u0447\u0443 \u0432\u043a\u043b\u044e\u0447\u0443 ..."
+  },
+  {
+   "id": "i096d316b4a",
+   "code": "F",
+   "sentence": 85,
+   "gt_text": "The lawyer tried to lose his case.",
+   "transcription": "the Lord your tribe to lose his case"
+  },
+  {
+   "id": "i554d4985dc",
+   "code": "D",
+   "sentence": 85,
+   "gt_text": "The lawyer tried to lose his case.",
+   "transcription": "dont know where youre to drive to the Middle East Displains"
+  },
+  {
+   "id": "iafbc18a40b",
+   "code": "E",
+   "sentence": 86,
+   "gt_text": "The grass curled around the fence post.",
+   "transcription": "The grass curled around the fence post"
+  },
+  {
+   "id": "i27e4f7625e",
+   "code": "C",
+   "sentence": 86,
+   "gt_text": "The grass curled around the fence post.",
+   "transcription": "The grass crawled around the phones post"
+  },
+  {
+   "id": "i2aeb70ba65",
+   "code": "B",
+   "sentence": 86,
+   "gt_text": "The grass curled around the fence post.",
+   "transcription": ""
+  },
+  {
+   "id": "i90a0722aa0",
+   "code": "A",
+   "sentence": 86,
+   "gt_text": "The grass curled around the fence post.",
+   "transcription": "The risk furled ran the fence post"
+  },
+  {
+   "id": "ice60257199",
+   "code": "F",
+   "sentence": 86,
+   "gt_text": "The grass curled around the fence post.",
+   "transcription": "The grace coo round the fence pose"
+  },
+  {
+   "id": "ifdf97ccc57",
+   "code": "D",
+   "sentence": 86,
+   "gt_text": "The grass curled around the fence post.",
+   "transcription": "I press ProDrumRound to hence the taboabstutionildrum"
+  },
+  {
+   "id": "i16a38d8afc",
+   "code": "E",
+   "sentence": 87,
+   "gt_text": "Cut the pie into large parts.",
+   "transcription": "Cut the pie into large parts"
+  },
+  {
+   "id": "ice10da8a95",
+   "code": "C",
+   "sentence": 87,
+   "gt_text": "Cut the pie into large parts.",
+   "transcription": "Cut the pine into large parts"
+  },
+  {
+   "id": "i3215ace7a1",
+   "code": "B",
+   "sentence": 87,
+   "gt_text": "Cut the pie into large parts.",
+   "transcription": "Thank you"
+  },
+  {
+   "id": "i38bff773ce",
+   "code": "A",
+   "sentence": 87,
+   "gt_text": "Cut the pie into large parts.",
+   "transcription": "\u53ef\u60dc"
+  },
+  {
+   "id": "i620fa7ee05",
+   "code": "F",
+   "sentence": 87,
+   "gt_text": "Cut the pie into large parts.",
+   "transcription": "Cook the pea into large parts"
+  },
+  {
+   "id": "i190202861c",
+   "code": "D",
+   "sentence": 87,
+   "gt_text": "Cut the pie into large parts.",
+   "transcription": "be cut but Tharnine is a large force of a silver"
+  },
+  {
+   "id": "i8e64d09913",
+   "code": "E",
+   "sentence": 88,
+   "gt_text": "Men strive but seldom get rich.",
+   "transcription": "Men strive but seldom get rich"
+  },
+  {
+   "id": "i4a84dd6da6",
+   "code": "C",
+   "sentence": 88,
+   "gt_text": "Men strive but seldom get rich.",
+   "transcription": "Mens drive but seldom get rich"
+  },
+  {
+   "id": "ieb72d3cc5d",
+   "code": "B",
+   "sentence": 88,
+   "gt_text": "Men strive but seldom get rich.",
+   "transcription": "you"
+  },
+  {
+   "id": "ic97d161f29",
+   "code": "A",
+   "sentence": 88,
+   "gt_text": "Men strive but seldom get rich.",
+   "transcription": "But seldom get rich"
+  },
+  {
+   "id": "ib695bb440d",
+   "code": "F",
+   "sentence": 88,
+   "gt_text": "Men strive but seldom get rich.",
+   "transcription": "Ministry of the Council of the United States"
+  },
+  {
+   "id": "i37ade6c5e9",
+   "code": "D",
+   "sentence": 88,
+   "gt_text": "Men strive but seldom get rich.",
+   "transcription": "Mens fry because its so really gifted what its shield"
+  },
+  {
+   "id": "i156c4c3935",
+   "code": "E",
+   "sentence": 89,
+   "gt_text": "Always close the barn door tight.",
+   "transcription": "Always close the barn door tight"
+  },
+  {
+   "id": "i385e4af862",
+   "code": "C",
+   "sentence": 89,
+   "gt_text": "Always close the barn door tight.",
+   "transcription": "Always close the bond or tight"
+  },
+  {
+   "id": "ifffd0ba70e",
+   "code": "B",
+   "sentence": 89,
+   "gt_text": "Always close the barn door tight.",
+   "transcription": "you"
+  },
+  {
+   "id": "i9542cb6d1d",
+   "code": "A",
+   "sentence": 89,
+   "gt_text": "Always close the barn door tight.",
+   "transcription": "Plus the barn do a tight"
+  },
+  {
+   "id": "i2ac6f00933",
+   "code": "F",
+   "sentence": 89,
+   "gt_text": "Always close the barn door tight.",
+   "transcription": "OE close the bond or ticked"
+  },
+  {
+   "id": "i316e648043",
+   "code": "D",
+   "sentence": 89,
+   "gt_text": "Always close the barn door tight.",
+   "transcription": "at least clones to the domes in what is TATOSOM"
+  },
+  {
+   "id": "i1d5bc7fdeb",
+   "code": "E",
+   "sentence": 91,
+   "gt_text": "The slush lay deep along the street.",
+   "transcription": "The slush lay deep along the street"
+  },
+  {
+   "id": "id21058fe8c",
+   "code": "C",
+   "sentence": 91,
+   "gt_text": "The slush lay deep along the street.",
+   "transcription": "The slurred lay deep along with street"
+  },
+  {
+   "id": "idadd138266",
+   "code": "B",
+   "sentence": 91,
+   "gt_text": "The slush lay deep along the street.",
+   "transcription": "you"
+  },
+  {
+   "id": "i07b3b68b57",
+   "code": "A",
+   "sentence": 91,
+   "gt_text": "The slush lay deep along the street.",
+   "transcription": "\u0418 \u0441\u043b\u0430\u0441\u043d\u043e \u043d\u0430\u0447\u0438\u043d\u0430\u0435\u0442\u0435 \u0430\u043a\u0430\u0434\u044b"
+  },
+  {
+   "id": "i86e72bb5b7",
+   "code": "F",
+   "sentence": 91,
+   "gt_text": "The slush lay deep along the street.",
+   "transcription": "The slushly eat along the street"
+  },
+  {
+   "id": "ic0739cd488",
+   "code": "D",
+   "sentence": 91,
+   "gt_text": "The slush lay deep along the street.",
+   "transcription": "where slush the lay V balanarists drifting"
+  },
+  {
+   "id": "i33ad4ab155",
+   "code": "E",
+   "sentence": 95,
+   "gt_text": "The play seems dull and quite stupid.",
+   "transcription": "The play seems dull and quite stupid"
+  },
+  {
+   "id": "i7f1e70e799",
+   "code": "C",
+   "sentence": 95,
+   "gt_text": "The play seems dull and quite stupid.",
+   "transcription": "The place Somes Dell and the quiet stupid Wii U"
+  },
+  {
+   "id": "i4165e04993",
+   "code": "B",
+   "sentence": 95,
+   "gt_text": "The play seems dull and quite stupid.",
+   "transcription": "you"
+  },
+  {
+   "id": "ia4350d278d",
+   "code": "A",
+   "sentence": 95,
+   "gt_text": "The play seems dull and quite stupid.",
+   "transcription": "They seem to all end quite stupidity"
+  },
+  {
+   "id": "iff0ac728b4",
+   "code": "F",
+   "sentence": 95,
+   "gt_text": "The play seems dull and quite stupid.",
+   "transcription": "The placings dull and quiet steppet"
+  },
+  {
+   "id": "iccf2ad985f",
+   "code": "D",
+   "sentence": 95,
+   "gt_text": "The play seems dull and quite stupid.",
+   "transcription": "Y o Clay Siloedddab ymchwijs ydyfydel"
+  }
+ ],
+ "conditions_per_sentence": 6,
+ "per_condition": 4
+}

@@ -15,3 +15,5 @@ checkpoints/*
 self_evaluation/sentence_*/run_*/*
 !self_evaluation/sentence_*/run_*/best_mixed.wav
 !self_evaluation/sentence_*/run_*/ground_truth.wav
+survey/private/
+survey/responses.jsonl

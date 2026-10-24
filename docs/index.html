@@ -17,6 +17,10 @@ button{font:inherit;padding:8px 18px;border-radius:8px;border:1px solid var(--ac
 button:disabled{opacity:.4;cursor:default}button.sec{background:none;color:var(--acc)}
 .bar{height:6px;background:var(--line);border-radius:3px}.bar i{display:block;height:100%;background:var(--acc);border-radius:3px}
 audio{width:100%}
+.wait{border:3px solid #c0392b;background:#fdecea;color:#7a1f16;border-radius:10px;padding:20px;margin:16px 0;text-align:center}
+.wait h2{margin:0 0 8px;font-size:1.5rem}.wait.ok{border-color:#2e8b57;background:#e6f6ec;color:#17502f}
+.spin{width:36px;height:36px;margin:12px auto 0;border:5px solid #e6b0aa;border-top-color:#c0392b;border-radius:50%;animation:sp 1s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
 </style></head><body><main id="app"></main>
 <script src="config.js"></script>
 <script>
@@ -121,20 +125,28 @@ function show() {
 
 async function finish() {
   session.finished = new Date().toISOString();
-  app.replaceChildren($(`<div><h1>Thank you!</h1><p id="msg">Submitting your answers ...</p></div>`));
-  const msg = document.getElementById("msg");
+  const guard = (e) => { e.preventDefault(); e.returnValue = ""; };
+  window.addEventListener("beforeunload", guard);
+  app.replaceChildren($(`<div><h1>Almost done: your answers are being uploaded</h1>
+    <div class="wait" id="box"><h2>&#9888; PLEASE WAIT. DO NOT CLOSE THIS PAGE!</h2>
+      <p><b>Your answers are being uploaded right now. Your participation only counts once the upload is complete.</b></p>
+      <p>Keep this page open until this box turns green and says "Upload complete".</p><div class="spin" id="sp"></div></div></div>`));
+  const box = document.getElementById("box");
   try {
     if (!ENDPOINT) throw 0;
     // cross-origin endpoints (e.g. Google Apps Script) answer opaquely: send as text/plain without CORS preflight
     const cross = /^https?:/.test(ENDPOINT);
     const r = await fetch(ENDPOINT, { method: "POST", mode: cross ? "no-cors" : "same-origin", headers: { "Content-Type": cross ? "text/plain" : "application/json" }, body: JSON.stringify(session) });
     if (!cross && !r.ok) throw 0;
-    msg.textContent = "Your answers were submitted. You can close this page.";
+    window.removeEventListener("beforeunload", guard);
+    box.className = "wait ok";
+    box.innerHTML = "<h2>&#10003; Upload complete. Thank you!</h2><p><b>Your answers were submitted. You can now close this page.</b></p>";
   } catch (e) {
-    msg.innerHTML = "Submitting failed. Please download your answers and send the file to the study team.";
+    window.removeEventListener("beforeunload", guard);
+    box.innerHTML = "<h2>&#9888; Upload failed</h2><p><b>Please download your answers below and send the file to the study team. Your participation only counts once we received it.</b></p>";
     const a = $(`<p><a download="responses_${pid}.json">Download answers</a></p>`);
     a.firstChild.href = URL.createObjectURL(new Blob([JSON.stringify(session)], { type: "application/json" }));
-    app.appendChild(a);
+    box.appendChild(a);
   }
 }
 init();

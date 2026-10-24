@@ -19,8 +19,8 @@ function sheet_() {
 function doPost(e) {  // one row per rated audio
   const s = JSON.parse(e.postData.contents), sh = sheet_();
   if (sh.getLastRow() === 0)
-    sh.appendRow(["time", "participant", "native", "headphones", "item", "order", "realism", "understood_match", "plausible_transcription", "plays", "seconds"]);
-  const rows = s.trials.map(t => [new Date(), s.participant, s.profile.native, s.profile.headphones, t.item, t.order,
+    sh.appendRow(["time", "participant", "headphones", "item", "order", "realism", "understood_match", "plausible_transcription", "plays", "seconds"]);
+  const rows = s.trials.map(t => [new Date(), s.participant, s.profile.headphones, t.item, t.order,
                                   t.realism, t.understood_match, t.plausible_transcription, t.plays, (t.t_end - t.t_start) / 1000]);
   if (rows.length) sh.getRange(sh.getLastRow() + 1, 1, rows.length, rows[0].length).setValues(rows);
   return ContentService.createTextOutput("ok");

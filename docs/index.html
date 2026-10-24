@@ -65,17 +65,17 @@ function intro() {
   app.replaceChildren($(`<div>
     <h1>Speech listening study</h1>
     <p>You will listen to <b>${trials.length} short recordings</b> (about 3 seconds each) of a person reading an English sentence or voice command. Some recordings contain distortions or artifacts. The study takes about <b>15 to 20 minutes</b>.</p>
-    <p>For every recording you answer three short questions one after the other: how realistic it sounds, whether what you heard corresponds to the sentence the speaker was supposed to say, and whether it corresponds to the transcript of a speech recognizer. The texts are only shown after you confirmed the previous answer. <b>You cannot change an answer after you confirmed it.</b> There are no right or wrong answers, we are interested in your impression.</p>
+    <p>For every recording you answer three short questions one after the other: how realistic it sounds, whether what you heard corresponds to the sentence the speaker was supposed to say, and whether it corresponds to the transcript of a speech recognizer. The texts are only shown after you confirmed the previous answer. There are no right or wrong answers, we are interested in your impression.</p>
+    <div class="card done"><p><b>Once confirmed, an answer cannot be changed.</b></p>
+      <p><b>Attention checks are included. If you fail them, your assessment will be rejected.</b></p></div>
     <p>Please use headphones in a quiet place and set a comfortable volume before you start. The study is anonymous, we do not collect personal data, and you can stop at any time by closing the page.</p>
-    <div class="card"><p class="q">Are you a native English speaker?</p>
-      <label><input type="radio" name="native" value="yes"> Yes</label><label><input type="radio" name="native" value="no"> No</label></div>
     <div class="card"><p class="q">Are you wearing headphones?</p>
       <label><input type="radio" name="phones" value="yes"> Yes</label><label><input type="radio" name="phones" value="no"> No</label></div>
     <button id="go" disabled>Start</button></div>`));
   const go = document.getElementById("go");
-  const ready = () => go.disabled = !(document.querySelector("[name=native]:checked") && document.querySelector("[name=phones]:checked"));
+  const ready = () => go.disabled = !(document.querySelector("[name=phones]:checked"));
   app.addEventListener("change", ready);
-  go.onclick = () => { session.profile = { native: document.querySelector("[name=native]:checked").value, headphones: document.querySelector("[name=phones]:checked").value }; show(); };
+  go.onclick = () => { session.profile = { headphones: document.querySelector("[name=phones]:checked").value }; show(); };
 }
 
 function choice(name, opts) {

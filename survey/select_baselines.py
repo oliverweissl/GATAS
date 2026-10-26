@@ -1,4 +1,4 @@
-"""Two best baselines by reciprocal rank fusion (k=60) over the cells (SUT x task) and two measures of the RQ1 table: effectiveness (ASR:
+"""Two best baselines by reciprocal rank fusion (k=60) over the cells (SUT x task) and two measures of the effectiveness table: effectiveness (ASR:
 Changed, intent: Target hit) and UTMOS. Ties share the mean rank; a method with several configurations (SMACK) scores with the better one.
 Run from the project root: python survey/select_baselines.py
 """
@@ -36,7 +36,7 @@ def rankings():
         i = {f: [r for r in rs if r["intent"] and r["intent"]["original_correct"]] for f, rs in i.items()}
         tasks = {"ASR": (a, ASR, asr_columns(), ("Changed", "UTMOS")), "Intent": (i, INTENT, intent_columns(), ("Target hit", "UTMOS"))}
         for task, (data, folders, columns, wanted) in tasks.items():
-            for name in wanted:  # the column definitions of the RQ1 effectiveness table (paper_tables.py)
+            for name in wanted:  # the column definitions of the effectiveness table (paper_tables.py)
                 fn = next(c[1] for c in columns if c[0].startswith(name))
                 values = {m: fn(data[f], None)[0] for m, f in folders.items() if data[f]}
                 out[(task, sut, name)] = (values, rank(values))

@@ -24,7 +24,7 @@ METHODS = ("GATAS", "GATAS_targeted", "Waveform", "SMACK_untargeted", "SMACK", "
            "GATAS_intent", "Waveform_intent", "ALIF_intent")  # *_intent: optimize the intent classifier output
 # Scale ablation of GATAS (scripts/run_scale_ablation.sh, analysis/Ablation_Scale.ipynb)
 ABLATION_METHODS = ("GATAS_scale_0.5", "GATAS_scale_1", "GATAS_scale_2", "GATAS_adaptive")
-# Search-space / optimizer ablation of GATAS (scripts/run_space_ablation.sh, analysis/Ablation_Space.ipynb)
+# Search-space / optimizer ablation of GATAS (scripts/run_space_ablation.sh, analysis/RQ0_Ablation.ipynb)
 # GATAS variant: latent interpolation toward an LLM intent rewrite of the sentence (scripts/run_gatas_llm.sh)
 VARIANT_METHODS = ("GATAS_llm",)
 INTENT_ABLATION_METHODS = ("GATAS_intent_sel", "GATAS_intent_margin", "GATAS_intent_margin_sel")  # run_intent_ablation.sh

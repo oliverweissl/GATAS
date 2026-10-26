@@ -32,7 +32,7 @@ def normalize(src, dst):
     subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", src, "-af", f, "-ar", "16000", "-ac", "1", "-c:a", "pcm_s16le", dst], check=True)
 
 
-BASELINES = select()  # the two best baselines of RQ1 by reciprocal rank fusion, see survey/select_baselines.py
+BASELINES = select()  # the two best baselines of RQ2 by reciprocal rank fusion, see survey/select_baselines.py
 print("baselines:", BASELINES)
 ASR_FOLDER = ASR  # SMACK: the native configuration, which has the better rank sum (Changed, UTMOS) than the untargeted adaptation
 CELLS = {  # id: (label, dataset, SUT, {condition: result folder})

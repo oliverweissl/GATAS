@@ -113,8 +113,8 @@ def _row(base, recs, getter, scale, test):
             "ref_better": better, "effect": effect_label(d) if better else ""}
 
 
-def rq1_measures(task, thr):
-    """[(name, LaTeX header, getter, higher is better, binary, digits)] of the RQ1 table for a task; thr = m-valid UTMOS threshold."""
+def effectiveness_measures(task, thr):
+    """[(name, LaTeX header, getter, higher is better, binary, digits)] of the effectiveness table for a task; thr = m-valid UTMOS threshold."""
     from results_loader import asr_found, intent_hit
     rate = lambda f: (lambda r: float(f(r)))
     dist = [("WER", r"WER $\downarrow$", lambda r: r["wer"], False, False, 3), ("Semantic", r"Semantic $\downarrow$", lambda r: r["semantic"], False, False, 3),
@@ -126,12 +126,12 @@ def rq1_measures(task, thr):
         ("M-valid %", r"M-valid [\%] $\uparrow$", rate(lambda r: intent_hit(r) and r["utmos"] >= thr), True, True, 1)]
 
 
-def rq1_frame(asr, intent, thr, models=MODELS):
-    """RQ1 table values in long format with the Holm-adjusted one-sided p and paired d_z of the reference against each method."""
+def effectiveness_frame(asr, intent, thr, models=MODELS):
+    """Effectiveness table values in long format with the Holm-adjusted one-sided p and paired d_z of the reference against each method."""
     rows = []
     for task, data, methods in (("ASR", asr, ASR_ORDER), ("Intent", intent, ("GATAS", "GATAS_llm") + INTENT_ORDER[1:-1])):
         for mo in models:
-            for name, _, getter, higher, binary, _ in rq1_measures(task, thr[task]):
+            for name, _, getter, higher, binary, _ in effectiveness_measures(task, thr[task]):
                 sig = significance(data.get(mo, {}), REFERENCE[task], getter, higher, binary)
                 for m in methods:
                     recs = data.get(mo, {}).get(m)
@@ -140,47 +140,66 @@ def rq1_frame(asr, intent, thr, models=MODELS):
     return pd.DataFrame(rows)
 
 
-def _panel(frame, task, thr, methods, models, names):
-    measures = rq1_measures(task, thr)
+def _cells(frame, task, methods, models, measures, thr):
+    """{method: [LaTeX cell, ...]} of the effectiveness table in measure order per model; '--' where a model has no run."""
     f = frame[frame.task == task].set_index(["model", "method", "measure"])
-    k = len(measures)
     best = {}
     for mo in models:
         for name, _, _, higher, _, _ in measures:
             vals = [f.loc[(mo, m, name), "value"] for m in methods if (mo, m, name) in f.index]
             if len(set(vals)) > 1:
                 best[mo, name] = max(vals) if higher else min(vals)
-    rows = []
+    out = {}
     for m in methods:
-        if not any((mo, m, measures[0][0]) in f.index for mo in models):
-            continue
-        out = []
+        cells = []
         for mo in models:
             for name, _, _, _, binary, digits in measures:
                 if (mo, m, name) not in f.index:
-                    out.append("--"); continue
+                    cells.append("--"); continue
                 c = f.loc[(mo, m, name)]
                 text = "100" if binary and round(c.value, digits) == 100 else f"{c.value:.{digits}f}"
                 if (mo, name) in best and abs(c.value - best[mo, name]) < 1e-9:
                     text = rf"\textbf{{{text}}}"
-                out.append(text + (bullet(c.d_z) if c.ref_better else ""))
-        rows.append(f"{names[m]} & " + " & ".join(out) + r" \\")
-    head1 = " & " + " & ".join(rf"\multicolumn{{{k}}}{{c}}{{{MODEL_LABELS[m]}}}" for m in models) + r" \\"
-    rules = "".join(rf"\cmidrule(lr){{{2 + g * k}-{1 + (g + 1) * k}}}" for g in range(len(models)))
-    head2 = " & " + " & ".join(c[1] for _ in models for c in measures) + r" \\ \midrule"
-    return "\n".join([rf"\begin{{tabular}}{{l{'c' * (k * len(models))}}}\toprule", head1, rules, head2, *rows, r"\bottomrule", r"\end{tabular}"])
+                cells.append(text + (bullet(c.d_z) if c.ref_better else ""))
+        out[m] = cells
+    return out
 
 
-def rq1_tex(frame, thr, models=MODELS, asr_names=TEX_NAME, intent_names=None):
-    """The RQ1 table: panel (a) ASR testing, panel (b) intent matching, formatted from `rq1_frame`."""
+def _panel_rows(label, cells, methods, names, k):
+    """Rows of one panel: own methods with their cells grouped per measure block, baselines one cell per line."""
+    rows = []
+    for i, m in enumerate(methods):
+        c = cells[m]
+        head = rf"\multirow{{{len(methods)}}}{{*}}{{\rotatebox[origin=c]{{90}}{{\textbf{{{label}}}}}}}" + "\n" if i == 0 else ""
+        if m in OWN:
+            groups = [c[:4], c[4:6], c[6:9], c[9:]]
+            body = "\n".join("& " + " & ".join(g) for g in groups)
+            body = f"& {names[m]}\n" + body
+        elif all(x == "--" for x in c[k:]):
+            body = f"& {names[m]}\n" + "\n".join("& " + x for x in c[:k]) + "\n& " + " & ".join(c[k:])
+        else:
+            body = f"& {names[m]}\n" + "\n".join("& " + x for x in c)
+        rows.append(head + body + r" \\")
+    return "\n\n".join(rows)
+
+
+def effectiveness_tex(frame, thr, models=MODELS, asr_names=TEX_NAME, intent_names=None):
+    """The effectiveness table: panel (a) ASR testing, panel (b) intent matching, formatted from `effectiveness_frame`."""
     intent_names = intent_names or {**TEX_NAME, "GATAS_llm": r"\gllm"}
-    pa = _panel(frame, "ASR", thr["ASR"], ASR_ORDER, models, asr_names)
-    pi = _panel(frame, "Intent", thr["Intent"], ("GATAS", "GATAS_llm") + INTENT_ORDER[1:-1], models, intent_names)
-    cap = (r"Effectiveness (RQ\textsubscript{1}) on (a) ASR testing and (b) intent matching. Bold: best value. Bullets: significantly better "
-           r"than the method (reference: \tool on ASR, \gllm on intent), colored by effect size (\autoref{sec:metrics}). " + NOTE_PGD)
-    return "\n".join([r"\begin{table*}[t]", rf"\caption{{{cap}}}", r"\label{tab:rq1}", r"\centering", r"\footnotesize",
-                       r"\textbf{(a) ASR testing}\\[2pt]", r"\adjustbox{max width=\textwidth}{%", pa + "}", r"\vspace{6pt}",
-                       r"\textbf{(b) Intent matching}\\[2pt]", r"\adjustbox{max width=\textwidth}{%", pi + "}", r"\end{table*}"])
+    intent_methods = ("GATAS", "GATAS_llm") + INTENT_ORDER[1:-1]
+    ma, mi = effectiveness_measures("ASR", thr["ASR"]), effectiveness_measures("Intent", thr["Intent"])
+    k = len(ma)
+    pa = _panel_rows("ASR testing", _cells(frame, "ASR", ASR_ORDER, models, ma, thr["ASR"]), ASR_ORDER, asr_names, k)
+    pi = _panel_rows("Intent Match", _cells(frame, "Intent", intent_methods, models, mi, thr["Intent"]), intent_methods, intent_names, k)
+    heads = "\n".join("& " + c[1].replace("Found [\\%]", "Attack success [\\%]") for _ in models for c in ma)
+    cap = ("\n".join([r"Effectiveness (RQ\textsubscript{2}) on", r"(a) ASR testing and (b) intent matching.", r"Attack success denotes the percentage of adversarial inputs",
+                      r"found in (a) and the percentage of target", r"intents matched (b).", r"Bold indicates the best value.",
+                      r"Colored bullets indicate statistically significant differences", r"relative to \tool in (a) and \gllm in (b),",
+                      r"with colors representing effect sizes (\autoref{sec:metrics})."]))
+    return "\n".join([r"\begin{table*}[t]", r"\caption{", cap, "}", r"\label{tab:effectiveness}", r"\centering", r"\footnotesize", r"\adjustbox{max width=\textwidth}{%",
+                      r"\begin{tabular}{cl*{12}{c}}", r"\toprule", r" & & \multicolumn{6}{c}{Whisper-tiny}", r"   & \multicolumn{6}{c}{wav2vec2-large} \\",
+                      r"\cmidrule(lr){3-8}\cmidrule(lr){9-14}", " & Method", *[" " + h for h in heads.split("\n")[:-1]], " " + heads.split("\n")[-1] + r" \\", r"\midrule", "",
+                      "% (a) ASR testing", pa, "", r"\midrule", "", "% (b) Intent matching", pi, "", r"\bottomrule", r"\end{tabular}%", "}", r"\end{table*}"])
 
 
 def efficiency_frame(tasks, thr, models=MODELS):
@@ -251,8 +270,8 @@ def efficiency_tex(frame, models=MODELS, names=TEX_NAME):
         out = [x for t in tasks for mo in models for x in fmt(t, mo, m)]
         rows.append(f"{names[m]} & " + " & ".join(out) + r" \\")
     cols = "l" + "cc" * (len(tasks) * g)
-    lines = [r"\begin{table*}[t]", r"\caption{Efficiency (RQ\textsubscript{3}). $\infty$: no m-valid success. Bullets: reference significantly better "
-             r"(\autoref{sec:metrics}). " + NOTE_PGD + "}",
+    lines = [r"\begin{table*}[t]", r"\caption{Efficiency (RQ\textsubscript{1}). $\infty$: no m-valid success. Bullets: reference significantly better "
+             r"(\autoref{sec:metrics}).}",
              r"\label{tab:efficiency}", r"\centering", r"\footnotesize", r"\adjustbox{max width=\textwidth}{%", rf"\begin{{tabular}}{{{cols}}}\toprule",
              head1, rules1, head2, rules2, head3, *rows, r"\bottomrule", r"\end{tabular}}", r"\end{table*}"]
     return "\n".join(lines)

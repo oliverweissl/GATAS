@@ -2,7 +2,7 @@
 # Search-space / optimizer ablation of GATAS on 20 sentences, all with the adaptive scale (gene in [0.5, 4]):
 # DCT text basis, output-sensitive (Jacobian) basis, CMA-ES and MO-CMA-ES instead of NSGA-II. The reference is GATAS_adaptive
 # from scripts/run_scale_ablation.sh.
-# Run from project root: bash scripts/run_space_ablation.sh   (analysis: analysis/Ablation_Space.ipynb)
+# Run from project root: bash scripts/run_space_ablation.sh   (analysis: analysis/RQ0_Ablation.ipynb)
 source scripts/common.sh
 END=20  # the ablation uses sentences 1-20 (set after common.sh, which defaults END to 100)
 POP_SIZE=${POP_SIZE:-20}

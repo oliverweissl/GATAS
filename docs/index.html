@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Speech listening study</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27%3E%3Ccircle cx=%278%27 cy=%278%27 r=%277%27 fill=%27%232a5db0%27/%3E%3C/svg%3E">
 <style>
 :root{--bg:#fff;--fg:#1c1e21;--mut:#5f6670;--line:#d9dde3;--acc:#2a5db0;--ok:#e8f0fb}
 @media (prefers-color-scheme:dark){:root{--bg:#16181c;--fg:#e8eaed;--mut:#9aa0a8;--line:#363b43;--acc:#7aa7ee;--ok:#1f2a3d}}
@@ -21,22 +22,36 @@ audio{width:100%}
 .wait h2{margin:0 0 8px;font-size:1.5rem}.wait.ok{border-color:#2e8b57;background:#e6f6ec;color:#17502f}
 .spin{width:36px;height:36px;margin:12px auto 0;border:5px solid #e6b0aa;border-top-color:#c0392b;border-radius:50%;animation:sp 1s linear infinite}
 @keyframes sp{to{transform:rotate(360deg)}}
-</style></head><body><main id="app"></main>
+.load{text-align:center;padding:30vh 0 0;color:var(--mut)}.load .spin{border-color:var(--line);border-top-color:var(--acc)}
+input[type=radio]{width:18px;height:18px;vertical-align:middle}
+@media (max-width:520px){body{font-size:16px}main{padding:16px 12px 64px}label{padding:10px 8px}
+.scale{gap:4px}.scale label{padding:8px 2px}.scale small{font-size:.65rem;line-height:1.1;min-height:2.2em}
+button{width:100%;padding:12px 18px}.wait{padding:14px}.wait h2{font-size:1.25rem}}
+</style></head><body><main id="app"><div class="load"><div class="spin"></div><p>Loading study&hellip;</p></div></main>
 <script src="config.js"></script>
 <script>
+const BESAMPLE_REDIRECT = "https://step.besample.app/study/other/redirect?battempt={battempt}&completion_code={completion_code}";
 const ENDPOINT = window.SURVEY_ENDPOINT || "";  // config.js: POST target for the answers, GET returns the number of answers per item
 const app = document.getElementById("app");
 const $ = (h) => { const t = document.createElement("template"); t.innerHTML = h.trim(); return t.content.firstChild; };
 const shuffle = (a) => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
-const pid = new URLSearchParams(location.search).get("pid") || (crypto.randomUUID ? crypto.randomUUID() : String(Math.random()).slice(2));
+const qs = new URLSearchParams(location.search);
+// optional Besample panel: only participants arriving with its params get a completion code and the redirect back; direct ones are unaffected
+const bs = (() => {
+  try { if (qs.get("battempt") && qs.get("bnum") && qs.get("bkey")) return { battempt: qs.get("battempt"), bpid: qs.get("bpid") || "", code: String(BigInt(qs.get("bnum")) * BigInt(qs.get("bkey"))) }; } catch (e) {}
+  return null;
+})();
+const pid = qs.get("pid") || (bs && bs.bpid) || (crypto.randomUUID ? crypto.randomUUID() : String(Math.random()).slice(2));
 const session = { participant: pid, balanced: false, started: new Date().toISOString(), profile: {}, trials: [] };
-let trials = [], idx = 0;
+if (bs) { session.besample = { bpid: bs.bpid, battempt: bs.battempt }; }
+let trials = [], idx = 0, total = 0;
 
 function esc(s) { return s.replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c])); }
 
 async function fetchCounts() {
   if (!ENDPOINT) return null;
-  try { return await (await fetch(ENDPOINT, { cache: "no-store" })).json(); } catch (e) { return null; }
+  const ac = new AbortController(), t = setTimeout(() => ac.abort(), 6000);  // fall back to unbalanced assignment
+  try { return await (await fetch(ENDPOINT, { cache: "no-store", signal: ac.signal })).json(); } catch (e) { return null; } finally { clearTimeout(t); }
 }
 
 // every participant hears all configurations (cell x condition), PER_CONFIG audios each, of distinct sentences per task;
@@ -58,17 +73,20 @@ function assign(data, counts) {
 }
 
 async function init() {
+  const countsP = fetchCounts();  // slow cross-origin call: runs in the background while the intro is read
   const data = await (await fetch("items.json")).json();
-  const counts = await fetchCounts();
-  session.balanced = !!counts;
-  trials = assign(data, counts);
-  intro();
+  total = Object.values(data.cells).reduce((n, c) => n + new Set(c.items.map(i => i.code)).size, 0) * data.per_config;
+  intro(async () => {
+    const counts = await countsP;
+    session.balanced = !!counts;
+    trials = assign(data, counts);
+  });
 }
 
-function intro() {
+function intro(prepare) {
   app.replaceChildren($(`<div>
     <h1>Speech listening study</h1>
-    <p>You will listen to <b>${trials.length} short recordings</b> (about 3 seconds each) of a person reading an English sentence or voice command. Some recordings contain distortions or artifacts. The study takes about <b>15 to 20 minutes</b>.</p>
+    <p>You will listen to <b>${total} short recordings</b> (about 3 seconds each) of a person reading an English sentence or voice command. Some recordings contain distortions or artifacts. The study takes about <b>15 to 20 minutes</b>.</p>
     <p>For every recording you answer three short questions one after the other: how realistic it sounds, whether what you heard corresponds to the sentence the speaker was supposed to say, and whether it corresponds to the transcript of a speech recognizer. The texts are only shown after you confirmed the previous answer. There are no right or wrong answers, we are interested in your impression.</p>
     <div class="card done"><p><b>Once confirmed, an answer cannot be changed.</b></p>
       <p><b>Attention checks are included. If you fail them, your assessment will be rejected.</b></p></div>
@@ -79,7 +97,11 @@ function intro() {
   const go = document.getElementById("go");
   const ready = () => go.disabled = !(document.querySelector("[name=phones]:checked"));
   app.addEventListener("change", ready);
-  go.onclick = () => { session.profile = { headphones: document.querySelector("[name=phones]:checked").value }; show(); };
+  go.onclick = async () => {
+    session.profile = { headphones: document.querySelector("[name=phones]:checked").value };
+    go.disabled = true; go.textContent = "Loading\u2026";
+    await prepare(); show();
+  };
 }
 
 function choice(name, opts) {
@@ -92,7 +114,7 @@ function show() {
   const yns = (name) => choice(name, [["yes", "Yes"], ["no", "No"], ["unsure", "Unsure"]]);
   app.replaceChildren($(`<div>
     <div class="mut">Recording ${idx + 1} of ${trials.length}</div><div class="bar"><i style="width:${100 * idx / trials.length}%"></i></div>
-    <div class="card"><audio controls preload="auto" src="audio/${t.id}.wav"></audio><div class="mut">Listen to the recording. You can play it as often as you like.</div></div>
+    <div class="card"><audio controls playsinline preload="auto" src="audio/${t.id}.wav"></audio><div class="mut">Listen to the recording. You can play it as often as you like.</div></div>
 
     <div class="card" id="c1"><p class="q">How realistic does this recording sound as human speech?</p>
       <div class="scale">${[1, 2, 3, 4, 5].map(v => `<label><input type="radio" name="r1" value="${v}"><br>${v}<small>${["not realistic", "", "", "", "completely realistic"][v - 1] || "&nbsp;"}</small></label>`).join("")}</div>
@@ -141,6 +163,12 @@ async function finish() {
     window.removeEventListener("beforeunload", guard);
     box.className = "wait ok";
     box.innerHTML = "<h2>&#10003; Upload complete. Thank you!</h2><p><b>Your answers were submitted. You can now close this page.</b></p>";
+    if (bs) {
+      const url = BESAMPLE_REDIRECT.replace("{battempt}", encodeURIComponent(bs.battempt)).replace("{completion_code}", encodeURIComponent(bs.code));
+      box.innerHTML = `<h2>&#10003; Upload complete. Thank you!</h2><p><b>Your answers were submitted.</b></p>
+        <p>You are being sent back to Besample. If nothing happens, <a href="${url}">click here</a>, or enter this completion code manually: <b>${esc(bs.code)}</b></p>`;
+      setTimeout(() => { location.href = url; }, 3000);
+    }
   } catch (e) {
     window.removeEventListener("beforeunload", guard);
     box.innerHTML = "<h2>&#9888; Upload failed</h2><p><b>Please download your answers below and send the file to the study team. Your participation only counts once we received it.</b></p>";

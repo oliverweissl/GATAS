@@ -40,7 +40,11 @@ class Handler(SimpleHTTPRequestHandler):
             return self.send_error(400)
         with open(OUT, "ab") as f:
             f.write(body.replace(b"\n", b" ") + b"\n")
-        self.send_response(204); self.end_headers()
+        bs = json.loads(body).get("besample")  # mirrors the Apps Script: code = bnum * BESAMPLE_BKEY
+        key = os.environ.get("BESAMPLE_BKEY")
+        code = str(int(bs["bnum"]) * int(key)) if bs and key and str(bs.get("bnum", "")).isdigit() else ""
+        out = json.dumps({"ok": True, "code": code}).encode()
+        self.send_response(200); self.send_header("Content-Type", "application/json"); self.send_header("Content-Length", str(len(out))); self.end_headers(); self.wfile.write(out)
 
 
 if __name__ == "__main__":

@@ -23,7 +23,10 @@ function doPost(e) {  // one row per rated audio
   const rows = s.trials.map(t => [new Date(), s.participant, s.profile.headphones, t.item, t.order,
                                   t.realism, t.understood_match, t.plausible_transcription, t.plays, (t.t_end - t.t_start) / 1000]);
   if (rows.length) sh.getRange(sh.getLastRow() + 1, 1, rows.length, rows[0].length).setValues(rows);
-  return ContentService.createTextOutput("ok");
+  // Besample completion code = bnum * bkey; the key lives in Project Settings > Script properties (BESAMPLE_BKEY), never in the repo
+  const bs = s.besample, key = PropertiesService.getScriptProperties().getProperty("BESAMPLE_BKEY");
+  const code = bs && bs.bnum && key && rows.length >= 30 ? String(Number(bs.bnum) * Number(key)) : "";
+  return ContentService.createTextOutput(JSON.stringify({ ok: true, code })).setMimeType(ContentService.MimeType.JSON);
 }
 
 function doGet() {  // number of answers per audio, used to balance the assignment
@@ -32,6 +35,9 @@ function doGet() {  // number of answers per audio, used to balance the assignme
   return ContentService.createTextOutput(JSON.stringify(counts)).setMimeType(ContentService.MimeType.JSON);
 }
 ```
+
+Besample (optional): add the script property `BESAMPLE_BKEY` (Project Settings > Script properties). Only respondents with `?battempt=..&bnum=..` in the link
+get a code (and are redirected back); direct respondents are unaffected. Local test: `BESAMPLE_BKEY=<key> python survey/server.py`.
 
 Analysis: join the `item` column with `survey/private/key.json` (item -> cell, sentence, condition).
 After changing the script, deploy a new version (Deploy > Manage deployments > Edit > New version); the `/exec` URL stays the same.

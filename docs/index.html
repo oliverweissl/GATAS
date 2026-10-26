@@ -36,17 +36,11 @@ const app = document.getElementById("app");
 const $ = (h) => { const t = document.createElement("template"); t.innerHTML = h.trim(); return t.content.firstChild; };
 const shuffle = (a) => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 const qs = new URLSearchParams(location.search);
-// optional Besample panel: only participants arriving with its params get a completion code and the redirect back; direct ones are unaffected
-const bs = (() => {
-  const attempt = qs.get("battempt"), bnum = qs.get("bnum"), bkey = qs.get("bkey");
-  if (!attempt) return null;
-  let code = "";
-  try { code = String(BigInt(bnum) * BigInt(bkey)); } catch (e) { const x = Number(bnum) * Number(bkey); if (isFinite(x)) code = String(x); }
-  return { battempt: attempt, bpid: qs.get("bpid") || "", code };
-})();
+// optional Besample panel: only participants arriving with its params are sent back; the completion code (bnum * bkey) is computed by the endpoint, the key never reaches the page
+const bs = qs.get("battempt") ? { battempt: qs.get("battempt"), bnum: qs.get("bnum") || "", bpid: qs.get("bpid") || "" } : null;
 const pid = qs.get("pid") || (bs && bs.bpid) || (crypto.randomUUID ? crypto.randomUUID() : String(Math.random()).slice(2));
 const session = { participant: pid, balanced: false, started: new Date().toISOString(), profile: {}, trials: [] };
-if (bs) { session.besample = { bpid: bs.bpid, battempt: bs.battempt }; }
+if (bs) { session.besample = { bpid: bs.bpid, battempt: bs.battempt, bnum: bs.bnum }; }
 let trials = [], idx = 0, total = 0;
 
 function esc(s) { return s.replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c])); }
@@ -161,15 +155,20 @@ async function finish() {
     if (!ENDPOINT) throw 0;
     // cross-origin endpoints (e.g. Google Apps Script) answer opaquely: send as text/plain without CORS preflight
     const cross = /^https?:/.test(ENDPOINT);
-    const r = await fetch(ENDPOINT, { method: "POST", mode: cross ? "no-cors" : "same-origin", headers: { "Content-Type": cross ? "text/plain" : "application/json" }, body: JSON.stringify(session) });
+    // Besample respondents need the reply (the code), so they use a readable CORS request; text/plain still avoids the preflight
+    const r = await fetch(ENDPOINT, { method: "POST", mode: cross && !bs ? "no-cors" : cross ? "cors" : "same-origin", headers: { "Content-Type": cross ? "text/plain" : "application/json" }, body: JSON.stringify(session) });
     if (!cross && !r.ok) throw 0;
+    let code = "";
+    if (bs) { const j = await r.json(); if (!j.ok) throw 0; code = j.code || ""; }
     window.removeEventListener("beforeunload", guard);
     box.className = "wait ok";
     box.innerHTML = "<h2>&#10003; Upload complete. Thank you!</h2><p><b>Your answers were submitted. You can now close this page.</b></p>";
-    if (bs) {
-      const url = BESAMPLE_REDIRECT.replace("{battempt}", encodeURIComponent(bs.battempt)).replace("{completion_code}", encodeURIComponent(bs.code));
+    if (bs && !code) {
+      box.innerHTML = "<h2>&#10003; Upload complete</h2><p><b>Your answers were submitted, but no completion code could be issued. Please contact the study team via Besample.</b></p>";
+    } else if (bs) {
+      const url = BESAMPLE_REDIRECT.replace("{battempt}", encodeURIComponent(bs.battempt)).replace("{completion_code}", encodeURIComponent(code));
       box.innerHTML = `<h2>&#10003; Upload complete. Thank you!</h2><p><b>Your answers were submitted.</b></p>
-        <p>You are being sent back to Besample. If nothing happens, <a href="${url}">click here</a>, or enter this completion code manually: <b>${esc(bs.code)}</b></p>`;
+        <p>You are being sent back to Besample. If nothing happens, <a href="${url}">click here</a>, or enter this completion code manually: <b>${esc(code)}</b></p>`;
       setTimeout(() => { location.href = url; }, 3000);
     }
   } catch (e) {

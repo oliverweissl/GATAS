@@ -38,8 +38,11 @@ const shuffle = (a) => { for (let i = a.length - 1; i > 0; i--) { const j = Math
 const qs = new URLSearchParams(location.search);
 // optional Besample panel: only participants arriving with its params get a completion code and the redirect back; direct ones are unaffected
 const bs = (() => {
-  try { if (qs.get("battempt") && qs.get("bnum") && qs.get("bkey")) return { battempt: qs.get("battempt"), bpid: qs.get("bpid") || "", code: String(BigInt(qs.get("bnum")) * BigInt(qs.get("bkey"))) }; } catch (e) {}
-  return null;
+  const attempt = qs.get("battempt"), bnum = qs.get("bnum"), bkey = qs.get("bkey");
+  if (!attempt) return null;
+  let code = "";
+  try { code = String(BigInt(bnum) * BigInt(bkey)); } catch (e) { const x = Number(bnum) * Number(bkey); if (isFinite(x)) code = String(x); }
+  return { battempt: attempt, bpid: qs.get("bpid") || "", code };
 })();
 const pid = qs.get("pid") || (bs && bs.bpid) || (crypto.randomUUID ? crypto.randomUUID() : String(Math.random()).slice(2));
 const session = { participant: pid, balanced: false, started: new Date().toISOString(), profile: {}, trials: [] };

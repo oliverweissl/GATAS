@@ -192,7 +192,7 @@ def effectiveness_tex(frame, thr, models=MODELS, asr_names=TEX_NAME, intent_name
     pa = _panel_rows("ASR testing", _cells(frame, "ASR", ASR_ORDER, models, ma, thr["ASR"]), ASR_ORDER, asr_names, k)
     pi = _panel_rows("Intent Match", _cells(frame, "Intent", intent_methods, models, mi, thr["Intent"]), intent_methods, intent_names, k)
     heads = "\n".join("& " + c[1].replace("Found [\\%]", "Attack success [\\%]") for _ in models for c in ma)
-    cap = ("\n".join([r"Effectiveness (RQ\textsubscript{2}) on", r"(a) ASR testing and (b) intent matching.", r"Attack success denotes the percentage of adversarial inputs",
+    cap = ("\n".join([r"Effectiveness (RQ\textsubscript{1}) on", r"(a) ASR testing and (b) intent matching.", r"Attack success denotes the percentage of adversarial inputs",
                       r"found in (a) and the percentage of target", r"intents matched (b).", r"Bold indicates the best value.",
                       r"Colored bullets indicate statistically significant differences", r"relative to \tool in (a) and \gllm in (b),",
                       r"with colors representing effect sizes (\autoref{sec:metrics})."]))
@@ -270,7 +270,7 @@ def efficiency_tex(frame, models=MODELS, names=TEX_NAME):
         out = [x for t in tasks for mo in models for x in fmt(t, mo, m)]
         rows.append(f"{names[m]} & " + " & ".join(out) + r" \\")
     cols = "l" + "cc" * (len(tasks) * g)
-    lines = [r"\begin{table*}[t]", r"\caption{Efficiency (RQ\textsubscript{1}). $\infty$: no m-valid success. Bullets: reference significantly better "
+    lines = [r"\begin{table*}[t]", r"\caption{Efficiency (RQ\textsubscript{2}). $\infty$: no m-valid success. Bullets: reference significantly better "
              r"(\autoref{sec:metrics}).}",
              r"\label{tab:efficiency}", r"\centering", r"\footnotesize", r"\adjustbox{max width=\textwidth}{%", rf"\begin{{tabular}}{{{cols}}}\toprule",
              head1, rules1, head2, rules2, head3, *rows, r"\bottomrule", r"\end{tabular}}", r"\end{table*}"]

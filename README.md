@@ -17,7 +17,7 @@ against a waveform-space ablation and three external baselines: SMACK, ALIF and 
 | `third_party/` | Unmodified external baselines as git submodules |
 | `scripts/` | Attack entry points (`adversarial_<method>.py`), reference generation, evaluation, run scripts (`run_*.sh`) |
 | `configs/` | StyleTTS2 config, conda environments for SMACK, ALIF and PGD |
-| `analysis/` | Notebooks, one per research question: RQ0 (ablation), RQ1 (efficiency), RQ2 (effectiveness), RQ3 (validity / survey) |
+| `analysis/` | Notebooks, one per research question: RQ0 (ablation), RQ1 (effectiveness), RQ2 (efficiency), RQ3 (validity / survey) |
 
 ## Installation
 
@@ -187,8 +187,8 @@ The notebooks load results through `analysis/results_loader.py` (`load_results(d
 latest experiment per method, only sentences present for every method, sorted by sentence ID (for paired tests).
 
 - `RQ0_Ablation`: scale, search space, optimizer and selection ablations.
-- `RQ1_Efficiency`: runtime, query budget, queries per m-valid success.
-- `RQ2_Effectiveness`: test case found, lexical / semantic / spectrogram distance, UTMOS, paired tests, trade-off and spectrogram figures.
+- `RQ2_Efficiency`: runtime, query budget, queries per m-valid success.
+- `RQ1_Effectiveness`: test case found, lexical / semantic / spectrogram distance, UTMOS, paired tests, trade-off and spectrogram figures.
 - `RQ3_Validity`: m-valid share and the human study (survey responses): data exclusions, realism vs. UTMOS / m-validity, attack success as perceived by humans.
 
 ## Intent matching

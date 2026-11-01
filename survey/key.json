@@ -1,0 +1,3254 @@
+{
+ "id06d16ee18": {
+  "cell": "wt-asr",
+  "sentence": 5,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_005/run_0/best_mixed.wav"
+ },
+ "i190febd845": {
+  "cell": "wt-asr",
+  "sentence": 7,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_007/run_0/best_mixed.wav"
+ },
+ "i25c87a7463": {
+  "cell": "wt-asr",
+  "sentence": 9,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_009/run_0/best_mixed.wav"
+ },
+ "ib2daf66c5f": {
+  "cell": "wt-asr",
+  "sentence": 11,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_011/run_0/best_mixed.wav"
+ },
+ "i0b38018b47": {
+  "cell": "wt-asr",
+  "sentence": 12,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_012/run_0/best_mixed.wav"
+ },
+ "i92d12ecbc4": {
+  "cell": "wt-asr",
+  "sentence": 13,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_013/run_0/best_mixed.wav"
+ },
+ "ie8a25b59fd": {
+  "cell": "wt-asr",
+  "sentence": 14,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_014/run_0/best_mixed.wav"
+ },
+ "i88efbfc19e": {
+  "cell": "wt-asr",
+  "sentence": 19,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_019/run_0/best_mixed.wav"
+ },
+ "iae9a27d858": {
+  "cell": "wt-asr",
+  "sentence": 24,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_024/run_0/best_mixed.wav"
+ },
+ "i0612f175ff": {
+  "cell": "wt-asr",
+  "sentence": 32,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_032/run_0/best_mixed.wav"
+ },
+ "ia21fdb8b32": {
+  "cell": "wt-asr",
+  "sentence": 33,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_033/run_0/best_mixed.wav"
+ },
+ "i9b3042e325": {
+  "cell": "wt-asr",
+  "sentence": 37,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_037/run_0/best_mixed.wav"
+ },
+ "i93d480865f": {
+  "cell": "wt-asr",
+  "sentence": 39,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_039/run_0/best_mixed.wav"
+ },
+ "i641ea45cd6": {
+  "cell": "wt-asr",
+  "sentence": 41,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_041/run_0/best_mixed.wav"
+ },
+ "i5e176ea1b1": {
+  "cell": "wt-asr",
+  "sentence": 42,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_042/run_0/best_mixed.wav"
+ },
+ "ifbd576d415": {
+  "cell": "wt-asr",
+  "sentence": 43,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_043/run_0/best_mixed.wav"
+ },
+ "i091db53334": {
+  "cell": "wt-asr",
+  "sentence": 48,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_048/run_0/best_mixed.wav"
+ },
+ "i059b025244": {
+  "cell": "wt-asr",
+  "sentence": 49,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_049/run_0/best_mixed.wav"
+ },
+ "if631d0b664": {
+  "cell": "wt-asr",
+  "sentence": 50,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_050/run_0/best_mixed.wav"
+ },
+ "i2ff87f43fd": {
+  "cell": "wt-asr",
+  "sentence": 52,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_052/run_0/best_mixed.wav"
+ },
+ "i1fb7d6467b": {
+  "cell": "wt-asr",
+  "sentence": 53,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_053/run_0/best_mixed.wav"
+ },
+ "i357aaf0e89": {
+  "cell": "wt-asr",
+  "sentence": 58,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_058/run_0/best_mixed.wav"
+ },
+ "iccba26d851": {
+  "cell": "wt-asr",
+  "sentence": 60,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_060/run_0/best_mixed.wav"
+ },
+ "ief0fa34266": {
+  "cell": "wt-asr",
+  "sentence": 61,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_061/run_0/best_mixed.wav"
+ },
+ "i05ade9b2b4": {
+  "cell": "wt-asr",
+  "sentence": 65,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_065/run_0/best_mixed.wav"
+ },
+ "i6c8b53031d": {
+  "cell": "wt-asr",
+  "sentence": 70,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_070/run_0/best_mixed.wav"
+ },
+ "i199edfa3da": {
+  "cell": "wt-asr",
+  "sentence": 72,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_072/run_0/best_mixed.wav"
+ },
+ "i42d5fdb76a": {
+  "cell": "wt-asr",
+  "sentence": 76,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_076/run_0/best_mixed.wav"
+ },
+ "i3811ebcd49": {
+  "cell": "wt-asr",
+  "sentence": 80,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_080/run_0/best_mixed.wav"
+ },
+ "ia5126cbc8f": {
+  "cell": "wt-asr",
+  "sentence": 82,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_082/run_0/best_mixed.wav"
+ },
+ "i594d125e7f": {
+  "cell": "wt-asr",
+  "sentence": 83,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_083/run_0/best_mixed.wav"
+ },
+ "i2e6fa231e9": {
+  "cell": "wt-asr",
+  "sentence": 85,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_085/run_0/best_mixed.wav"
+ },
+ "i800fa07a3f": {
+  "cell": "wt-asr",
+  "sentence": 86,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_086/run_0/best_mixed.wav"
+ },
+ "i0a7795e986": {
+  "cell": "wt-asr",
+  "sentence": 87,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_087/run_0/best_mixed.wav"
+ },
+ "i1998b33c6e": {
+  "cell": "wt-asr",
+  "sentence": 91,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_091/run_0/best_mixed.wav"
+ },
+ "ifcb306d700": {
+  "cell": "wt-asr",
+  "sentence": 2,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/whisper-tiny_20261011_1723/sentence_002/best_alif.wav"
+ },
+ "i33642aad48": {
+  "cell": "wt-asr",
+  "sentence": 4,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/whisper-tiny_20261011_1723/sentence_004/best_alif.wav"
+ },
+ "i5b429817c5": {
+  "cell": "wt-asr",
+  "sentence": 7,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/whisper-tiny_20261011_1723/sentence_007/best_alif.wav"
+ },
+ "ibbe786ab37": {
+  "cell": "wt-asr",
+  "sentence": 8,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/whisper-tiny_20261011_1723/sentence_008/best_alif.wav"
+ },
+ "id678601602": {
+  "cell": "wt-asr",
+  "sentence": 10,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/whisper-tiny_20261011_1723/sentence_010/best_alif.wav"
+ },
+ "iebe6fd68e8": {
+  "cell": "wt-asr",
+  "sentence": 12,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/whisper-tiny_20261011_1723/sentence_012/best_alif.wav"
+ },
+ "i2b91dc59ef": {
+  "cell": "wt-asr",
+  "sentence": 14,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/whisper-tiny_20261011_1723/sentence_014/best_alif.wav"
+ },
+ "iacb29c467d": {
+  "cell": "wt-asr",
+  "sentence": 15,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/whisper-tiny_20261011_1723/sentence_015/best_alif.wav"
+ },
+ "if73412fc12": {
+  "cell": "wt-asr",
+  "sentence": 22,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/whisper-tiny_20261011_1723/sentence_022/best_alif.wav"
+ },
+ "i0ec470f0e7": {
+  "cell": "wt-asr",
+  "sentence": 23,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/whisper-tiny_20261011_1723/sentence_023/best_alif.wav"
+ },
+ "iadc9e4dab2": {
+  "cell": "wt-asr",
+  "sentence": 32,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/whisper-tiny_20261011_1723/sentence_032/best_alif.wav"
+ },
+ "id828805c5d": {
+  "cell": "wt-asr",
+  "sentence": 33,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/whisper-tiny_20261011_1723/sentence_033/best_alif.wav"
+ },
+ "i572975d279": {
+  "cell": "wt-asr",
+  "sentence": 39,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/whisper-tiny_20261011_1723/sentence_039/best_alif.wav"
+ },
+ "i40878b9f6b": {
+  "cell": "wt-asr",
+  "sentence": 40,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/whisper-tiny_20261011_1723/sentence_040/best_alif.wav"
+ },
+ "i981e01a934": {
+  "cell": "wt-asr",
+  "sentence": 42,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/whisper-tiny_20261011_1723/sentence_042/best_alif.wav"
+ },
+ "i71ebe21368": {
+  "cell": "wt-asr",
+  "sentence": 45,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/whisper-tiny_20261011_1723/sentence_045/best_alif.wav"
+ },
+ "i2caa6524ab": {
+  "cell": "wt-asr",
+  "sentence": 47,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/whisper-tiny_20261011_1723/sentence_047/best_alif.wav"
+ },
+ "i780361524c": {
+  "cell": "wt-asr",
+  "sentence": 48,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/whisper-tiny_20261011_1723/sentence_048/best_alif.wav"
+ },
+ "i68ae68690a": {
+  "cell": "wt-asr",
+  "sentence": 50,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/whisper-tiny_20261011_1723/sentence_050/best_alif.wav"
+ },
+ "i91e66cd36e": {
+  "cell": "wt-asr",
+  "sentence": 52,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/whisper-tiny_20261011_1723/sentence_052/best_alif.wav"
+ },
+ "i82dff3334b": {
+  "cell": "wt-asr",
+  "sentence": 53,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/whisper-tiny_20261011_1723/sentence_053/best_alif.wav"
+ },
+ "i4feae2025e": {
+  "cell": "wt-asr",
+  "sentence": 54,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/whisper-tiny_20261011_1723/sentence_054/best_alif.wav"
+ },
+ "i5ba6208143": {
+  "cell": "wt-asr",
+  "sentence": 58,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/whisper-tiny_20261011_1723/sentence_058/best_alif.wav"
+ },
+ "id6637e0edc": {
+  "cell": "wt-asr",
+  "sentence": 62,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/whisper-tiny_20261011_1723/sentence_062/best_alif.wav"
+ },
+ "i40a859890c": {
+  "cell": "wt-asr",
+  "sentence": 64,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/whisper-tiny_20261011_1723/sentence_064/best_alif.wav"
+ },
+ "i8f27460f22": {
+  "cell": "wt-asr",
+  "sentence": 69,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/whisper-tiny_20261011_1723/sentence_069/best_alif.wav"
+ },
+ "i03b0d9c2aa": {
+  "cell": "wt-asr",
+  "sentence": 71,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/whisper-tiny_20261011_1723/sentence_071/best_alif.wav"
+ },
+ "ibd753c7c99": {
+  "cell": "wt-asr",
+  "sentence": 72,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/whisper-tiny_20261011_1723/sentence_072/best_alif.wav"
+ },
+ "i55143e2e04": {
+  "cell": "wt-asr",
+  "sentence": 80,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/whisper-tiny_20261011_1723/sentence_080/best_alif.wav"
+ },
+ "i0bbd30291a": {
+  "cell": "wt-asr",
+  "sentence": 81,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/whisper-tiny_20261011_1723/sentence_081/best_alif.wav"
+ },
+ "i478b5885ca": {
+  "cell": "wt-asr",
+  "sentence": 83,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/whisper-tiny_20261011_1723/sentence_083/best_alif.wav"
+ },
+ "i3d2284b7a4": {
+  "cell": "wt-asr",
+  "sentence": 85,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/whisper-tiny_20261011_1723/sentence_085/best_alif.wav"
+ },
+ "if4c31d5a97": {
+  "cell": "wt-asr",
+  "sentence": 86,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/whisper-tiny_20261011_1723/sentence_086/best_alif.wav"
+ },
+ "i5a7b59051b": {
+  "cell": "wt-asr",
+  "sentence": 91,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/whisper-tiny_20261011_1723/sentence_091/best_alif.wav"
+ },
+ "i499c31d9b2": {
+  "cell": "wt-asr",
+  "sentence": 98,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/whisper-tiny_20261011_1723/sentence_098/best_alif.wav"
+ },
+ "i5bac642b4c": {
+  "cell": "wt-asr",
+  "sentence": 4,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/whisper-tiny_20261010_0920/sentence_004/best_smack.wav"
+ },
+ "if2971c702d": {
+  "cell": "wt-asr",
+  "sentence": 5,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/whisper-tiny_20261010_0920/sentence_005/best_smack.wav"
+ },
+ "ia2e456697c": {
+  "cell": "wt-asr",
+  "sentence": 7,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/whisper-tiny_20261010_0920/sentence_007/best_smack.wav"
+ },
+ "i9eda90f534": {
+  "cell": "wt-asr",
+  "sentence": 8,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/whisper-tiny_20261010_0920/sentence_008/best_smack.wav"
+ },
+ "ib721e15094": {
+  "cell": "wt-asr",
+  "sentence": 9,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/whisper-tiny_20261010_0920/sentence_009/best_smack.wav"
+ },
+ "i634f6fa985": {
+  "cell": "wt-asr",
+  "sentence": 10,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/whisper-tiny_20261010_0920/sentence_010/best_smack.wav"
+ },
+ "i6abf9cc545": {
+  "cell": "wt-asr",
+  "sentence": 11,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/whisper-tiny_20261010_0920/sentence_011/best_smack.wav"
+ },
+ "ia6d432f8db": {
+  "cell": "wt-asr",
+  "sentence": 12,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/whisper-tiny_20261010_0920/sentence_012/best_smack.wav"
+ },
+ "i0014aa451c": {
+  "cell": "wt-asr",
+  "sentence": 19,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/whisper-tiny_20261010_0920/sentence_019/best_smack.wav"
+ },
+ "i3198363189": {
+  "cell": "wt-asr",
+  "sentence": 26,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/whisper-tiny_20261010_0920/sentence_026/best_smack.wav"
+ },
+ "i55b2d650af": {
+  "cell": "wt-asr",
+  "sentence": 33,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/whisper-tiny_20261010_0920/sentence_033/best_smack.wav"
+ },
+ "i3d28fafd04": {
+  "cell": "wt-asr",
+  "sentence": 34,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/whisper-tiny_20261010_0920/sentence_034/best_smack.wav"
+ },
+ "ia3391cf046": {
+  "cell": "wt-asr",
+  "sentence": 37,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/whisper-tiny_20261010_0920/sentence_037/best_smack.wav"
+ },
+ "i6072b8ff39": {
+  "cell": "wt-asr",
+  "sentence": 38,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/whisper-tiny_20261010_0920/sentence_038/best_smack.wav"
+ },
+ "ie0b5d97ef7": {
+  "cell": "wt-asr",
+  "sentence": 43,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/whisper-tiny_20261010_0920/sentence_043/best_smack.wav"
+ },
+ "i91ac7c8803": {
+  "cell": "wt-asr",
+  "sentence": 45,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/whisper-tiny_20261010_0920/sentence_045/best_smack.wav"
+ },
+ "i6adfe1b307": {
+  "cell": "wt-asr",
+  "sentence": 47,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/whisper-tiny_20261010_0920/sentence_047/best_smack.wav"
+ },
+ "i6608135d58": {
+  "cell": "wt-asr",
+  "sentence": 49,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/whisper-tiny_20261010_0920/sentence_049/best_smack.wav"
+ },
+ "ib3df26f517": {
+  "cell": "wt-asr",
+  "sentence": 51,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/whisper-tiny_20261010_0920/sentence_051/best_smack.wav"
+ },
+ "i6b9145de05": {
+  "cell": "wt-asr",
+  "sentence": 58,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/whisper-tiny_20261010_0920/sentence_058/best_smack.wav"
+ },
+ "ia9c5adf681": {
+  "cell": "wt-asr",
+  "sentence": 61,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/whisper-tiny_20261010_0920/sentence_061/best_smack.wav"
+ },
+ "i0bb5816b74": {
+  "cell": "wt-asr",
+  "sentence": 67,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/whisper-tiny_20261010_0920/sentence_067/best_smack.wav"
+ },
+ "i722a69acc7": {
+  "cell": "wt-asr",
+  "sentence": 68,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/whisper-tiny_20261010_0920/sentence_068/best_smack.wav"
+ },
+ "i42105ada6b": {
+  "cell": "wt-asr",
+  "sentence": 69,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/whisper-tiny_20261010_0920/sentence_069/best_smack.wav"
+ },
+ "i28b3969057": {
+  "cell": "wt-asr",
+  "sentence": 70,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/whisper-tiny_20261010_0920/sentence_070/best_smack.wav"
+ },
+ "i877244f536": {
+  "cell": "wt-asr",
+  "sentence": 79,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/whisper-tiny_20261010_0920/sentence_079/best_smack.wav"
+ },
+ "i7ce28bc9ff": {
+  "cell": "wt-asr",
+  "sentence": 81,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/whisper-tiny_20261010_0920/sentence_081/best_smack.wav"
+ },
+ "i8fe8754cd3": {
+  "cell": "wt-asr",
+  "sentence": 82,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/whisper-tiny_20261010_0920/sentence_082/best_smack.wav"
+ },
+ "ic19a9e4310": {
+  "cell": "wt-asr",
+  "sentence": 87,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/whisper-tiny_20261010_0920/sentence_087/best_smack.wav"
+ },
+ "ie20004884c": {
+  "cell": "wt-asr",
+  "sentence": 88,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/whisper-tiny_20261010_0920/sentence_088/best_smack.wav"
+ },
+ "i7e09f6048f": {
+  "cell": "wt-asr",
+  "sentence": 91,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/whisper-tiny_20261010_0920/sentence_091/best_smack.wav"
+ },
+ "i4f53710f57": {
+  "cell": "wt-asr",
+  "sentence": 93,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/whisper-tiny_20261010_0920/sentence_093/best_smack.wav"
+ },
+ "i77d675ebf7": {
+  "cell": "wt-asr",
+  "sentence": 95,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/whisper-tiny_20261010_0920/sentence_095/best_smack.wav"
+ },
+ "icf0cc36d8c": {
+  "cell": "wt-asr",
+  "sentence": 98,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/whisper-tiny_20261010_0920/sentence_098/best_smack.wav"
+ },
+ "ie0d29dc5df": {
+  "cell": "wt-asr",
+  "sentence": 100,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/whisper-tiny_20261010_0920/sentence_100/best_smack.wav"
+ },
+ "icff963a7ef": {
+  "cell": "wt-asr",
+  "sentence": 4,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_004/run_0/ground_truth.wav"
+ },
+ "i306a46721a": {
+  "cell": "wt-asr",
+  "sentence": 7,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_007/run_0/ground_truth.wav"
+ },
+ "iff8c6e9037": {
+  "cell": "wt-asr",
+  "sentence": 9,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_009/run_0/ground_truth.wav"
+ },
+ "ia2f689a4a5": {
+  "cell": "wt-asr",
+  "sentence": 11,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_011/run_0/ground_truth.wav"
+ },
+ "i15fa83ada4": {
+  "cell": "wt-asr",
+  "sentence": 19,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_019/run_0/ground_truth.wav"
+ },
+ "ib9d663049d": {
+  "cell": "wt-asr",
+  "sentence": 22,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_022/run_0/ground_truth.wav"
+ },
+ "ifc2169df82": {
+  "cell": "wt-asr",
+  "sentence": 24,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_024/run_0/ground_truth.wav"
+ },
+ "i6603c54c71": {
+  "cell": "wt-asr",
+  "sentence": 32,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_032/run_0/ground_truth.wav"
+ },
+ "iadf3158c0c": {
+  "cell": "wt-asr",
+  "sentence": 37,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_037/run_0/ground_truth.wav"
+ },
+ "i506ae04d52": {
+  "cell": "wt-asr",
+  "sentence": 38,
+  "condition": "clean",
+  "source": "outputs/results/ALIF/harvard/whisper-tiny_20261011_1723/sentence_038/ground_truth.wav"
+ },
+ "i3600de59f5": {
+  "cell": "wt-asr",
+  "sentence": 39,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_039/run_0/ground_truth.wav"
+ },
+ "ib703a89879": {
+  "cell": "wt-asr",
+  "sentence": 42,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_042/run_0/ground_truth.wav"
+ },
+ "i00c1378be5": {
+  "cell": "wt-asr",
+  "sentence": 43,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_043/run_0/ground_truth.wav"
+ },
+ "id2faf1501b": {
+  "cell": "wt-asr",
+  "sentence": 47,
+  "condition": "clean",
+  "source": "outputs/results/ALIF/harvard/whisper-tiny_20261011_1723/sentence_047/ground_truth.wav"
+ },
+ "i87acfebb4b": {
+  "cell": "wt-asr",
+  "sentence": 50,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_050/run_0/ground_truth.wav"
+ },
+ "i199cb017c1": {
+  "cell": "wt-asr",
+  "sentence": 52,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_052/run_0/ground_truth.wav"
+ },
+ "i1e30c1fb6a": {
+  "cell": "wt-asr",
+  "sentence": 53,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_053/run_0/ground_truth.wav"
+ },
+ "ia69bbd750d": {
+  "cell": "wt-asr",
+  "sentence": 60,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_060/run_0/ground_truth.wav"
+ },
+ "idf32d1f81b": {
+  "cell": "wt-asr",
+  "sentence": 64,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_064/run_0/ground_truth.wav"
+ },
+ "i474d6b234f": {
+  "cell": "wt-asr",
+  "sentence": 65,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_065/run_0/ground_truth.wav"
+ },
+ "ifab044284a": {
+  "cell": "wt-asr",
+  "sentence": 67,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_067/run_0/ground_truth.wav"
+ },
+ "i192ea60b99": {
+  "cell": "wt-asr",
+  "sentence": 68,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_068/run_0/ground_truth.wav"
+ },
+ "ida79c147c7": {
+  "cell": "wt-asr",
+  "sentence": 69,
+  "condition": "clean",
+  "source": "outputs/results/ALIF/harvard/whisper-tiny_20261011_1723/sentence_069/ground_truth.wav"
+ },
+ "i65ec3aa314": {
+  "cell": "wt-asr",
+  "sentence": 70,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_070/run_0/ground_truth.wav"
+ },
+ "i14a0acf4c9": {
+  "cell": "wt-asr",
+  "sentence": 72,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_072/run_0/ground_truth.wav"
+ },
+ "i460597aab6": {
+  "cell": "wt-asr",
+  "sentence": 80,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_080/run_0/ground_truth.wav"
+ },
+ "i73e9f41cc0": {
+  "cell": "wt-asr",
+  "sentence": 82,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_082/run_0/ground_truth.wav"
+ },
+ "icaccc14d51": {
+  "cell": "wt-asr",
+  "sentence": 83,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_083/run_0/ground_truth.wav"
+ },
+ "idc1da3b7e2": {
+  "cell": "wt-asr",
+  "sentence": 85,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_085/run_0/ground_truth.wav"
+ },
+ "i2241a93f90": {
+  "cell": "wt-asr",
+  "sentence": 86,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_086/run_0/ground_truth.wav"
+ },
+ "i85a7502a81": {
+  "cell": "wt-asr",
+  "sentence": 88,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_088/run_0/ground_truth.wav"
+ },
+ "ia6d138d150": {
+  "cell": "wt-asr",
+  "sentence": 93,
+  "condition": "clean",
+  "source": "outputs/results/ALIF/harvard/whisper-tiny_20261011_1723/sentence_093/ground_truth.wav"
+ },
+ "i58a51ad4f3": {
+  "cell": "wt-asr",
+  "sentence": 95,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_095/run_0/ground_truth.wav"
+ },
+ "idf1d77ce40": {
+  "cell": "wt-asr",
+  "sentence": 98,
+  "condition": "clean",
+  "source": "outputs/results/ALIF/harvard/whisper-tiny_20261011_1723/sentence_098/ground_truth.wav"
+ },
+ "i4727896389": {
+  "cell": "wt-asr",
+  "sentence": 100,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/whisper-tiny_20261011_1512/sentence_100/run_0/ground_truth.wav"
+ },
+ "i9c8af58903": {
+  "cell": "w2v-asr",
+  "sentence": 4,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_004/run_0/best_mixed.wav"
+ },
+ "i38ee6a8e2f": {
+  "cell": "w2v-asr",
+  "sentence": 5,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_005/run_0/best_mixed.wav"
+ },
+ "i57027c013f": {
+  "cell": "w2v-asr",
+  "sentence": 8,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_008/run_0/best_mixed.wav"
+ },
+ "if6b4a1ca79": {
+  "cell": "w2v-asr",
+  "sentence": 23,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_023/run_0/best_mixed.wav"
+ },
+ "ie6bf3df0bb": {
+  "cell": "w2v-asr",
+  "sentence": 25,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_025/run_0/best_mixed.wav"
+ },
+ "id151797350": {
+  "cell": "w2v-asr",
+  "sentence": 28,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_028/run_0/best_mixed.wav"
+ },
+ "i0952631db9": {
+  "cell": "w2v-asr",
+  "sentence": 29,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_029/run_0/best_mixed.wav"
+ },
+ "i25866d7002": {
+  "cell": "w2v-asr",
+  "sentence": 30,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_030/run_0/best_mixed.wav"
+ },
+ "i41dfde2281": {
+  "cell": "w2v-asr",
+  "sentence": 33,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_033/run_0/best_mixed.wav"
+ },
+ "ic89a431f7a": {
+  "cell": "w2v-asr",
+  "sentence": 41,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_041/run_0/best_mixed.wav"
+ },
+ "id727e969e2": {
+  "cell": "w2v-asr",
+  "sentence": 42,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_042/run_0/best_mixed.wav"
+ },
+ "i9561067a8c": {
+  "cell": "w2v-asr",
+  "sentence": 45,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_045/run_0/best_mixed.wav"
+ },
+ "ib74b5ca436": {
+  "cell": "w2v-asr",
+  "sentence": 47,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_047/run_0/best_mixed.wav"
+ },
+ "iceb4d4dfcc": {
+  "cell": "w2v-asr",
+  "sentence": 48,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_048/run_0/best_mixed.wav"
+ },
+ "i10786e30ef": {
+  "cell": "w2v-asr",
+  "sentence": 55,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_055/run_0/best_mixed.wav"
+ },
+ "i15ccc93ff7": {
+  "cell": "w2v-asr",
+  "sentence": 56,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_056/run_0/best_mixed.wav"
+ },
+ "ide843b2a7d": {
+  "cell": "w2v-asr",
+  "sentence": 57,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_057/run_0/best_mixed.wav"
+ },
+ "i0aea5f24b6": {
+  "cell": "w2v-asr",
+  "sentence": 58,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_058/run_0/best_mixed.wav"
+ },
+ "i3910fc9eee": {
+  "cell": "w2v-asr",
+  "sentence": 60,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_060/run_0/best_mixed.wav"
+ },
+ "i0a21681081": {
+  "cell": "w2v-asr",
+  "sentence": 61,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_061/run_0/best_mixed.wav"
+ },
+ "i034cea2df0": {
+  "cell": "w2v-asr",
+  "sentence": 65,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_065/run_0/best_mixed.wav"
+ },
+ "id8c2472fd6": {
+  "cell": "w2v-asr",
+  "sentence": 68,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_068/run_0/best_mixed.wav"
+ },
+ "i5472d6bc20": {
+  "cell": "w2v-asr",
+  "sentence": 71,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_071/run_0/best_mixed.wav"
+ },
+ "i29dca5b353": {
+  "cell": "w2v-asr",
+  "sentence": 75,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_075/run_0/best_mixed.wav"
+ },
+ "i26ccf719ab": {
+  "cell": "w2v-asr",
+  "sentence": 76,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_076/run_0/best_mixed.wav"
+ },
+ "ia7de62d43f": {
+  "cell": "w2v-asr",
+  "sentence": 77,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_077/run_0/best_mixed.wav"
+ },
+ "if775f2bc20": {
+  "cell": "w2v-asr",
+  "sentence": 79,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_079/run_0/best_mixed.wav"
+ },
+ "i815f0ef320": {
+  "cell": "w2v-asr",
+  "sentence": 82,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_082/run_0/best_mixed.wav"
+ },
+ "ie661d9fe39": {
+  "cell": "w2v-asr",
+  "sentence": 86,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_086/run_0/best_mixed.wav"
+ },
+ "i8087a1798f": {
+  "cell": "w2v-asr",
+  "sentence": 87,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_087/run_0/best_mixed.wav"
+ },
+ "i92089b30a0": {
+  "cell": "w2v-asr",
+  "sentence": 91,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_091/run_0/best_mixed.wav"
+ },
+ "iad1734a26c": {
+  "cell": "w2v-asr",
+  "sentence": 97,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_097/run_0/best_mixed.wav"
+ },
+ "icecb4d18d6": {
+  "cell": "w2v-asr",
+  "sentence": 98,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_098/run_0/best_mixed.wav"
+ },
+ "ic2849b8a44": {
+  "cell": "w2v-asr",
+  "sentence": 99,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_099/run_0/best_mixed.wav"
+ },
+ "ifd99a2ecb1": {
+  "cell": "w2v-asr",
+  "sentence": 100,
+  "condition": "ours",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_100/run_0/best_mixed.wav"
+ },
+ "ibf138c3460": {
+  "cell": "w2v-asr",
+  "sentence": 4,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/wav2vec2-large_20261017_1345/sentence_004/best_alif.wav"
+ },
+ "ie76d265dd8": {
+  "cell": "w2v-asr",
+  "sentence": 8,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/wav2vec2-large_20261017_1345/sentence_008/best_alif.wav"
+ },
+ "i34c12ea9b8": {
+  "cell": "w2v-asr",
+  "sentence": 9,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/wav2vec2-large_20261017_1345/sentence_009/best_alif.wav"
+ },
+ "i894a276dda": {
+  "cell": "w2v-asr",
+  "sentence": 11,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/wav2vec2-large_20261017_1345/sentence_011/best_alif.wav"
+ },
+ "i99e6b106e2": {
+  "cell": "w2v-asr",
+  "sentence": 14,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/wav2vec2-large_20261017_1345/sentence_014/best_alif.wav"
+ },
+ "id36af79ad2": {
+  "cell": "w2v-asr",
+  "sentence": 15,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/wav2vec2-large_20261017_1345/sentence_015/best_alif.wav"
+ },
+ "i7bf8f8f071": {
+  "cell": "w2v-asr",
+  "sentence": 16,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/wav2vec2-large_20261017_1345/sentence_016/best_alif.wav"
+ },
+ "icad872298c": {
+  "cell": "w2v-asr",
+  "sentence": 17,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/wav2vec2-large_20261017_1345/sentence_017/best_alif.wav"
+ },
+ "i63f8e45086": {
+  "cell": "w2v-asr",
+  "sentence": 19,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/wav2vec2-large_20261017_1345/sentence_019/best_alif.wav"
+ },
+ "i969b8086da": {
+  "cell": "w2v-asr",
+  "sentence": 23,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/wav2vec2-large_20261017_1345/sentence_023/best_alif.wav"
+ },
+ "id93bcb50b3": {
+  "cell": "w2v-asr",
+  "sentence": 24,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/wav2vec2-large_20261017_1345/sentence_024/best_alif.wav"
+ },
+ "iccdd620222": {
+  "cell": "w2v-asr",
+  "sentence": 27,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/wav2vec2-large_20261017_1345/sentence_027/best_alif.wav"
+ },
+ "ia8053e4b42": {
+  "cell": "w2v-asr",
+  "sentence": 32,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/wav2vec2-large_20261017_1345/sentence_032/best_alif.wav"
+ },
+ "i00e2a01335": {
+  "cell": "w2v-asr",
+  "sentence": 35,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/wav2vec2-large_20261017_1345/sentence_035/best_alif.wav"
+ },
+ "i2ebda17da2": {
+  "cell": "w2v-asr",
+  "sentence": 36,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/wav2vec2-large_20261017_1345/sentence_036/best_alif.wav"
+ },
+ "i814d6cd782": {
+  "cell": "w2v-asr",
+  "sentence": 42,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/wav2vec2-large_20261017_1345/sentence_042/best_alif.wav"
+ },
+ "i4191fcfe88": {
+  "cell": "w2v-asr",
+  "sentence": 43,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/wav2vec2-large_20261017_1345/sentence_043/best_alif.wav"
+ },
+ "i10552ae5ca": {
+  "cell": "w2v-asr",
+  "sentence": 44,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/wav2vec2-large_20261017_1345/sentence_044/best_alif.wav"
+ },
+ "idc7e56ac3d": {
+  "cell": "w2v-asr",
+  "sentence": 47,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/wav2vec2-large_20261017_1345/sentence_047/best_alif.wav"
+ },
+ "if14312ece2": {
+  "cell": "w2v-asr",
+  "sentence": 48,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/wav2vec2-large_20261017_1345/sentence_048/best_alif.wav"
+ },
+ "i4dd334886f": {
+  "cell": "w2v-asr",
+  "sentence": 49,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/wav2vec2-large_20261017_1345/sentence_049/best_alif.wav"
+ },
+ "i68c5c14262": {
+  "cell": "w2v-asr",
+  "sentence": 51,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/wav2vec2-large_20261017_1345/sentence_051/best_alif.wav"
+ },
+ "icf62584ab3": {
+  "cell": "w2v-asr",
+  "sentence": 56,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/wav2vec2-large_20261017_1345/sentence_056/best_alif.wav"
+ },
+ "i0f6238d0a0": {
+  "cell": "w2v-asr",
+  "sentence": 57,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/wav2vec2-large_20261017_1345/sentence_057/best_alif.wav"
+ },
+ "ia429ee7f3d": {
+  "cell": "w2v-asr",
+  "sentence": 60,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/wav2vec2-large_20261017_1345/sentence_060/best_alif.wav"
+ },
+ "i20ef7e85ec": {
+  "cell": "w2v-asr",
+  "sentence": 68,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/wav2vec2-large_20261017_1345/sentence_068/best_alif.wav"
+ },
+ "i493d2bf042": {
+  "cell": "w2v-asr",
+  "sentence": 69,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/wav2vec2-large_20261017_1345/sentence_069/best_alif.wav"
+ },
+ "id4babd4745": {
+  "cell": "w2v-asr",
+  "sentence": 74,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/wav2vec2-large_20261017_1345/sentence_074/best_alif.wav"
+ },
+ "i0e5582a3bd": {
+  "cell": "w2v-asr",
+  "sentence": 75,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/wav2vec2-large_20261017_1345/sentence_075/best_alif.wav"
+ },
+ "i09f11ddff7": {
+  "cell": "w2v-asr",
+  "sentence": 79,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/wav2vec2-large_20261017_1345/sentence_079/best_alif.wav"
+ },
+ "i6a7b38785b": {
+  "cell": "w2v-asr",
+  "sentence": 83,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/wav2vec2-large_20261017_1345/sentence_083/best_alif.wav"
+ },
+ "i7d2412579d": {
+  "cell": "w2v-asr",
+  "sentence": 89,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/wav2vec2-large_20261017_1345/sentence_089/best_alif.wav"
+ },
+ "idde3d48408": {
+  "cell": "w2v-asr",
+  "sentence": 90,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/wav2vec2-large_20261017_1345/sentence_090/best_alif.wav"
+ },
+ "ib79a1a7d6f": {
+  "cell": "w2v-asr",
+  "sentence": 97,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/wav2vec2-large_20261017_1345/sentence_097/best_alif.wav"
+ },
+ "iac14e5064c": {
+  "cell": "w2v-asr",
+  "sentence": 98,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF/harvard/wav2vec2-large_20261017_1345/sentence_098/best_alif.wav"
+ },
+ "i26b2ddc481": {
+  "cell": "w2v-asr",
+  "sentence": 2,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/wav2vec2-large_20261016_2319/sentence_002/best_smack.wav"
+ },
+ "ifccf6f111c": {
+  "cell": "w2v-asr",
+  "sentence": 8,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/wav2vec2-large_20261016_2319/sentence_008/best_smack.wav"
+ },
+ "i695a4f4145": {
+  "cell": "w2v-asr",
+  "sentence": 9,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/wav2vec2-large_20261016_2319/sentence_009/best_smack.wav"
+ },
+ "i9c09018aee": {
+  "cell": "w2v-asr",
+  "sentence": 10,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/wav2vec2-large_20261016_2319/sentence_010/best_smack.wav"
+ },
+ "i62775e0ec3": {
+  "cell": "w2v-asr",
+  "sentence": 11,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/wav2vec2-large_20261016_2319/sentence_011/best_smack.wav"
+ },
+ "i0c7579501a": {
+  "cell": "w2v-asr",
+  "sentence": 19,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/wav2vec2-large_20261016_2319/sentence_019/best_smack.wav"
+ },
+ "i7819faa06e": {
+  "cell": "w2v-asr",
+  "sentence": 22,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/wav2vec2-large_20261016_2319/sentence_022/best_smack.wav"
+ },
+ "i26c734bb05": {
+  "cell": "w2v-asr",
+  "sentence": 23,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/wav2vec2-large_20261016_2319/sentence_023/best_smack.wav"
+ },
+ "i08052daad3": {
+  "cell": "w2v-asr",
+  "sentence": 24,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/wav2vec2-large_20261016_2319/sentence_024/best_smack.wav"
+ },
+ "i9e992a34a1": {
+  "cell": "w2v-asr",
+  "sentence": 30,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/wav2vec2-large_20261016_2319/sentence_030/best_smack.wav"
+ },
+ "ia121f8c156": {
+  "cell": "w2v-asr",
+  "sentence": 34,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/wav2vec2-large_20261016_2319/sentence_034/best_smack.wav"
+ },
+ "i1a52ebdac5": {
+  "cell": "w2v-asr",
+  "sentence": 35,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/wav2vec2-large_20261016_2319/sentence_035/best_smack.wav"
+ },
+ "i8cb3386c3e": {
+  "cell": "w2v-asr",
+  "sentence": 38,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/wav2vec2-large_20261016_2319/sentence_038/best_smack.wav"
+ },
+ "i58a6245b59": {
+  "cell": "w2v-asr",
+  "sentence": 39,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/wav2vec2-large_20261016_2319/sentence_039/best_smack.wav"
+ },
+ "i6231e9ca80": {
+  "cell": "w2v-asr",
+  "sentence": 40,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/wav2vec2-large_20261016_2319/sentence_040/best_smack.wav"
+ },
+ "ic6c88e03b6": {
+  "cell": "w2v-asr",
+  "sentence": 41,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/wav2vec2-large_20261016_2319/sentence_041/best_smack.wav"
+ },
+ "i7dc707aef9": {
+  "cell": "w2v-asr",
+  "sentence": 44,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/wav2vec2-large_20261016_2319/sentence_044/best_smack.wav"
+ },
+ "ie11c6a4b5e": {
+  "cell": "w2v-asr",
+  "sentence": 47,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/wav2vec2-large_20261016_2319/sentence_047/best_smack.wav"
+ },
+ "i9c0f66b32d": {
+  "cell": "w2v-asr",
+  "sentence": 48,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/wav2vec2-large_20261016_2319/sentence_048/best_smack.wav"
+ },
+ "i77b368c553": {
+  "cell": "w2v-asr",
+  "sentence": 54,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/wav2vec2-large_20261016_2319/sentence_054/best_smack.wav"
+ },
+ "ia19d44c93e": {
+  "cell": "w2v-asr",
+  "sentence": 57,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/wav2vec2-large_20261016_2319/sentence_057/best_smack.wav"
+ },
+ "i56ef151673": {
+  "cell": "w2v-asr",
+  "sentence": 60,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/wav2vec2-large_20261016_2319/sentence_060/best_smack.wav"
+ },
+ "i1fa6855857": {
+  "cell": "w2v-asr",
+  "sentence": 62,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/wav2vec2-large_20261016_2319/sentence_062/best_smack.wav"
+ },
+ "iaef8303249": {
+  "cell": "w2v-asr",
+  "sentence": 63,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/wav2vec2-large_20261016_2319/sentence_063/best_smack.wav"
+ },
+ "i9fb6af98b2": {
+  "cell": "w2v-asr",
+  "sentence": 67,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/wav2vec2-large_20261016_2319/sentence_067/best_smack.wav"
+ },
+ "ic94bdffa7d": {
+  "cell": "w2v-asr",
+  "sentence": 68,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/wav2vec2-large_20261016_2319/sentence_068/best_smack.wav"
+ },
+ "i20d960af85": {
+  "cell": "w2v-asr",
+  "sentence": 69,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/wav2vec2-large_20261016_2319/sentence_069/best_smack.wav"
+ },
+ "ie9f55e3aa2": {
+  "cell": "w2v-asr",
+  "sentence": 76,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/wav2vec2-large_20261016_2319/sentence_076/best_smack.wav"
+ },
+ "icc633cbf79": {
+  "cell": "w2v-asr",
+  "sentence": 77,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/wav2vec2-large_20261016_2319/sentence_077/best_smack.wav"
+ },
+ "iea4b36b545": {
+  "cell": "w2v-asr",
+  "sentence": 80,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/wav2vec2-large_20261016_2319/sentence_080/best_smack.wav"
+ },
+ "idfbeebb4ea": {
+  "cell": "w2v-asr",
+  "sentence": 84,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/wav2vec2-large_20261016_2319/sentence_084/best_smack.wav"
+ },
+ "iaef521ca9f": {
+  "cell": "w2v-asr",
+  "sentence": 87,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/wav2vec2-large_20261016_2319/sentence_087/best_smack.wav"
+ },
+ "icffbbff9e0": {
+  "cell": "w2v-asr",
+  "sentence": 88,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/wav2vec2-large_20261016_2319/sentence_088/best_smack.wav"
+ },
+ "i841f1e0ee9": {
+  "cell": "w2v-asr",
+  "sentence": 92,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/wav2vec2-large_20261016_2319/sentence_092/best_smack.wav"
+ },
+ "ic9dc45488d": {
+  "cell": "w2v-asr",
+  "sentence": 94,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/harvard/wav2vec2-large_20261016_2319/sentence_094/best_smack.wav"
+ },
+ "i30feef71cb": {
+  "cell": "w2v-asr",
+  "sentence": 5,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_005/run_0/ground_truth.wav"
+ },
+ "ic809c67417": {
+  "cell": "w2v-asr",
+  "sentence": 8,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_008/run_0/ground_truth.wav"
+ },
+ "i71645bd776": {
+  "cell": "w2v-asr",
+  "sentence": 11,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_011/run_0/ground_truth.wav"
+ },
+ "ic15f1ff97c": {
+  "cell": "w2v-asr",
+  "sentence": 15,
+  "condition": "clean",
+  "source": "outputs/results/ALIF/harvard/wav2vec2-large_20261017_1345/sentence_015/ground_truth.wav"
+ },
+ "i7430c32323": {
+  "cell": "w2v-asr",
+  "sentence": 16,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_016/run_0/ground_truth.wav"
+ },
+ "ica5b471c43": {
+  "cell": "w2v-asr",
+  "sentence": 22,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_022/run_0/ground_truth.wav"
+ },
+ "i13a1cba182": {
+  "cell": "w2v-asr",
+  "sentence": 23,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_023/run_0/ground_truth.wav"
+ },
+ "i0bf4dd05d5": {
+  "cell": "w2v-asr",
+  "sentence": 24,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_024/run_0/ground_truth.wav"
+ },
+ "iefe6e4b8df": {
+  "cell": "w2v-asr",
+  "sentence": 25,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_025/run_0/ground_truth.wav"
+ },
+ "i7c0a3c2c6f": {
+  "cell": "w2v-asr",
+  "sentence": 27,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_027/run_0/ground_truth.wav"
+ },
+ "ie64160ff92": {
+  "cell": "w2v-asr",
+  "sentence": 32,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_032/run_0/ground_truth.wav"
+ },
+ "if106d2ed7c": {
+  "cell": "w2v-asr",
+  "sentence": 35,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_035/run_0/ground_truth.wav"
+ },
+ "iaa8522dc4e": {
+  "cell": "w2v-asr",
+  "sentence": 36,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_036/run_0/ground_truth.wav"
+ },
+ "i9291bacf80": {
+  "cell": "w2v-asr",
+  "sentence": 38,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_038/run_0/ground_truth.wav"
+ },
+ "i37e0397e67": {
+  "cell": "w2v-asr",
+  "sentence": 40,
+  "condition": "clean",
+  "source": "outputs/results/ALIF/harvard/wav2vec2-large_20261017_1345/sentence_040/ground_truth.wav"
+ },
+ "i173acaaf82": {
+  "cell": "w2v-asr",
+  "sentence": 42,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_042/run_0/ground_truth.wav"
+ },
+ "id1c6be6432": {
+  "cell": "w2v-asr",
+  "sentence": 44,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_044/run_0/ground_truth.wav"
+ },
+ "ie3e27ac8e9": {
+  "cell": "w2v-asr",
+  "sentence": 47,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_047/run_0/ground_truth.wav"
+ },
+ "ic7a09f1aed": {
+  "cell": "w2v-asr",
+  "sentence": 48,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_048/run_0/ground_truth.wav"
+ },
+ "ib2809e2109": {
+  "cell": "w2v-asr",
+  "sentence": 51,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_051/run_0/ground_truth.wav"
+ },
+ "i6b8611f583": {
+  "cell": "w2v-asr",
+  "sentence": 55,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_055/run_0/ground_truth.wav"
+ },
+ "i4e81d1bf06": {
+  "cell": "w2v-asr",
+  "sentence": 56,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_056/run_0/ground_truth.wav"
+ },
+ "i1df20b575d": {
+  "cell": "w2v-asr",
+  "sentence": 57,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_057/run_0/ground_truth.wav"
+ },
+ "i6d254bf7ae": {
+  "cell": "w2v-asr",
+  "sentence": 58,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_058/run_0/ground_truth.wav"
+ },
+ "i90e44fc3a9": {
+  "cell": "w2v-asr",
+  "sentence": 63,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_063/run_0/ground_truth.wav"
+ },
+ "iec6c0be55c": {
+  "cell": "w2v-asr",
+  "sentence": 68,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_068/run_0/ground_truth.wav"
+ },
+ "ief15831fee": {
+  "cell": "w2v-asr",
+  "sentence": 71,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_071/run_0/ground_truth.wav"
+ },
+ "i6a1ad1daaa": {
+  "cell": "w2v-asr",
+  "sentence": 74,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_074/run_0/ground_truth.wav"
+ },
+ "i19101bb5fa": {
+  "cell": "w2v-asr",
+  "sentence": 77,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_077/run_0/ground_truth.wav"
+ },
+ "ic66a480542": {
+  "cell": "w2v-asr",
+  "sentence": 79,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_079/run_0/ground_truth.wav"
+ },
+ "ibb27f9e728": {
+  "cell": "w2v-asr",
+  "sentence": 82,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_082/run_0/ground_truth.wav"
+ },
+ "i07f45da406": {
+  "cell": "w2v-asr",
+  "sentence": 87,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_087/run_0/ground_truth.wav"
+ },
+ "i72ca9571e4": {
+  "cell": "w2v-asr",
+  "sentence": 89,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_089/run_0/ground_truth.wav"
+ },
+ "iaf6e5bac20": {
+  "cell": "w2v-asr",
+  "sentence": 92,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_092/run_0/ground_truth.wav"
+ },
+ "i076ac1ca75": {
+  "cell": "w2v-asr",
+  "sentence": 94,
+  "condition": "clean",
+  "source": "outputs/results/GATAS/harvard/wav2vec2-large_20261015_1832/sentence_094/run_0/ground_truth.wav"
+ },
+ "i3701fda698": {
+  "cell": "wt-intent",
+  "sentence": 1,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_001/run_0/best_mixed.wav"
+ },
+ "i1d4c6e6fbb": {
+  "cell": "wt-intent",
+  "sentence": 2,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_002/run_0/best_mixed.wav"
+ },
+ "ifac4c536fb": {
+  "cell": "wt-intent",
+  "sentence": 5,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_005/run_0/best_mixed.wav"
+ },
+ "i4da100ed14": {
+  "cell": "wt-intent",
+  "sentence": 10,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_010/run_0/best_mixed.wav"
+ },
+ "i9b8b92c247": {
+  "cell": "wt-intent",
+  "sentence": 12,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_012/run_0/best_mixed.wav"
+ },
+ "i6c27fe1b4b": {
+  "cell": "wt-intent",
+  "sentence": 13,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_013/run_0/best_mixed.wav"
+ },
+ "ic0b4cfafa8": {
+  "cell": "wt-intent",
+  "sentence": 14,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_014/run_0/best_mixed.wav"
+ },
+ "i1778aff58e": {
+  "cell": "wt-intent",
+  "sentence": 19,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_019/run_0/best_mixed.wav"
+ },
+ "i7fad9d1f42": {
+  "cell": "wt-intent",
+  "sentence": 20,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_020/run_0/best_mixed.wav"
+ },
+ "if5c2953f51": {
+  "cell": "wt-intent",
+  "sentence": 23,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_023/run_0/best_mixed.wav"
+ },
+ "i8b3b7c1f9a": {
+  "cell": "wt-intent",
+  "sentence": 29,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_029/run_0/best_mixed.wav"
+ },
+ "i67c3121af6": {
+  "cell": "wt-intent",
+  "sentence": 30,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_030/run_0/best_mixed.wav"
+ },
+ "ia147b3df41": {
+  "cell": "wt-intent",
+  "sentence": 34,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_034/run_0/best_mixed.wav"
+ },
+ "i05fbe86a8e": {
+  "cell": "wt-intent",
+  "sentence": 38,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_038/run_0/best_mixed.wav"
+ },
+ "i451eeed219": {
+  "cell": "wt-intent",
+  "sentence": 41,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_041/run_0/best_mixed.wav"
+ },
+ "iabe23b580e": {
+  "cell": "wt-intent",
+  "sentence": 50,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_050/run_0/best_mixed.wav"
+ },
+ "i000a614be3": {
+  "cell": "wt-intent",
+  "sentence": 54,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_054/run_0/best_mixed.wav"
+ },
+ "i6541aef3f7": {
+  "cell": "wt-intent",
+  "sentence": 55,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_055/run_0/best_mixed.wav"
+ },
+ "ie386ae9d5c": {
+  "cell": "wt-intent",
+  "sentence": 56,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_056/run_0/best_mixed.wav"
+ },
+ "ib594e4cc44": {
+  "cell": "wt-intent",
+  "sentence": 58,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_058/run_0/best_mixed.wav"
+ },
+ "i71656fa7e6": {
+  "cell": "wt-intent",
+  "sentence": 59,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_059/run_0/best_mixed.wav"
+ },
+ "ibf1a1ec042": {
+  "cell": "wt-intent",
+  "sentence": 60,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_060/run_0/best_mixed.wav"
+ },
+ "i5a40aaec7a": {
+  "cell": "wt-intent",
+  "sentence": 61,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_061/run_0/best_mixed.wav"
+ },
+ "idf488cac4e": {
+  "cell": "wt-intent",
+  "sentence": 71,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_071/run_0/best_mixed.wav"
+ },
+ "iacc15648ff": {
+  "cell": "wt-intent",
+  "sentence": 79,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_079/run_0/best_mixed.wav"
+ },
+ "i32e8a56f31": {
+  "cell": "wt-intent",
+  "sentence": 80,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_080/run_0/best_mixed.wav"
+ },
+ "i15986cc8d5": {
+  "cell": "wt-intent",
+  "sentence": 81,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_081/run_0/best_mixed.wav"
+ },
+ "i1209135087": {
+  "cell": "wt-intent",
+  "sentence": 82,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_082/run_0/best_mixed.wav"
+ },
+ "i43cad00273": {
+  "cell": "wt-intent",
+  "sentence": 83,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_083/run_0/best_mixed.wav"
+ },
+ "i884e3c0f2d": {
+  "cell": "wt-intent",
+  "sentence": 85,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_085/run_0/best_mixed.wav"
+ },
+ "i1e57030ede": {
+  "cell": "wt-intent",
+  "sentence": 88,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_088/run_0/best_mixed.wav"
+ },
+ "idc87ba3b90": {
+  "cell": "wt-intent",
+  "sentence": 90,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_090/run_0/best_mixed.wav"
+ },
+ "ie43fc18c00": {
+  "cell": "wt-intent",
+  "sentence": 91,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_091/run_0/best_mixed.wav"
+ },
+ "ic3eb83af16": {
+  "cell": "wt-intent",
+  "sentence": 95,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_095/run_0/best_mixed.wav"
+ },
+ "i1129deb984": {
+  "cell": "wt-intent",
+  "sentence": 96,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_096/run_0/best_mixed.wav"
+ },
+ "idc6a325333": {
+  "cell": "wt-intent",
+  "sentence": 3,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/whisper-tiny_20261011_2133/sentence_003/best_alif_intent.wav"
+ },
+ "i484a294067": {
+  "cell": "wt-intent",
+  "sentence": 9,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/whisper-tiny_20261011_2133/sentence_009/best_alif_intent.wav"
+ },
+ "i228513d91e": {
+  "cell": "wt-intent",
+  "sentence": 10,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/whisper-tiny_20261011_2133/sentence_010/best_alif_intent.wav"
+ },
+ "i8592f078b8": {
+  "cell": "wt-intent",
+  "sentence": 12,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/whisper-tiny_20261011_2133/sentence_012/best_alif_intent.wav"
+ },
+ "i35a08c3a00": {
+  "cell": "wt-intent",
+  "sentence": 13,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/whisper-tiny_20261011_2133/sentence_013/best_alif_intent.wav"
+ },
+ "i1a88083ebc": {
+  "cell": "wt-intent",
+  "sentence": 14,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/whisper-tiny_20261011_2133/sentence_014/best_alif_intent.wav"
+ },
+ "if4692a7bce": {
+  "cell": "wt-intent",
+  "sentence": 17,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/whisper-tiny_20261011_2133/sentence_017/best_alif_intent.wav"
+ },
+ "i8ba274c0d7": {
+  "cell": "wt-intent",
+  "sentence": 19,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/whisper-tiny_20261011_2133/sentence_019/best_alif_intent.wav"
+ },
+ "ibd674610eb": {
+  "cell": "wt-intent",
+  "sentence": 21,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/whisper-tiny_20261011_2133/sentence_021/best_alif_intent.wav"
+ },
+ "ie7c74f11cd": {
+  "cell": "wt-intent",
+  "sentence": 22,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/whisper-tiny_20261011_2133/sentence_022/best_alif_intent.wav"
+ },
+ "i47c9c5fef1": {
+  "cell": "wt-intent",
+  "sentence": 23,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/whisper-tiny_20261011_2133/sentence_023/best_alif_intent.wav"
+ },
+ "i714ad12b4c": {
+  "cell": "wt-intent",
+  "sentence": 26,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/whisper-tiny_20261011_2133/sentence_026/best_alif_intent.wav"
+ },
+ "i915f2e9167": {
+  "cell": "wt-intent",
+  "sentence": 29,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/whisper-tiny_20261011_2133/sentence_029/best_alif_intent.wav"
+ },
+ "i23a0f9c074": {
+  "cell": "wt-intent",
+  "sentence": 30,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/whisper-tiny_20261011_2133/sentence_030/best_alif_intent.wav"
+ },
+ "i1f2835bcdb": {
+  "cell": "wt-intent",
+  "sentence": 31,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/whisper-tiny_20261011_2133/sentence_031/best_alif_intent.wav"
+ },
+ "i1eb270af55": {
+  "cell": "wt-intent",
+  "sentence": 32,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/whisper-tiny_20261011_2133/sentence_032/best_alif_intent.wav"
+ },
+ "i6661a53fdd": {
+  "cell": "wt-intent",
+  "sentence": 33,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/whisper-tiny_20261011_2133/sentence_033/best_alif_intent.wav"
+ },
+ "i77974fdedc": {
+  "cell": "wt-intent",
+  "sentence": 34,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/whisper-tiny_20261011_2133/sentence_034/best_alif_intent.wav"
+ },
+ "i8f23b870f3": {
+  "cell": "wt-intent",
+  "sentence": 42,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/whisper-tiny_20261011_2133/sentence_042/best_alif_intent.wav"
+ },
+ "i4cab12fb53": {
+  "cell": "wt-intent",
+  "sentence": 48,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/whisper-tiny_20261011_2133/sentence_048/best_alif_intent.wav"
+ },
+ "ia15aa3892a": {
+  "cell": "wt-intent",
+  "sentence": 52,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/whisper-tiny_20261011_2133/sentence_052/best_alif_intent.wav"
+ },
+ "ibe79009c61": {
+  "cell": "wt-intent",
+  "sentence": 53,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/whisper-tiny_20261011_2133/sentence_053/best_alif_intent.wav"
+ },
+ "i376a447a90": {
+  "cell": "wt-intent",
+  "sentence": 56,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/whisper-tiny_20261011_2133/sentence_056/best_alif_intent.wav"
+ },
+ "i7d7a0a02ba": {
+  "cell": "wt-intent",
+  "sentence": 59,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/whisper-tiny_20261011_2133/sentence_059/best_alif_intent.wav"
+ },
+ "i80b1d792a0": {
+  "cell": "wt-intent",
+  "sentence": 60,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/whisper-tiny_20261011_2133/sentence_060/best_alif_intent.wav"
+ },
+ "i7e51783032": {
+  "cell": "wt-intent",
+  "sentence": 62,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/whisper-tiny_20261011_2133/sentence_062/best_alif_intent.wav"
+ },
+ "if5a6ed0ac0": {
+  "cell": "wt-intent",
+  "sentence": 71,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/whisper-tiny_20261011_2133/sentence_071/best_alif_intent.wav"
+ },
+ "i710f6ab75b": {
+  "cell": "wt-intent",
+  "sentence": 72,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/whisper-tiny_20261011_2133/sentence_072/best_alif_intent.wav"
+ },
+ "i244cd8ef24": {
+  "cell": "wt-intent",
+  "sentence": 73,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/whisper-tiny_20261011_2133/sentence_073/best_alif_intent.wav"
+ },
+ "i7ebec60ffe": {
+  "cell": "wt-intent",
+  "sentence": 74,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/whisper-tiny_20261011_2133/sentence_074/best_alif_intent.wav"
+ },
+ "ie30d6a78b0": {
+  "cell": "wt-intent",
+  "sentence": 79,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/whisper-tiny_20261011_2133/sentence_079/best_alif_intent.wav"
+ },
+ "i379f032cdc": {
+  "cell": "wt-intent",
+  "sentence": 90,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/whisper-tiny_20261011_2133/sentence_090/best_alif_intent.wav"
+ },
+ "i5a068a3c38": {
+  "cell": "wt-intent",
+  "sentence": 97,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/whisper-tiny_20261011_2133/sentence_097/best_alif_intent.wav"
+ },
+ "i6478b61daf": {
+  "cell": "wt-intent",
+  "sentence": 98,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/whisper-tiny_20261011_2133/sentence_098/best_alif_intent.wav"
+ },
+ "ifee377b008": {
+  "cell": "wt-intent",
+  "sentence": 99,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/whisper-tiny_20261011_2133/sentence_099/best_alif_intent.wav"
+ },
+ "id802969326": {
+  "cell": "wt-intent",
+  "sentence": 1,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/whisper-tiny_20261018_1338/sentence_001/best_smack.wav"
+ },
+ "ifa86de3365": {
+  "cell": "wt-intent",
+  "sentence": 2,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/whisper-tiny_20261018_1338/sentence_002/best_smack.wav"
+ },
+ "iaf11035083": {
+  "cell": "wt-intent",
+  "sentence": 3,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/whisper-tiny_20261018_1338/sentence_003/best_smack.wav"
+ },
+ "i14ddfae808": {
+  "cell": "wt-intent",
+  "sentence": 13,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/whisper-tiny_20261018_1338/sentence_013/best_smack.wav"
+ },
+ "if3afb120f4": {
+  "cell": "wt-intent",
+  "sentence": 14,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/whisper-tiny_20261018_1338/sentence_014/best_smack.wav"
+ },
+ "iecbdf0b015": {
+  "cell": "wt-intent",
+  "sentence": 15,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/whisper-tiny_20261018_1338/sentence_015/best_smack.wav"
+ },
+ "i65ab4414ae": {
+  "cell": "wt-intent",
+  "sentence": 18,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/whisper-tiny_20261018_1338/sentence_018/best_smack.wav"
+ },
+ "i5c01a4f7a1": {
+  "cell": "wt-intent",
+  "sentence": 22,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/whisper-tiny_20261018_1338/sentence_022/best_smack.wav"
+ },
+ "i1d0a8aa1e4": {
+  "cell": "wt-intent",
+  "sentence": 25,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/whisper-tiny_20261018_1338/sentence_025/best_smack.wav"
+ },
+ "i009ef1c846": {
+  "cell": "wt-intent",
+  "sentence": 29,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/whisper-tiny_20261018_1338/sentence_029/best_smack.wav"
+ },
+ "i45ffeb5d5f": {
+  "cell": "wt-intent",
+  "sentence": 33,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/whisper-tiny_20261018_1338/sentence_033/best_smack.wav"
+ },
+ "ia3df8693ce": {
+  "cell": "wt-intent",
+  "sentence": 36,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/whisper-tiny_20261018_1338/sentence_036/best_smack.wav"
+ },
+ "i4ab31e9be8": {
+  "cell": "wt-intent",
+  "sentence": 40,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/whisper-tiny_20261018_1338/sentence_040/best_smack.wav"
+ },
+ "ie6ba2338fe": {
+  "cell": "wt-intent",
+  "sentence": 42,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/whisper-tiny_20261018_1338/sentence_042/best_smack.wav"
+ },
+ "i243a082921": {
+  "cell": "wt-intent",
+  "sentence": 46,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/whisper-tiny_20261018_1338/sentence_046/best_smack.wav"
+ },
+ "i92c069c542": {
+  "cell": "wt-intent",
+  "sentence": 50,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/whisper-tiny_20261018_1338/sentence_050/best_smack.wav"
+ },
+ "i3049b564fb": {
+  "cell": "wt-intent",
+  "sentence": 54,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/whisper-tiny_20261018_1338/sentence_054/best_smack.wav"
+ },
+ "i6f1aff71ae": {
+  "cell": "wt-intent",
+  "sentence": 56,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/whisper-tiny_20261018_1338/sentence_056/best_smack.wav"
+ },
+ "ib775fd3537": {
+  "cell": "wt-intent",
+  "sentence": 61,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/whisper-tiny_20261018_1338/sentence_061/best_smack.wav"
+ },
+ "i625487b5c3": {
+  "cell": "wt-intent",
+  "sentence": 64,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/whisper-tiny_20261018_1338/sentence_064/best_smack.wav"
+ },
+ "i542b12c92c": {
+  "cell": "wt-intent",
+  "sentence": 66,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/whisper-tiny_20261018_1338/sentence_066/best_smack.wav"
+ },
+ "ia56bf52dfd": {
+  "cell": "wt-intent",
+  "sentence": 77,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/whisper-tiny_20261018_1338/sentence_077/best_smack.wav"
+ },
+ "iafe5aef699": {
+  "cell": "wt-intent",
+  "sentence": 78,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/whisper-tiny_20261018_1338/sentence_078/best_smack.wav"
+ },
+ "i256f6ddf79": {
+  "cell": "wt-intent",
+  "sentence": 79,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/whisper-tiny_20261018_1338/sentence_079/best_smack.wav"
+ },
+ "iee7281b8a9": {
+  "cell": "wt-intent",
+  "sentence": 84,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/whisper-tiny_20261018_1338/sentence_084/best_smack.wav"
+ },
+ "i25b575bc6e": {
+  "cell": "wt-intent",
+  "sentence": 87,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/whisper-tiny_20261018_1338/sentence_087/best_smack.wav"
+ },
+ "i50862f78e1": {
+  "cell": "wt-intent",
+  "sentence": 90,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/whisper-tiny_20261018_1338/sentence_090/best_smack.wav"
+ },
+ "i352114c2d6": {
+  "cell": "wt-intent",
+  "sentence": 91,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/whisper-tiny_20261018_1338/sentence_091/best_smack.wav"
+ },
+ "i2fe90f79f8": {
+  "cell": "wt-intent",
+  "sentence": 94,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/whisper-tiny_20261018_1338/sentence_094/best_smack.wav"
+ },
+ "i5971b221e4": {
+  "cell": "wt-intent",
+  "sentence": 95,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/whisper-tiny_20261018_1338/sentence_095/best_smack.wav"
+ },
+ "ifbca1209ad": {
+  "cell": "wt-intent",
+  "sentence": 96,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/whisper-tiny_20261018_1338/sentence_096/best_smack.wav"
+ },
+ "i6d638d521a": {
+  "cell": "wt-intent",
+  "sentence": 97,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/whisper-tiny_20261018_1338/sentence_097/best_smack.wav"
+ },
+ "i7dce8d75f2": {
+  "cell": "wt-intent",
+  "sentence": 98,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/whisper-tiny_20261018_1338/sentence_098/best_smack.wav"
+ },
+ "iba63b8a897": {
+  "cell": "wt-intent",
+  "sentence": 99,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/whisper-tiny_20261018_1338/sentence_099/best_smack.wav"
+ },
+ "icb385c5fdc": {
+  "cell": "wt-intent",
+  "sentence": 100,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/whisper-tiny_20261018_1338/sentence_100/best_smack.wav"
+ },
+ "i703239d04b": {
+  "cell": "wt-intent",
+  "sentence": 1,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_001/run_0/ground_truth.wav"
+ },
+ "i34f0a61c5e": {
+  "cell": "wt-intent",
+  "sentence": 10,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_010/run_0/ground_truth.wav"
+ },
+ "ib59626d8c4": {
+  "cell": "wt-intent",
+  "sentence": 12,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_012/run_0/ground_truth.wav"
+ },
+ "ie70cbf404d": {
+  "cell": "wt-intent",
+  "sentence": 13,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_013/run_0/ground_truth.wav"
+ },
+ "i08636abf8c": {
+  "cell": "wt-intent",
+  "sentence": 15,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_015/run_0/ground_truth.wav"
+ },
+ "ia23be95767": {
+  "cell": "wt-intent",
+  "sentence": 18,
+  "condition": "clean",
+  "source": "outputs/results/ALIF_intent/commands/whisper-tiny_20261011_2133/sentence_018/ground_truth.wav"
+ },
+ "ide15ac15c3": {
+  "cell": "wt-intent",
+  "sentence": 20,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_020/run_0/ground_truth.wav"
+ },
+ "i5d2fcf3b87": {
+  "cell": "wt-intent",
+  "sentence": 22,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_022/run_0/ground_truth.wav"
+ },
+ "ibe0e96ed9b": {
+  "cell": "wt-intent",
+  "sentence": 25,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_025/run_0/ground_truth.wav"
+ },
+ "iada358cb1d": {
+  "cell": "wt-intent",
+  "sentence": 26,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_026/run_0/ground_truth.wav"
+ },
+ "i3b2c623ac3": {
+  "cell": "wt-intent",
+  "sentence": 31,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_031/run_0/ground_truth.wav"
+ },
+ "i4c9c5c11eb": {
+  "cell": "wt-intent",
+  "sentence": 32,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_032/run_0/ground_truth.wav"
+ },
+ "i169ccd3e1f": {
+  "cell": "wt-intent",
+  "sentence": 33,
+  "condition": "clean",
+  "source": "outputs/results/ALIF_intent/commands/whisper-tiny_20261011_2133/sentence_033/ground_truth.wav"
+ },
+ "ideb475e15e": {
+  "cell": "wt-intent",
+  "sentence": 36,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_036/run_0/ground_truth.wav"
+ },
+ "ic0831a352a": {
+  "cell": "wt-intent",
+  "sentence": 38,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_038/run_0/ground_truth.wav"
+ },
+ "ic548d002be": {
+  "cell": "wt-intent",
+  "sentence": 40,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_040/run_0/ground_truth.wav"
+ },
+ "ie2e0a10d2b": {
+  "cell": "wt-intent",
+  "sentence": 41,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_041/run_0/ground_truth.wav"
+ },
+ "i695a62ddc4": {
+  "cell": "wt-intent",
+  "sentence": 42,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_042/run_0/ground_truth.wav"
+ },
+ "i0d7552c6e8": {
+  "cell": "wt-intent",
+  "sentence": 46,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_046/run_0/ground_truth.wav"
+ },
+ "ib2a1c2d9bf": {
+  "cell": "wt-intent",
+  "sentence": 52,
+  "condition": "clean",
+  "source": "outputs/results/ALIF_intent/commands/whisper-tiny_20261011_2133/sentence_052/ground_truth.wav"
+ },
+ "iaa8420b8d9": {
+  "cell": "wt-intent",
+  "sentence": 54,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_054/run_0/ground_truth.wav"
+ },
+ "ia6f4db1c1e": {
+  "cell": "wt-intent",
+  "sentence": 56,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_056/run_0/ground_truth.wav"
+ },
+ "i8cf46860a2": {
+  "cell": "wt-intent",
+  "sentence": 58,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_058/run_0/ground_truth.wav"
+ },
+ "ibcee04bdde": {
+  "cell": "wt-intent",
+  "sentence": 66,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_066/run_0/ground_truth.wav"
+ },
+ "i6eef1fa0a3": {
+  "cell": "wt-intent",
+  "sentence": 73,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_073/run_0/ground_truth.wav"
+ },
+ "i7494b9cdb5": {
+  "cell": "wt-intent",
+  "sentence": 77,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_077/run_0/ground_truth.wav"
+ },
+ "i417d7de1f5": {
+  "cell": "wt-intent",
+  "sentence": 78,
+  "condition": "clean",
+  "source": "outputs/results/ALIF_intent/commands/whisper-tiny_20261011_2133/sentence_078/ground_truth.wav"
+ },
+ "i79b440ffe0": {
+  "cell": "wt-intent",
+  "sentence": 81,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_081/run_0/ground_truth.wav"
+ },
+ "i563725bd0c": {
+  "cell": "wt-intent",
+  "sentence": 82,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_082/run_0/ground_truth.wav"
+ },
+ "i0a441030ae": {
+  "cell": "wt-intent",
+  "sentence": 83,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_083/run_0/ground_truth.wav"
+ },
+ "i0d0b36f3cd": {
+  "cell": "wt-intent",
+  "sentence": 84,
+  "condition": "clean",
+  "source": "outputs/results/SMACK/commands/whisper-tiny_20261018_1338/sentence_084/ground_truth.wav"
+ },
+ "i5929b10823": {
+  "cell": "wt-intent",
+  "sentence": 90,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_090/run_0/ground_truth.wav"
+ },
+ "i4a00fdec23": {
+  "cell": "wt-intent",
+  "sentence": 94,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_094/run_0/ground_truth.wav"
+ },
+ "i01a795ac54": {
+  "cell": "wt-intent",
+  "sentence": 96,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_096/run_0/ground_truth.wav"
+ },
+ "i1023f1b67e": {
+  "cell": "wt-intent",
+  "sentence": 100,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/whisper-tiny_20261011_2021/sentence_100/run_0/ground_truth.wav"
+ },
+ "i2038553ac8": {
+  "cell": "w2v-intent",
+  "sentence": 1,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_001/run_0/best_mixed.wav"
+ },
+ "ided7285256": {
+  "cell": "w2v-intent",
+  "sentence": 2,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_002/run_0/best_mixed.wav"
+ },
+ "ief476c4878": {
+  "cell": "w2v-intent",
+  "sentence": 4,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_004/run_0/best_mixed.wav"
+ },
+ "i515a23754b": {
+  "cell": "w2v-intent",
+  "sentence": 5,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_005/run_0/best_mixed.wav"
+ },
+ "i6ffea2a33a": {
+  "cell": "w2v-intent",
+  "sentence": 7,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_007/run_0/best_mixed.wav"
+ },
+ "i8e1b770deb": {
+  "cell": "w2v-intent",
+  "sentence": 14,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_014/run_0/best_mixed.wav"
+ },
+ "i49e64ddd91": {
+  "cell": "w2v-intent",
+  "sentence": 15,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_015/run_0/best_mixed.wav"
+ },
+ "i8a9c2e5562": {
+  "cell": "w2v-intent",
+  "sentence": 21,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_021/run_0/best_mixed.wav"
+ },
+ "i33c9fe6036": {
+  "cell": "w2v-intent",
+  "sentence": 26,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_026/run_0/best_mixed.wav"
+ },
+ "i4bb6088c97": {
+  "cell": "w2v-intent",
+  "sentence": 27,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_027/run_0/best_mixed.wav"
+ },
+ "i71c707e77b": {
+  "cell": "w2v-intent",
+  "sentence": 31,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_031/run_0/best_mixed.wav"
+ },
+ "i9a8397d412": {
+  "cell": "w2v-intent",
+  "sentence": 32,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_032/run_0/best_mixed.wav"
+ },
+ "i89764ab510": {
+  "cell": "w2v-intent",
+  "sentence": 33,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_033/run_0/best_mixed.wav"
+ },
+ "i42a2652c9e": {
+  "cell": "w2v-intent",
+  "sentence": 34,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_034/run_0/best_mixed.wav"
+ },
+ "i3b45c596d4": {
+  "cell": "w2v-intent",
+  "sentence": 35,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_035/run_0/best_mixed.wav"
+ },
+ "i1e043d2c47": {
+  "cell": "w2v-intent",
+  "sentence": 40,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_040/run_0/best_mixed.wav"
+ },
+ "ic89d683a9e": {
+  "cell": "w2v-intent",
+  "sentence": 46,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_046/run_0/best_mixed.wav"
+ },
+ "i19b63f83c6": {
+  "cell": "w2v-intent",
+  "sentence": 50,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_050/run_0/best_mixed.wav"
+ },
+ "ibb2c2df3c2": {
+  "cell": "w2v-intent",
+  "sentence": 51,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_051/run_0/best_mixed.wav"
+ },
+ "i3f6a27241f": {
+  "cell": "w2v-intent",
+  "sentence": 53,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_053/run_0/best_mixed.wav"
+ },
+ "i4837d316a4": {
+  "cell": "w2v-intent",
+  "sentence": 58,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_058/run_0/best_mixed.wav"
+ },
+ "ibce139d15d": {
+  "cell": "w2v-intent",
+  "sentence": 59,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_059/run_0/best_mixed.wav"
+ },
+ "ia8ff4533fe": {
+  "cell": "w2v-intent",
+  "sentence": 60,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_060/run_0/best_mixed.wav"
+ },
+ "ibd01a6009e": {
+  "cell": "w2v-intent",
+  "sentence": 62,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_062/run_0/best_mixed.wav"
+ },
+ "i8389181ba3": {
+  "cell": "w2v-intent",
+  "sentence": 65,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_065/run_0/best_mixed.wav"
+ },
+ "idb6da313e7": {
+  "cell": "w2v-intent",
+  "sentence": 68,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_068/run_0/best_mixed.wav"
+ },
+ "i1f0cbdc014": {
+  "cell": "w2v-intent",
+  "sentence": 76,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_076/run_0/best_mixed.wav"
+ },
+ "ia5627b585f": {
+  "cell": "w2v-intent",
+  "sentence": 77,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_077/run_0/best_mixed.wav"
+ },
+ "i1e45c190a8": {
+  "cell": "w2v-intent",
+  "sentence": 78,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_078/run_0/best_mixed.wav"
+ },
+ "ibcf89d3fda": {
+  "cell": "w2v-intent",
+  "sentence": 82,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_082/run_0/best_mixed.wav"
+ },
+ "i5b908e0372": {
+  "cell": "w2v-intent",
+  "sentence": 83,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_083/run_0/best_mixed.wav"
+ },
+ "iac3ac49efa": {
+  "cell": "w2v-intent",
+  "sentence": 84,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_084/run_0/best_mixed.wav"
+ },
+ "ib4b76fc5b2": {
+  "cell": "w2v-intent",
+  "sentence": 87,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_087/run_0/best_mixed.wav"
+ },
+ "ia98bf06f64": {
+  "cell": "w2v-intent",
+  "sentence": 90,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_090/run_0/best_mixed.wav"
+ },
+ "i38483c1a4e": {
+  "cell": "w2v-intent",
+  "sentence": 98,
+  "condition": "ours",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_098/run_0/best_mixed.wav"
+ },
+ "id4bd6817b6": {
+  "cell": "w2v-intent",
+  "sentence": 1,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/wav2vec2-large_20261016_0024/sentence_001/best_alif_intent.wav"
+ },
+ "i3de6cd3595": {
+  "cell": "w2v-intent",
+  "sentence": 4,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/wav2vec2-large_20261016_0024/sentence_004/best_alif_intent.wav"
+ },
+ "i841095e497": {
+  "cell": "w2v-intent",
+  "sentence": 5,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/wav2vec2-large_20261016_0024/sentence_005/best_alif_intent.wav"
+ },
+ "iac4eb98768": {
+  "cell": "w2v-intent",
+  "sentence": 7,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/wav2vec2-large_20261016_0024/sentence_007/best_alif_intent.wav"
+ },
+ "i3b53ca8c05": {
+  "cell": "w2v-intent",
+  "sentence": 14,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/wav2vec2-large_20261016_0024/sentence_014/best_alif_intent.wav"
+ },
+ "ia05f89d54d": {
+  "cell": "w2v-intent",
+  "sentence": 18,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/wav2vec2-large_20261016_0024/sentence_018/best_alif_intent.wav"
+ },
+ "i497af2f402": {
+  "cell": "w2v-intent",
+  "sentence": 21,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/wav2vec2-large_20261016_0024/sentence_021/best_alif_intent.wav"
+ },
+ "i2b9501e917": {
+  "cell": "w2v-intent",
+  "sentence": 27,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/wav2vec2-large_20261016_0024/sentence_027/best_alif_intent.wav"
+ },
+ "icf23254d81": {
+  "cell": "w2v-intent",
+  "sentence": 31,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/wav2vec2-large_20261016_0024/sentence_031/best_alif_intent.wav"
+ },
+ "i8d03f7ba05": {
+  "cell": "w2v-intent",
+  "sentence": 32,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/wav2vec2-large_20261016_0024/sentence_032/best_alif_intent.wav"
+ },
+ "i53813dd49a": {
+  "cell": "w2v-intent",
+  "sentence": 33,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/wav2vec2-large_20261016_0024/sentence_033/best_alif_intent.wav"
+ },
+ "i955df2e073": {
+  "cell": "w2v-intent",
+  "sentence": 40,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/wav2vec2-large_20261016_0024/sentence_040/best_alif_intent.wav"
+ },
+ "i06a2834536": {
+  "cell": "w2v-intent",
+  "sentence": 41,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/wav2vec2-large_20261016_0024/sentence_041/best_alif_intent.wav"
+ },
+ "i21cfdef303": {
+  "cell": "w2v-intent",
+  "sentence": 46,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/wav2vec2-large_20261016_0024/sentence_046/best_alif_intent.wav"
+ },
+ "i65e0789f97": {
+  "cell": "w2v-intent",
+  "sentence": 47,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/wav2vec2-large_20261016_0024/sentence_047/best_alif_intent.wav"
+ },
+ "if927be0381": {
+  "cell": "w2v-intent",
+  "sentence": 48,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/wav2vec2-large_20261016_0024/sentence_048/best_alif_intent.wav"
+ },
+ "i822d4076bc": {
+  "cell": "w2v-intent",
+  "sentence": 49,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/wav2vec2-large_20261016_0024/sentence_049/best_alif_intent.wav"
+ },
+ "i13fdc12930": {
+  "cell": "w2v-intent",
+  "sentence": 50,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/wav2vec2-large_20261016_0024/sentence_050/best_alif_intent.wav"
+ },
+ "ic322b56be1": {
+  "cell": "w2v-intent",
+  "sentence": 53,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/wav2vec2-large_20261016_0024/sentence_053/best_alif_intent.wav"
+ },
+ "ic834dd7624": {
+  "cell": "w2v-intent",
+  "sentence": 54,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/wav2vec2-large_20261016_0024/sentence_054/best_alif_intent.wav"
+ },
+ "ic6ea455fc7": {
+  "cell": "w2v-intent",
+  "sentence": 58,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/wav2vec2-large_20261016_0024/sentence_058/best_alif_intent.wav"
+ },
+ "i917f2a2e65": {
+  "cell": "w2v-intent",
+  "sentence": 59,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/wav2vec2-large_20261016_0024/sentence_059/best_alif_intent.wav"
+ },
+ "ib2c46ac0d6": {
+  "cell": "w2v-intent",
+  "sentence": 60,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/wav2vec2-large_20261016_0024/sentence_060/best_alif_intent.wav"
+ },
+ "i36f8247e70": {
+  "cell": "w2v-intent",
+  "sentence": 62,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/wav2vec2-large_20261016_0024/sentence_062/best_alif_intent.wav"
+ },
+ "ibb3c3da911": {
+  "cell": "w2v-intent",
+  "sentence": 66,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/wav2vec2-large_20261016_0024/sentence_066/best_alif_intent.wav"
+ },
+ "id021d32e24": {
+  "cell": "w2v-intent",
+  "sentence": 67,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/wav2vec2-large_20261016_0024/sentence_067/best_alif_intent.wav"
+ },
+ "ic23bd3147d": {
+  "cell": "w2v-intent",
+  "sentence": 69,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/wav2vec2-large_20261016_0024/sentence_069/best_alif_intent.wav"
+ },
+ "i5a62759469": {
+  "cell": "w2v-intent",
+  "sentence": 73,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/wav2vec2-large_20261016_0024/sentence_073/best_alif_intent.wav"
+ },
+ "i979bc69882": {
+  "cell": "w2v-intent",
+  "sentence": 77,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/wav2vec2-large_20261016_0024/sentence_077/best_alif_intent.wav"
+ },
+ "ia121ee302e": {
+  "cell": "w2v-intent",
+  "sentence": 78,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/wav2vec2-large_20261016_0024/sentence_078/best_alif_intent.wav"
+ },
+ "ie67f9b76ef": {
+  "cell": "w2v-intent",
+  "sentence": 82,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/wav2vec2-large_20261016_0024/sentence_082/best_alif_intent.wav"
+ },
+ "i1beaf94919": {
+  "cell": "w2v-intent",
+  "sentence": 87,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/wav2vec2-large_20261016_0024/sentence_087/best_alif_intent.wav"
+ },
+ "id59db3466d": {
+  "cell": "w2v-intent",
+  "sentence": 90,
+  "condition": "ALIF",
+  "source": "outputs/results/ALIF_intent/commands/wav2vec2-large_20261016_0024/sentence_090/best_alif_intent.wav"
+ },
+ "i8606a8e22f": {
+  "cell": "w2v-intent",
+  "sentence": 1,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/wav2vec2-large_20261018_1338/sentence_001/best_smack.wav"
+ },
+ "i5b989bb030": {
+  "cell": "w2v-intent",
+  "sentence": 15,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/wav2vec2-large_20261018_1338/sentence_015/best_smack.wav"
+ },
+ "i747d3c279b": {
+  "cell": "w2v-intent",
+  "sentence": 18,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/wav2vec2-large_20261018_1338/sentence_018/best_smack.wav"
+ },
+ "i034f06ea18": {
+  "cell": "w2v-intent",
+  "sentence": 19,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/wav2vec2-large_20261018_1338/sentence_019/best_smack.wav"
+ },
+ "i38f568c9c6": {
+  "cell": "w2v-intent",
+  "sentence": 21,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/wav2vec2-large_20261018_1338/sentence_021/best_smack.wav"
+ },
+ "ia78e36b82f": {
+  "cell": "w2v-intent",
+  "sentence": 22,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/wav2vec2-large_20261018_1338/sentence_022/best_smack.wav"
+ },
+ "ia929bccee9": {
+  "cell": "w2v-intent",
+  "sentence": 26,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/wav2vec2-large_20261018_1338/sentence_026/best_smack.wav"
+ },
+ "i7ee10b4aad": {
+  "cell": "w2v-intent",
+  "sentence": 28,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/wav2vec2-large_20261018_1338/sentence_028/best_smack.wav"
+ },
+ "if4cf2a2198": {
+  "cell": "w2v-intent",
+  "sentence": 30,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/wav2vec2-large_20261018_1338/sentence_030/best_smack.wav"
+ },
+ "i7bbcc4616d": {
+  "cell": "w2v-intent",
+  "sentence": 33,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/wav2vec2-large_20261018_1338/sentence_033/best_smack.wav"
+ },
+ "i508bc88bcf": {
+  "cell": "w2v-intent",
+  "sentence": 34,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/wav2vec2-large_20261018_1338/sentence_034/best_smack.wav"
+ },
+ "id9b4480761": {
+  "cell": "w2v-intent",
+  "sentence": 50,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/wav2vec2-large_20261018_1338/sentence_050/best_smack.wav"
+ },
+ "i42142a6c95": {
+  "cell": "w2v-intent",
+  "sentence": 53,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/wav2vec2-large_20261018_1338/sentence_053/best_smack.wav"
+ },
+ "i9a232f8c5b": {
+  "cell": "w2v-intent",
+  "sentence": 54,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/wav2vec2-large_20261018_1338/sentence_054/best_smack.wav"
+ },
+ "ib466dfeb1e": {
+  "cell": "w2v-intent",
+  "sentence": 66,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/wav2vec2-large_20261018_1338/sentence_066/best_smack.wav"
+ },
+ "id230e9be17": {
+  "cell": "w2v-intent",
+  "sentence": 73,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/wav2vec2-large_20261018_1338/sentence_073/best_smack.wav"
+ },
+ "ic95100f186": {
+  "cell": "w2v-intent",
+  "sentence": 76,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/wav2vec2-large_20261018_1338/sentence_076/best_smack.wav"
+ },
+ "i624aaeb212": {
+  "cell": "w2v-intent",
+  "sentence": 84,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/wav2vec2-large_20261018_1338/sentence_084/best_smack.wav"
+ },
+ "i0ff19b43da": {
+  "cell": "w2v-intent",
+  "sentence": 100,
+  "condition": "SMACK",
+  "source": "outputs/results/SMACK/commands/wav2vec2-large_20261018_1338/sentence_100/best_smack.wav"
+ },
+ "i09356af737": {
+  "cell": "w2v-intent",
+  "sentence": 1,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_001/run_0/ground_truth.wav"
+ },
+ "ib950ae2652": {
+  "cell": "w2v-intent",
+  "sentence": 2,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_002/run_0/ground_truth.wav"
+ },
+ "if6bf401e04": {
+  "cell": "w2v-intent",
+  "sentence": 4,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_004/run_0/ground_truth.wav"
+ },
+ "i573fe65f90": {
+  "cell": "w2v-intent",
+  "sentence": 5,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_005/run_0/ground_truth.wav"
+ },
+ "i70dceb2013": {
+  "cell": "w2v-intent",
+  "sentence": 7,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_007/run_0/ground_truth.wav"
+ },
+ "ib9ab1e6794": {
+  "cell": "w2v-intent",
+  "sentence": 15,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_015/run_0/ground_truth.wav"
+ },
+ "ia8a8e6a772": {
+  "cell": "w2v-intent",
+  "sentence": 18,
+  "condition": "clean",
+  "source": "outputs/results/ALIF_intent/commands/wav2vec2-large_20261016_0024/sentence_018/ground_truth.wav"
+ },
+ "i4239d5b552": {
+  "cell": "w2v-intent",
+  "sentence": 27,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_027/run_0/ground_truth.wav"
+ },
+ "iab581ba307": {
+  "cell": "w2v-intent",
+  "sentence": 28,
+  "condition": "clean",
+  "source": "outputs/results/SMACK/commands/wav2vec2-large_20261018_1338/sentence_028/ground_truth.wav"
+ },
+ "i4e298e9a79": {
+  "cell": "w2v-intent",
+  "sentence": 30,
+  "condition": "clean",
+  "source": "outputs/results/SMACK/commands/wav2vec2-large_20261018_1338/sentence_030/ground_truth.wav"
+ },
+ "i5b045892c1": {
+  "cell": "w2v-intent",
+  "sentence": 31,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_031/run_0/ground_truth.wav"
+ },
+ "i8a92d6ff73": {
+  "cell": "w2v-intent",
+  "sentence": 32,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_032/run_0/ground_truth.wav"
+ },
+ "ibb0ee5144d": {
+  "cell": "w2v-intent",
+  "sentence": 33,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_033/run_0/ground_truth.wav"
+ },
+ "i26a1645f58": {
+  "cell": "w2v-intent",
+  "sentence": 35,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_035/run_0/ground_truth.wav"
+ },
+ "i055a79b46a": {
+  "cell": "w2v-intent",
+  "sentence": 46,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_046/run_0/ground_truth.wav"
+ },
+ "ia07db931ce": {
+  "cell": "w2v-intent",
+  "sentence": 47,
+  "condition": "clean",
+  "source": "outputs/results/ALIF_intent/commands/wav2vec2-large_20261016_0024/sentence_047/ground_truth.wav"
+ },
+ "i060fb2de1e": {
+  "cell": "w2v-intent",
+  "sentence": 48,
+  "condition": "clean",
+  "source": "outputs/results/ALIF_intent/commands/wav2vec2-large_20261016_0024/sentence_048/ground_truth.wav"
+ },
+ "i0b3dd0c866": {
+  "cell": "w2v-intent",
+  "sentence": 50,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_050/run_0/ground_truth.wav"
+ },
+ "i39032f594d": {
+  "cell": "w2v-intent",
+  "sentence": 53,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_053/run_0/ground_truth.wav"
+ },
+ "ia7f20e8bda": {
+  "cell": "w2v-intent",
+  "sentence": 54,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_054/run_0/ground_truth.wav"
+ },
+ "i1153a081a6": {
+  "cell": "w2v-intent",
+  "sentence": 58,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_058/run_0/ground_truth.wav"
+ },
+ "i0fd22a3a62": {
+  "cell": "w2v-intent",
+  "sentence": 59,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_059/run_0/ground_truth.wav"
+ },
+ "if8584d3c02": {
+  "cell": "w2v-intent",
+  "sentence": 60,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_060/run_0/ground_truth.wav"
+ },
+ "i6ca9fa4ea6": {
+  "cell": "w2v-intent",
+  "sentence": 62,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_062/run_0/ground_truth.wav"
+ },
+ "ie422c71d04": {
+  "cell": "w2v-intent",
+  "sentence": 66,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_066/run_0/ground_truth.wav"
+ },
+ "i37ec071cf1": {
+  "cell": "w2v-intent",
+  "sentence": 67,
+  "condition": "clean",
+  "source": "outputs/results/ALIF_intent/commands/wav2vec2-large_20261016_0024/sentence_067/ground_truth.wav"
+ },
+ "i6f72ef7dce": {
+  "cell": "w2v-intent",
+  "sentence": 68,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_068/run_0/ground_truth.wav"
+ },
+ "i5b245db6ca": {
+  "cell": "w2v-intent",
+  "sentence": 69,
+  "condition": "clean",
+  "source": "outputs/results/ALIF_intent/commands/wav2vec2-large_20261016_0024/sentence_069/ground_truth.wav"
+ },
+ "i2d4fdc1351": {
+  "cell": "w2v-intent",
+  "sentence": 76,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_076/run_0/ground_truth.wav"
+ },
+ "i54a629d332": {
+  "cell": "w2v-intent",
+  "sentence": 77,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_077/run_0/ground_truth.wav"
+ },
+ "ifcba626aee": {
+  "cell": "w2v-intent",
+  "sentence": 78,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_078/run_0/ground_truth.wav"
+ },
+ "ibfc90853fd": {
+  "cell": "w2v-intent",
+  "sentence": 82,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_082/run_0/ground_truth.wav"
+ },
+ "i61689c0559": {
+  "cell": "w2v-intent",
+  "sentence": 87,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_087/run_0/ground_truth.wav"
+ },
+ "i68027752fe": {
+  "cell": "w2v-intent",
+  "sentence": 98,
+  "condition": "clean",
+  "source": "outputs/results/GATAS_llm/commands/wav2vec2-large_20261016_1416/sentence_098/run_0/ground_truth.wav"
+ },
+ "i43e413961f": {
+  "cell": "w2v-intent",
+  "sentence": 100,
+  "condition": "clean",
+  "source": "outputs/results/SMACK/commands/wav2vec2-large_20261018_1338/sentence_100/ground_truth.wav"
+ }
+}

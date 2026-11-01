@@ -7,35 +7,6 @@ from torch import Tensor
 from ..data.dataclass import ConfigData, AudioEmbeddingData
 
 
-def _pad_with_pattern(tensor: Tensor, amount: int, pattern: list[int]) -> Tensor:
-    """Pads tensor along last dimension with a repeating pattern."""
-    padding = torch.as_tensor(pattern, device=tensor.device, dtype=tensor.dtype)[
-        torch.arange(amount, device=tensor.device) % len(pattern)
-    ]
-
-    for _ in range(tensor.dim() - 1):
-        padding = padding.unsqueeze(0)
-    padding = padding.expand(*tensor.shape[:-1], amount)
-
-    return torch.cat([tensor, padding], dim=-1)
-
-
-def add_numbers_pattern(a: Tensor, b: Tensor, pattern: list[int]) -> tuple[Tensor, Tensor]:
-    """Pads the shorter tensor to match the longer one using a repeating pattern."""
-    len_a = a.size(-1)
-    len_b = b.size(-1)
-
-    if len_a == len_b:
-        return a, b
-
-    if len_a < len_b:
-        a = _pad_with_pattern(a, len_b - len_a, pattern)
-    else:
-        b = _pad_with_pattern(b, len_a - len_b, pattern)
-
-    return a, b
-
-
 def generate_similar_noise(reference_tensor):
     """
     Generates random noise matching per-feature mean and std of the reference tensor.

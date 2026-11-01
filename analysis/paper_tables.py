@@ -17,7 +17,7 @@ _sem_cache = {}
 
 
 def verdict(r):
-    """LLM verdict of an ASR record (preserved / changed / garbled), scripts/semantic_rescore.py --llm3."""
+    """LLM verdict of an ASR record (preserved / changed / garbled), scripts/semantic_rescore.py."""
     if not _sem_cache:
         _sem_cache.update(json.load(open(SEMANTIC_CACHE)))
     return _sem_cache[json.dumps([r["gt_text"], r["transcription"] or ""])][f"llm3:{JUDGE}"]

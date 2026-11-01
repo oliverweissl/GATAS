@@ -1,9 +1,10 @@
 # GATAS — Setup & Reproduction Guide
 
 GATAS is a black-box test generator for ASR systems. It perturbs the phoneme-level text embedding of a
-TTS model (StyleTTS2) with a multi-objective genetic algorithm (NSGA-II, pymoo): the generated speech should
-stay natural (PESQ) while the ASR transcription loses the original content (SET_OVERLAP). It is compared
-against a waveform-space ablation and three external baselines: SMACK, ALIF and PGD.
+TTS model (StyleTTS2) with CMA-ES: the generated speech should stay natural (PESQ) while the ASR transcription loses
+the original content (SET_OVERLAP) or, for intent matching, the intent classifier moves to a target intent. It is
+compared against a waveform-space variant and three external baselines: SMACK, ALIF and PGD. This repository is the
+replication package of the paper.
 
 ## Repository layout
 
@@ -18,6 +19,7 @@ against a waveform-space ablation and three external baselines: SMACK, ALIF and 
 | `scripts/` | Attack entry points (`adversarial_<method>.py`), reference generation, evaluation, run scripts (`run_*.sh`) |
 | `configs/` | StyleTTS2 config, conda environments for SMACK, ALIF and PGD |
 | `analysis/` | Notebooks, one per research question: RQ0 (ablation), RQ1 (effectiveness), RQ2 (efficiency), RQ3 (validity / survey) |
+| `survey/`, `docs/`, `index.html` | Human study: survey builder, anonymized responses, item key; the survey site itself (GitHub Pages) |
 
 ## Installation
 
@@ -102,9 +104,7 @@ Sentences are only used as text: every method synthesizes the reference speech w
 | ASR model (`ASR_MODEL`) | Checkpoint |
 |---|---|
 | `whisper-tiny` | OpenAI Whisper tiny |
-| `whisper-large-v3-turbo` | OpenAI Whisper large-v3-turbo |
 | `wav2vec2-large` | `facebook/wav2vec2-large-960h-lv60-self` (CTC) |
-| `whisper-large-v3` | reference ASR of the validity check only (never attacked) |
 
 ## Running the experiments
 
@@ -112,38 +112,40 @@ Run everything from the project root. `bash scripts/run_experiments.sh` runs the
 
 | Study | Methods | ASR | Datasets |
 |---|---|---|---|
-| Main comparison (RQ1–RQ3) | GATAS, Waveform, SMACK, ALIF, PGD | whisper-tiny | harvard (ASR), commands (intent matching) |
-| Objective formulation | SMACK (native targeted), GATAS (targeted) | whisper-tiny | harvard |
-| Intent matching | GATAS, Waveform, SMACK, ALIF toward the target intent (PGD untargeted, block 1) | whisper-tiny | commands |
+| ASR testing (RQ1–RQ3) | GATAS, Waveform, SMACK_untargeted, SMACK, ALIF, PGD (Whisper only) | whisper-tiny, wav2vec2-large | harvard |
+| Intent matching (RQ1–RQ3) | GATAS_intent, GATAS_llm, Waveform_intent, SMACK, ALIF_intent, PGD (Whisper only) | whisper-tiny, wav2vec2-large | commands |
+| Ablations (RQ0) | `run_scale_ablation.sh`, `run_space_ablation.sh`, `run_intent_ablation.sh` (sentences 1–20) | whisper-tiny | harvard, commands |
+
+It finishes with the semantic-outcome judge (`scripts/semantic_rescore.py`, needs a local [ollama](https://ollama.com)
+server with `gemma4:31b`) and the intent classification of the normalized transcriptions (`analysis/normalize_intents.py`).
 
 Each method also has its own run script. Every run script generates the shared reference audios for its
 sentences, runs the attack in one sequential process, and evaluates the results. Settings come from
 environment variables (defaults in `scripts/common.sh`): `DATASET`, `ASR_MODEL`, `SEED` (0), `GPU` (0), `START`/`END` (1/100).
 
 ```bash
-DATASET=commands ASR_MODEL=whisper-large-v3-turbo bash scripts/run_gatas.sh
+DATASET=harvard ASR_MODEL=wav2vec2-large bash scripts/run_gatas.sh
 ```
 
 | Method | Run script | Environment |
 |---|---|---|
 | `GATAS` | `run_gatas.sh` | main |
-| `GATAS_targeted` | `run_gatas_targeted.sh` | main |
 | `Waveform` | `run_waveform.sh` | main |
 | `SMACK` (native targeted, as in the SMACK repository; on `commands` the target text is the intent rewrite) | `run_smack.sh` | smack |
 | `SMACK_untargeted` (our untargeted adaptation, ASR task only) | `run_smack_untargeted.sh` | smack |
 | `ALIF` | `run_alif.sh` | alif |
 | `GATAS_intent`, `Waveform_intent`, `ALIF_intent` (intent matching, `commands`) | `run_gatas_intent.sh`, `run_waveform_intent.sh`, `run_alif_intent.sh` | main / main / alif |
+| `GATAS_llm` (GATAS with the LLM intent rewrite as anchor, `commands`) | `run_gatas_llm.sh` | main |
 | `PGD` | `run_pgd.sh` (Whisper-tiny only) | pgd |
 
 GATAS settings: CMA-ES with population 20 for up to 15 generations, i.e. a budget of 300 ASR queries per sentence, the
 same for all methods (Waveform 20 x 15, ALIF 20 particles x 15 epochs, PGD 300 iterations, SMACK upstream settings,
 about 300). There is no early stopping: every method uses the full budget. The first generation meeting the thresholds is logged as `generation_found`. Budget and population are set with `POP_SIZE` / `NUM_GENERATIONS`
-(same for Waveform). Objectives `PESQ=0.2, SET_OVERLAP=0.5` (the values are the thresholds used to select the final
-candidate from the Pareto front, among the candidates whose transcription differs from the ground truth text, i.e.
-that already are test cases), mode `NOISE_UNTARGETED` (interpolation of the StyleTTS2 text embedding
-between the GT and a noise embedding), and `--seed_target` (one initial individual is the pure noise target). The
-targeted variant uses `PESQ=0.2, WER_TARGET=0.0` in mode `TARGETED`; targets are drawn per sentence from the same
-dataset, identically for GATAS and SMACK (`src/helper.target_sentence`). See `python scripts/adversarial_gatas.py --help`.
+(same for Waveform). Objectives `PESQ=0.2, SET_OVERLAP=0.5`: CMA-ES minimizes `max_i f_i / threshold_i`, and the
+thresholds also select the final candidate from the Pareto archive, among the candidates whose transcription differs
+from the ground truth text, i.e. that already are test cases. Waveform additionally uses `--seed_target` (one initial
+individual is the pure noise target). The targets of the native targeted SMACK on `harvard` are drawn per sentence
+from the same dataset (`src/helper.target_sentence`). See `python scripts/adversarial_gatas.py --help`.
 
 Existing reference audios are reused; delete `outputs/` for a fresh run.
 
@@ -183,13 +185,16 @@ Whisper model. Query budgets count attacked-ASR queries (PGD: gradient iteration
 
 ## Analysis
 
-The notebooks load results through `analysis/results_loader.py` (`load_results(dataset=..., asr_model=...)`): the
+The raw results (`outputs/`) are not part of the repository. The notebooks load results through `analysis/results_loader.py` (`load_results(dataset=..., asr_model=...)`): the
 latest experiment per method, only sentences present for every method, sorted by sentence ID (for paired tests).
 
 - `RQ0_Ablation`: scale, search space, optimizer and selection ablations.
-- `RQ2_Efficiency`: runtime, query budget, queries per m-valid success.
 - `RQ1_Effectiveness`: test case found, lexical / semantic / spectrogram distance, UTMOS, paired tests, trade-off and spectrogram figures.
-- `RQ3_Validity`: m-valid share and the human study (survey responses): data exclusions, realism vs. UTMOS / m-validity, attack success as perceived by humans.
+- `RQ2_Efficiency`: runtime, query budget, queries per m-valid success.
+- `RQ3_Validity`: m-valid share and the human study (`survey/responses.csv`, `survey/key.json`): data exclusions, realism vs. UTMOS / m-validity, attack success as perceived by humans.
+
+Tables and figures are written to `analysis/_tables` and `analysis/_figures`. `paper_tables.py` and `stats_utils.py`
+hold the shared table and test code.
 
 ## Intent matching
 
@@ -200,8 +205,7 @@ prediction on the clean text, `commands.intents.txt`) and a *target intent* (bes
 `commands.target_intents.txt`; SLURP gold labels are in `commands.gold_intents.txt`).
 
 The intent output is used as optimization signal by the methods that can use a score: `GATAS_intent` and
-`Waveform_intent` (objective `INTENT_TARGET = 1 - P(target intent)` instead of SET_OVERLAP), `ALIF_intent` (PSO loss)
-(PSO loss); run scripts `run_<method>_intent.sh` with `DATASET=commands`. SMACK is not modified: its native targeted attack gets the LLM intent rewrite (`commands.intent_rewrites.txt`, also the target of `GATAS_llm`) as target text. PGD stays untargeted.
+`Waveform_intent` (objective `INTENT_TARGET = 1 - P(target intent)` instead of SET_OVERLAP), `ALIF_intent` (PSO loss); run scripts `run_<method>_intent.sh` with `DATASET=commands`. SMACK is not modified: its native targeted attack gets the LLM intent rewrite (`commands.intent_rewrites.txt`, also the target of `GATAS_llm`) as target text. PGD stays untargeted.
 `evaluation.json` gets an `intent` block for every method on `commands`: `target_match` (predicted intent equals the
 target intent), `changed` (differs from the intent of the original audio's transcription), `original_correct`
 (control) and `targeted` (the method optimized toward the target).

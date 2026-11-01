@@ -25,7 +25,7 @@ nltk.download('stopwords', quiet=True)
 
 from src.data.dataclass import ModelData
 from src.data.datasets import DATASETS, load_sentences, load_target_intents, load_intent_rewrites
-from src.helper import set_seed, run_seed, load_reference_embedding, results_dir, experiment_name, target_sentence
+from src.helper import set_seed, run_seed, load_reference_embedding, results_dir, experiment_name
 from src.trainer.environment_loader import EnvironmentLoader
 from src.trainer.adversarial_trainer import AdversarialTrainer
 from src.trainer.run_logger import RunLogger
@@ -57,10 +57,9 @@ def initialize_parser():
                         help="nsga2: NSGA-II; cmaes: CMA-ES on max_i f_i / threshold_i; mocma: MO-CMA-ES")
     parser.add_argument("--rank_text", type=int, default=8, help="Coefficients per phoneme (text embedding)")
     parser.add_argument("--rank_style", type=int, default=16, help="Coefficients per style vector (acoustic, prosodic)")
-    parser.add_argument("--mode", type=str, default="TARGETED", help="TARGETED: objectives compare to a target text; else untargeted")
+    parser.add_argument("--mode", type=str, default="NOISE_UNTARGETED")
     parser.add_argument("--method_name", type=str, default=None,
-                        help="Result folder / attack_method name (default: GATAS, or GATAS_targeted in TARGETED mode)")
-    parser.add_argument("--target_text", type=str, default="")
+                        help="Result folder / attack_method name (default: GATAS, or GATAS_intent with an INTENT_* objective)")
     parser.add_argument("--target_interp", action="store_true",
                         help="GATAS_llm: search the interpolation toward the LLM intent rewrite (<dataset>.intent_rewrites.txt) "
                              "in latent space instead of perturbing the seed")
@@ -87,7 +86,7 @@ def main():
     device = f'cuda:{args.gpu}' if torch.cuda.is_available() else 'cpu'
     print(f"Device: {device} | GPUs: {torch.cuda.device_count()}")
 
-    method = args.method_name or ("GATAS_intent" if "INTENT_" in args.objectives else "GATAS_targeted" if args.mode == "TARGETED" else "GATAS")
+    method = args.method_name or ("GATAS_intent" if "INTENT_" in args.objectives else "GATAS")
     loader = EnvironmentLoader(device)
     tts_model, asr_model = loader.load_required_models(args.asr_model)
     print("Models loaded.")
@@ -117,14 +116,11 @@ def main():
     try:
         for sentence_id in range(args.start, args.end + 1):
             sentence_text = sentences[sentence_id - 1]
-            target_text = args.target_text if args.target_text else target_sentence(sentences, sentence_id, args.seed)
             print(f"\n{'='*60}")
             target_intent = load_target_intents(args.dataset)[sentence_id - 1] if "INTENT_" in args.objectives else None
             print(f"[Sentence {sentence_id}] {sentence_text}")
             if target_intent:
                 print(f"[Target intent] {target_intent}")
-            if args.mode == "TARGETED":
-                print(f"[Target]     {target_text}")
             print(f"{'='*60}")
 
             for run_id in range(args.loop_count):
@@ -134,7 +130,7 @@ def main():
 
                 run_args = argparse.Namespace(
                     ground_truth_text=sentence_text,
-                    target_text=target_text,
+                    target_text="",
                     loop_count=1,
                     num_generations=args.num_generations,
                     pop_size=args.pop_size,

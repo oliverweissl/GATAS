@@ -4,8 +4,6 @@ from __future__ import annotations
 # Canonical ASR model name -> (wrapper, checkpoint). The canonical name is used in result folder names.
 ASR_MODELS = {
     "whisper-tiny": ("whisper", "tiny"),
-    "whisper-large-v3-turbo": ("whisper", "large-v3-turbo"),
-    "whisper-large-v3": ("whisper", "large-v3"),  # reference ASR for the validity check (src/metrics.py)
     "wav2vec2-large": ("wav2vec2", "facebook/wav2vec2-large-960h-lv60-self"),
 }
 

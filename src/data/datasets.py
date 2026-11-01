@@ -23,11 +23,6 @@ def load_sentences(dataset: str) -> tuple:
         return tuple(line.strip() for line in f if line.strip())
 
 
-def get_sentence(dataset: str, sentence_id: int) -> str:
-    """1-based sentence ID."""
-    return load_sentences(dataset)[sentence_id - 1]
-
-
 def _load_lines(name: str):
     path = os.path.join(SEED_SENTENCE_DIR, f"{name}.txt")
     if not os.path.exists(path):

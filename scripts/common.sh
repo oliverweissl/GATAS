@@ -1,7 +1,7 @@
 #!/bin/bash
 # Shared settings for the run scripts. Override via environment variables.
 DATASET=${DATASET:-harvard}          # harvard | commands
-ASR_MODEL=${ASR_MODEL:-whisper-tiny} # whisper-tiny | whisper-large-v3-turbo | wav2vec2-large | ...
+ASR_MODEL=${ASR_MODEL:-whisper-tiny} # whisper-tiny | wav2vec2-large
 SEED=${SEED:-0}
 GPU=${GPU:-0}
 START=${START:-1}

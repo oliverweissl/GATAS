@@ -14,7 +14,7 @@ import numpy as np
 
 # Local imports
 from ..models import StyleTTS2, canonical_asr_model_name, load_asr_model
-from .vector_manipulator import add_numbers_pattern, generate_similar_noise
+from .vector_manipulator import generate_similar_noise
 
 # Import dataclasses and enums
 from ..data.dataclass import ModelData, ConfigData, AudioEmbeddingData
@@ -152,8 +152,7 @@ class EnvironmentLoader:
         Generate audio data for ground-truth and target texts.
 
         audio_embedding_gt: pre-computed GT embeddings (from generate_reference_audios.py) so every
-        attack method starts from the same reference audio. Ignored for TARGETED mode, which re-extracts
-        padded GT tokens.
+        attack method starts from the same reference audio.
         """
         noise = torch.randn(1, 1, 256).to(self.device)
 
@@ -162,44 +161,35 @@ class EnvironmentLoader:
         else:
             audio_embedding_data_gt = tts.extract_embeddings(tts.preprocess_text(text_gt), noise)
 
-        if mode is AttackMode.TARGETED:
-            tokens_gt, tokens_target = add_numbers_pattern(
-                tts.preprocess_text(text_gt),
-                tts.preprocess_text(text_target),
-                [16, 4]
+        gt_rms = tts.inference_on_embedding(audio_embedding_data_gt).flatten().pow(2).mean().sqrt().item()
+        min_rms = 0.1 * gt_rms
+
+        best_embedding = None
+        best_rms = -1.0
+
+        for attempt in range(num_rms_candidates):
+            candidate_embedding = AudioEmbeddingData(
+                audio_embedding_data_gt.input_length,
+                audio_embedding_data_gt.text_mask,
+                generate_similar_noise(audio_embedding_data_gt.h_bert),
+                generate_similar_noise(audio_embedding_data_gt.h_text),
+                generate_similar_noise(audio_embedding_data_gt.style_vector_acoustic),
+                generate_similar_noise(audio_embedding_data_gt.style_vector_prosodic),
             )
-            audio_embedding_data_gt = tts.extract_embeddings(tokens_gt, noise)
-            audio_embedding_data_target = tts.extract_embeddings(tokens_target, noise)
+            candidate_audio = tts.inference_on_embedding(candidate_embedding).flatten()
+            rms = candidate_audio.pow(2).mean().sqrt().item()
+
+            if rms > best_rms:
+                best_rms = rms
+                best_embedding = candidate_embedding
+
+            if rms >= min_rms:
+                print(f"[Log] Target sampled (attempt {attempt + 1}, RMS={rms:.4f}, GT RMS={gt_rms:.4f})")
+                break
         else:
-            gt_rms = tts.inference_on_embedding(audio_embedding_data_gt).flatten().pow(2).mean().sqrt().item()
-            min_rms = 0.1 * gt_rms
+            print(f"[Log] Using best target after {num_rms_candidates} attempts (RMS={best_rms:.4f}, threshold={min_rms:.4f})")
 
-            best_embedding = None
-            best_rms = -1.0
-
-            for attempt in range(num_rms_candidates):
-                candidate_embedding = AudioEmbeddingData(
-                    audio_embedding_data_gt.input_length,
-                    audio_embedding_data_gt.text_mask,
-                    generate_similar_noise(audio_embedding_data_gt.h_bert),
-                    generate_similar_noise(audio_embedding_data_gt.h_text),
-                    generate_similar_noise(audio_embedding_data_gt.style_vector_acoustic),
-                    generate_similar_noise(audio_embedding_data_gt.style_vector_prosodic),
-                )
-                candidate_audio = tts.inference_on_embedding(candidate_embedding).flatten()
-                rms = candidate_audio.pow(2).mean().sqrt().item()
-
-                if rms > best_rms:
-                    best_rms = rms
-                    best_embedding = candidate_embedding
-
-                if rms >= min_rms:
-                    print(f"[Log] Target sampled (attempt {attempt + 1}, RMS={rms:.4f}, GT RMS={gt_rms:.4f})")
-                    break
-            else:
-                print(f"[Log] Using best target after {num_rms_candidates} attempts (RMS={best_rms:.4f}, threshold={min_rms:.4f})")
-
-            audio_embedding_data_target = best_embedding
+        audio_embedding_data_target = best_embedding
 
         # Run inference for ground-truth and target
         audio_gt = tts.inference_on_embedding(audio_embedding_data_gt).flatten()

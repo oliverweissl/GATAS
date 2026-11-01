@@ -42,7 +42,7 @@ def normalize_summary(path: str) -> dict:
             "run_id": meta.get("run_id") or 0,
             "asr_model": algo.get("asr_model"),
             "gt_text": text["ground_truth_text"],
-            "target_text": text.get("target_text") if algo.get("attack_mode") == "TARGETED" else None,
+            "target_text": None,
             "target_intent": text.get("target_intent"),
             "transcription": text.get("asr_transcription"),
             "elapsed_seconds": eff["elapsed_time_seconds"],

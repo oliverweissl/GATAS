@@ -4,6 +4,7 @@ Layout: <results_root>/<Method>/<dataset>/<asr>_<timestamp>/sentence_XXX/[run_Y/
 """
 import json
 import os
+import re
 import warnings
 from glob import glob
 
@@ -17,9 +18,34 @@ MODELS = ("whisper-tiny", "wav2vec2-large")
 MODEL_LABELS = {"whisper-tiny": "Whisper-tiny", "wav2vec2-large": "wav2vec2-large"}
 
 
+INTENT_CACHE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "_intent_normalized.json")
+_intent_cache = None
+
+
+def normalize_text(text) -> str:
+    """Lowercase, drop punctuation except word-internal apostrophes, collapse whitespace."""
+    text = (text or "").lower().replace("\u2019", "'")
+    return " ".join(re.sub(r"[^\w\s']|(?<!\w)'|'(?!\w)", " ", text).split())
+
+
+def _normalized_intent(e: dict) -> dict:
+    """Intent fields measured on normalized texts (normalize_intents.py); the target intent is kept."""
+    global _intent_cache
+    if _intent_cache is None:
+        with open(INTENT_CACHE) as f:
+            _intent_cache = json.load(f)
+    intent = e["intent"]
+    reference, original, adversarial = (_intent_cache[normalize_text(e[k])] for k in ("gt_text", "original_transcription", "transcription"))
+    return {**intent, "reference": reference, "original": original, "adversarial": adversarial,
+            "original_correct": original == reference, "changed": adversarial != original,
+            "target_match": adversarial == intent["target"] and intent["target"] != reference}
+
+
 def _record(path: str) -> dict:
     with open(path) as f:
         e = json.load(f)
+    if e.get("intent"):
+        e["intent"] = _normalized_intent(e)
     scores = e["scores"]
     return {**e, "gt_wav": e["audio"]["original"], "adv_wav": e["audio"]["adversarial"], "wer": scores["WER"],
             "semantic": scores["SEMANTIC_DISTANCE"], "spectrogram": scores["SPECTROGRAM_DISTANCE"], "utmos": scores["UTMOS"],
@@ -74,6 +100,12 @@ def intent_hit(r: dict) -> bool:
     return bool(r["intent"]["changed"] and r["intent"]["target_match"])
 
 
+def _passing_for_any(records: dict, passes) -> dict:
+    """Drop every sentence whose clean input fails for all methods."""
+    passing = {r["sentence_id"] for rs in records.values() for r in rs if passes(r)}
+    return {m: [r for r in rs if r["sentence_id"] in passing] for m, rs in records.items()}
+
+
 def load_all(results_root: str = "../outputs/results", models=MODELS, exclude_baseline_failures: bool = True):
     """(asr, intent), each {model: {method: records}} without empty methods; sentences whose clean input already fails are dropped."""
     asr, intent = {}, {}
@@ -81,8 +113,9 @@ def load_all(results_root: str = "../outputs/results", models=MODELS, exclude_ba
         a = load_results(results_root, dataset="harvard", asr_model=model)
         i = load_intent_results(results_root, asr_model=model)
         if exclude_baseline_failures:
-            a = {m: [r for r in rs if r["original_passes"]] for m, rs in a.items()}
-            i = {m: [r for r in rs if r["intent"]["original_correct"]] for m, rs in i.items()}
+            # keep a sentence if its clean input passes for any method, so that all methods share one sentence set
+            a = _passing_for_any(a, lambda r: r["original_passes"])
+            i = _passing_for_any(i, lambda r: r["intent"]["original_correct"])
         asr[model] = {m: rs for m, rs in a.items() if rs}
         intent[model] = {m: rs for m, rs in i.items() if rs}
     return asr, intent

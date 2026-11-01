@@ -1,5 +1,5 @@
 """Build the realism survey for GitHub Pages: loudness-normalized audios under anonymous ids in docs/audio, docs/items.json (public)
-and survey/private/key.json (item id -> condition, git-ignored).
+and survey/key.json (item id -> condition).
 
 Four cells (SUT x task). Conditions per cell: GATAS (GATAS_llm on intent), the two best baselines (survey/select_baselines.py) and the
 clean audio. Each condition has its own pool: sentences the SUT handles correctly on clean input and for which the method found a test
@@ -18,7 +18,6 @@ from results_loader import load_results, asr_found
 from select_baselines import select, ASR, INTENT
 
 OUT = "docs"
-PRIVATE = "survey/private"
 LOUDNESS = "I=-23:TP=-2:LRA=11"  # EBU R128
 
 
@@ -60,7 +59,7 @@ def shorten(text, n=100):
 
 rng = random.Random(0)
 shutil.rmtree(f"{OUT}/audio", ignore_errors=True)
-os.makedirs(f"{OUT}/audio"); os.makedirs(PRIVATE, exist_ok=True)
+os.makedirs(f"{OUT}/audio")
 cells, key = {}, {}
 for cell, (label, dataset, sut, folders) in CELLS.items():
     records = load_results("outputs/results", dataset=dataset, asr_model=sut, methods=tuple(folders.values()), exclude_original_fails=False)
@@ -85,5 +84,5 @@ for cell, (label, dataset, sut, folders) in CELLS.items():
             key[item_id] = {"cell": cell, "sentence": sid, "condition": cond, "source": os.path.relpath(wav)}
     cells[cell] = {"label": label, "task": dataset, "items": items}
 json.dump({"cells": cells, "per_config": 2}, open(f"{OUT}/items.json", "w"), indent=1)
-json.dump(key, open(f"{PRIVATE}/key.json", "w"), indent=1)
+json.dump(key, open("survey/key.json", "w"), indent=1)
 print(f"{len(key)} items")

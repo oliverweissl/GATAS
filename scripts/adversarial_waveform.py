@@ -26,7 +26,7 @@ nltk.download('stopwords', quiet=True)
 
 from src.data.dataclass import ModelData
 from src.data.datasets import DATASETS, load_sentences, load_target_intents
-from src.helper import set_seed, run_seed, load_reference_embedding, results_dir, experiment_name, target_sentence
+from src.helper import set_seed, run_seed, load_reference_embedding, results_dir, experiment_name
 from src.trainer.environment_loader import EnvironmentLoader
 from src.trainer.waveform_adversarial_trainer import WaveformAdversarialTrainer
 from src.trainer.run_logger import RunLogger
@@ -48,8 +48,7 @@ def initialize_parser():
     parser.add_argument("--num_generations", type=int, default=100)
     parser.add_argument("--pop_size", type=int, default=200)
     parser.add_argument("--batch_size", type=int, default=100)
-    parser.add_argument("--mode", type=str, default="TARGETED")
-    parser.add_argument("--target_text", type=str, default="")
+    parser.add_argument("--mode", type=str, default="NOISE_UNTARGETED")
     parser.add_argument("--objectives", type=str, default="PESQ=0.2, SET_OVERLAP=0.5")
     parser.add_argument("--method_name", type=str, default=None, help="Result folder name (default: Waveform, Waveform_intent with INTENT_TARGET)")
     parser.add_argument("--seed_target", action="store_true", default=False)
@@ -101,14 +100,11 @@ def main():
     try:
         for sentence_id in sentence_ids:
             sentence_text = sentences[sentence_id - 1]
-            target_text = args.target_text if args.target_text else target_sentence(sentences, sentence_id, args.seed)
             print(f"\n{'='*60}")
             target_intent = load_target_intents(args.dataset)[sentence_id - 1] if "INTENT_TARGET" in args.objectives else None
             print(f"[Sentence {sentence_id}] {sentence_text}")
             if target_intent:
                 print(f"[Target intent] {target_intent}")
-            if args.mode == "TARGETED":
-                print(f"[Target]     {target_text}")
             print(f"{'='*60}")
 
             for run_id in range(args.loop_count):
@@ -118,7 +114,7 @@ def main():
 
                 run_args = argparse.Namespace(
                     ground_truth_text=sentence_text,
-                    target_text=target_text,
+                    target_text="",
                     loop_count=1,
                     num_generations=args.num_generations,
                     pop_size=args.pop_size,

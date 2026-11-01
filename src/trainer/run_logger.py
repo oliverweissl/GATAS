@@ -190,7 +190,7 @@ class RunLogger:
             "text_data": {
                 "ground_truth_text": config_data.text_gt,
                 "gt_transcription": gt_asr_text,
-                "target_text": config_data.text_target if config_data.mode.name == "TARGETED" else target_asr_text,
+                "target_text": target_asr_text,
                 "asr_transcription": text_best,
                 "target_intent": config_data.target_intent,
             },
@@ -276,9 +276,9 @@ class RunLogger:
                                                  intent_first=config_data.intent_selection)
         audio_best, text_best = self.run_final_inference(best_candidate, batch_size=min(config_data.batch_size, config_data.pop_size))
 
-        # Transcribe target audio for non-TARGETED modes (e.g. NOISE_UNTARGETED)
+        # Transcribe the target audio
         target_asr_text = ""
-        if config_data.mode.name != "TARGETED" and audio_target is not None:
+        if audio_target is not None:
             asr_model = self.asr_model.module if isinstance(self.asr_model, torch.nn.DataParallel) else self.asr_model
             target_audio_tensor = audio_target.detach().cpu().unsqueeze(0) if audio_target.dim() == 1 else audio_target.detach().cpu()
             target_asr_texts, _ = asr_model.inference(target_audio_tensor.to(self.device))

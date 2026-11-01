@@ -4,7 +4,7 @@ Every participant rates 32 audios: 2 for each of 16 configurations (4 cells of S
 distinct sentences per task. Within a configuration the audios with the fewest answers so far are chosen, so every audio gets at least 5
 answers with 100 respondents (simulated: min 5, max 11; 150 respondents: min 8). The balancing needs the endpoint below to return the counts.
 
-1. `python survey/build_survey.py` (project root) writes the site to `docs/` and the key to `survey/private/key.json` (git-ignored).
+1. `python survey/build_survey.py` (project root) writes the site to `docs/` and the key to `survey/key.json`.
 2. Google Sheet: create a sheet, Extensions > Apps Script, paste the script below, Deploy > New deployment > Web app (execute as: me,
    access: anyone), copy the `/exec` URL into `docs/config.js` (`window.SURVEY_ENDPOINT`).
 3. GitHub Pages serves the repository (root redirects to `docs/`); participants with Prolific ids: `?pid=<id>`.
@@ -39,5 +39,5 @@ function doGet() {  // number of answers per audio, used to balance the assignme
 Besample (optional): add the script property `BESAMPLE_BKEY` (Project Settings > Script properties). Only respondents with `?battempt=..&bnum=..` in the link
 get a code (and are redirected back); direct respondents are unaffected. Local test: `BESAMPLE_BKEY=<key> python survey/server.py`.
 
-Analysis: join the `item` column with `survey/private/key.json` (item -> cell, sentence, condition).
+Analysis: join the `item` column with `survey/key.json` (item -> cell, sentence, condition).
 After changing the script, deploy a new version (Deploy > Manage deployments > Edit > New version); the `/exec` URL stays the same.

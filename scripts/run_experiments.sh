@@ -4,20 +4,26 @@
 set -e
 export SEED=${SEED:-0} GPU=${GPU:-0}
 
-# 1. Main comparison (RQ1-RQ3): all methods, Whisper-tiny, Harvard (ASR task) + SLURP commands (intent matching)
-for dataset in harvard commands; do
-    for script in run_gatas run_waveform run_smack run_alif run_pgd; do
-        DATASET=$dataset ASR_MODEL=whisper-tiny bash scripts/$script.sh
+for asr in whisper-tiny wav2vec2-large; do
+    # 1. ASR testing (Harvard, RQ1-RQ3). PGD is white-box on Whisper only.
+    for script in run_gatas run_waveform run_smack_untargeted run_smack run_alif; do
+        DATASET=harvard ASR_MODEL=$asr bash scripts/$script.sh
     done
+    if [ "$asr" = whisper-tiny ]; then DATASET=harvard ASR_MODEL=$asr bash scripts/run_pgd.sh; fi
+
+    # 2. Intent matching (SLURP commands, RQ1-RQ3): the methods that can use the classifier output optimize toward the
+    #    target intent; SMACK uses the LLM intent rewrite as its native target text; PGD stays untargeted.
+    for script in run_gatas_intent run_gatas_llm run_waveform_intent run_smack run_alif_intent; do
+        DATASET=commands ASR_MODEL=$asr bash scripts/$script.sh
+    done
+    if [ "$asr" = whisper-tiny ]; then DATASET=commands ASR_MODEL=$asr bash scripts/run_pgd.sh; fi
 done
 
-# 2. Objective formulation: targeted GATAS vs native SMACK (block 1), and our untargeted SMACK adaptation (ASR task only)
-for script in run_smack_untargeted run_gatas_targeted; do
-    DATASET=harvard ASR_MODEL=whisper-tiny bash scripts/$script.sh
-done
+# 3. Ablations (RQ0, Whisper-tiny, sentences 1-20)
+ASR_MODEL=whisper-tiny bash scripts/run_scale_ablation.sh
+ASR_MODEL=whisper-tiny bash scripts/run_space_ablation.sh
+ASR_MODEL=whisper-tiny bash scripts/run_intent_ablation.sh
 
-# 3. Intent matching (commands): the methods that can use the intent classifier output optimize toward the target intent
-#    (PGD is white-box on Whisper's text decoder and stays untargeted, see block 1)
-for script in run_gatas_intent run_waveform_intent run_alif_intent; do  # SMACK (block 1) uses the intent rewrite as its native target text
-    DATASET=commands ASR_MODEL=whisper-tiny bash scripts/$script.sh
-done
+# 4. Post-processing for the analysis notebooks: semantic outcome (needs a local ollama server) and normalized intents
+conda run --no-capture-output -n gatas python scripts/semantic_rescore.py
+(cd analysis && conda run --no-capture-output -n gatas python normalize_intents.py)

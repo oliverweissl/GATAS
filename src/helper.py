@@ -20,7 +20,7 @@ def run_seed(seed: int, sentence_id: int, run_id: int = 0) -> int:
 
 
 # Method names, used for result folders and the 'attack_method' field of every summary JSON
-METHODS = ("GATAS", "GATAS_targeted", "Waveform", "SMACK_untargeted", "SMACK", "ALIF", "PGD",
+METHODS = ("GATAS", "Waveform", "SMACK_untargeted", "SMACK", "ALIF", "PGD",
            "GATAS_intent", "Waveform_intent", "ALIF_intent")  # *_intent: optimize the intent classifier output
 # Scale ablation of GATAS (scripts/run_scale_ablation.sh, analysis/Ablation_Scale.ipynb)
 ABLATION_METHODS = ("GATAS_scale_0.5", "GATAS_scale_1", "GATAS_scale_2", "GATAS_adaptive")
@@ -44,10 +44,6 @@ def results_dir(method: str, dataset: str, experiment: str) -> str:
     """outputs/results/<method>/<dataset>/<experiment>; method is one of METHODS."""
     assert method in METHODS + ABLATION_METHODS + SPACE_METHODS + INTENT_ABLATION_METHODS + VARIANT_METHODS, f"Unknown method {method!r}, expected one of {METHODS + ABLATION_METHODS + SPACE_METHODS + INTENT_ABLATION_METHODS + VARIANT_METHODS}"
     return os.path.join(RESULTS_DIR, method, dataset, experiment)
-
-
-def sentence_dir(results_path: str, sentence_id: int) -> str:
-    return os.path.join(results_path, f"sentence_{sentence_id:03d}")
 
 
 def reference_paths(dataset: str, sentence_id: int, reference_dir: str = REFERENCE_DIR) -> tuple[str, str]:

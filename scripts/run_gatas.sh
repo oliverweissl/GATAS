@@ -1,5 +1,5 @@
 #!/bin/bash
-# GATAS (untargeted) with the best configuration of the ablations (METHODOLOGY.md): CMA-ES on the Chebyshev scalarization,
+# GATAS (untargeted) with the best configuration of the ablations (RQ0): CMA-ES on the Chebyshev scalarization,
 # Jacobian basis, DCT text coefficients, adaptive scale in [0.5, 4].
 # Run from project root: bash scripts/run_gatas.sh   (pin a GPU with CUDA_VISIBLE_DEVICES=<n> GPU=0: UTMOS is hardcoded to cuda:0)
 source scripts/common.sh
